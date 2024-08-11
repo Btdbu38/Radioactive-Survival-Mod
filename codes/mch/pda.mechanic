@@ -1,0 +1,86 @@
+
+[template_pdaInfo]
+pos: 0.2
+isVisible: if memory.pda == true
+iconExtraColor: #FFFFFF
+displayType: infoOnly
+allowMultipleInQueue: false
+canPlayerCancel:true
+isActive:false
+buildSpeed: 0s
+addActionCooldownTime: 1s
+iconImage:ROOT:/images/ui/info.png
+iconExtraImage:ROOT:/images/ui/info.png
+
+#=========================================#
+#=================== Calendar System ======================#
+#=========================================#
+
+[core]
+@memory alwaysShowMiniBhs=bool
+@memory showHelp=bool
+@memory time=unit
+
+[hiddenAction_defineTheTime]
+autoTrigger: if not self.tags(includes="timeDefined")
+setCustomTarget2: self.globalSearchForFirstUnit(withTag="time")
+temporarilyAddTags: timeDefined
+
+[action_pdaInfo]
+@copyFromSection: template_pdaInfo, template_pdaInfoText
+
+[action_pdaProfile]
+@copyFromSection: template_pdaInfo, template_pdaProfile
+displayType: infoOnly
+
+[action_pdaGameTime]
+@copyFromSection: template_pdaInfo, template_pdaGameTime
+#description: %{self.resource.hour}:%{self.resource.minute} | %{self.resource.month}/%{self.resource.day}/%{self.resource.year}
+
+[action_showMiniBhs]
+@copyFromSection: template_pdaInfo, template_showMiniBhs
+isVisible: if memory.pda == true and memory.alwaysShowMiniBhs != true
+setUnitMemory: alwaysShowMiniBhs = true
+isActive:true
+iconImage:ROOT:/images/ui/settings.png
+iconExtraImage:ROOT:/images/ui/settings.png
+
+[action_hideMiniBhs]
+@copyFromSection: template_pdaInfo, template_hideMiniBhs
+isVisible: if memory.pda == true and memory.alwaysShowMiniBhs == true
+setUnitMemory: alwaysShowMiniBhs = false
+isActive:true
+iconImage:ROOT:/images/ui/settings.png
+iconExtraImage:ROOT:/images/ui/settings.png
+
+
+[action_showHelp]
+@copyFromSection: template_pdaInfo, template_pdaHelp
+isVisible: if memory.pda == true and memory.showHelp != true
+setUnitMemory: showHelp = true
+isActive:true
+iconImage:ROOT:/images/ui/settings.png
+iconExtraImage:ROOT:/images/ui/settings.png
+
+[action_hideHelp]
+@copyFromSection: template_pdaInfo, template_pdaHelp
+isVisible: if memory.pda == true and memory.showHelp == true
+setUnitMemory: showHelp = false
+isActive:true
+iconImage:ROOT:/images/ui/settings.png
+iconExtraImage:ROOT:/images/ui/settings.png
+
+
+
+[action_pdaHelpEmissions]
+@copyFromSection: template_pdaInfo, template_pdaHelpEmissions
+isVisible: if memory.pda == true and memory.showHelp == true
+
+[action_pdaHelpAnomalies]
+@copyFromSection: template_pdaInfo, template_pdaHelpAnomalies
+isVisible: if memory.pda == true and memory.showHelp == true
+
+[action_pdaHelpArtifacts]
+@copyFromSection: template_pdaInfo, template_pdaHelpArtifacts
+isVisible: if memory.pda == true and memory.showHelp == true
+

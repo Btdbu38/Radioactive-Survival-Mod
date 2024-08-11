@@ -1,0 +1,711 @@
+[template_itema]
+pos: 0.2
+isVisible: if memory.dropping == true
+iconExtraColor: #FFFFFF
+displayType: infoOnly
+allowMultipleInQueue: true
+canPlayerCancel:true
+alwaysSinglePress: false
+buildSpeed: 0
+displayRemainingStockpile: true
+whenBuilding_cannotMove: true
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/button2.ogg:1
+
+[template_itemDrop]
+pos: 0.2
+iconExtraColor: #FFFFFF
+displayType: infoOnly
+allowMultipleInQueue: true
+canPlayerCancel:true
+alwaysSinglePress: false
+buildSpeed: 0
+displayRemainingStockpile: true
+whenBuilding_cannotMove: true
+playSoundToPlayerOnQueue: ROOT:/soundFx/loot/1.ogg:1
+iconImage: ROOT:/images/items/${resourceName}.png
+iconExtraImage: ROOT:/images/items/${resourceName}.png
+isVisible: if self.hasResources(${resourceName}=1) and memory.dropping == true
+spawnUnits: ${propName}(offsetY=15)
+price: ${resourceName}:1
+
+[template_keyDrop]
+pos: 0.2
+iconExtraColor: #FFFFFF
+displayType: infoOnly
+allowMultipleInQueue: true
+canPlayerCancel:true
+alwaysSinglePress: false
+buildSpeed: 0
+displayRemainingStockpile: true
+whenBuilding_cannotMove: true
+playSoundToPlayerOnQueue: ROOT:/soundFx/click.wav:0.9
+iconImage: ROOT:/images/items/${resourceName}.png
+iconExtraImage: ROOT:/images/items/${resourceName}.png
+isVisible: if self.hasResources(${resourceName}=1) and memory.dropping == true
+spawnUnits: key(offsetY=20, addResources=${resourceName}:1)
+price: ${resourceName}:1
+
+#MISC ITEMS
+
+[action_dropwood]
+@define resourceName=wood
+@define propName=wood
+text: Wood
+@copyFromSection: template_itemDrop
+
+[action_dropscrap]
+@define resourceName=scrap
+@define propName=scrap
+text: Scrap
+@copyFromSection: template_itemDrop
+
+[action_dropcloth]
+@define resourceName=cloth
+@define propName=cloth
+text: Cloth
+@copyFromSection: template_itemDrop
+
+[action_dropducttape]
+@define resourceName=ductTape
+@define propName=ductTape
+text: Duct Tape
+@copyFromSection: template_itemDrop
+
+[action_dropengine]
+@define resourceName=carBattery
+@define propName=carBattery
+text: Car Battery
+@copyFromSection: template_itemDrop
+
+[action_dropPlastic]
+@define resourceName=plastic
+@define propName=plastic
+text: Plastic
+@copyFromSection: template_itemDrop
+
+[action_dropleather]
+@define resourceName=leather
+@define propName=leather
+text: Leather
+@copyFromSection: template_itemDrop
+
+[action_dropbook]
+@define resourceName=book
+@define propName=book
+text: Book
+@copyFromSection: template_itemDrop
+
+[action_dropradip]
+@define resourceName=radio
+@define propName=radio
+text: Radio
+@copyFromSection: template_itemDrop
+
+[action_dropcarapace]
+@define resourceName=carapace
+@define propName=carapace
+text: Carapace
+@copyFromSection: template_itemDrop
+
+[action_dropcastMetal]
+@define resourceName=castMetal
+@define propName=castMetal
+text: Cast Metal
+@copyFromSection: template_itemDrop
+
+[action_dropnails]
+@define resourceName=nails
+@define propName=nails
+text: Nails
+@copyFromSection: template_itemDrop
+
+[action_dropscrews]
+@define resourceName=screws
+@define propName=screws
+text: Screws
+@copyFromSection: template_itemDrop
+
+[action_dropscrewdriver]
+@define resourceName=screwdriver
+@define propName=screwdriver
+text: Screwdriver
+@copyFromSection: template_itemDrop
+
+[action_dropsewingcloth]
+@define resourceName=sewingCloth
+@define propName=sewingCloth
+text: Sewing Cloth
+@copyFromSection: template_itemDrop
+
+[action_dropplank]
+@define resourceName=plank
+@define propName=plank
+text: Plank
+@copyFromSection: template_itemDrop
+
+[action_dropmetalsheet]
+@define resourceName=metalSheet
+@define propName=metalSheet
+text: Metal Sheet
+@copyFromSection: template_itemDrop
+
+[action_dropblowtorhc]
+@define resourceName=blowtorch
+@define propName=blowtorch
+text: Blowtorch
+@copyFromSection: template_itemDrop
+
+[action_dropsaw]
+@define resourceName=saw
+@define propName=saw
+text: Saw
+@copyFromSection: template_itemDrop
+
+[action_dropGenerator]
+@define resourceName=generator
+@define propName=generator
+text: Generator
+@copyFromSection: template_itemDrop
+
+[action_dropOldTech]
+@define resourceName=oldTech
+@define propName=oldTech
+text: Old Tech.
+@copyFromSection: template_itemDrop
+
+[action_dropWire]
+@define resourceName=wire
+@define propName=wire
+text: Wire
+@copyFromSection: template_itemDrop
+
+[action_dropFuelCanister]
+@define resourceName=fuelCanister
+@define propName=fuelCanister
+text: Fuel Canister
+@copyFromSection: template_itemDrop
+
+[action_dropPumpJackParts]
+@define resourceName=pumpJackParts
+@define propName=pumpJackParts
+text: Pumpjack Parts
+@copyFromSection: template_itemDrop
+
+[action_dropTurretParts]
+@define resourceName=turretParts
+@define propName=turretParts
+text: Turret Parts
+@copyFromSection: template_itemDrop
+
+
+
+[action_dropmtpck]
+@define resourceName=materialPackage
+@define propName=materialPackage
+text: Material Package
+@copyFromSection: template_itemDrop
+
+[action_drophmr]
+@define resourceName=hammer
+@define propName=hammer
+text: Hammer
+@copyFromSection: template_itemDrop
+
+[action_dropgunparts]
+@define resourceName=gunParts
+@define propName=gunParts
+text: Gun Parts
+@copyFromSection: template_itemDrop
+
+[action_drophightechfabric]
+@define resourceName=highTechFabric
+@define propName=highTechFabric
+text: High Tech Fabric
+@copyFromSection: template_itemDrop
+
+#food
+
+[action_dropfood]
+@define resourceName=food
+@define propName=food
+text: Food
+@copyFromSection: template_itemDrop
+
+[action_dropwater]
+@define resourceName=water
+@define propName=water
+text: Water
+@copyFromSection: template_itemDrop
+
+[action_dropdirtyWater]
+@define resourceName=taintedWater
+@define propName=taintedWater
+text: Dirty Water
+@copyFromSection: template_itemDrop
+
+[action_dropbread]
+@define resourceName=bread
+@define propName=bread
+text: Bread
+@copyFromSection: template_itemDrop
+
+[action_dropcigarettes]
+@define resourceName=cigarettes
+@define propName=cigarettes
+text: Cigarettes
+@copyFromSection: template_itemDrop
+
+[action_dropcrackers]
+@define resourceName=crackers
+@define propName=crackers
+text: Crackers
+@copyFromSection: template_itemDrop
+
+[action_dropcannedtuna]
+@define resourceName=cannedTuna
+@define propName=cannedTuna
+text: Canned Tuna
+@copyFromSection: template_itemDrop
+
+[action_dropfruitJuice]
+@define resourceName=fruitJuice
+@define propName=fruitJuice
+text: Fruit Juice
+@copyFromSection: template_itemDrop
+
+[action_dropmre]
+@define resourceName=mre
+@define propName=mre
+text: MRE
+@copyFromSection: template_itemDrop
+
+[action_dropvodka]
+@define resourceName=vodka
+@define propName=vodka
+text: Vodka
+@copyFromSection: template_itemDrop
+
+[action_dropmeat]
+@define resourceName=meat
+@define propName=meat
+text: Meat
+@copyFromSection: template_itemDrop
+
+[action_droprawmeat]
+@define resourceName=rawMeat
+@define propName=rawMeat
+text: Raw Meat
+@copyFromSection: template_itemDrop
+
+[action_dropsnacks]
+@define resourceName=snacks
+@define propName=snacks
+text: Snacks
+@copyFromSection: template_itemDrop
+
+[action_dropsoda]
+@define resourceName=soda
+@define propName=soda
+text: Soda
+@copyFromSection: template_itemDrop
+
+
+#Medical
+
+[action_dropbloodbag]
+@define resourceName=bloodBag
+@define propName=bloodBag
+text: Blood Bag
+@copyFromSection: template_itemDrop
+
+[action_dropRags]
+@define resourceName=rags
+@define propName=rags
+text: Rags
+@copyFromSection: template_itemDrop
+
+[action_dropBandage]
+@define resourceName=bandage
+@define propName=bandage
+text: Bandage
+@copyFromSection: template_itemDrop
+
+[action_dropmedkit]
+@define resourceName=medkit
+@define propName=medkit
+text: Medkit
+@copyFromSection: template_itemDrop
+
+[action_dropradkit]
+@define resourceName=radkit
+@define propName=radkit
+text: Radkit
+@copyFromSection: template_itemDrop
+
+[action_dropsyringe]
+@define resourceName=syringe
+@define propName=syringe
+text: Syringe
+@copyFromSection: template_itemDrop
+
+[action_dropantidote]
+@define resourceName=antidote
+@define propName=antidote
+text: Antidote
+@copyFromSection: template_itemDrop
+
+[action_dropAi2medkti]
+@define resourceName=medkitAi2
+@define propName=medkitAi2
+text: AI2 Medkit
+@copyFromSection: template_itemDrop
+
+[action_dropcarmedkit]
+@define resourceName=medkitCar
+@define propName=medkitCar
+text: Car Medkit
+@copyFromSection: template_itemDrop
+
+[action_dropifak]
+@define resourceName=medkitIfak
+@define propName=medkitIfak
+text: IFAK
+@copyFromSection: template_itemDrop
+
+[action_dropGrizzly]
+@define resourceName=medkitGrizzly
+@define propName=medkitGrizzly
+text: Grizzly M
+@copyFromSection: template_itemDrop
+
+[action_dropgauze]
+@define resourceName=gauze
+@define propName=gauze
+text: Gauze
+@copyFromSection: template_itemDrop
+
+[action_dropdrug]
+@define resourceName=drug
+@define propName=drug
+text: Drug
+@copyFromSection: template_itemDrop
+
+[action_droppainkillers]
+@define resourceName=painkillers
+@define propName=painkillers
+text: Painkillers
+@copyFromSection: template_itemDrop
+
+[action_dropantisol]
+@define resourceName=antisolution
+@define propName=antisolution
+text: Antisolution
+@copyFromSection: template_itemDrop
+
+[action_dropantirad]
+@define resourceName=antiraddrug
+@define propName=antiraddrug
+text: Antiraddrug
+@copyFromSection: template_itemDrop
+
+[action_dropNeedle]
+@define resourceName=needle
+@define propName=needle
+text: Needle
+@copyFromSection: template_itemDrop
+
+[action_dropTweezer]
+@define resourceName=tweezer
+@define propName=tweezer
+text: Tweezer
+@copyFromSection: template_itemDrop
+
+
+#Weapons
+
+[action_drop9x18]
+price: ${resourceName}:2
+@define resourceName=9x18
+@define propName=9x18
+text: 9x18
+@copyFromSection: template_itemDrop
+
+[action_drop9x19]
+price: ${resourceName}:2
+@define resourceName=9x19
+@define propName=9x19
+text: 9x19
+@copyFromSection: template_itemDrop
+
+[action_drop12x70]
+price: ${resourceName}:2
+@define resourceName=12x70
+@define propName=12x70
+text: 12x70
+@copyFromSection: template_itemDrop
+
+[action_drop545x39]
+price: ${resourceName}:2
+@define resourceName=545x39
+@define propName=545x39
+text: 545x39
+@copyFromSection: template_itemDrop
+
+[action_drop556x45]
+price: ${resourceName}:2
+@define resourceName=556x45
+@define propName=556x45
+text: 556x45
+@copyFromSection: template_itemDrop
+
+[action_drop762x54]
+price: ${resourceName}:2
+@define resourceName=762x54
+@define propName=762x54
+text: 762x54
+@copyFromSection: template_itemDrop
+
+[action_dropm]
+@define resourceName=pm
+@define propName=pm
+text: PM
+@copyFromSection: template_itemDrop
+
+[action_dropmp5]
+@define resourceName=mp5
+@define propName=mp5
+text: MP5
+@copyFromSection: template_itemDrop
+
+[action_dropak]
+@define resourceName=ak47
+@define propName=ak47
+text: AK47
+@copyFromSection: template_itemDrop
+
+[action_droplr]
+@define resourceName=lr300
+@define propName=lr300
+text: LR300
+@copyFromSection: template_itemDrop
+
+[action_dropsvt]
+@define resourceName=svt40
+@define propName=svt40
+text: SVT40
+@copyFromSection: template_itemDrop
+
+[action_droptoz]
+@define resourceName=toz34
+@define propName=toz34
+text: TOZ34
+@copyFromSection: template_itemDrop
+
+
+[action_dropHeadlamp]
+@define resourceName=headlamp
+@define propName=headlamp
+text: Headlamp
+@copyFromSection: template_itemDrop
+
+[action_dropEmrNv]
+@define resourceName=emrNightVision
+@define propName=emrNightVision
+text: EMR NV
+@copyFromSection: template_itemDrop
+
+[action_dropRubyNv]
+@define resourceName=rubyNightVision
+@define propName=rubyNightVision
+text: RUBY NV
+@copyFromSection: template_itemDrop
+
+[action_dropSpphNv]
+@define resourceName=spphNightVision
+@define propName=spphNightVision
+text: SPPH NV
+@copyFromSection: template_itemDrop
+
+
+[action_dropleatherJacket]
+@define resourceName=leatherJacket
+@define propName=leatherJacket
+text: Leather Jacket
+@copyFromSection: template_itemDrop
+
+[action_dropBanditJacket]
+@define resourceName=banditJacket
+@define propName=banditJacket
+text: Bandit Jacket
+@copyFromSection: template_itemDrop
+
+[action_dropsunrisesuit]
+@define resourceName=sunriseSuit
+@define propName=sunriseSuit
+text: Sunrise Suit
+@copyFromSection: template_itemDrop
+
+[action_dropsunsetsuit]
+@define resourceName=sunsetSuit
+@define propName=sunsetSuit
+text: Sunset Suit
+@copyFromSection: template_itemDrop
+
+[action_droptrenchcoat]
+@define resourceName=trenchcoat
+@define propName=trenchcoat
+text: Trench Coat
+@copyFromSection: template_itemDrop
+
+[action_dropExoskeleton]
+@define resourceName=exoskeleton
+@define propName=exoskeleton
+text: Exoskeleton
+@copyFromSection: template_itemDrop
+
+
+[action_dropOldVest]
+@define resourceName=oldVest
+@define propName=oldVest
+text: Old Vest
+@copyFromSection: template_itemDrop
+
+[action_dropDirtyLeatherJacket]
+@define resourceName=dirtyLeatherJacket
+@define propName=dirtyLeatherJacket
+text: Dirty Jacket
+@copyFromSection: template_itemDrop
+
+[action_dropDirtyShirt]
+@define resourceName=dirtyShirt
+@define propName=dirtyShirt
+text: Dirty Shirt
+@copyFromSection: template_itemDrop
+
+[action_dropdirtyPants]
+@define resourceName=dirtyPants
+@define propName=dirtyPants
+text: Dirty Pants
+@copyFromSection: template_itemDrop
+
+[action_dropOldBalaclava]
+@define resourceName=oldBalaclava
+@define propName=oldBalaclava
+text: Old Balaclava
+@copyFromSection: template_itemDrop
+
+[action_dropOldSportjacket]
+@define resourceName=oldSportJacket
+@define propName=oldSportJacket
+text: Old Sport Jacket
+@copyFromSection: template_itemDrop
+
+[action_dropUsedGasMask]
+@define resourceName=usedGasmask
+@define propName=usedGasmask
+text: Used Gas Mask
+@copyFromSection: template_itemDrop
+
+[action_dropShabbyBanditOutfit]
+@define resourceName=shabbyBanditOutfit
+@define propName=shabbyBanditOutfit
+text: Shabby Bandit Set
+@copyFromSection: template_itemDrop
+
+[action_dropShabbySweater]
+@define resourceName=shabbySweater
+@define propName=shabbySweater
+text: Shabby Sweater
+@copyFromSection: template_itemDrop
+
+
+[action_dropblade]
+@define resourceName=blade
+@define propName=blade
+text: Blade
+@copyFromSection: template_itemDrop
+
+[action_dropbat]
+@define resourceName=bat
+@define propName=bat
+text: Bat
+@copyFromSection: template_itemDrop
+
+[action_dropaxe]
+@define resourceName=axe
+@define propName=axe
+text: Axe
+@copyFromSection: template_itemDrop
+
+[action_dropfireAxe]
+@define resourceName=fireAxe
+@define propName=fireAxe
+text: Fire Axe
+@copyFromSection: template_itemDrop
+
+[action_dropmachete]
+@define resourceName=machete
+@define propName=machete
+text: Machete
+@copyFromSection: template_itemDrop
+
+
+
+[action_dropMoney100]
+@copyFromSection: template_itema
+spawnUnits: money(offsetY=15)
+price: money:100
+text: 100 Money
+iconImage: ROOT:/images/items/money.png
+isVisible: if self.hasResources(money=100) and memory.dropping == true
+
+[action_dropMoney500]
+@copyFromSection: template_itema
+spawnUnits: money500(offsetY=15)
+price: money: 500
+text: 500 Money
+iconImage: ROOT:/images/items/money.png
+isVisible: if self.hasResources(money=500) and memory.dropping == true
+
+
+[action_dropKeyArmyPrep]
+@define resourceName=keyArmyPrep
+@define propName=keyArmyPrep
+text: Army Prep
+@copyFromSection: template_itemDrop
+
+[action_dropKeyPoliceStation]
+@define resourceName=keyPoliceStation
+@define propName=keyPoliceStation
+text: Police Station
+@copyFromSection: template_itemDrop
+
+[action_dropKeyFossolGas]
+@define resourceName=keyFossolGas
+@define propName=keyFossolGas
+text: Fossol Gas
+@copyFromSection: template_itemDrop
+
+[action_dropKeyX1]
+@define resourceName=keyX1
+@define propName=keyX1
+text: X1
+@copyFromSection: template_itemDrop
+
+[action_dropKeyX2]
+@define resourceName=keyX2
+@define propName=keyX2
+text: X2
+@copyFromSection: template_itemDrop
+
+[action_dropKeyX3]
+@define resourceName=keyX3
+@define propName=keyX3
+text: X3
+@copyFromSection: template_itemDrop
+
+[action_dropKeyExormor]
+@define resourceName=keyExormor
+@define propName=keyExormor
+text: Exormor
+@copyFromSection: template_itemDrop

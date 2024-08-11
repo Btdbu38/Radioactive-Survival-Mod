@@ -1,0 +1,57 @@
+[decal_hp1]
+alpha: 1
+layer: onTop
+order: 1
+imageStack: ROOT:/images/hp1.png
+total_frames: 1
+stack_hOffset: 0
+hOffset: 0
+onlyWithZoomLevelOrMore: 0
+alwayStartDirAtZero: true
+dirOffset: 0
+imageScale: 0.68
+isVisible: if self.hp(greaterThan=${core.maxHp-10})
+yOffsetAbsolute: 15
+xOffsetAbsolute: 0
+onlyWhileAlive: true
+
+[decal_hp2]
+layer: afterBody
+@copyFromSection: decal_hp1
+imageStack: ROOT:/images/hp2.png
+isVisible: if self.hp(lessThan=${core.maxHp/0.3})
+
+[decal_hp3]
+@copyFromSection: decal_hp1
+imageStack: ROOT:/images/hp3.png
+isVisible: if self.hp(lessThan=${core.maxHp/1})
+
+[decal_hp4]
+@copyFromSection: decal_hp1
+imageStack: ROOT:/images/hp4.png
+isVisible: if self.hp(lessThan=${core.maxHp/1.5})
+
+[decal_hp5]
+@copyFromSection: decal_hp1
+imageStack: ROOT:/images/hp5.png
+isVisible: if self.hp(lessThan=${core.maxHp/2})
+
+[decal_hp6]
+@copyFromSection: decal_hp1
+imageStack: ROOT:/images/hp6.png
+isVisible: if self.hp(lessThan=${core.maxHp/2.5})
+
+[decal_hp7]
+@copyFromSection: decal_hp1
+imageStack: ROOT:/images/hp7.png
+isVisible: if self.hp(lessThan=${core.maxHp/3})
+
+[decal_hp8]
+@copyFromSection: decal_hp1
+imageStack: ROOT:/images/hp8.png
+isVisible: if (self.hp < self.maxHp/3.5)
+
+[decal_hp9]
+@copyFromSection: decal_hp1
+imageStack: ROOT:/images/hp9.png
+isVisible: if (self.hp < self.maxHp/4)

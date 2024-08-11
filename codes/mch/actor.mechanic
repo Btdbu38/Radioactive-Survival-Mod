@@ -1,0 +1,358 @@
+[core]
+
+#Base Stats
+maxHp: 200
+armourMinDamageToKeep: 4
+radius: 10
+displayRadius: 8
+price: 0
+mass: 120
+armour=0
+fogOfWarSightRange: 0
+	
+#Armor Durability
+maxShield: 100
+startShieldAtZero: true
+shieldRegen: 0
+
+#Info
+tags: survivor, main, human, damageable, canOpenDoors, ownPda
+isBio: true
+isBug: false
+disableDeathOnZeroHp: true
+buildSpeed: 3s
+
+#Other
+effectOnDeath: NONE
+explodeOnDeath: false
+isBuilder: true
+
+canRepairBuildings: true
+nanoRange: 50
+nanoBuildSpeed: 1
+nanoRepairSpeed: 1.4
+#nanoRangeForRepairIsMelee: true
+#nanoRangeForReclaimIsMelee: true
+canReclaimResources: true
+canReclaimResourcesNextSearchRange: 50
+canReclaimResourcesOnlyWithTags: item
+
+autoTriggerCooldownTime: 0.34s
+autoTriggerCheckRate: every8Frames
+
+@memory debug = bool
+
+[hiddenAction_collect]
+autoTrigger: if nearestUnit(withTag="container", withinRange=55).tags(includes="giveItems")
+requireConditional: if memory.inventory == true
+addWaypoint_type: reclaim
+addWaypoint_target_nearestUnit_tagged: item
+addWaypoint_target_nearestUnit_team: neutral
+addWaypoint_target_nearestUnit_maxRange: 55
+
+
+#=========================================##=========================================#
+#=================== Line of Sight ======================#
+#=========================================##=========================================#
+
+[hiddenAction_nightFogCheck]
+autoTrigger: if customTarget2.tags(includes="night") and not self.transportingUnitWithTags(includes="headlamp")
+spawnUnits:"""
+fogCheckNarrow(offsetDir=8),
+fogCheckNarrow(offsetDir=-8)
+"""
+[hiddenAction_nightFogCheckHeadlamp]
+autoTrigger: if customTarget2.tags(includes="night") and (self.transportingUnitWithTags(includes="headlamp") or self.tags(includes="nv"))
+spawnUnits:"""
+fogCheck(offsetDir=10),
+fogCheck(offsetDir=-10),
+fogCheck(offsetDir=20),
+fogCheck(offsetDir=-20)
+"""
+[hiddenAction_dayFogCheck]
+autoTrigger: if customTarget2.tags(includes="day") and self.resource.panic < 45
+spawnUnits:"""
+fogCheck(offsetDir=0),
+fogCheck(offsetDir=15),
+fogCheck(offsetDir=30),
+fogCheck(offsetDir=-30),
+fogCheck(offsetDir=-15)
+"""
+
+[hiddenAction_dayFogCheckPanicking]
+autoTrigger: if customTarget2.tags(includes="day") and self.resource.panic > 45
+spawnUnits:"""
+fogCheck(offsetDir=0),
+fogCheck(offsetDir=10),
+fogCheck(offsetDir=-10),
+fogCheckNarrow(offsetDir=20),
+fogCheckNarrow(offsetDir=-20)
+"""
+
+#=========================================#
+#================== Misc =================#
+#=========================================#
+
+[hiddenAction_rain]
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="rain") >= 1
+spawnEffects: CUSTOM:rain*3
+requireConditional: if not self.numberOfUnitsInAllTeams(withTag="main", withinRange=1000, greaterThan=1)
+
+[hiddenAction_rainSfx]
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="rain") >= 1
+requireConditional: if rnd(0,100) > 85
+@define volume:0.3
+playSoundToPlayer:"""
+ROOT:/soundFx/rain/rain.wav:${volume}
+"""
+
+
+[effect_rain]
+createWhenOffscreen: true
+spawnChance: 1
+drawType: normal
+priority: high
+attachedToUnit: false
+life: 80
+physics: false
+scaleFrom: 0.9
+scaleTo: 0.9
+fadeInTime: 15
+#dirOffset: 180
+xSpeedAbsolute: 2
+xSpeedAbsoluteRandom: -0.1
+ySpeedAbsolute: 9
+ySpeedAbsoluteRandom: 0.2
+yOffsetAbsoluteRandom: 600
+xOffsetAbsoluteRandom: 600
+atmospheric: true
+hSpeed: 0.2
+alpha: 0.5
+image: ROOT:/images/effects/rain.png
+drawUnderUnits: false
+alwaysStartDirAtZero:true
+
+[graphics]
+image: ROOT:/images/sprites/actor_${sprite}.png
+frame_width: 28
+frame_height: 37
+image_offsetY: -11
+shadowOffsetX:1.5
+shadowOffsetY:-12
+animation_idle_start: 0
+animation_idle_end: 1
+animation_idle_speed: 24
+animation_direction_starting: 270
+animation_direction_strideX: 0
+animation_direction_strideY: 1
+animation_direction_units: 90
+rotate_with_direction:false
+image_shadow: auto_animated
+image_shield: SHARED:blank.png
+lock_body_rotation_with_main_turret: true
+reclaimEffect: none
+repairEffect: none
+showSelectionIndicator: false
+showShieldBar: false
+
+
+
+[animation_move]
+KeyframeTimeScale: 0.8
+onActions: move
+body_0s: {frame:2}
+body_0.1s: {frame:3}
+body_0.2s: {frame:4}
+body_0.3s: {frame:5}
+body_0.4s: {frame:6}
+body_0.5s: {frame:7}
+body_0.6s: {frame:8}
+body_0.7s: {frame:9}
+body_0.8s: {frame:10}
+body_0.9s: {frame:11}
+
+[animation_use]
+onActions: repair, reclaim
+body_0s: {frame:11}
+body_0.1s: {frame:12}
+body_0.11s: {frame:13}
+body_0.3s: {frame:13}
+body_0.5s: {frame:13}
+body_0.6s: {frame:12}
+body_1s: {frame:11}
+
+[attack]
+canAttack: true
+canAttackLandUnits:       true
+canAttackFlyingUnits:     false
+canAttackUnderwaterUnits: false
+#disablePassiveTargeting: true
+
+isFixedFiring: true
+#this fucking code is very annoying, main reason of freezes in the melee attacks is this, if anyone whoever finds a solution to this, i will even pay him.
+
+aimOffsetSpread: 0
+#found the solution, thanks :D
+
+maxAttackRange: 400
+shootDelay: 40
+turretMultiTargeting: true
+
+
+[movement]
+movementType: HOVER
+moveSpeed: 1
+maxTurnSpeed: 12
+turnAcceleration: 50
+moveAccelerationSpeed: 0.25
+moveDecelerationSpeed: 0.25
+
+[hiddenAction_overWater]
+autoTrigger: if self.isOverWater()
+spawnEffects: CUSTOM:overWater
+setUnitStats: moveSpeed=0.56
+
+[hiddenAction_overWater2]
+autoTrigger: if self.isOverWater() and self.isMoving()
+spawnEffects: CUSTOM:shockwave
+
+[effect_overWater]
+image: ROOT:/images/effects/waterHover.png
+spawnChance: 1
+priority: high
+createWhenZoomedOut: false
+life: 60
+fadeOut: true
+attachedToUnit: true
+fadeInTime:5
+scaleFrom: 1
+scaleTo: 2
+alpha: 0.9
+drawUnderUnits:false
+liveAfterAttachedDies: false
+hOffset:8
+alwaysStartDirAtZero: true
+
+[effect_shockwave]
+frameIndex: 0
+stripIndex: shockwave
+spawnChance: 1
+priority: high
+createWhenZoomedOut: false
+life: 200
+fadeInTime: 20
+scaleFrom: 0.3
+scaleTo: 0.8
+alpha: 0.4
+drawUnderUnits: true
+attachedToUnit: false
+dirOffsetRandom:10
+yOffsetRelative: 5
+
+
+
+
+[decal_select]
+layer: beforeUI
+order: 1
+imageStack: ROOT:/images/ui/select.png
+onlyWhenSelectedByAnyPlayer: true
+total_frames: 1
+stack_hOffset: 0
+hOffset: 0
+onlyWithZoomLevelOrMore:0
+teamColors: true
+alwayStartDirAtZero: true
+dirOffset: 0
+imageScale: 0.32
+
+[decal_select2]
+onlyWhenSelectedByAnyPlayer: true
+layer: beforeBody
+order: 1
+imageStack: ROOT:/images/ui/arrow.png
+total_frames: 1
+stack_hOffset: 0
+hOffset: 0
+onlyWithZoomLevelOrMore:0
+teamColors: true
+dirOffset: 0
+imageScale: 0.5
+yOffsetRelative: 10
+xOffsetRelative: 0
+
+[ai]
+useAsBuilder: true
+useAsHarvester: false
+useAsAttacker: true
+
+
+###### SOUNDS #####
+
+[hiddenAction_bulletMale]
+requireConditional: if self.globalTeamTags(includes="male")
+playSoundAtUnit:"""
+ROOT:/soundFx/actor/bullet1.ogg,
+ROOT:/soundFx/actor/bullet2.ogg,
+ROOT:/soundFx/actor/bullet3.ogg,
+ROOT:/soundFx/actor/bullet4.ogg,
+ROOT:/soundFx/actor/bullet5.ogg,
+ROOT:/soundFx/actor/bullet6.ogg,
+ROOT:/soundFx/actor/bullet7.ogg,
+ROOT:/soundFx/actor/bullet8.ogg
+"""
+
+[hiddenAction_bulletFemale]
+requireConditional: if self.globalTeamTags(includes="female")
+playSoundAtUnit:"""
+ROOT:/soundFx/actorFemale/bullet1.ogg,
+ROOT:/soundFx/actorFemale/bullet2.ogg,
+ROOT:/soundFx/actorFemale/bullet3.ogg,
+ROOT:/soundFx/actorFemale/bullet4.ogg,
+ROOT:/soundFx/actorFemale/bullet5.ogg,
+ROOT:/soundFx/actorFemale/bullet6.ogg,
+ROOT:/soundFx/actorFemale/bullet7.ogg,
+ROOT:/soundFx/actorFemale/bullet8.ogg
+"""
+
+[hiddenAction_painMale]
+requireConditional: if self.globalTeamTags(includes="male")
+playSoundAtUnit:"""
+ROOT:/soundFx/actor/pain1.ogg,
+ROOT:/soundFx/actor/pain2.ogg,
+ROOT:/soundFx/actor/pain3.ogg,
+ROOT:/soundFx/actor/pain4.ogg,
+ROOT:/soundFx/actor/pain5.ogg,
+ROOT:/soundFx/actor/pain6.ogg,
+ROOT:/soundFx/actor/pain7.ogg,
+ROOT:/soundFx/actor/pain8.ogg,
+ROOT:/soundFx/actor/pain9.ogg,
+ROOT:/soundFx/actor/pain10.ogg
+"""
+
+[hiddenAction_painFemale]
+requireConditional: if self.globalTeamTags(includes="female")
+playSoundAtUnit:"""
+ROOT:/soundFx/actorFemale/pain1.ogg,
+ROOT:/soundFx/actorFemale/pain2.ogg,
+ROOT:/soundFx/actorFemale/pain3.ogg,
+ROOT:/soundFx/actorFemale/pain4.ogg,
+ROOT:/soundFx/actorFemale/pain5.ogg,
+ROOT:/soundFx/actorFemale/pain6.ogg
+"""
+
+[hiddenAction_dieMale]
+requireConditional: if self.globalTeamTags(includes="male")
+playSoundAtUnit:"""
+ROOT:/soundFx/actor/die1.ogg:1,
+ROOT:/soundFx/actor/die2.ogg:1,
+ROOT:/soundFx/actor/die3.ogg:1
+"""
+
+[hiddenAction_dieFemale]
+requireConditional: if self.globalTeamTags(includes="female")
+playSoundAtUnit:"""
+ROOT:/soundFx/actorFemale/die1.ogg:1,
+ROOT:/soundFx/actorFemale/die2.ogg:1,
+ROOT:/soundFx/actorFemale/die3.ogg:1
+"""

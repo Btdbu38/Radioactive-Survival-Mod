@@ -1,0 +1,192 @@
+
+[core]
+
+@memory npcName:string
+@memory nameGiven:bool
+@memory rndNumber:number
+
+
+[hiddenAction_randomizeNumber]
+autoTriggerOnEvent: created
+setUnitMemory:"""
+rndNumber = int(rnd(0,33))
+"""
+
+[template_randomizedNameTemp]
+autoTrigger: if memory.rndNumber == ${rnd} and memory.nameGiven == false
+setUnitMemory: nameGiven = true, npcName = "${nameGiven}"
+
+[comment_randomizedName]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 
+@define nameGiven: 
+
+[hiddenAction_randomizedName0]
+@copyFromSection: template_randomizedNameTemp
+@define rnd:0
+@define nameGiven: Vanya
+
+[hiddenAction_randomizedName1]
+@copyFromSection: template_randomizedNameTemp
+@define rnd:1
+@define nameGiven: Alexandr
+
+[hiddenAction_randomizedName2]
+@copyFromSection: template_randomizedNameTemp
+@define rnd:2
+@define nameGiven: Aleksei
+
+[hiddenAction_randomizedName3]
+@copyFromSection: template_randomizedNameTemp
+@define rnd:3
+@define nameGiven: Vitya
+
+[hiddenAction_randomizedName4]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 4
+@define nameGiven: Vadya
+
+[hiddenAction_randomizedName5]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 5
+@define nameGiven: Vasek
+
+[hiddenAction_randomizedName6]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 6
+@define nameGiven: Vasyan
+
+[hiddenAction_randomizedName7]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 7
+@define nameGiven: Vadim
+
+[hiddenAction_randomizedName8]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 8
+@define nameGiven: Vadim Blyaaaat
+
+[hiddenAction_randomizedName9]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 9
+@define nameGiven: Lekha
+
+[hiddenAction_randomizedName10]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 10
+@define nameGiven: Dimukha
+
+[hiddenAction_randomizedName11]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 11
+@define nameGiven: Babusha
+
+[hiddenAction_randomizedName12]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 12
+@define nameGiven: Mitka
+
+[hiddenAction_randomizedName13]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 13
+@define nameGiven: Alex
+
+[hiddenAction_randomizedName14]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 14
+@define nameGiven: Mikha
+
+[hiddenAction_randomizedName15]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 15
+@define nameGiven: Mikhael
+
+[hiddenAction_randomizedName16]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 16
+@define nameGiven: Stepka
+
+[hiddenAction_randomizedName17]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 17
+@define nameGiven: Yuri
+
+[hiddenAction_randomizedName18]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 18
+@define nameGiven: Roman 
+
+[hiddenAction_randomizedName19]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 19
+@define nameGiven: Bogdanov
+
+[hiddenAction_randomizedName20]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 20
+@define nameGiven: Vladimir
+
+[hiddenAction_randomizedName21]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 21
+@define nameGiven: Ivan
+
+[hiddenAction_randomizedName22]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 22
+@define nameGiven: Dmitry
+
+[hiddenAction_randomizedName23]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 23
+@define nameGiven: Arthur
+
+[hiddenAction_randomizedName24]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 24
+@define nameGiven: Yarik
+
+[hiddenAction_randomizedName25]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 25
+@define nameGiven: Garik
+
+[hiddenAction_randomizedName26]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 26
+@define nameGiven: Larik
+
+[hiddenAction_randomizedName27]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 27
+@define nameGiven: Valera
+
+[hiddenAction_randomizedName28]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 28
+@define nameGiven: Bohdan
+
+[hiddenAction_randomizedName29]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 29
+@define nameGiven: Oleg
+
+[hiddenAction_randomizedName30]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 30
+@define nameGiven: Andrey
+
+[hiddenAction_randomizedName31]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 31
+@define nameGiven: Felka
+
+[hiddenAction_randomizedName32]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 32
+@define nameGiven: Timukha
+
+[hiddenAction_randomizedName33]
+@copyFromSection: template_randomizedNameTemp
+@define rnd: 33
+@define nameGiven: Vitaly

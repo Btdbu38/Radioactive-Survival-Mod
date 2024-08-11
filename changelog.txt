@@ -1,0 +1,988 @@
+==============================================
+Radioactive Survival | v1.5.3b
+==============================================
+CHANGES:
+
+*Main Changes
+-Added a spear which can be made with knife, has long range
+-Added demolish option to buldings to get resources back
+-Reduced the acceleration and decceleration effect on players
+-Removed inventory open cooldown
+-Placed the Abudail NPC
+-Increased fog sight
+-Optimizations
+
+*Balances
+-Added a post-emissional limit to mutant spawners
+-Nerfed zombies and dogs
+-Added weapon droplists to casual lockers
+-Added more lockers to houses below city and rookie village
+-Reduced the range of mutants to hear gunshots
+-Mutant spawners will no longer spawn extra zombies on gun sounds
+
+*Bug Fixes
+-A critical bug which causes NPCs to fire behind walls
+-Zombies spawn inside walls
+
+
+Mızrak ekledim bıçakla tahtayla yapıyonuz
+Binaları kırabiliyonuz aynı kaynakları veriyor
+Karakterin yürümesi daha kolay
+Envanteri anında açabiliyonuz
+Yeni NPC koydum baya bişe satabiliyonuz
+Fog görüşüne elledim
+Optimizasyon
+
+Balanslar:
+Mutant spawnını düzelttim
+Zombi köpek nerf
+Loot objelerinin lootlarını değistim
+Başlangıç evlerinde eşit miktarda loot var
+Zombilerin duyma mesafesini azalltım
+Silah sıkılınca artık ekstra zombi doğmicak
+Yakın mesafe silahların hasarı nerflendi ancak güç skilli artık hasarı daha çok arttırıyor
+
+Buglar:
+Npclerin duvar arkası vurma bugunu düzelttim
+Zombilerin duvar içinde doğmasını düzelttim
+
+==============================================
+Radioactive Survival | v1.5.2b
+==============================================
+CHANGES:
+
+*Main Changes
+-New armors: rB Suit, Hazmat Suit
+-Placed remaining texts to strings.txt
+
+*Map Changes
+-Added a mall
+-Extended the dead city
+-Zombies will now spawn more on urban areas, while animals spawn in forests
+
+*Balances
+-Rebalanced bullet damages
+-Nerfed USP fire rate, buffed damage
+-Aleria is buffed and drops the rB Suit
+-Reduced the reduction in reputation on death
+
+*Bug Fixes
+-NPC descriptions does not work
+-Marauder PDAs not dropping
+
+==============================================
+Radioactive Survival | v1.5.1b
+==============================================
+CHANGES:
+
+*Main Changes
+-Added the rewards to the quest descriptions
+-Added various crafting and dissasembling recipes
+-Added descriptions to NPCs
+
+*Balances
+-NPCs can no longer drop their weapon on ground on death
+-Drastically reduced the change of obtaining clean guns
+-Increased the time required an emission to damage
+-Hired Stalkers now use TOZ-34
+-Hired Mercenaries now use Vityaz
+-Monolithians now use FN2000 and Groza
+-Adjusted stats of all NPCs
+-5.45x39 Bullets are stronger than 5.56x45 but with lower accuracy
+-Sunrise suit is replaced with Sunset suit in Mitka's store
+-Removed trashy items from npc droplists
+-Buffed military base loot
+-Reputation will decrease on death (-15 for player, -10 for companion)
+-Cars now drain more fuel
+-Changed some prices and rep. requirements in shops
+-Nerfed gas station loot
+-Blood bag can now heal body HP
+
+*Bug Fixes
+-Fixed respawn is still available on cruel
+-Fixed a bug about disappearing names (?)
+-Fixed a bug setting category slot to none on revive which causes deep confusion
+-Fixed an invisible bug about npcs causing late game to lag
+-Fixed a bug about death crates are not spawning on some cases
+-Fixed some droplists not working
+-Fixed reputation duplicates on literal death
+-Fixed bandit and marauder killing quests are broken
+-Fixed number of all online users is shown wrongly in PDA
+-Fixed display order of crafting panel
+-Fixed gender and profession abilities
+-Fixed NPCs can be killed with grenades
+-Hopefully, fixed artifact spawning
+
+==============================================
+Radioactive Survival | v1.5b
+==============================================
+CHANGES:
+
+*Main Changes
+-Removed "Remains of the Apocalypse" phase from the mod name
+-Added vehicles
+-New usable weapons: USP, Vityaz, AS VAL, Ots-14 Groza, FN F2000, Gauss Rifle, XR-1
+-New types of ammo: .45 ACP, 9x39, Gauss Batteries
+-Removed broken versions of guns
+-Added four types of parts: Pistol Parts, SMG Parts, Rifle Parts, Gauss Parts
+-Overhauled weapon crafting system
+-Added backpacks: School Bag, Duffle Bag, Alice Pack, Rucksack
+-Added two new game modes, Tourist and Cruel mode
+-Added some new valuable items
+-Added 6 new variants of zombies
+-Added monolith spawns and patrol points
+-Added artifacts
+-NPCs now have an ammo limit and goes on melee if their ammo is out (Excluding Bosses and Companions)
+-Re-textured weapons
+-Removed magazines
+-Added categories for items
+-Added Military faction
+-Added more information to PDA
+-Added mutant and human kill counts to PDA
+-Moved clothing dequip button to inventory
+-NPCs can now revive players
+
+*Map Changes
+-Added a military base
+-Added truck cemetery
+-Added few more rooms to warehouse
+-Farm location is improved
+-New shelters: Lumber, Lab, Farm Warehouse, Military Base
+-Killa spawn point placed a bit faraway
+-Adjusted a few things
+
+*Balances
+-Now the NPC group size limit is 2 (Unlimited with Leader Soul)
+-Any npc waiting inside tower will get +200 range
+-Changed stats and droplists of each stalkers
+-Recruiting stalkers were too easy with money, so as an extra added various items 
+-Added dialogues about key rewards to NPCs
+-Changed droplists of some mutants and npcs
+-Nerfed sweating system
+-Nerfed zombies, dogs, snorks
+-Buffed bloodsuckers
+
+*Bug Fixes
+-Fixed knife swing effect
+-Fixed NPCs cannot attack inside towers
+-Fixed weapons cannot be dropped
+-Fixed some effects
+-Fixed some bugs with female characters
+-Fixed sometimes psy storms and emissions occur at same time
+-Fixed emission wave effect is not shown under fog
+-Fixed a glitch about money duplicating
+-Fixed droplist of chimera
+-Fixed dogs not dropping items
+-Fixed descriptions of food items
+-Fixed a typo causes the fossol gas lockers to not open
+-Fixed some areas on the map resulting player to stuck
+-Fixed a bug companions cannot attack Killa
+
+
+==============================================
+RS: Remains of the Apocalypse | v1.4.6.1
+==============================================
+CHANGES:
+
+*Bug Fixes
+-A quick fix of a critical error
+
+==============================================
+RS: Remains of the Apocalypse | v1.4.6
+==============================================
+CHANGES:
+
+*Main Changes
+-Implemented the female gender
+-Companions can now use melee weapons to not attract monsters
+-Huge quest reward and order changes
+-First Aid skill now boosts medical items
+-Added more info to PDA
+-Nerfed disguise system drastically
+Now enemies can detect you in some time
+
+*Balances
+-Increases price of mercenaries
+-Grinding crafting xp is easier
+-Bashakov can now attack bandits
+-Reduced spawn chance of mutants
+-Emissions are now more common
+-Reduced the chance of limb dodge
+
+*Bug Fixes
+-Fixed player can take NPCs medkits
+-Fixed sweat mechanic bugs
+-Fixed a bug with temperature
+-Fixed Anna's quest
+-Fixed crafting level requirements
+-Fixed npcs show a message when they enter safezone
+
+==============================================
+RS: Remains of the Apocalypse | v1.4.5
+==============================================
+CHANGES:
+
+*Main Changes
+-Removed doors till Luke fixes the pathfinding
+-Now some lockers requires keys to open
+-Changed sound effects of melee weapons
+-New sounds for zombies
+-New clothing sounds
+-Reduced loot spawn on stashes
+-Loot in stashes now re-spawns after an emission or psy-storm
+
+*Balances
+-Drastically increased hp and armor of walls
+-Reduced the running speed of all NPCs in combat
+
+*Bug Fixes
+-Locked the occupations that have no use
+-Fixed bullet duplicatings
+-Fixed emissions and psy-storms doesn't occur
+-Fixed time and zone entrance is selectable
+-Fixed ambience sounds don't be played
+-Fixed hp bars
+-Fixed bugs of items
+-Fixed kill counters does not work properly
+-Limited the waypoints of NPCs
+-Reduced the resolution of screen effects
+-Reduced the usage of nearestUnit()
+-Small adjustments for zombie tripping
+
+==============================================
+RS: Remains of the Apocalypse | v1.4.4
+==============================================
+CHANGES:
+
+*Main Changes
+-Added bloodsuckerss and controllers
+-Improved the body health system
+Now it does not decreases limb hp randomly, now it decreases it depending on the enemy damage
+Also armours now can reduce the limb damage, and each armor point is now different for each part
+-More cruel gameplay
+Shooting a weapon attracts all monsters and increases their spawnrate
+-Disguise system
+-New NPCs
+-Now orders can only be given separately
+-NPCs now have a carry limit (20kg)
+-Actor will pick the items dropped by a container if inventory is open
+-Improved time calculations
+-Removed random companion stalker spawn from barkeeper
+-Reduced spawn chances
+-Improved wooden chest
+
+*Map Changes
+-Added rookie village below trading post
+-Added mobile scientist lab near the village
+
+*Balances
+-Reduced dogs attack range
+
+*Bug Fixes
+-Two or more weapons can be equiped
+-Time reset bug is finally fixed
+-Melee weapons having explosion effects
+-Some campfires does not work
+-Floors shadow is visible
+-Mitka's task gets hidden
+-Stashes revealing fog when opened
+-Soda description
+-Repeated tunic item script
+
+==============================================
+RS: Remains of the Apocalypse | v1.4.3cb
+==============================================
+CHANGES:
+
+*Main Changes
+-Added Emissions and Psy-Storms
+-Added several shelter points to specific places
+-Loots now respawns after an emission
+-Added voicelines for NPCs
+-Improved NPC pathfinding
+-Clothings now increase the encumbrance limit instead lowering items' weight
+-Strength skill now lowers items' weights instead increasing carry limit
+-Implemented three new NPCs, Anna, Hip and Bashakov
+-Anna and Bashakov can now be rescued now
+-Added NPCs that can be hired with money
+-Added PP-19-01 "Vityaz" weapon for the NPCs for now
+-Improved line of sight system
+-Removed randomized name scripts from NPCs
+-A uniquie mechanic from loner1 removed temporarily.
+-Increased the range of opening a door
+-Removed combat musics
+-Small adjustments on time
+-Safe Zone is added to trading post
+-Debug menu is now only visible if it's unlocked in sandbox mode
+
+*Map Changes
+-Minor changes
+-Removed the hitboxes from small objects
+
+*Balances
+-Needles and Tweezers can now treat multiple wounds
+-Buffed zombie, snork, chimera, hornbug
+-Aleria's health 400 > 300
+-PM armor piercing 7 > 10
+-MP5 damage 25 > 27
+-TOZ-34 armor piercing 5 > 10 and spread 8 > 6
+-SVT-40 damage 50 > 40
+-LR-300 damage 40 > 35
+-Barett M98B Damage 90 > 80 and armor piercing 30 > 40
+
+*Bug Fixes
+-Fixed time resets on save loads (hopefully)
+-Fixed containers could not spawn randomized loot
+-Fixed NPCs can not open doors
+-Fixed NPCs can attack trees and barrels
+-Barrels can be attacked with guns
+-Crates can not be destroyed with guns
+-Reduced Anna's hitbox.
+-Strelok's reward is changed with a bat
+-Fixed a bug with dropping ammo
+-Fixed all NPCs having the companion rules codes
+-Fixed a bug companions trying to carry corpses
+-Fixed gauze pad stopping pain
+
+==============================================
+RS: Remains of the Apocalypse | v1.4.2cb
+==============================================
+CHANGES:
+
+*Main Changes
+-Added physics to bullets
+-Added reputation value
+-Added container style looting object
+-Completely changed the containers
+-Implemented the line of sight mechanic again
+-Reworked the loot calculation system
+-Added items: generators, wires, old technologies and fuel canisters
+-Added buildings: pumpjacks and turrets
+-Reworked the body health system panel
+-Improved the body health system calculation
+-Added decal based screen effects
+-Day and night cycle effects are greatly improved and optimized
+-Enhanced the radiation mechanism
+-Added new sounds to some medical items
+-Removed Valerian, Guide, Arthur, Skull and Bullet Tasks from the mod for now.
+-Reworked the tasks mechanic. It is more dynamic now.
+-Improved jump attacks of chimeras and snorks
+-Removed Easy Digits engine
+-Removed the texts of objects visible on staring, it was so stupid idea
+-Respawning after dying completely
+-New functions for debug tool
+-Resorted assets, placed mod assets in its proper place
+So a sound or code of a unit is no longer inside its code folder
+-Rewriten each mechanic in advanced style for faster development
+-Corrected names of assets
+Example: Weapon displayed as PM is written as Glock in some codes, and LR-300 is written as M4, LR300, LR, LK, LK-303. One of the most annoying things that slows development
+-Each unit(object,npc,dropped item,tree,or just a configuration unit) now does not reloads all the code
+Now units reload only the required assets that can improve performance greatly
+-Mechanics reworked. Systems like item list is now easier to edit and easier to be read by RW engine
+-Decreased size of the high quality assets
+In conclusion, converted the mod in a better "engine"
+Which boosts FPS, asset reading speed and more
+
+*Map Changes
+-All the current ruins are removed.
+-Redrawn all tilesets
+-Houses and ruins that built in maps will be used instead that
+
+*A-Life Changes
+-Introducing the A-Life! This is still in beta
+-Stalkers can now randomly enter the Zone, go their bases, protect their base, and then leave the Zone again
+-Some stalkers can also loot the environment and trade with NPCs
+
+*Balances
+-All medical items now heal dedicated body parts instead healing them all
+-Added 1 second cooldown for opening inventory and 0.6 second for PDA
+-Weapon Trader now sells maintained guns depending on reputation
+-Weapon Trader now does not buys broken guns, buys the maintained ones
+-Medical items now treat each body part differently
+-Changed the items that NPCs sell
+-NPCs will now sell items depending on the reputation value
+-Increased the endurance of the player against melee damages to fall down 
+-Reduced the price of clothings
+-Mitka now sells all clothings
+-Mitka now buys high tech fabric
+-Increased the price of car battery
+-Increased the price of guns
+-Decreased the price of water and meat
+-Engine is replaced by Car Battery
+-Car Battery encumbrance 2.5 > 5
+-Changed other non-realistic encumbrance values
+-Changed the recipes for most items.
+-Nerfed SVT-40
+-Buffed LR-300
+
+*Bug Fixes
+-Player name does not deletes after dying
+-Fog checkers explode on death
+-Added Taking a damage removes the bandage effect, making it bleed again
+-Getting killed now dequips all the equipment
+-Moodles shown better
+-Removed the potato, baked potato, glue, robot part images/scripts from the mod
+-Corrected the prices in craftings
+-Fixed a bug with HP bar 
+-Fixed broken clothings not dropabble
+-Headlamp can now be dropped
+-12x70 ammo not visible in inventory
+-Items no longer deleted when inside water. Instead, deleted when clipping out of map
+-Fixed axe and fire axe unable to chop trees
+-Fixed AK-47 reloading action uses PM Magazines instead AK-47
+-LR-300 can not be spawned with debug tool
+-Fixed a typo in body health system causing a bug
+
+==============================================
+Radioactive Survival | v1.4.1cb
+==============================================
+CHANGES:
+
+*Main Changes
+-Added melee weapons
+-Added vehicles (sandbox only)
+-Added new ruins (sandbox only)
+-Reworked NPCs (not finished)
+-Added encumbrance, added encumbrance value for each item
+-Added Tarkov style body health system
+-Reworked starting occupations
+-Remade skills mechanic
+-Reworked moodles, added new ones
+-Reworked buildings, redrawn, rebalanced and recoded
+-Added tier system to buildings
+-New items; Saw, Blowtorch, Metal Sheet, Plank
+-Re-animated and re-drawn NPC sprites
+-Added in-game time
+-Improved zombie AI
+-Improved HP bar
+-Coded fog effects
+-Now all players should press ready to start
+-Added a function that jncreases the dodge chance when nearby objects
+-Removed line of sight system for ranged weapons temporarily
+-Ammo bar will not shown when any gun is dequiped
+-Moved the locations of menu buttons
+-Added debug panel
+-Shaded bunch of effects
+-New effects for gunshots
+-Waiting for Chinese translation
+
+*Balances
+-Changed almost all of the recipes for items/buildings
+-Nerfed drops from all boxes, furnitures, cars.
+-Clean guns can now drop from rare loot areas
+-Added armor piercing stats to all damages, sharp weapons do less damage, pierce high armour; blunt weapons do high damage, less piercing
+-Increased the damage of all ranged weapons
+-Increased the armour of bosses and veteran NPCs
+-Taking damage without any armor will make character yell more, and let him die easier
+-Aleria can now regenerate herself while not attacking
+-Increased drop rate of bosses
+-Anna no longer dies after rescuing, and can now be hired by players
+
+*Bug Fixes
+-Added most of the remaining texts from the mod to translation file
+-Fixed melee attack stuckings
+-Fixed typos and removed unused scripts in mod
+-Fixed the configuration unit can be captured in map center
+-Fixed most sounds play so loudly
+-Fixed NPC AI
+-Fixed voiceline spam in npcs
+-Items will no longer delete by any way if a player is near it
+-Fixed Bashakov shot PM bullets instead AK
+-Aleria and Anton cannot target other players if one of them wears trenchcoat
+
+==============================================
+Radioactive Survival | v1.3.3ob The Combat and Gameplay Overhaul 08/01/2023
+==============================================
+CHANGES:
+-Added a new map with custom tilesets
+-Added Survivors to trader post
+
+BUGFIXES:
+-Tree frames fix
+-Added a door in the back of trader post to avoid stucking
+-Trees and other objects will not spawn inside ruins etc.
+-Farmer 2 spawns greater than 1
+
+
+==============================================
+Radioactive Survival | v1.3.2cb The Combat and Gameplay Overhaul 07/31/2023
+==============================================
+CHANGES:
+-Emissions implemented
+-Resprited cars
+-Added animations for trees
+-Added poles
+-Added more ambient objects was planned to use with new maps, but thanks to NotTiled for destroying maps
+-Marauder Sniper renamed to Aleria
+-Added droplist to 3 new bosses; Killa, Anton(Blade) and Aleria
+-Killa's spawnrate increased
+-Emissions now damage mental health
+-New items: Snackers, Tuna Can, Cigarettes, MRE, Vodka, Fruit Juice
+-Radiation damage mechanic changed: -0.15 DMG above 20 RAD, -0.5 DMG above 45 RAD, -3 DMG above 90 RAD
+-Anti rads buffed
+-Resprited campfire
+-Changed some droplists
+
+BUGFIXES:
+-Marauders stuck at disguised player
+-Aleria's chat is not visible to player
+-Now any NPC will run backwards if they detect any enemy
+-Player is able to attack Aleria and Anton in disguise mode
+-Hornbugs does not spawn
+-Some NPCs does not have their faction icons
+-Anton and Aleria spawns weirdly
+-Wall closets spawns a lot
+-Bashakov and Loners are getting waypoint bug when entering safezone
+-Auto cover mechanic removed from Bashakov
+-New armors and weapons are not dropable when obtained by crafting
+-Fixed a bug where reviving a survivor increases his rad and toxicity
+-Fixed Artifacts rad produce, it was making them trash
+-Fixed chimera's and snorks buggy jump
+
+==============================================
+Radioactive Survival | v1.3.1cb The Combat and Gameplay Overhaul 07/06/2023
+==============================================
+CHANGES:
+-Removed all character sprites and drew again
+-Codded Emissions
+
+*Firearm Changes
+-Guns are equipable and switchable between other weapons now
+-Added new types of ammunition, as example, 9x18 rounds are required to fire a PM
+-Glock is renamed and redesigned to PM
+-M4 is renamed and redesigned to LR-300
+-Using a bow is easier now, was trash before
+-Added line of sight system to every unit which can shoot (Made by "Hawko")
+-Rebalanced damages, firerates and added armor ignore amount to some of guns
+
+*Outfit and Armor Changes
+-Armors are equipable and switchable between other armors now
+-New clothings: Sweater, Tunic, Leather Jacket, Armored Leather Jacket, Trenchcoat, Sunrise Jacket, Sunrise Suit, G-Suit
+-Clothings can reduce radiation or can make the wearer warm
+=New faction: Marauders (Former More-Organized Bandits)
+-Added a Marauder base that spawns one per map, included vanilla maps
+-New boss: Anton (Heavy Marauder Leader)
+-New boss: Marauder Sniper, or Assassin, call her whatever you want
+=New faction: Survivors
+-Was planned to be added in Trader Post as neutral
+=Reworked each mutants
+-Added Controllers
+-Now dogs, bloodsuckers and snorks have a similar AI that hits and runs
+-Chimeras can dash at player, chimera dash can be dodged
+-Zombie, dog and bloodsucker resprited
+-Buffed zombie, rotten and dog
+-Chimera's health was reduced to 650 from 5000, damage increased to 100 from 30
+-Zombie and rotten now won't drop anything
+
+*Small Changes
+-Added dynamic stamina system
+-Running too long, taking heavy damages will decrease stamina
+-Low stamina causes high level of breathing
+-Breathing a lot increases your hungry and thirst
+-Added Mental Health (Related to controllers)
+-Added Body Blood Level
+-Bleeding does not hurt now, it drains blood out
+-Eating or drinking health food will increase the body blood level
+-New boss: Killa (Randomly spawns in Bandit Outposts)
+-Killa Armor was supposed to be the best armor in RS, but not finished
+-Medical items no longer heals instanly, now it takes a lot of time
+-Gun effects reworked
+-New footstep sounds
+-New backpack sounds
+-New ambient musics
+-Ruins have a better look
+-Resprited items
+-Better gunshot sound effects
+-Sound file sized reduced while increasing their quality
+-Removed unused sound files
+-Improved crate effects and sounds
+-Object spawners improved, still buggy, but better than before
+-Removed the recruitment system completely
+-Removed radio table
+-Removed watch tower
+-Removed tent from craft panel
+-Removed Norio's flag
+-Removed Vasyan
+
+*Trader Post Changes
+-Barkeeper stays inside a caravan now, can go everywhere in the Zone :)
+-Added new npc: Sergoya (Founder of Trader Post, gives tasks about Marauder Problems)
+-Barkeep, Mitka and Alex now have their own tasks
+
+*Balance Changes
+-Main character's health was reduced to 200 from 250
+-Main character's speed was reduced to 1 from 1.1
+-Reduced Bandits' aim
+-Alex, Mitka and Barkeep's selling prices highly increased, buying prices highly decreased
+-Finding food or water is now a challenge
+-Plane crash loot is highly nerfed
+-Nerfed Bashakov
+
+==============================================
+Radioactive Survival 2 | v1.2
+==============================================
+CHANGES:
+-Added the final (ending) map of RS; Great Wasteland!!
+-Added Rank system!! Added 15 ranks, XP system, remade the skill system.
+-Added more strings to the translation file (Still unfinished, lmao I can't belive I've added hundreds of texts)
+-Added achievements in the PDA. (Unfinished)
+-Added new type of Wastelanders
+-Resprited guns and broken ones
+-Added descriptions to some units
+-Added 5 new enemies; Crushers, Scorpions, Stone Eyes, Burers, Phantom Zombie and the boss, Sin Burer for the final map
+-Added Sin faction and its two type of member
+-Added new NPCs
+-Added new objects
+-Added ranks to NPCs
+-Added the SSAO style effects to characters
+-Some balances. Minor changes on UI
+-Added 2 new guns (TOZ-34, SVT-40)
+-Added 4 new starting classes (Skirmisher, Hunter, Commander, Medic)
+-Added helicopter crash
+-Improved A-life
+-Rechanged footstep sounds
+-Improved trading post
+-Greatly fixed the game-starting spawner
+-Added more objects to ruins
+-Added safe ares to trading posts
+-Added rotten zombies
+-Reworked blood effects
+-Fixed the non-spawnable mobs
+-Nerfed droplist of everything 
+-Nerfed character's speed
+-Buffed enemies
+-Nerfed the fog vision at nights
+-Removed the gun crafting order
+-Minor changes
+-Added bugs
+-Thanks to "TheoDrHashiriya" for correcting the grammar issues.
+
+BUGFIXES:
+-Anomalies could destroy artifacts
+-Chimeras could not spawn
+
+==============================================
+Radioactive Survival 2 | v1.1
+==============================================
+CHANGES:
+-Added new swamp map, it is the first and tutorial map now
+-Added anomalies to the skirmish vanilla maps
+-Added new effects to Vortex anomaly
+-Added artifacts, artifact detector
+-Added some new objects to the trader post
+-Added Henry (Artifact Trader) to trader post
+-Added rugged clothes, can be found in human corpses and can be disassembled for materials, with the Scavenger npc
+-New item: High tech fabric
+-Added new ambience sounds
+-Added new item usage sounds and rebalanced items
+-Added new textures for loners and bandits
+-Some bandits are using bows and crossbows now
+-Changed rookie loners' weapon to basic rifles
+-Improved NPCs AI
+-Added animations to the NPCs
+-Improved UI
+-Added new pickup sounds
+-Some voiceline changes for some characters
+-Increased buy prices and decreased sell prices of traders
+-Reward of Anna's task has increased
+-Added gas mask breath sounds (No female gas mask breath sounds)
+
+
+==============================================
+Radioactive Survival 2 | v1.0
+==============================================
+CHANGES:
+-Mod name changed to Radioactive Survival 2
+-Added new 8 story mode mission maps
+-Added winter map, snow effects etc.
+-Added loners, duty, monolithians and nomads for mission maps
+-Added trader post
+-Added lots of new npcs, new tasks
+-Added lots of new items, new medicines, new tools, new resources
+-Added new objects
+-Added chimera
+-Dawns and dusks counts how many nights and days you have survived now
+-Rechanged item pickup and weapon shot sounds
+-Added new ruin type
+-Added new skills, resprited skill icons
+-Added revive system
+-Added mags for every guns, mag refill options, reload system
+-Added emoji reactions
+-Added new car type
+-Added ambient sounds
+-New and remade some sound effects
+-Added new statues effects
+-Improved UI
+-New musics
+-Added turrets
+-Resprited campfire
+-Rebalanced economy
+-Buffed enemies, nerfed droplists, made the mod is a true cruel
+-Converted HP bar to Sioxer's HP bar
+-Added offensive bandits
+-Buffed medkits
+-Improved tree textures
+-Buffed enemies
+-Rechanged whine sound effects
+
+BUGFIXES:
+-NPCs could spawn more than 1
+-Inability of attacking against some buildings
+-Player could regenate HP even while bleeding
+-Players couldn't use others tables
+-Spiders could spawn at the starting of the game
+-Inability of attacking against spider at the close range
+-Gauze pads could not stop bleeding
+
+
+==============================================
+Radioactive Survival | v0.9
+==============================================
+CHANGES:
+-Added Red Forest map, playable with mod.
+-Added new trees, bushes
+-Added SSAO style graphic improvements
+-Added new npc
+-Added furnitures 
+-Added 2 types of bandits and bandit structures
+-Now cars are lootable
+-Added 5 new items
+-Added chemical sickness
+-Added texts for objects when you go to near of them
+-Fixed UI
+-New enemies, swamp bloodsuckers and snorks
+-Balances
+-Resprited wooden ruin
+-Nerfed droplists, mod is more harder
+-Another things
+-Optimizations
+
+BUGFIXES:
+-Advanced crates spawns on sea
+-Improved ruin spawning system
+-Hazmat suit could not reduce radiation
+
+
+==============================================
+Radioactive Survival | v0.8.1
+==============================================
+CHANGES:
+-Mod size was greatly reduced
+-New boss: Giant spider
+-Added plane crash
+-Two new musics
+-Added very rare advanced crates
+-New creature: Armored zombie
+-New item: Zombie armor
+-Added female character
+-New hp bar
+-New tree shadows
+-Added a lot of images that show some stats of survivor
+-Improved campfire
+-Added raft
+-Resprited gun icons
+-Resprited bandage
+-Added some corpses, anomalies for testing, preparing for the next update
+-Small bugfixes
+
+
+==============================================
+Radioactive Survival | v0.7.2
+==============================================
+CHANGES:
+-Increased push force of enemies.
+-Hornbugs will not spawn at early games, and reduced spawnrate.
+-Removed ammunition requirement for guns because it's causing a lot of bugs, and i needed to do that.
+
+BUGFIXES:
+-Improved ruin spawn again.
+-Fixed melee attack.
+
+
+==============================================
+Radioactive Survival | v0.7.1
+==============================================
+CHANGES:
+-Improved campfire light.
+
+BUGFIXES:
+-Ruins could spawn inside of ruins.
+-Guns cannot attack.
+-Melee attack fixed a little bit.
+
+==============================================
+Radioactive Survival | v0.7
+==============================================
+CHANGES:
+-Added NPCs and NPC Questlines, shops
+-Added two new ruins
+-Changed the droplist of everything
+-Added recruitment system
+-New two enemies
+-Added nightmare moons (Has a %10 chance to appear on dusk)
+-Lots of new items
+-Added two new armor sets
+-Changed a lot of sound effects and mod music
+-Enemies can not spawn on days now (not hornbugs)
+-Added scrap knife (early game ranged weapon
+-Improved character skills a lot, really a lot
+-Added campfire light
+-Increased price of guns
+-Gores
+-Optimizations
+-Improved AI a lot
+-And lots of minor improvements that i forgot to write here (cuz this version took my months)
+
+BUGFIXES:
+-Ruins could not have an entrance
+-Survivors melee attack
+-Fixed object spawns
+
+
+==============================================
+Radioactive Survival | v0.6
+==============================================
+CHANGES:
+-A complete rework for this mod
+Changes
+-Resprited survivors and zombies
+-Added a lot of effects 
+-Recoded survivor (now it's more easy to add something to survivor with new code style)
+-New crafting system. Now some advanced crafting requires nearby workbenchs
+-Recoded spawners (Now its optimized, spawning instantly)
+-A lot of optimizations
+-New item: 'Duct tape'
+-Added a lot of dropping item sections
+-Removed energy drink
+-Removed not using units from mod
+-Better sound effects
+-Tower resprited
+-Improved skill panel
+-New campfire style
+-Reduced mod file's size
+-Zombies can swim now
+-New ruins
+-Remake zombiefied survivors
+-Removed farm and rain collector
+-Added two new boxes
+-Realistic footsteps
+-Ammunations mechanic
+-Melee attack
+
+BUGFIXES:
+-Inventory panels dissappear bug
+-Survivor gets stucked sometimes
+
+
+==============================================
+Radioactive Survival | v0.5
+==============================================
+CHANGES:
+-Added Stastues
+-Bleeding
+(You get bleeding if you hurt, increases if you get more damage, can stopped by a bandage)
+-Poisoned
+(All foods/drinks have a small chance for poison you, can stoppable by a medkit)
+-Regenating 
+(You can know I think)
+-Changed combat mechanic
+-Removed farm and rain collector
+-Resprited items
+-Buff to enemies
+-Recruits removed
+-Small fixes on panels
+-Added footstep sounds
+-New radiation mechanic (realistic)
+-Added runner (new monster)
+-Fixed many bugs
+
+
+==============================================
+Radioactive Survival | v0.4
+==============================================
+CHANGES:
+-New Character (Hazmat Suit/Acidgun)
+-Reworked box system
+-Added effect to spawner while spawning
+-Resprited inventory items
+-Added car
+-Added T2 campfire
+-New item: Dirty Water (Heat this before drink in T2 campfire)
+-New item: Syringe (Used for crafting radkits)
+-Added rusty old tank
+-Improved sprites
+-Reworked skill system
+-Added Revive system to Main tent
+-Improved icons
+-Added reclaim animation to survivor
+-Added new small bug
+-Towers upgradeable now
+-AI can build towers now
+-Removed upgrade panel (buggy)
+-Nerf to all enemies and spawners
+
+BUGFIXES:
+Descriptions, Some not important things and some bugs on effects
+
+
+==============================================
+Radioactive Survival | v0.3
+==============================================
+CHANGES:
+-Added New enemies: (bloodsucker,robot)
+-Added Walls and Towers (Characters can enter to towers and walls)
+-Added New dog
+-Added Ruins
+-Added Recruits (Need recruitment skill)
+-Added Robot parts 
+-Now we can craft robots with robot parts
+-Some sound effect fixes for mobs
+-Bug fixes
+-Buff to sniper
+
+
+==============================================
+Radioactive Survival | v0.2
+==============================================
+CHANGES:
+-Added New Enemies
+-Added Name to All players and enemies
+-Added Two Panels:
+-Skill Panel: Skills are upgrades character stats
+-Trading Panel: Droping items
+-New loots
+-New Wepaon: Sniper
+-Bug fixes
+-Added raft (for transport)
+-New item: Fabric
+-New items: raw meat, meat, pita bread, bread, dough
+-New buildings: chicken huts(chickens.. yes), craft table
+-Added Radiation
+-All enemies drops items now
+-New item: Rad kit
+
+
+==============================================
+Radioactive Survival | v0.1
+==============================================
+CHANGES:
+-Mod name renamed to Radioactive Survival
+-Removed all of the units, not the rusty loots, trees and boxes
+-Added isometric units
+
+
+==============================================
+Radioactive | BETA 2
+==============================================
+-Added more survivors
+-Added radiation (Made by Norio Katyusha)
+-Added Robots and Hornbugs (Yeah, hornbugs planned in the first versions of RS)
+-Added desert crawler
+-Added survivor barracks
+
+
+==============================================
+Radioactive | BETA 1
+==============================================
+-Introduced
+-This was a RTS based topdown-look survival mod, deleted after the newer versions of RS

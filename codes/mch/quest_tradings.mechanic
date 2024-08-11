@@ -1,0 +1,1033 @@
+
+
+[template_sell]
+@copyFromSection:template_actionSell
+pos: 0.2
+iconImage: ROOT:/images/faces/${npcName}.png
+iconExtraImage: ROOT:/images/items/${given}.png
+iconExtraColor: #FFFFFF
+displayType: infoOnly
+allowMultipleInQueue: false
+canPlayerCancel: false
+buildSpeed: 0
+price: ${given}:1
+addResources: money:${forMoney}
+isVisible:"""
+if memory.quest == true 
+and self.numberOfUnitsInNeutralTeam(withTag="${npcName}", withinRange=60, greaterThan=0) 
+and self.resource(type="reputation") >= ${reputation}
+"""
+
+[template_buy]
+@copyFromSection:template_actionBuy
+pos: 0.2
+description: 
+iconImage: ROOT:/images/faces/${npcName}.png
+iconExtraImage: ROOT:/images/items/${image}.png
+iconExtraColor: #FFFFFF
+displayType: infoOnly
+allowMultipleInQueue: false
+canPlayerCancel: false
+buildSpeed: 0
+price: ${price}
+addResources: ${given}
+isVisible:"""
+if memory.quest == true 
+and self.numberOfUnitsInNeutralTeam(withTag="${npcName}", withinRange=60, greaterThan=0) 
+and self.resource(type="reputation") >= ${reputation}
+"""
+
+[comment_sell]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:
+@define displayName:
+@define given:
+@define forMoney:
+@define reputation:
+
+[comment_buy]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:
+@define displayName:
+@define image:
+@define given:
+@define price:
+@define reputation:
+
+
+
+
+
+
+
+
+
+
+[action_buySidorovichPM]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:sidorovich
+@define displayName:PM
+@define image:pm
+@define given:pm:1
+@define price:money:3500
+@define reputation:100
+
+[action_buySidorovich9x18]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:sidorovich
+@define displayName:9x18
+@define image:9x18
+@define given:9x18:30
+@define price:money:650
+@define reputation:100
+
+[action_buySidorovichHeadlamp]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:sidorovich
+@define displayName:Headlamp
+@define image:headlamp
+@define given:headlamp:1
+@define price:money:1000
+@define reputation:100
+
+[action_buySidorovichMedkitAi2]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:sidorovich
+@define displayName:AI-2
+@define image:medkitAi2
+@define given:medkitAi2:1
+@define price:money:2250
+@define reputation:100
+
+[action_buySidorovichCannedBeans]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:sidorovich
+@define displayName:Canned Beans
+@define image:food
+@define given:food:1
+@define price:money:1200
+@define reputation:100
+
+
+
+#NIMBLE
+[action_buyNimbleUSP]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:nimble
+@define displayName:USP
+@define image:usp
+@define given:usp:1
+@define price:money:4000
+@define reputation:80
+
+[action_buyNimbleVal]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:nimble
+@define displayName:VAL
+@define image:val
+@define given:val:1
+@define price:money:115000
+@define reputation:80
+
+[action_buyNimbleLr300]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:nimble
+@define displayName:LR-300ML
+@define image:lr300
+@define given:lr300:1
+@define price:money:84000
+@define reputation:80
+
+#NIMBLES WIFE
+[action_buyNimblesWifeBread]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:nimblesWife
+@define displayName:Bread
+@define image:bread
+@define given:bread:1
+@define price:money:650
+@define reputation:80
+
+#BULLET
+[action_exchangeBullet9x18To9x19]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:bullet
+@define displayName:9x18 for 9x19
+@define image:9x19
+@define given:9x19:20
+@define price:9x18:30
+@define reputation:75
+
+[action_exchangeBullet545x39to556x45]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:bullet
+@define displayName:5.45x39 for 5.56x45
+@define image:556x45
+@define given:556x45:30
+@define price:545x39:40
+@define reputation:80
+
+[action_exchangeBullet12x70to762x54]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:bullet
+@define displayName:12x70 for 7.62x54
+@define image:762x54
+@define given:762x54:10
+@define price:12x70:20
+@define reputation:65
+
+
+
+
+####### OLD #######
+
+[action_buyAndrewDirtyWater]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:andrew
+@define displayName:Tainted Water
+@define image:taintedWater
+@define given:taintedWater:1
+@define price:money:450
+@define reputation:50
+
+[action_buyAndrewBandage]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:andrew
+@define displayName:Bandage
+@define image:bandage
+@define given:bandage:1
+@define price:money:400
+@define reputation:75
+
+[action_buyAndrewMedkitAi2]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:andrew
+@define displayName:AI-2 Medkit
+@define image:medkitAi2
+@define given:medkitAi2:1
+@define price:money:1050
+@define reputation:75
+
+[action_sellAndrewWheat]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:andrew
+@define displayName:Wheat
+@define given:wheat
+@define forMoney:100
+@define reputation:50
+
+[action_sellAndrewSyringe]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:andrew
+@define displayName:Syringe
+@define given:syringe
+@define forMoney:125
+@define reputation:65
+
+#WALTER
+
+[action_buyWalterLeatherJacket]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:walter
+@define displayName:Leather Jacket
+@define image:leatherJacket
+@define given:leatherJacket:1
+@define price:money:1000
+@define reputation:105
+
+[action_buyWalterArmoredJacket]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:walter
+@define displayName:BanditJacket
+@define image:banditJacket
+@define given:banditJacket:1
+@define price:money:1300
+@define reputation:106
+
+
+
+[action_sellHenryBlodFlower]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:henry
+@define displayName:Blood Flower
+@define given:bloodFlower
+@define forMoney:1700
+@define reputation:100
+
+[action_sellHenryGrawy]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:henry
+@define displayName:Grawy
+@define given:grawy
+@define forMoney:1840
+@define reputation:100
+
+[action_sellHenryRedStone]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:henry
+@define displayName:Red Stone
+@define given:redStone
+@define forMoney:2000
+@define reputation:100
+
+[action_sellHenryShock]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:henry
+@define displayName:Shock
+@define given:shock
+@define forMoney:1900
+@define reputation:100
+
+[action_sellHenryRemedyRose]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:henry
+@define displayName:Remedy Rose
+@define given:remedyRose
+@define forMoney:18000
+@define reputation:100
+
+
+
+
+
+
+
+
+# ABUDAIL
+
+[action_sellAbudailWoodLog]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:abudail
+@define displayName:Wood Log
+@define given:wood
+@define forMoney:50
+@define reputation:75
+
+[action_sellAbudailScrap]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:abudail
+@define displayName:Scrap
+@define given:scrap
+@define forMoney:40
+@define reputation:75
+
+[action_sellAbudailScrews]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:abudail
+@define displayName:Screws
+@define given:screws
+@define forMoney:200
+@define reputation:75
+
+[action_sellAbudailNails]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:abudail
+@define displayName:Nails
+@define given:nails
+@define forMoney:55
+@define reputation:75
+
+[action_sellAbudailOldTech]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:abudail
+@define displayName:Old Tech
+@define given:oldTech
+@define forMoney:750
+@define reputation:75
+
+[action_sellAbudailDuctTape]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:abudail
+@define displayName:Duct Tape
+@define given:ductTape
+@define forMoney:120
+@define reputation:85
+
+[action_sellAbudailDrug]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:abudail
+@define displayName:Drug
+@define given:drug
+@define forMoney:320
+@define reputation:75
+
+[action_sellAbudailBandage]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:abudail
+@define displayName:Bandage
+@define given:bandage
+@define forMoney:250
+@define reputation:75
+
+[action_sellAbudailCarapace]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:abudail
+@define displayName:Carapace
+@define given:carapace
+@define forMoney:750
+@define reputation:85
+
+[action_sellAbudailRawMeat]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:abudail
+@define displayName:Raw Meat
+@define given:rawMeat
+@define forMoney:200
+@define reputation:85
+
+[action_sellAbudailPainkillers]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:abudail
+@define displayName:Painkillers
+@define given:painkillers
+@define forMoney:450
+@define reputation:85
+
+[action_sellRadkit]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:abudail
+@define displayName:Radkit
+@define given:radkit
+@define forMoney:900
+@define reputation:100
+
+[action_sellAbudailAntiraddrug]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:abudail
+@define displayName:A.R. Drug
+@define given:antiraddrug
+@define forMoney:1000
+@define reputation:105
+
+[action_buyAbudailConstructionPack]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:abudail
+@define displayName:Construction Pack
+@define image:materialPackage
+@define given:plank:15, scrap:15, cloth:10, ductTape:5
+@define price:money:1200
+@define reputation:75
+
+# BARKEEPER
+
+[action_buyBarkeeperJuice]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:barkeeper
+@define displayName:Juice
+@define image:fruitJuice
+@define given:fruitJuice:1
+@define price:money:940
+@define reputation:85
+
+[action_buyBarkeeperSoda]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:barkeeper
+@define displayName:Soda
+@define image:soda
+@define given:soda:1
+@define price:money:850
+@define reputation:85
+
+[action_buyBarkeeperVodka]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:barkeeper
+@define displayName:Vodka
+@define image:vodka
+@define given:vodka:1
+@define price:money:1300
+@define reputation:90
+
+[action_buyBarkeeperCrackers]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:barkeeper
+@define displayName:Crackers
+@define image:crackers
+@define given:crackers:1
+@define price:money:1000
+@define reputation:85
+
+[action_buyBarkeeperBread]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:barkeeper
+@define displayName:Bread
+@define image:bread
+@define given:bread:1
+@define price:money:900
+@define reputation:65
+
+[action_sellBarkeeperRawMeat]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:barkeeper
+@define displayName:Raw Meat
+@define given:rawMeat
+@define forMoney:250
+@define reputation:100
+
+[action_sellBarkeeperGuitar]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:barkeeper
+@define displayName:Guitar
+@define given:guitar
+@define forMoney:800
+@define reputation:102
+
+[action_sellBarkeeperGoldCoins]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:barkeeper
+@define displayName:Gold Coins
+@define given:goldCoins
+@define forMoney:947
+@define reputation:100
+
+[action_sellBarkeeperGoldDagger]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:barkeeper
+@define displayName:Gold Dagger
+@define given:goldDagger
+@define forMoney:1450
+@define reputation:102
+
+[action_sellBarkeeperMilitaryComputer]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:barkeeper
+@define displayName:Military Computer
+@define given:militaryComputer
+@define forMoney:1000
+@define reputation:100
+
+[action_sellBarkeeperMilitaryHeadsets]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:barkeeper
+@define displayName:Military Headsets
+@define given:militaryHeadsets
+@define forMoney:500
+@define reputation:100
+
+
+
+#ALEX
+
+[action_buyAlexBlowtorch]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:alex
+@define displayName:Blowtorch
+@define image:blowtorch
+@define given:blowtorch:1
+@define price:money:1200
+@define reputation:50
+
+[action_buyAlexSaw]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:alex
+@define displayName:Saw
+@define image:saw
+@define given:saw:1
+@define price:money:400
+@define reputation:50
+
+[action_buyAlexHeadlamp]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:alex
+@define displayName:Headlamp
+@define image:headlamp
+@define given:headlamp:1
+@define price:money:1200
+@define reputation:50
+
+[action_buyAlexEMRNightVision]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:alex
+@define displayName:EMR NV.
+@define image:emrNightVision
+@define given:emrNightVision:1
+@define price:money:3800
+@define reputation:50
+
+[action_buyAlexSPPHNightVision]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:alex
+@define displayName:SPPH NV.
+@define image:spphNightVision
+@define given:spphNightVision:1
+@define price:money:12000
+@define reputation:50
+
+[action_sellAlexEngine]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:alex
+@define displayName:Car Battery
+@define given:carBattery
+@define forMoney:950
+@define reputation:50
+
+[action_sellAlexMaterialPackage]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:alex
+@define displayName:Material Pack
+@define given:materialPackage
+@define forMoney:300
+@define reputation:50
+
+[action_sellAlexRadio]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:alex
+@define displayName:Radio
+@define given:radio
+@define forMoney:850
+@define reputation:50
+
+[action_sellAlexBook]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:alex
+@define displayName:Book
+@define given:book
+@define forMoney:900
+@define reputation:40
+
+[action_sellAlexScrewdriver]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:alex
+@define displayName:Screwdriver
+@define given:screwdriver
+@define forMoney:200
+@define reputation:5
+#lol
+
+#FLORA
+
+[action_buyFloraPm]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:weaponTrader
+@define displayName:PM
+@define image:pm
+@define given:pm:1
+@define price:money:2750
+@define reputation:60
+
+[action_buyFloraToz34]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:weaponTrader
+@define displayName:TOZ-34
+@define image:toz34
+@define given:toz34:1
+@define price:money:7500
+@define reputation:110
+
+[action_buyFloraSvt40]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:weaponTrader
+@define displayName:SVT-40
+@define image:svt40
+@define given:svt40:1
+@define price:money:11200
+@define reputation:110
+
+[action_buyFloraMp5]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:weaponTrader
+@define displayName:MP-5
+@define image:mp5
+@define given:mp5:1
+@define price:money:35000
+@define reputation:118
+
+[action_buyFloraAk47]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:weaponTrader
+@define displayName:AK-47
+@define image:ak47
+@define given:ak47:1
+@define price:money:55000
+@define reputation:128
+
+[action_buyFlora9x18]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:weaponTrader
+@define displayName:9x18
+@define image:9x18
+@define given:9x18:16
+@define price:money:500
+@define reputation:110
+
+[action_buyFlora9x19]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:weaponTrader
+@define displayName:9x19
+@define image:9x19
+@define given:9x19:16
+@define price:money:550
+@define reputation:110
+
+[action_buyFlora45acp]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:weaponTrader
+@define displayName:.45 ACP
+@define image:45acp
+@define given:45acp:16
+@define price:money:690
+@define reputation:110
+
+[action_buyFlora12x70]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:weaponTrader
+@define displayName:12x70
+@define image:12x70
+@define given:12x70:10
+@define price:money:400
+@define reputation:110
+
+[action_buyFlora545x39]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:weaponTrader
+@define displayName:5.45x39
+@define image:545x39
+@define given:545x39:30
+@define price:money:900
+@define reputation:115
+
+[action_buyFlora556x45]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:weaponTrader
+@define displayName:5.56x45
+@define image:556x45
+@define given:556x45:30
+@define price:money:1200
+@define reputation:125
+
+[action_buyFlora762x54]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:weaponTrader
+@define displayName:7.62x54
+@define image:762x54
+@define given:762x54:10
+@define price:money:750
+@define reputation:113
+
+[action_buyFlora9x39]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:weaponTrader
+@define displayName:9x39
+@define image:9x39
+@define given:9x39:30
+@define price:money:850
+@define reputation:113
+
+[action_sellFloraPm]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:weaponTrader
+@define displayName:PM
+@define given:pm
+@define forMoney:850
+@define reputation:115
+
+[action_sellFloraToz34]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:weaponTrader
+@define displayName:TOZ34
+@define given:toz34
+@define forMoney:900
+@define reputation:115
+
+[action_sellFloraSvt40]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:weaponTrader
+@define displayName:SVT40
+@define given:svt40
+@define forMoney:1000
+@define reputation:115
+
+[action_sellFloraMp5]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:weaponTrader
+@define displayName:MP5
+@define given:mp5
+@define forMoney:1450
+@define reputation:118
+
+[action_sellFloraAk47]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:weaponTrader
+@define displayName:AK47
+@define given:ak47
+@define forMoney:2500
+@define reputation:125
+
+[action_sellFloraLr300]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:weaponTrader
+@define displayName:LR300
+@define given:lr300
+@define forMoney:3500
+@define reputation:130
+
+
+
+
+#MİTKA-
+
+[action_sellMitkaLeather]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:mitka
+@define displayName:Leather
+@define given:leather
+@define forMoney:180
+@define reputation:100
+
+[action_sellMitkaCarapace]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:mitka
+@define displayName:Carapace
+@define given:carapace
+@define forMoney:460
+@define reputation:100
+
+[action_sellMitkaHighTechFabric]
+@copyFromSection:"""
+template_sell
+"""
+@define npcName:mitka
+@define displayName:HI-T Fabric
+@define given:highTechFabric
+@define forMoney:1350
+@define reputation:110
+
+[action_buyMitkaSewingCloth]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:mitka
+@define displayName:Sewing Cloth
+@define image:sewingCloth
+@define given:sewingCloth:1
+@define price:money:900
+@define reputation:90
+
+[action_buyMitkaTrenchcoat]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:mitka
+@define displayName:Trenchcoat
+@define image:trenchcoat
+@define given:trenchcoat:1
+@define price:money:3200
+@define reputation:104
+
+[action_buyMitkaSunriseSuit]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:mitka
+@define displayName:Sunrise Suit
+@define image:sunsetSuit
+@define given:sunsetSuit:1
+@define price:money:18500
+@define reputation:120
+
+[action_buyMitkaExo]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:mitka
+@define displayName:Exoskeleton
+@define image:exoskeleton
+@define given:exoskeleton:1
+@define price:money:165000
+@define reputation:185
+
+[action_buyMitkaSchoolBag]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:mitka
+@define displayName:School Bag
+@define image:schoolBag
+@define given:schoolBag:1
+@define price:money:500
+@define reputation:90
+
+[action_buyMitkaDuffleBag]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:mitka
+@define displayName:Duffle Bag
+@define image:duffleBag
+@define given:duffleBag:1
+@define price:money:850
+@define reputation:95
+
+[action_buyMitkaAlicepack]
+@copyFromSection:"""
+template_buy
+"""
+@define npcName:mitka
+@define displayName:Alicepack
+@define image:paratusBag
+@define given:paratusBag:1
+@define price:money:9000
+@define reputation:105

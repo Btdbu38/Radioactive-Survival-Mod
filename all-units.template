@@ -1,0 +1,14 @@
+[core]
+class: CustomUnitMetadata
+strictLevel: 1
+logIfCreditResourceUsed:true
+ignoreInUnitCapCalculation: true
+availableInDemo: true
+autoTriggerCheckRate: every8Frames
+#@global templatePath:ROOT:/codes/temp/
+
+[graphics]
+showHealthBar: false
+
+[core]
+#showInEditor: false

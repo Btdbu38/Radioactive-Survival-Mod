@@ -1,0 +1,62 @@
+[core]
+@global volume:0.2
+
+[hiddenAction_voiceAttack]
+requireConditional: if rnd(0,100) < 10
+playSoundAtUnit:"""
+ROOT:/soundFx/voice_${voice}/attack/1.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/attack/2.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/attack/3.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/attack/4.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/attack/5.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/attack/6.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/attack/7.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/attack/8.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/attack/9.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/attack/10.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/attack/11.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/attack/12.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/attack/13.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/attack/14.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/attack/15.ogg:${volume} """
+
+[hiddenAction_voiceDetour]
+requireConditional: if rnd(0,100) < 8
+playSoundAtUnit:"""
+ROOT:/soundFx/voice_${voice}/detour/1.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/detour/2.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/detour/3.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/detour/4.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/detour/5.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/detour/6.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/detour/7.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/detour/8.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/detour/9.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/detour/10.ogg:${volume} """
+
+[hiddenAction_voiceDeath]
+playSoundAtUnit:"""
+ROOT:/soundFx/voice_${voice}/death/1.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/death/2.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/death/3.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/death/4.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/death/5.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/death/6.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/death/7.ogg:${volume} """
+
+[hiddenAction_voiceHit]
+requireConditional: if rnd(0,100) < 30
+playSoundAtUnit:"""
+ROOT:/soundFx/voice_${voice}/hit/1.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/hit/2.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/hit/3.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/hit/4.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/hit/5.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/hit/6.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/hit/7.ogg:${volume} """
+
+[hiddenAction_voiceMove]
+requireConditional: if rnd(0,100) < 30
+playSoundAtUnit:"""
+ROOT:/soundFx/voice_${voice}/move/1.ogg:${volume},
+ROOT:/soundFx/voice_${voice}/move/2.ogg:${volume} """

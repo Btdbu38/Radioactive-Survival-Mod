@@ -1,0 +1,360 @@
+
+[template_alert]
+requireConditional: if self.customTimer(laterThanSeconds=35)
+resetCustomTimer: true
+playSoundToPlayer: ROOT:/soundFx/interface/pda_beep_2.ogg
+
+[hiddenAction_starving]
+@copyFromSection: template_alert
+showQuickWarLogToPlayer: You are starving!
+#sorry but these can not be translated
+
+[hiddenAction_thirsty]
+@copyFromSection: template_alert
+showQuickWarLogToPlayer: You are thirsty!
+
+[hiddenAction_irradiated]
+@copyFromSection: template_alert
+showQuickWarLogToPlayer: You are irradiated!
+
+[hiddenAction_sick]
+@copyFromSection: template_alert
+showQuickWarLogToPlayer: You are sick!
+
+[hiddenAction_chill]
+@copyFromSection: template_alert
+showQuickWarLogToPlayer: You feel a bit chilly!
+
+[hiddenAction_cold]
+@copyFromSection: template_alert
+showQuickWarLogToPlayer: You feel so cold!
+
+[hiddenAction_frozen]
+@copyFromSection: template_alert
+showQuickWarLogToPlayer: You are freezing!
+
+
+[hiddenAction_hunger]
+autoTrigger: if self.resource(type='hunger',lessThan=1)
+addResources: hp:-0.3
+alsoTriggerAction:starving
+
+[hiddenAction_thirtsy]
+autoTrigger: if self.resource(type='thirst',lessThan=1)
+addResources: hp:-0.3
+alsoTriggerAction:thirsty
+
+[hiddenAction_radiation3]
+autoTrigger: if self.resource(type='radiation',greaterThan=90)
+addResources: hp:-2
+
+[hiddenAction_radiation2]
+autoTrigger: if self.resource(type='radiation',greaterThan=45)
+addResources: hp:-0.035
+alsoTriggerAction:irradiated
+
+[hiddenAction_radiation1]
+autoTrigger: if self.resource(type='radiation',greaterThan=20)
+addResources: hp:-0.03
+
+[hiddenAction_chemical]
+autoTrigger: if self.resource(type='toxic',greaterThan=98)
+addResources: hp:-0.3
+alsoTriggerAction:sick
+
+[hiddenAction_lowTemp]
+autoTrigger: if self.resource(type='temperature',lessThan=25) and self.resource(type="temperature", greaterThan=15)
+addResources: hp:-0.05, sweaty:-0.45
+alsoTriggerAction:chill
+
+[hiddenAction_lowTemp2]
+autoTrigger: if self.resource(type='temperature',lessThan=15) and self.resource(type="temperature", greaterThan=2)
+addResources: hp:-0.1, sweaty:-1
+alsoTriggerAction:cold
+
+[hiddenAction_lowTemp3]
+autoTrigger: if self.resource(type='temperature',lessThan=2)
+addResources: hp:-0.15, sweaty:-1
+alsoTriggerAction:frozen
+
+[hiddenAction_bloodDeath]
+autoTrigger: if self.resource(type='blood',lessThan=1)
+addResources: hp:-4
+
+[hiddenAction_mentalDeath]
+playSoundToPlayer: ROOT:/soundFx/mutants/controller/finalHit.ogg:1
+autoTrigger: if self.resource.mental < 2
+addResources: hp:-250
+
+[hiddenAction_highHungerRegen]
+autoTrigger: if self.resource(type='hunger') > 50
+addResources: hp=0.2
+requireConditional: if not self.hasResources(pain=1)
+
+[hiddenAction_highHungerRegen2]
+autoTrigger: if self.resource(type='hunger') > 75
+addResources: hp=0.2
+requireConditional: if not self.hasResources(pain=1)
+
+[hiddenAction_nightSight]
+autoTrigger: if self.numberOfUnitsInAllTeams(withTag="night", greaterThan=0)
+setUnitStats: fogOfWarSightRange=1
+
+[hiddenAction_daySight]
+autoTrigger: if self.numberOfUnitsInAllTeams(withTag="day", greaterThan=0)
+setUnitStats: fogOfWarSightRange=2
+
+[hiddenAction_headlampSight]
+autoTrigger: if self.numberOfUnitsInAllTeams(withTag="night", greaterThan=0) and self.numberOfUnitsInAllTeams(withTag="headlamp", greaterThan=0, withinRange=60)
+setUnitStats: fogOfWarSightRange=1
+
+
+
+
+
+
+[hiddenAction_reduceStamina]
+autoTrigger: if self.isMoving()
+addResourcesWithLogic: stamina: select(self.resource.fitness > 5, -0.19, -0.25) + select(self.globalTeamTags(includes="female"), 0.07, 0), fitnessXp:0.025
+	
+[hiddenAction_reduceStaminaTraits]
+autoTrigger: if self.isMoving()
+requireConditional: if self.globalTeamTags(includes="commander") or self.globalTeamTags(includes="stalker")
+addResources: stamina: -0.1
+
+[hiddenAction_increaseStamina]
+autoTrigger: if not self.isMoving()
+addResourcesWithLogic: stamina: 1 * (self.resource.staminaRecovery) % 50 + select(self.globalTeamTags(includes="male"), 0.2, 0), sweaty:-0.25
+
+[hiddenAction_breathmale]
+autoTrigger: if self.resource(type="stamina", greaterThan=60, lessThan=80) and self.globalTeamTags(includes="male")
+requireConditional: if self.resource(type='cooldowns')>2.25
+playSoundAtUnit: ROOT:/soundFx/actor/run_2.ogg:0.4
+resourceAmount: cooldowns
+resourceAmount_setValue: 0
+addResources: hunger: -0.008, thirst: -0.008, fitnessXp:0.05, sweaty:0.1
+
+[hiddenAction_breath2male]
+autoTrigger: if self.resource(type="stamina", greaterThan=40, lessThan=60) and self.globalTeamTags(includes="male")
+requireConditional: if self.resource(type='cooldowns')>1.25
+@copyFromSection: hiddenAction_breathmale
+addResources: hunger: -0.01, thirst: -0.01, fitnessXp:0.1, sweaty:0.15
+
+[hiddenAction_breath3male]
+autoTrigger: if self.resource(type="stamina", greaterThan= 20, lessThan=40) and self.globalTeamTags(includes="male")
+requireConditional: if self.resource(type='cooldowns')>0.92
+@copyFromSection: hiddenAction_breathmale
+addResources: hunger: -0.01, thirst: -0.01, fitnessXp:0.1, sweaty:0.2
+
+[hiddenAction_breath4male]
+autoTrigger: if self.resource(type="stamina", lessThan=20) and self.globalTeamTags(includes="male")
+requireConditional: if self.resource(type='cooldowns')>0.7
+@copyFromSection: hiddenAction_breathmale
+addResources: hunger: -0.01, thirst: -0.01, legHP:-0.05, fitnessXp:0.1, sweaty:0.25
+
+#Female sounds
+
+[hiddenAction_breathfemale]
+autoTrigger: if self.resource(type="stamina", greaterThan=60, lessThan=80) and self.globalTeamTags(includes="female")
+requireConditional: if self.resource(type='cooldowns')>2.25
+playSoundAtUnit: ROOT:/soundFx/actorFemale/run_2.ogg:0.5
+resourceAmount: cooldowns
+resourceAmount_setValue: 0
+addResources: hunger: -0.008, thirst: -0.008, fitnessXp:0.05, sweaty: 0.1
+
+[hiddenAction_breath2female]
+autoTrigger: if self.resource(type="stamina", greaterThan=40, lessThan=60) and self.globalTeamTags(includes="female")
+requireConditional: if self.resource(type='cooldowns')>1.25
+@copyFromSection: hiddenAction_breathfemale
+addResources: hunger: -0.01, thirst: -0.01, fitnessXp:0.1, sweaty: 0.1
+
+[hiddenAction_breath3female]
+autoTrigger: if self.resource(type="stamina", greaterThan= 20, lessThan=40) and self.globalTeamTags(includes="female")
+requireConditional: if self.resource(type='cooldowns')>0.92
+@copyFromSection: hiddenAction_breathfemale
+addResources: hunger: -0.01, thirst: -0.01, fitnessXp:0.1, sweaty: 0.1
+
+[hiddenAction_breath4female]
+autoTrigger: if self.resource(type="stamina", lessThan=20) and self.globalTeamTags(includes="female")
+requireConditional: if self.resource(type='cooldowns')>0.7
+@copyFromSection: hiddenAction_breathfemale
+addResources: hunger: -0.01, thirst: -0.01, legHP:-0.1, fitnessXp:0.1, sweaty: 0.1
+
+[hiddenAction_hardBreathColdown]
+requireConditional: if self.hp() < 120
+autoTrigger: true
+addResources: hardBreath: 0.34
+
+[hiddenAction_hardBreath]
+resourceAmount: hardBreath
+resourceAmount_setValue: 0
+autoTrigger: if self.hp() < 120
+requireConditional: if self.resource.hardBreath > 3
+playSoundAtUnit:"""
+ROOT:/soundFx/actor/medHp1.ogg,
+ROOT:/soundFx/actor/medHp2.ogg,
+ROOT:/soundFx/actor/medHp3.ogg
+"""
+[resource_hardBreath]
+hidden: true
+
+[resource_cooldowns]
+hidden:true
+
+[hiddenAction_cooldownsLimit]
+autoTrigger: if self.resource(type="cooldowns")>3
+resourceAmount: cooldowns
+resourceAmount_setValue: 0
+
+[hiddenAction_addcoldwon]
+autoTrigger: true
+addResources: cooldowns: 0.3
+
+
+
+#misc
+
+[hiddenAction_medicHealBuff]
+autoTrigger: if numberOfUnitsInAllTeams(withTag="medic", withinRange=75)>0
+addResources: hp: 2
+
+#radiation
+
+[hiddenAction_exposureRadSmallMetalObjects]
+addResources: radiation: 0.1
+autoTrigger:"""
+if self.numberOfUnitsInAggressiveTeam(withTag="smallMetalObject", withinRange=55)>0 
+and rnd(0,100) > 70
+"""
+requireConditional: if not self.hasResources(radprot=1)
+playSoundToPlayer:"""
+ROOT:soundFx/interface/geiger_1.ogg,
+ROOT:soundFx/interface/geiger_2.ogg
+"""
+
+[hiddenAction_exposureRadBigMetalObjects]
+addResources: radiation: 0.13
+autoTrigger:"""
+if self.numberOfUnitsInNeutralTeam(withTag="bigMetalObject", withinRange=70) > 0 
+and rnd(0,100) > 70
+"""
+requireConditional: if not self.hasResources(radprot=1)
+playSoundToPlayer:"""
+ROOT:soundFx/interface/geiger_1.ogg,
+ROOT:soundFx/interface/geiger_2.ogg
+"""
+
+[hiddenAction_exposureRadLight]
+addResources: radiation: 0.15
+autoTrigger:"""
+if self.numberOfUnitsInNeutralTeam(withTag="radioactiveArea", withinRange=850) > 0 
+and rnd(0,100) > 93
+"""
+requireConditional: if not self.hasResources(radprot=1)
+playSoundToPlayer:"""
+ROOT:soundFx/interface/geiger_1.ogg,
+ROOT:soundFx/interface/geiger_2.ogg,
+ROOT:soundFx/interface/geiger_3.ogg,
+ROOT:soundFx/interface/geiger_4.ogg,
+ROOT:soundFx/interface/geiger_3.ogg,
+ROOT:soundFx/interface/geiger_5.ogg,
+ROOT:soundFx/interface/geiger_6.ogg,
+ROOT:soundFx/interface/geiger_7.ogg
+"""
+
+[hiddenAction_exposureRadHeavy]
+addResources: radiation: 0.1
+autoTrigger:"""
+if self.numberOfUnitsInNeutralTeam(withTag="radioactiveArea", withinRange=265) > 0 
+and rnd(0,100) > 75
+"""
+requireConditional: if not self.hasResources(radprot=1)
+
+[hiddenAction_exposureRadVeryHeavvy]
+addResources: radiation: 0.45
+autoTrigger:"""
+if self.numberOfUnitsInNeutralTeam(withTag="radioactiveAreaDangerous", withinRange=320) > 0 
+and rnd(0,100) > 25
+"""
+requireConditional: if not self.hasResources(radprot=1)
+playSoundToPlayer:"""
+ROOT:soundFx/interface/geiger_3.ogg,
+ROOT:soundFx/interface/geiger_4.ogg,
+ROOT:soundFx/interface/geiger_3.ogg,
+ROOT:soundFx/interface/geiger_5.ogg,
+ROOT:soundFx/interface/geiger_6.ogg,
+ROOT:soundFx/interface/geiger_7.ogg
+"""
+
+
+
+
+
+
+[hiddenAction_sweatWer]
+autoTrigger: if self.resource.sweaty > 35
+addResources: wetness: 0.08
+
+[hiddenAction_sweatWer2]
+autoTrigger: if self.resource.sweaty > 80
+addResources: wetness: 0.15
+
+
+[hiddenAction_addTemperature]
+autoTrigger: if self.numberOfUnitsInAllTeams(withTag="campfire", withinRange=85)>0 or self.numberOfUnitsInNeutralTeam(withTag="campfire", withinRange=85)>0
+addResources: temperature: 3, hp:0.2, wetness: -0.8, sweaty:-1
+
+[hiddenAction_addTemperatureWet]
+requireConditional: if not self.numberOfUnitsInAllTeams(withTag="campfire", withinRange=85, greaterThan=0) or not self.numberOfUnitsInNeutralTeam(withTag="campfire", withinRange=85, greaterThan=0)
+autoTrigger: if self.resource.wetness > 25
+addResources: temperature: -0.25
+
+[hiddenAction_wetnessIncreaseSickness]
+autoTrigger: if self.resource.wetness > 85 and self.resource.temperature <= 5
+addResources: toxic: 0.3
+
+[hiddenAction_addTemperatureWinter]
+requireConditional: if not self.numberOfUnitsInAllTeams(withTag="campfire", withinRange=85, greaterThan=0) or not self.numberOfUnitsInNeutralTeam(withTag="campfire", withinRange=85, greaterThan=0)
+autoTrigger: if customTarget2.resource.month > 10 or customTarget2.resource.month < 2
+addResources: temperature: -1
+
+[hiddenAction_addTemperatureNight]
+requireConditional: if not self.numberOfUnitsInAllTeams(withTag="campfire", withinRange=85, greaterThan=0) or not self.numberOfUnitsInNeutralTeam(withTag="campfire", withinRange=85, greaterThan=0)
+autoTrigger: if customTarget2.resource.hour > 20 or customTarget2.resource.hour < 8
+addResources: temperature: -0.34
+
+
+[hiddenAction_safeZoneEnter]
+requireConditional: if not self.tags(includes="safe")
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="safeZone", withinRange=1000, greaterThan=0)
+temporarilyAddTags: safe
+temporarilyRemoveTags: notSafe
+showQuickWarLogToPlayer: Entering Safe Zone
+
+[hiddenAction_safeZoneLeave]
+requireConditional: if not self.tags(includes="notSafe")
+autoTrigger: if not self.numberOfUnitsInNeutralTeam(withTag="safeZone", withinRange=1000, greaterThan=0)
+temporarilyAddTags: notSafe
+temporarilyRemoveTags: safe
+showQuickWarLogToPlayer: Exiting Safe Zone
+
+
+[hiddenAction_shelterEnter]
+requireConditional:"""
+if not self.tags(includes="sheltered") 
+and self.numberOfUnitsInNeutralTeam(withTag="findShelter") >= 1 
+"""
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="shelter", withinRange=450, greaterThan=0)
+temporarilyAddTags: sheltered
+
+showMessageToAllPlayers: Keep Sheltered!
+playSoundToPlayer: ROOT:/soundFx/interface/objective.ogg:1
+
+[hiddenAction_shelterLeave]
+requireConditional: if self.tags(includes="sheltered") and self.numberOfUnitsInNeutralTeam(withTag="findShelter") >= 1
+
+autoTrigger: if not self.numberOfUnitsInNeutralTeam(withTag="shelter", withinRange=450, greaterThan=0)
+temporarilyRemoveTags: sheltered
+
+showMessageToAllPlayers: Find Shelter!
+playSoundToPlayer: ROOT:/soundFx/interface/objective.ogg:1

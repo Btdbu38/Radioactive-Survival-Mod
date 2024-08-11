@@ -1,0 +1,2290 @@
+
+[comment_credits]
+Thanks to "TheoDrHashiriya" for correcting the grammar issues.
+Thanks to "ZetterZet" for old Russian translate.
+
+#Translations made but needs to be fixed;
+#Russian
+
+#Important languages that needs to be translated;
+#Filipino #Ukrainian
+#Chinese #Thai
+
+#### GUIDES ####
+
+#YOU SHOULD NEVER TRANSLATE THINGS LIKE:
+# ${code}
+# %{code}.
+
+#YOU SHOULD TRANSLATE LIKE THE EXAMPLES (template_textPlayer)
+
+#SUFFIXES:
+Belarusian _by
+German _de
+Spanish _es
+Frech _fr
+Italian _it
+Japanese _ja
+Dutch _nl
+Polish _pl
+Portuguese _pt
+Romanian _ro
+Russian _ru
+Turkish _tr
+Ukrainian _uk
+Simplified Chinese _zh_cn
+Traditional Chinese _zh
+
+
+#____________________________ SIMPLE TEXTS __________________________________#
+
+[template_actionSell]
+text: Sell: ${displayName}
+text_tr: Sat: ${displayName}
+description: For ${forMoney}
+description_tr: ${forMoney} Para için
+
+[template_actionBuy]
+text: Buy: ${displayName}
+text_tr: Al: ${displayName}
+
+[template_actionBhsInfo]
+text: Health Info
+text_tr: Vücut Sağlığı
+description: This menu is about your characters health and condition. \n As you can see, there are four separate areas that have HP. Head, Torso, Arms and Legs. You must protect them as you can. \n Getting any damage to any body area have a chance, you have a chance to dodge it too, and the more mobile you are, the more dodge chance you have. \n Having out of HP on head and torso is instant death. If your legs are dead, you move very hardly and it increases pain. If your arms are dead you can not use guns accurately and performing any action will increase pain. \n And you can heal them with medical kits. \n By the way, you can get some wound types such as scratches, lacerations and lodged bullet. The more mobile you are, the lower chances to get deadlier wounds. \n For healing these wounds, find any kind of medical items. 
+description: Bu menu karakterinizin sağlığı ve kondisyonuna ayrılmıştır. \n Gördüğünüz gibi dört adet cana sahip ayrı vücut bölgeleri bulunmaktadır. \n Herhangi bir bölgeye hasar almanın bir şansı vardır. Koşmak bu şansı azaltır. \n Eğer kafanız ve gövdenizin canı biterse ölürsünüz. Kolunuzun canı biterse yakın mesafeli silahlarla etkinliğiniz azalır. Bacakların canı biterse yavaş koşarsınız ve koşmak ağrıya sebep olur.
+
+[template_actionCruelInfo]
+text: CRUEL MODE
+description: The Cruel Mode is enabled \n You can't respawn once you die \n All of your stats are lowered \n No bonuses at game start
+
+[template_actionTouristInfo]
+text: TOURIST MODE
+description: The Tourist Mode is enabled \n You have unlimited respawns \n All of your stats are increased \n Extra loadouts are given at game start
+
+[template_actionHealingInfo]
+text: Healing %{int(self.resource.healing)}
+
+[template_actionBloodRegenInfo]
+text: Blood Regen. %{int(self.resource.bloodR)}
+description: Your blood level is being increased
+
+[template_actionPanicInfo]
+text: Panic %{int(self.resource(type='panic'))} %
+description: -You are panicking \n -Reduces stamina \n -Reduces aim and damage \n -Narrows sight angle
+
+[template_actionPainInfo]
+text: Pain %{int(self.resource.pain)} %
+description: -You are feeling severe pain \n -Reduces melee damage \n -Increases stamina reduction \n -Disables self regenation
+
+[template_actionBleedingInfo]
+text: Bleeding %{int(self.resource.bleeding)} %
+description: -Bleeding somewhere from your body \n -Drops blood from your body. \n -Higher value will drain blood more \n -Can be stopped with a bandage
+
+[template_actionScratchInfo]
+text: Scratch %{self.resource(type='scratch')}
+description: -You got a small scratch \n -Increases pain a bit, decreases very minor HP until you seek medical attention \n -Can be healed with a bandage
+
+[template_actionLacerationInfo]
+text: Deep Laceration %{self.resource(type='laceration')}
+description: -You got a deep wound \n -Increases severe pain, decreases high amount of HP and bleeds heavily. \n -Pain can last for days if not healed early \n -Can be stitched with a needle, and then requires to be bandaged
+
+[template_actionLodgedBulletInfo]
+text: Lodged Bullet %{self.resource(type='lodgedBullet')}
+description: -A bullet hit and stuck in your body \n -Increases pain, decreases moderate amount of HP and bleeds very slowly. \n -Pain can last for days if not healed early \n -Bullet must be removed with a tweezer first, then the deep wound that will be left on there can be stitched with a needle, and then requires to be bandaged
+
+[template_actionSkillsInfo]
+text: SKILLS
+text_tr: BECERİLER
+description:"""
+Strength: %{self.resource.strength} | XP: %{self.resource.strengthXp} / %{self.resource.strengthXpCap} \n
+Fitness: %{self.resource.fitness} | XP: %{self.resource.fitnessXp} / %{self.resource.fitnessXpCap} \n\n
+Aiming: %{self.resource.aiming} | XP: %{self.resource.aimingXp} / %{self.resource.aimingXpCap} \n\n
+Nimble: %{self.resource.nimble} | XP: %{self.resource.nimbleXp} / %{self.resource.nimbleXpCap} \n
+Lightfooted: %{self.resource.lightfooted} | XP: %{self.resource.lightfootedXp} / %{self.resource.lightfootedXpCap} \n
+Running: %{self.resource.running} | XP: %{self.resource.runningXp} / %{self.resource.runningXpCap} \n\n
+Crafting: %{self.resource.crafting} | XP: %{self.resource.craftingXp} / %{self.resource.craftingXpCap} \n
+First Aid: %{self.resource.firstaid} | XP: %{self.resource.firstaidXp} / %{self.resource.firstaidXpCap} """
+description_tr:"""
+Güç: %{self.resource.strength} | XP: %{self.resource.strengthXp} / %{self.resource.strengthXpCap} \n
+Fitness: %{self.resource.fitness} | XP: %{self.resource.fitnessXp} / %{self.resource.fitnessXpCap} \n\n
+Nişan Alma: %{self.resource.aiming} | XP: %{self.resource.aimingXp} / %{self.resource.aimingXpCap} \n\n
+Çevik: %{self.resource.nimble} | XP: %{self.resource.nimbleXp} / %{self.resource.nimbleXpCap} \n
+Zarif: %{self.resource.lightfooted} | XP: %{self.resource.lightfootedXp} / %{self.resource.lightfootedXpCap} \n
+Koşucu: %{self.resource.running} | XP: %{self.resource.runningXp} / %{self.resource.runningXpCap} \n\n
+Zanaat: %{self.resource.crafting} | XP: %{self.resource.craftingXp} / %{self.resource.craftingXpCap} \n
+İlk Yardım: %{self.resource.firstaid} | XP: %{self.resource.firstaidXp} / %{self.resource.firstaidXpCap} """
+
+
+[template_actionLvlUpStrenght]
+showMessageToPlayer: + Strength
+showMessageToPlayer_tr: + Güç
+
+[template_actionLvlUpFitness]
+showMessageToPlayer: + Fitness
+showMessageToPlayer_tr: + Fitness
+
+[template_actionLvlUpAiming]
+showMessageToPlayer: + Aiming
+showMessageToPlayer_tr: + Nişan Alma
+
+[template_actionLvlUpNimble]
+showMessageToPlayer: + Nimble
+showMessageToPlayer_tr: + Çevik
+
+[template_actionLvlUpLightfooted]
+showMessageToPlayer: + Lightfooted
+showMessageToPlayer_tr: + Zarif
+
+[template_actionLvlUpRunning]
+showMessageToPlayer: + Running
+showMessageToPlayer_tr: + Koşucu
+
+[template_actionLvlUpCrafting]
+showMessageToPlayer: + Crafting
+showMessageToPlayer_tr: + Zanaat
+
+[template_actionLvlUpFirstAid]
+showMessageToPlayer: + First Aid
+showMessageToPlayer_tr: + İlk Yardım 
+
+[template_actionTip1]
+showMessageToPlayer:Select the human that contains your name.
+
+[template_actionTip2]
+showMessageToPlayer:On the right hand panel, you can see many menus. Including your inventory.
+
+[template_actionTip3]
+showMessageToPlayer:You should loot objects in order to survive. Try clicking objects.
+
+[template_actionTip4]
+showMessageToPlayer:Now go out and investigate the area. Meet with the local people. Loot the objects by clicking them.
+
+[template_actionTip5]
+showMessageToPlayer:After it's done, move further and explore more areas.
+
+[template_actionTip6]
+showMessageToPlayer:But at the same time, stay sharp, stalker. 
+
+[template_actionDemolish]
+text: Destroy
+description: Remove the building
+
+[template_actionRefillFuel]
+text: Refill Fuel
+description: Add 2000mL of fuel to the generator
+
+[template_actionRefillCar]
+text: Add Fuel to Car
+description: Add 2000mL of fuel to the vehicle (14000mL max)
+
+[template_actionRepairCar]
+text: Repair Car
+description: Repair the damaged car. (+500 HP)
+
+[template_actionReviveSurvivor]
+text: Revive Teammate!
+description: Your friend is gonna die, be fast help him!
+
+[template_actionRescueStalkers]
+text: Rescue Stalkers
+description: Rescue the bound stalkers and escort them to the bar.
+
+[template_actionStashGuide]
+text: Stash Guide
+description: You can drop items from this container to your character. And if you open your dropping menu you can storage items to this container.
+
+[template_actionRespawn]
+text: Respawn
+description: Respawn at your spawnpoint.
+
+
+#____________________________ UNIT NAMES __________________________________#
+
+[template_textPlayer]
+displayText: Player
+displayDescription: The unit controlled by players. \n Select it to control it. \n Touching anywhere on the screen after selecting it moves it.
+displayText_de:Spieler
+displayDescription_de:Die von Spielern kontrollierte Einheit. \n Wählen Sie es aus, um es zu steuern. \n Wenn Sie nach der Auswahl eine beliebige Stelle auf dem Bildschirm berühren, wird er verschoben.
+displayText_it:Giocatore
+displayDescription_it:L'unità controllata dai giocatori. \n Selezionalo per controllarlo. \n Toccando un punto qualsiasi dello schermo dopo averlo selezionato si sposta.
+displayText_zh:玩家
+displayDescription_zh:由玩家控制的单位。 \n 选择它来控制它。 \n 选择后触摸屏幕上的任意位置即可移动它。
+displayText_ja:プレーヤー
+displayDescription_ja:プレイヤーが操作するユニット。 \n 選択して制御します。 \n 選択後に画面上の任意の場所をタッチすると、移動します。
+displayText_ru:Игрок
+displayDescription_ru:Юнит, управляемый игроками. \n Выберите его, чтобы управлять им. \n Прикосновение к любому месту экрана после выбора перемещает его.
+displayText_es:Jugador
+displayDescription_es:La unidad controlada por los jugadores. \n Selecciónelo para controlarlo. \n Al tocar cualquier parte de la pantalla después de seleccionarlo, se mueve.
+displayText_tl:Manlalaro
+displayDescription_tl:Ang yunit na kinokontrol ng mga manlalaro. \n Piliin ito upang kontrolin ito. \n Ang pagpindot saanman sa screen pagkatapos piliin ito ay ginagalaw ito.
+displayText_uk:Гравець
+displayDescription_uk:Юніт, яким керують гравці. \n Виберіть його, щоб керувати ним. \n Торкаючись будь-де на екрані після його вибору, ви переміщуєте його.
+displayText_vi:Người chơi
+displayDescription_vi:Đơn vị được điều khiển bởi người chơi. \n Chọn nó để điều khiển nó. \n Chạm vào bất kỳ đâu trên màn hình sau khi chọn màn hình sẽ di chuyển màn hình đó.
+displayText_ms:Pemain
+displayDescription_ms:Unit dikawal oleh pemain. \n Pilihnya untuk mengawalnya. \n Menyentuh mana-mana pada skrin selepas memilihnya menggerakkannya.
+displayText_ko:플레이어
+displayDescription_ko:플레이어가 조종하는 유닛입니다. \n 제어하려면 선택하세요. \n 화면을 선택한 후 아무 곳이나 터치하면 이동됩니다.
+displayText_id:Pemain
+displayDescription_id:Unit yang dikendalikan oleh pemain. \nPilih untuk mengontrolnya. \nSetelah memilih, menyentuh bagian mana saja pada layar akan memindahkannya.
+
+[template_textCampfire]
+displayText: Campfire
+displayDescription: A campfire that ignited with primitive techniques. \n Provides a warm place. \n Fosters healing.
+
+[template_textBed]
+displayText: Bed
+displayDescription: Simple bed. Sleeping recovers body health and reduces fatigue. Can be used to set spawnpoint.
+
+[template_textWorkbench]
+displayText: Workbench
+displayDescription: A fragile table with primitive tools for basic crafting
+
+[template_textAdvancedWorkbench]
+displayText: Advanced Workbench
+displayDescription: Enhanced version of a workbench. \n Contains advanced tools for complex craftings. Pretty suitable place for high tier crafting.
+
+[template_textRepairStation]
+displayText: Repair Station
+displayDescription: Metal table designed for creating a workplace for maintaining broken firearms.
+
+[template_textRadar]
+displayText: Radar Table
+displayDescription: A table with a radio, monitor, radar and bunch of wires. \n Can establish connection with survivors from far places.
+
+[template_textBasicWall]
+displayText: Primitive Wall
+displayDescription: A simple piece of wall made with connecting wood parts with duct tapes. \n Provides a blockade.
+
+[template_textWall]
+displayText: Wooden Wall
+displayDescription: A better looking wall propably built by a skilled carpenter. \n More durable.
+
+[template_textAdvancedWall]
+displayText: Metal Wall
+displayDescription: Strongest wall. \n A wooden wall that supported with metal sheets, provides the latest protection.
+
+[template_textBasicTower]
+displayText: Primitive Tower
+displayDescription: Basic long tower built with primitive techniques. \n Enables user to shoot behind any object.
+
+[template_textTower]
+displayText: Wooden Tower
+displayDescription: Better looking wooden tower, looks durable. \n Enables user to shoot behind any object.
+
+[template_textAdvancedTower]
+displayText: Metal Tower
+displayDescription: Strongest tower. \n Enables user to shoot behind any object.
+
+[template_textGenerator]
+displayText: Generator
+displayDescription: A portable prewar electric generator. \n Load it with fuel and get the power. \n ● Fuel Consumption: 5mL/s \n Power Generation: 4/s
+
+[template_textPumpJack]
+displayText: Pump Jack
+displayDescription: Oil extractor \n Requires to be connected with power supply \n ● Oil Extracting: 7mL/s \n ● Power Consumption: 3/s
+
+[template_textDetectorTurret]
+displayText: Detector Turret
+displayDescription: This is a cruical turret for other defensive turrets. \n Can detect moving objects and define if the detected is an enemy or not with sensors. Must be connected with all other turrets. \n ● Detection Range: 500 \n ● Affects Turrets Under Range: 160
+
+[template_textTurret]
+displayText: Turret
+displayDescription: An Exormor brand stationary defensive device loaded with cheap 9x19 cartridge rounds. \n After getting the detection data from the detector, it will start shooting at the target. Can not shoot behind objects, place it wisely. \n ● Attack Range: 400 \n ● Firerate: 2bps
+
+
+
+[template_pdaInfoText]
+text: PDA
+description:"""
+Personal Digital Assistant
+\n Essential device almost all stalkers own one. Provides information about The Zone, time and guides.
+\n %{numberOfUnitsInAllTeams(withTag="ownPda") + numberOfUnitsInNeutralTeam(withTag="ownPda")} Registered individuals online. """
+
+[template_pdaProfile]
+text: Profile
+description:"""
+Name: %{self.playerName}
+\n Reputation: %{self.resource.reputation}
+\n Faction: Survivors
+\n Mutant Kills: %{self.resource.mutantKillCount} | Human Kills: %{self.resource.npcKillCount}
+\n Survived for %{customTarget2.resource.daysPassed} days
+\n Survived Emissions: %{customTarget2.resource.emissionsPassed}
+\n Survived Psy-Storms: %{customTarget2.resource.psyStormsPassed} """
+
+[template_pdaGameTime]
+text: Time
+description: %{customTarget2.resource.hour}:%{customTarget2.resource.minute} | %{customTarget2.resource.month}/%{customTarget2.resource.day}/%{customTarget2.resource.year}
+
+[template_showMiniBhs]
+text: Show Mini BHS
+description: Always shows the mini body health stats panel near the character.
+
+[template_hideMiniBhs]
+text: Hide Mini BHS
+description: Hides the mini body health stats panel near the character when not taken any damage.
+
+[template_pdaHelp]
+text: HELP
+description: 
+
+[template_pdaHelpEmissions]
+text: Disasters
+description: Number one thing most people suffer from. An emission or blowout is a sudden and powerful release of excess noosphere energy from the center of the Zone. It is observed like thunders and coloured clouds at the sky. At the end, it kills any substance hadn't covered in a shelter. There are various shelter around the map. (Trading Post, Hospital, Exomor Factory, Lumber)
+
+[template_pdaHelpAnomalies]
+text: Anomalies
+description: The anomalies are small areas that was created due to very high amount of radiation. They're highly lethal and moving into one probably results in sudden death. There are various anomalies and anomaly groups which can generate artifacts after an emission.
+
+[template_pdaHelpArtifacts]
+text: Artifacts
+description: Artifacts are formed from anomalies, exposed to certain objects or conditions: The combination of an ordinary object(s) and an anomaly, the degeneration and death of an anomaly or if the anomaly is exposed to certain conditions. Emissions are known to be the catalyst in the actual creation of an artifact, although scientists in the Zone are still unable to explain how this happens. But whatever, they are one of most valuable things in the Zone. The main reason why stalkers penetrated in the Zone, is their value. Lastly the artifacts have various positive and negative effects on its holder. Hence the negative effect is generally being radioactive.
+
+
+
+#____________________________ NEW TASKS __________________________________#
+
+[template_questScavenger]
+text: Scavenger
+description: Me: Hey, is there any work you want to be done? \n Scavenger: Can you bring me some dirty clothes?
+
+[template_questFindGunParts]
+text: Find Pistol Parts (5x)
+description:""" Me: Hey, is there any work you want to be done? \n Stalker: Eh, my shooter is getting rusty nowadays, and told about it to Alex. He told me he can not repair any shitty thingy without it's parts, so. Find me some spare gun parts, I will be thankful. \n Me: Peace.
+\n (Reward: 800 Rubles, 45x 9x19 Ammo, +2 Reputation) """
+
+[template_questFindMachete]
+text: Find Machete
+description:""" Survivor: Find me a machete
+\n (Reward: 5x AI2 Medkit, 5x Syringes, +4 Reputation) """
+
+[template_questFirstAid]
+text: First Aid
+description:""" Survivor: Hey bro can I ask you to do a favor for me? \n Me: Sure, spill it. \n Survivor: Me and my boys are preparing stuff for a raid. But... somehow there is no one sells some first aid kits. Can you bring us some? \n Me: I will drop by when I see one.
+\n (Reward: 1x Canned Beans, 5x Clean Waters, +3 Reputation) """
+
+[template_questFindPM]
+text: Find PM
+description:""" Survivor: Bro, I made a lot of money and can't find a decent repaired weapon. Do you own a maintained PM?
+\n (Reward: 800 Rubles, 4x Vodka, 1x Old Tech, +4 Reputation) """
+
+[template_questFindTOZ34]
+text: Find TOZ-34
+description:""" Stalker: Bro, can I share my pain with you? \n Me: What happened? \n Me: I was on an artifact hunt, me and my boys. We found so wealthy artifacts out there... Everything was good, we were returning to Skadovsk. But suddenly... That bitch friend fucking dissappeared with the artifacts he was carrying. I was shocked, my other friend hugged his weapon immediately and drew it on. We were still shocked, I guess it just was an anomaly then, all of a sudden, a pack of bloodsuckers jumped us and that damn anomaly triggered and popped me this fucking place! I don't know what to do! Moreover, I fucking dropped my weapon. So please hand me over one when you find a TOZ-34, I will pay you very well, If things will go straigth. \n Me: Woah. Ok.
+\n (Reward: 1350 Rubles, 2x Needles, 2x Screws, 1x Blowtorch, 1x Saw, +4 Reputation) """
+
+[template_questCannedBeans]
+text: Canned Beans
+description:""" Survivor: I will pay anyone who brings me three canned beans.
+\n (Reward: 2x Medkits, +2.5 Reputation) """
+
+[template_questFunJuice]
+text: Fun Juice
+description:""" Survivor: Stalker, you got a vodka? I am looking for who sells it.
+\n (Reward: 900 Rubles, 2x Radkit, +2.5 Reputation) """
+
+[template_questKillAleria]
+text: Kill The Marauder
+description:""" Survivor: Damn, someone could help me? \n Me: What happened? \n Survivor: I will keep it short. We were on our way for the job we got from scientists, then a group of people appeared. I have never seen someone dressed like that. They suddenly fired us. We fucking shocked. Tried to fight them back... My boys got down... And a bullet hit my leg, I felt into ground, watching them while trying to keep my agony low as possible. They took my friends and just gone. I don't remember what happened from here, someone rescued me. Anyways, I listened the rumours days ago, and learnt that they are named Marauders and led by a bitch named Aleria. Bro, for me and my friends, take the revenge. \n Me: That's so sad. Don't worry. I will do what's needed. \n Survivor: Stay sharp, stalker. She uses an Barett M98B sniper rifle, that's a really serious fucking tough weapon.
+\n (Reward: 5000 Rubles, 1x MP-5, +6 Reputation) """
+
+[template_questMobbingTheMob]
+text: Mobbing the Mob
+description:""" Sergoya: Hey bro. I need your help again. The bandit population is going somehow high nowadays. Creating a threat for survivors from our base. So if you can mob the mob, that would be a great job for you. Kill 6 bandits.
+\n (Reward: 2500 Rubles, 3x Rifle Parts, +4.5 Reputation) """
+
+[template_questKillTheBandit]
+text: Bandithunting
+description:""" Survivor: Bro, things just went shitty with bandits and they assinged a bandit to hunt me down, can you hunt him first before he does?
+\n (Reward: 1000 Rubles, 60x 5.56x45 Rounds, +2 Reputation) """
+
+[template_questChimeraHunt]
+text: Chimera Hunt
+description: Mitka: Stalker... Are you dreaming of hunting some pesky mutants? \n Me: Um, not really, but what's it? \n Mitka: Chimeras. One of the most dangerous mutants in the Zone. If you kill one, come back here for a reward. 
+
+[template_questChimeraHuntAccepted]
+text: Chimera Hunt
+description:""" Mitka: I want to see its head, not yours!
+\n (Reward: 1000 Rubles, 5x Rifle Parts, +5 Reputation) """
+
+[template_questKillAKilla]
+text: Kill a Killa
+description:""" Alex: Brother. I have a work to be done for you. \n Me: Let me know! \n Alex: Survivors are discussing about a new threat, wandering around the Zone lonely. Killing some our men. He is fucking dangerous and I want someone to piss him off! People say that he is a former athlete, he names himself Killa. Just fucking kill him. 
+\n (Reward: 5000 Rubles, 3x Grizzly Medkit, 1x Fuel Canister, +4.5 Reputation) """
+
+[template_questHunter]
+text: Hunter
+description:""" Hunter: Kill 20 zombies and get paid.
+\n (Reward: 2500 Rubles, +1.5 Reputation) """
+
+[template_questClearTheArea]
+text: Clear The Area
+description: Barkeep: Stalker! Looking for a tough job? \n Me: What is it? \n You know we hire guards for protecting the trading post. But what about finishing the threat before it just attacks? I think you hear their moan too. I uploaded their location to your pda, go hunt them.
+
+[template_questClearTheAreaAccepted]
+text: Clear The Area
+description: Barkeep: So, move on when you are ready.
+
+
+[template_questEscortScientists]
+text: Escort Scientists
+description: Scientist: Hello young man! Are you in search of a paid job? \n Me: Not really but ehh, spill it. \n Scientist: The mercenaries we hired days ago got jumped by a chimera yesterday. We lost contact with them and don't know if they are still alive. And our research is half-done. So, young man, can you escort these two scientists to the research area? Come back here after their job is done. Don't get them killed, we can't lost more of our people, I trust you. You will be paid well.
+
+[template_questEscortScientistsAccepted]
+text: Escort Scientists
+description: Scientist: See you again, young man. Good luck.
+
+[template_questFindX1Documents]
+text: Find X-1 Documents
+description: Scientist: Stalker, what about some serious secret job? \n Me: Which one? \n Scientist: Document hunting. Do you know about the laboratories? Main reason of the mutated creatures around the Zone. So, secret documents about them usually found inside them. I need those documents in my hands for the real success of our research. So, let's start with the first one. X-1 Laboratory, go there and find the necessary documents. But don't forget that you have to find it's key first. About payment, it is not just dog meat.
+
+[template_questFindX2Documents]
+text: Find X-2 Documents
+description: Scientist: Your success was a real contribrute for our research. We successfully made more progress. But not done yet. For more secret information, we need the X-2 documents too.
+
+[template_questFindX-3Documents]
+text: Find X-3 Documents
+description: Scientist: You are doing very well. Things just getting better and better. And only one laboratory left with secret documents. The X-3, hardest one. Good Luck.
+
+
+[template_pilotQuestline1]
+text: Talk to Pilot
+description: Me: Hello, just recently saw your message on the PDA. what's wrong? \n Pilot: Eh, I am from the military. Yeah they still exist... The military is on a mission for collecting data for the scientists' research from the farlands of the world. They assigned us to fly here and gather anything we can. Most stalkers say that the Zone has expanded all over the world, but the anomaly crap thing is quite different in this place. So yeah, you can help us for getting your ass good with the military. Also, I'm not just a soldier but also a mechanic, bring your crap to me so I can fix it for a price.
+
+[template_pilotQuestline2]
+text: Artifacts for Pilot
+description:""" Me: So, Is there any work you want to done? \n Pilot: While I'm busy with other things you can hunt artifacts for me. \n They have listed them, a Blood Flower, one Shock, I mean the artifact one, lastly, a Grawy.
+\n (Reward: 2000 Rubles, Exormor Key) """
+
+[template_pilotQuestline3]
+text: Abandoned Factory
+description:""" Pilot: Stalker, have you heard of the technology factory? \n Me: I may have seen it before. \n Pilot: Yes you maybe, the Exormor. A company that was dedicated to produce exoskeleton body suits and stationary turrets for the army to contain the Zone. But they failed. So they left all their crap in their factories. Look, this is the key for that factory I got from a fella. Can you go there and bring their any kind of documents belonged to them? I don't want their productions they can be yours. Good deal, right?
+\n (Reward: 3000 Rubles) """
+
+[template_pilotQuestline4]
+text: Leave the Zone
+description: Pilot: What's up Stalker! I want to announce a good shit with you. \n Me: Finally not someone asking for doing a task. \n Pilot: Since you have helped the scientists and us, we got enough data for our country, and we don't want your help to be fall down to a lake. The military is sending an helicopter to pick us, so, do you want to leave the Zone? \n Me: The Zone is everywhere. \n Pilot: You are wrong. There is always a cure, always a solution in a phenomenon. Don't just be so stupid. Which mutant or anomaly can go to an iceland? I mean Antartica. \n Me: What the Hell?! \n Pilot: I'm right. United States united in the Antartica after the nuclear crap. We are studying the Zone so deeply to contain it. And that's the place we do that shit.
+
+[template_pilotQuestline5]
+text: The Fail
+description: Pilot: Fucking goddamit! The helicopter is down because the emission ahh thing! \n Me: We're fucked I guess? \n Pilot: FUCK! This is so bad. Have never expected such a coincidence. So we are fucking stuck here. \n Me: Why you are not moving to trading post? \n Pilot: Well, keeping myself secret because of the mission was an important thing. But it was. Since we lost contact with the base I think it's really the time to move there and start my new technician job in there, till the last hope arrives. 
+
+[template_pilotQuestline6]
+text: Talk to Pilot
+description: Me: Hello, anything new? \n Pilot: Still no, I have met with a stalker named Andrew who owns some equipment used for communication, I wasted my hours to establish connection with the base, just doesn't work. I am starting to think that the mission is failed and we are stuck here till death.
+
+[template_pilotQuestline7]
+text: Access to Base
+description: Me: Hello, heard your signal. What happened? \n Pilot: Well, you may before visited the Military Base and got shot by them. Now they need you. I learned that they have a mess with you, well I think I did that just too late. I told them to not shoot you, since you basically helped them by helping me. Go visit the commander, he will have something more serious to talk. \n Me: By the way, if you are a soldier, why you don't go to the base? \n Pilot: That's my job, I have to stay far away from the base and try to make connections.
+
+
+[template_kolavskyQuestline1]
+text: Talk to Kolavsky
+description: Kolavsky: Greetings stalker. Pilot told me that you proved yourself. If you help us we will help you too, sounds a good deal right? But know that this is a really serious problem. 
+
+[template_kolavskyQuestline2]
+text: Oblivion Lost
+description: Kolavsky: This is a weird device we found on a crater days ago. We showed this thingamajig to scientist, and they claimed that this is kind of a communication device. I think you own a radar since you have contacted with Pilot, take this, and test it out. Then come back here and report. Be careful at the same time, this thing is anomalous.
+
+[template_kolavskyQuestline3]
+text: Message from Future
+description: Me: Greetings. I didn't find out many about this device but yeah, that's some kind of a teleportation system used by someone I just don't know. \n Kolavsky: Good job, we should wait for a possible signal. Deploy it and wait.
+
+[template_kolavskyQuestline4]
+text: Report
+description: Me: Wow. That was damn amazing. \n Kolavsky: What's the situation?? \n Me: It's all done. Met with an agent and her group from a planet we don't know. They didn't speak that much. But they wanted help, and I helped them. And, they gave me this chip thing containing the really serious information about the Zone of Alienation. Here it is. I know what's inside, just lazy to tell. \n Kovalsky: Hmmm... That's a pure damn tough job you did soldier! Here is your reward. You will be remembered for this contribution.
+
+
+[template_barbyQuestline1]
+text: Neighbors from Space
+description: Me: What the f-. Who the hell are you? \n Barby: That was a crazy thing right? Eh. We are from somehere you will never know. And we are stuck at this goddamn anomaly, or what. Since you deployed this device you simply saved us. But how the hell you found that. And what is this place? \n Me: Welcome to Earth, Eh I mean, hell. A place that is entirely destroyed because of its residents, and thats all is bullshit. The people you see in here is a bunch of survivors from those events. \n Barby: You hear that? They followed us goddammit! Take this gun and start shooting. \n Me: Wait what is this?
+
+[template_barbyQuestline2]
+text: Neighbors from Space
+description: Me: Well what should I say? \n Barby: Heh, I think it's time to give this, take this. It contains some little info, heh. Just about the Zone of Alienation. \n Me: Hey you said you don't this place? \n Barby: I do. Our planet is destroyed so I am living here, that's it. Thank you for your help.
+
+
+
+
+[template_hireStalker]
+text: Hire Stalkers
+description: Stalker: Hello bud. \n Me: What? \n Stalker: If you ever wanted a friend to explore the Zone as a team, the price will be three grands and some 9x19 ammo for me, also a pair of medkits. 
+
+[template_hireMercenary]
+text: Hire Mercenaries
+description: Me: Hello are you a mercenary? \n Merc: Exactly. All the merc groups just dispersed since our leader that we don't even know had died. So we are still looking for jobs. We can co-operate you for seven grands. And you know, I am hungry, for some extra food also. 
+
+[template_talkToHip]
+text: Talk to Hip
+description: Me: Hello who are you? \n Hip: Hip is the name, one of the stalkers surviving both Zone and nuclear wars. Still getting bored. I spent my days by just adventuring just 10 years ago. And someone I forgot his name was my friend. We have explored even the non-explored areas of the Zone and that's all. Ah, also if you have fifty 12x70 buckshots shells and ten  b r e a d s  for my shooter... I think I will just follow you I'm bored. \n Me: Okay, peace.
+
+
+#____________________________ TASKS __________________________________#
+
+[template_sidovorichQuestline1]
+text: Talk to Sidovorich
+description: Sidovorich: Another young face meets the old. What's your business here- I mean the suffer. \n Me: Just who are you? \n Sidovorich: You are facing one of the oldest retard in this phenomenon. Still doing the trading stuff and getting more fat. Name's Sidovorich, heading the stalkers usually patrolling these spots, and selling stuff. If you are in dream of fortune or cash, meet me whenever I call. \n Me: Peace. \n Sidovorich: Good hunting, stalker.
+
+[template_sidovorichQuestline2]
+text: Talk to Sidovorich
+description: Sidovorich: So, I am not going to teach you how to walk. There is a stalker named Strelok or call him Marked One. He is a legend stalker who managed to shut down brain scorcher and miracle machine twice, and raided Chornobyl multiple times. And he just retired and deciced to sit down and get fat just like me. So what, he can teach you a trick or twice. Go meet him. He spends his time in the bar organizing stalkers. Bar is just a few meters away from here, just head above and follow the path.
+
+[template_nimbleQuestline]
+text: Talk to Nimble
+description: Nimble: Hello stalker what are you looking for, jobs? Equipments? \n Me: Well, what you can offer? \n Nimble: People call me Nimble. I think it is because I have survived so far and saved my ass multiple times from shitty situations. I was working for Sidovorich for saving my butt, Then I decided sell high level equipment for cash. And now, I am just guiding new survivors arrived here and letting them group with stalkers. Since Wolf and Fanatic have left the village I decided to look after new survivors from the apocalypse and regroup them with stalkers.
+
+[template_nimblesWifeQuestline]
+text: Talk to Nimble's Wife
+description: Me: Hello you are Nimble's wife right? \n Her: Yes. Before the nuclear wars I was baking breads in a bakery for the food supplies of stalkers. And It still continues that's all.
+
+[template_hadrianQuestline]
+text: Talk to Hadrian
+description: Me: Hello who are you? \n Hadrian: Hello brother. I am Hadrian. Member of the Wastelanders and their front fighter. I have explored the new areas of the Zone after the third huge emissions, which made me to lose my memory, then I had contact with the base then worked to meet with them. It is full of danger... In the great wasteland, a group of cultists who belives the essence of the Zone, they planned something that I couldn't solve. We fought with them and defeated them, but I don't think we wiped them out. They still hold more secret than the Chernobyl, will you help us to solve the secret?
+
+
+[template_strelokQuestline1]
+text: Talk to Strelok
+description: -Strelok: Oh, looks like you finally figured out walking. Welcome to bar. \n -Me: Who are you!? What happened? And what is this place? Ugh... \n -Strelok: My name is Strelok, people often call me Marked One. I was a legendary stalker who managed to shut down brain scorcher. \n -Me: What are you talking about? \n -Strelok: Hm, your face looks like shit, here take these supplies.
+
+[template_strelokQuestline2]
+text: Talk to Strelok
+description: -Strelok: So you woke up? \n -Me: Eh, my head is aching a little, nothing much. \n -Strelok: That's great. Anyways, outside is definite non-safe, remember that. Welcome to the Zone. If you wonder about the globe, let me shorten it. People had fought each other, each country, each city. Used their biggest and dangerous weapons, nuclear rockets. Which killed both attackers and defenders side. But this was a huge purge for the humanity, it is more like taking a shower. Anyways. Currently, we're at a little, not so little town called Zanov. An abandoned city located in Ukraine, nearby to the Chernobly NPP. This place was a radioactive wasteland even before the events of nuclear wars. We had enough experience to survive a radioactive catasphore. And we did. Although the Zone had spreaded the whole world since the nuclear wars has begun, places not like the Pripyat is safer. And secondly, we have a huge threat. Bandits and Marauders. It doesn't sounds like we will stay here. \n -Me: So people in here need something that can move us? \n -Strelok: Exactly, but think twice. Anomalies are being spreaded around the Zone, a car can be crushed easily. \n -Me: What is an anomaly? \n Strelok: You will see it, and will get it when you see it. Go clear your head a bit.
+
+[template_strelokQuestline3]
+text: Talk to Strelok
+description: -Me: What should I do right now? \n -Strelok: You may not remember but you were a tough guy. Was a expert survivor among the Wastelanders. You can handle it out easily. We will want you to scout the nearby areas, find some gears in order to maintain cars and much more. Hunt, trade with the local people here and get yourself better gear. You can always find some people that needs a help. Nimble will hand over some gear to you. \n -Me: Thanks Strelok. \n -Strelok: Also, be careful about the hostile stalkers and survivors, you may get your ass dead if they catch you with no gear. Detect them before they do. Usually Bandits are patrolling nearby the city, be careful. I am no longer so young. Can not fight enough as I do in the past.
+
+[template_andrewQuestline]
+text: Andrew's Quest
+description: -Andrew: Whoa! Who the fuck are you! Stay away, you bastard! \n -Me: S-stop, I'm not your enemy! I came here for discussion. \n -Andrew: Sorry about that, I just don't fucking like bandits. Anyways, I have some jobs for you, are you interested? \n -Me: First, who are you and what should I do? \n -I'm a team leader, and I'm trying to sell my stuff for money. You know how you can't recruit people without a radar, right? My radar table broke during a raid. I hate these motherfuckers. Anyways, can you bring me a radio, a guide book, 5 pieces of wood and an engine? In exchange i will give the Gas Station key. \n -Me: I'll keep that in mind. \n -Andrew: Thank you, I'll have rewards for you.
+text_ru: Квест Андрея
+description_ru: -Андрей: Ура! Кто ты, черт возьми! Держись подальше, ублюдок! \n -Я: П-стой, я тебе не враг! Я пришел сюда для обсуждения. \n -Андрей: Извини, я просто не люблю бандитов. В любом случае у меня есть несколько заданий для вас, вы заинтересованы? \n-Я: Во-первых, кто ты и что мне делать? \n -Я руководитель группы и пытаюсь продавать свои вещи за деньги. Вы знаете, что нельзя вербовать людей без радара, верно? Мой радарный стол сломался во время рейда. Я ненавижу этих ублюдков. В любом случае, не могли бы вы принести мне радио, путеводитель, 5 кусков дерева и двигатель? \n -Я: Буду иметь в виду. \n -Андрей: Спасибо тебе, у меня есть награда для тебя
+
+[template_andrewQuestline2]
+text: Andrew's Radar
+description:""" -Andrew: So come back when you find the radio. Then get the gas station key. 
+\n (Reward: 100 Rubles, 1x Fire Axe, Fossol Gas Key) """
+
+[template_walterQuestline]
+text: Amateur Tailor
+description:""" -Walter: Hey you! I can sell any armor for ya! Don't you like protecting yourself from having pain in your ass? \n -Me: Hmm... Why not? \n -Walter: You ought to do some jobs for me, then you can buy from me. If you finish my quest, that is. I just want some tailoring items.
+\n (Reward: 500 Rubles, +1 Reputation) """
+
+[template_walterQuestline2]
+text: Heavy Bettles
+description:""" -Walter: I've got somethin' more special, if your lookin' one to save your ass or to look more sexy... Then bring me 5 hornbug carapaces so I can make one.
+\n (Reward: 1x Trenchcoat, +5 Reputation) """
+
+[template_annaQuestline]
+text: Wounded Woman
+description:""" -Me: Hey! Are you okay? \n -Anna: H-help me p-please, I beg you! \n -Me: What happened? You're dying... \n -Anna: B-ba-bandits.... they k-kil- \n -Me: Okay, okay, I understand. What do you need? \n -Anna: I-im, wounded. P-please, I will give you everything I have.
+\n (Reward: Anna as a companion) """
+
+[template_markQuestline]
+text: Notes from Shadows
+description:""" -Mark: Yo! Come over here! We need to chat. \n -Me: What's the problem? \n -Mark: Dude, I lost my team, I don't know where they are, nor whether they're alive or dead. I just don't know. Can you help me? Please find them. If they're dead, bring me their items as proof... I hope you won't have to. I will pay you.
+\n (Reward: 2800 Rubles) """
+
+[template_bashakovQuestline]
+text: Defected Bandit
+description:""" -Bashakov: Hey! Over here! I need help, please! I will give you even more deeper of my pockets and i will fight for you! \n -Me: Who the fuck are you? \n -Bashakov: I left zone years ago, and came here, zone is the most dangerous place for now, even more mutants, more artifacts, radiation and more instant deaths. If you don't know or don't remember, I can explain what's happened to this hell. \n -Me: Okay, for this time, i will help you. 
+\n (Reward: Bashakov as a companion) """
+
+[template_henryQuestline]
+text: Henry's Task
+description:""" Henry: Hey you! \n Me: Yes? \n Henry: Did you hear anything about artifacts? \n Me: No, then tell it \n Henry: They're so rare and valuable, I'm an artifact trader. I think you saw some anomalies right? The anomalies interacts with objects and grant them some special powers. To get them you need a detector. Alex is doing his job very well, makes all the detectors i need. You have to bring me 3500 money for a detector.
+\n (Reward: 1x Artifact Detector) """
+
+[template_arthurQuestline]
+text: Talk With Team Leader
+text_ru: Поговорить с лидером команды 
+#rustranslation фракции/команды
+description: -Arthur: Heeey! A Newbie in the zone? Yeah. I am leader of this squad, a recruiter of Wastelanders, we are just trying to go Chernobly and then our base, and some Loners joined us to kick the Renegades ass together, they holding the entrance of the zone and why do you want to go with us? Do you want instant death? \n -Me: Man, i can't remember anything, I helped to the Guide in the swamps, I don't have anything to do. So I need to come with you guys. So I will join you. And another question, what is Wastelanders? \n -Arthur: It's a faction, we created this faction after the nuclear wars, we are living dark inside of deserts, outsides of the Zone, really far, man. We fight many times together, I don't want to tell what we fight against. \n -Me: Understood. \n Arthur: -Anyway, We will attack later, wait my command, and get ready.
+description_ru: -Артур: Эй! Новичок в зоне? Ага. Я лидер этого отряда, вербовщик Wasteland'ов, мы как раз пытаемся пройти к Чернобылю, здесь наша база, к нам присоединились одиночки, чтобы пинать Ренегатов, ибо они крышуют вход в зону и почему ты хочешь пойти с нами? Хочешь мгновенной смерти?\n -Я: Чувак, я ничего не помню. я помогал Проводнику на болотах, у меня ничего нет. Так что мне нужно пойти с вами, ребята. Так что я присоединюсь к вам. И еще вопрос, кто такие Wastelander? \n -Артур: Это фракция, мы создали эту фракцию после ядерных войн, мы живем в темноте внутри пустыни, за пределами Зоны, очень далеко, чувак. Мы ссоримся много раз вместе, я не хочу говорить, против чего мы сражаемся. \n-Я: Понятно. \n Артур: В любом случае, мы нападем позже, ждите моей команды и готовьтесь.
+
+[template_scientistQuestline]
+text: Talk With Scientist
+text_ru: Поговорить с учёным
+description: -Scientist: Hello, hello! I need your help and you need my help. First, you couldn't go to pripyat with these weak equipments, you need a great suit for that. I can borrow you one but you should do something for me, did you see that Monolith camp? Duty stalkers have a huge problem with them, you got some friends go that camp and kill all of them, and come back here for the suit. \n -Me: Alright, and what is Duty? \n -Scientist: They were soldiers before, some of them created this faction and recruited free stalkers, now they are staying at here now, i gave them ammunition and they are protecting this base, we are trying to get out of zone. \n -Me: Understood, what is Monolith? \n -Scientist: They are brainwashed stalkers, they are controlled by C-Consciousness, i will explain later, just kill them and know that, they aren't weak.
+description_ru: -Ученый: Привет, привет! Мне нужна твоя помощь, а тебе нужна моя. Во-первых, с этим слабым снаряжением в Припять не поедешь, для этого нужен отличный костюм. Я могу одолжить тебе одну, но ты должен кое-что для меня сделать, ты видел тот лагерь Монолита? У Долговцев огромные проблемы с ними, у вас есть друзья, которые идут в тот лагерь и убивают их всех, и возвращаются сюда, за костюмом. \n -Я: Хорошо, а что такое Долг? \n -Ученый: Раньше они были солдатами, некоторые из них создали эту фракцию и наняли вольных сталкеров,сейчас они сидят здесь, я даю им припасы и они охраняют эту базу, пока мы пытаемся выйти из зоны.  \n -Я: Понял, что такое Монолит? \n -Ученый: Это сталкеры с промытыми мозгами, ими управляет О-Сознание, я объясню позже, просто убейте их и знайте, что они не слабые.
+
+[template_johnQuestline]
+text: Talk with John
+text_ru: Поговорить с Джоном
+description: John: Heeey, seems someone finally got up, how are you feeling? \n -Me: Where the fuck i am at? \n John: Dude, chill, we saved your life, our scouts found you on outskirts of Pripyat with a dead group of Duty while they was seearching for some supplies on there, you were too close to die, you were wounded. \n Me: Who are you? \n John: I am leader of this squad, Nomads. We are poor survivors, we are using handmade axes to kill fucking bugs. This is a desert, everything is poor here, but seems you guys as an another mean 'stalkers' using pretty nice guns, thats very good man. But we just managed to get only a few muskets from there and you. Also you got some messages from your team named Wastelanders, they need your help. \n Me: Oh, understood, thanks for saving me. How can i get out of here? \n John: Find Maxim, he is a wastelander, he is waiting for the enough people to move on, find him and do his jobs and he will take you. \n -Me: Thanks for the all information. \n -No problem dude, take these stuff and good luck!
+description_ru: Джон: Эй, кажется, кто-то наконец встал, как ты себя чувствуешь? \n-Я: Где я, черт возьми, нахожусь? \nДжон: Чувак, остынь, мы спасли тебе жизнь, наши разведчики нашли тебя на окраине Припяти с мертвой группой Долговцев, пока они искали там какие-то припасы, ты был тяжело ранен.  \n Я: Кто ты? \n Джон: Я командир этого отряда, Кочевников. Мы плохо выживаем, мы используем самодельные топоры, чтобы убить гребаных жуков. Это пустыня, здесь все бедненько, а вы, ребята,ь вы, ребята, «сталкеры», использующий довольно хорошее оружие. Но нам удалось достать только несколько мушкетов оттуда и вас. Также вы получили несколько сообщений от вашей команды Wastelanders, им нужна ваша помощь. \n-Я: О, понял, спасибо, что спас меня. Как я могу выбраться отсюда? \n-Джон: Найди Максима, он житель пустоши, он ждет, пока найдется достаточно людей, чтобы двигаться дальше, найти его и выполнить его задания, и он возьмет тебя. \n -Me: Спасибо за всю информацию.\n-Нет проблем, чувак. 
+
+
+[template_hassamQuestline]
+text: Resources For Hassam
+description:""" Hassam: -You're new here, I need to defend this camp, got any resources? Give it to me.
+\n (Reward: 1x TOZ-34, +3 Reputation) """
+
+[template_farmerQuestline]
+text: Watering the Radioactive Farm
+description:""" Me: Hello! I haven't seen a farm for a long time. \n -Farmer: Yeah, It's not so easy to find any fertile land for farming since the nuclear wars were begun. My men is still having pain in ass here, please help us out if you can. \n Me: Oh sure, but how? \n -Farmer: Can you bring us 5 water bottles for production while we do the defence job? I offered Alex an armed group in exchange for vegetables, supplies and anything else for his faction. But it's still not answered, So I need your help now. \n -Me: Wait, Alex's faction? \n -Farmer: Yeah, He is planning to create a faction with the veteran bandits, but not doing the shits what bandits do. I guess he will obviously attack bandits.
+\n (Reward: 250 Rubles, 6x Bread, 5x Wheat, +3 Reputation) """
+
+[template_farmerQuestline2]
+text: Deliver Package
+description:""" -Me: Hey, here is Alex's package to you. \n -Farmer: Ohh! Finally! I was waiting for a long time for this package. Alright thank you and take this, good hunting!
+\n (Reward: 1300 Rubles, 2x Canned Beans, Army Prep Gunstore Key) """
+
+[template_turnerQuestline]
+text: Talk with Turner
+description: Turner: Hello brother. Welcome to the remaining group of Wastelanders. I'm their head. I grouped this faction with few survivors outside of the Zone, and we moved to the secret wastelands of the Zone and studied it. I guess Hadrian described you all the crap, so I can go for the topic. Listen, our squad lost contact with us and some say that they maybe felt into space anomalies. I want you to find a solution for that crap, don't really know how we can get them back from there but meet with scientists, they are studying the Zone for years and they may know the shit.
+
+[template_turnerQuestline2]
+text: Talk with Turner (About your info)
+description: Turner: -Me: Hey, my memories are so dirty, did you know me before? Guide told me you will tell me who am I. \n -Turner: Well, you were a Wastelander before, from one of the oldest Wastelanders... We were living in the dark sides of deserts, but someone mutated with unknown powers from the countries in the pacific ocean, attacked us... That was so bloody for us, one of our scout found an artifact. That was so powerful, and used it against our enemy... We won! But we lost him... And his close friend is outside of this building go and see him, with the corpse of the motherfucker. While these all were happening, We have sent you to a bunker in the Swamps with a squad to bring us supplies for the war, after that, a very huge emmission occured in the whole world, I don't know what happened to the lost squad, but Charon and his squad found you in the bunker \n -Me: Who is Charon? \n -Turner: Oh, it is name of the person you know as Guide...
+
+[template_turner2Questline]
+text: Talk with Turner 2
+description: Turner: Good job, Finally we're at the main base of us. Okay let's talk about the situation in here. First, we got problem with the Sin faction, they are trying to expand the Zone whole world. They are cannibal half-mutated goddamn stalkers, created the generators and sending us strange mutants to us, they are going crazy on our asses. We have two outposts, defend both. Our men will help you to destroy their base. Go take supplies from our nurse, armsdealer and get ready, good luck.
+
+[template_turner2Questline2]
+text: Talk with Turner 3
+description: Turner: And kill their leader, it is an unknown type of a burer, kill it and bring that fuckers heart to me.
+
+[template_medicHello]
+text: Talk with Sophia
+description: Me: Hey who are you? I haven't seen a medic before. \n -Sophia: Yeah you can't, I'm the nurse of this base. it is not easy. I've joined to the Wastelanders they helped out me a lot, I was starving, I was freezing. A million thanks to them. Alright nevermind if you catch any bullet, come to me I'll take care of it. And stay healthy.
+
+[template_medicHeal]
+text: Medical Assistance
+text_ru: Медицинская помощь
+description: Sophia: You wounded again? If not, i am not gonna stab even just a needle to you. Okay show me where it hurts. 
+description_ru: София: Ты снова ранен? Если нет, то я не собираюсь колоть тебя даже иглой. Хорошо, покажи мне, где болит. 
+
+[template_skullQuestline]
+text: Talk with Skull
+description: Skull: Don't know how to thank you brother. We were in some really deep shit in there. Space anomalies, hah. \n Me: What was that like? \n Skull: I just can't describe, when you decide to go by one path, something happens and just- just- don't know, that's all, it is like a portal.
+
+[template_bulletQuestline]
+text: Talk with Bullet
+description: Me: Hello, are you selling weapons? \n Bullet: Yeah, I sell bullets for bullets, if you have some bullets make sure you can change it for different bullets.
+
+[template_maximQuestline]
+text: About The Car
+description: Me: Hello, what are you doing with the car? \n -Maxim: People call me Maxim, trying to repair this baby right now. But I am suffering about the materials neccessary. If you bring these we can repair this thing and go fucking out of here. \n -Me: Where can I find them? \n -Maxim: There is a farm nearby here which have abandoned housings, toolboxes inside those houses could contain any material. Or you can sometimes find them from zombies. Most of the zombies located at these lands usually have a material package in their hands. They were working at factories before they lost their brains.
+
+[template_valerianQuestline]
+text: Valerians's Task 1
+description: Me: Wassap, Turner told me you can escort me to the outsides, is it true? \n -Valerian: Yeah, but my car has been broken, we're having pain in our asses cause of freakin' bandits. I need to repair it, i need goddamn engines and some stuff. And later, we can search the way for Great Wasteland
+
+[template_valerianQuestline2]
+text: Valerians's Task 2
+description: Valerian: Well, it is done but you should give me momey for the fuel and guards \n -I see
+
+[template_barkeepQuestline]
+text: Barkeep's Task
+description:""" Barkeep: Hey, stalke- \n -What is "stalker"? I'm not stalking anyone. \n -Barkeep: We call stalker to the people who entered to the Chernobly Exclusion Zone for the value of artifacts, I thought you are one. \n -Me: Uh, sure. \n -Barkeep: Ju-just forget it, seems your pockets are quite empty, wanna some money? \n -Me: Sure but I have to do your task? \n -Barkeep: You mind-reader. Our people keeps finding people under shelters. They're quite poor and weak. Come to me if you got any supplies, got it? \n -Me: Sure. I must keep this in my mind. \n -Barkeep: Alright, see you later rookie.
+\n (Reward: 2500 Rubles, +1 Reputation) """
+
+[template_alexQuestline]
+text: Gear for Rookies
+description:""" -Alex: Yo, I'm who you are lookin' for if you're searching any job! \n -Me: What is it! Sending messages with pigeons or what? \n -Alex: If you haven't heard all the crap from Barkeep, I can explain the crap; we need supplies for the new survivors who joined us. Bring me some low tier guns to learn them how to protect an ass, please?
+\n (Reward: 7000 Rubles, +4.5 Reputation) """
+
+[template_alexQuestline2]
+text: Alex's Package
+description:""" -Alex: Dammit! I was about the forget that shit again, hey you cool dude can you bring this beautiful package to farmers? Dunno where they crop the craps but I'm sure you can manage it, not. Because I can not leave my shop alone \n -Me: Sure give me that. \n -Alex: Do not think anything about stealing it, or you know, you should pay it with your ass... Just kidding, it would be a bullet. \n Me: Shut up, no one is going to steal your shitty package. \n Alex: By the way they have a key for the gunstore, don't forget to get that key for yourself after delivering the package. It's useful
+\n (Just find where the farmers live in, then give the package to them.) """
+
+[template_mitkaQuestline]
+text: Amateur Tailor
+description:""" Mitka: Hello man, I am a tailor here. If you want to test your tailoring skills and earn money by that, stitch up a leather jacket and ket's see how you do it.
+\n (Reward: 600 Rubles, +1 Reputation) """
+
+[template_mitkaQuestline2]
+text: Huntsman
+description:""" Mitka: You are an amateur tailor. Good job you have done. But what about doing some hunting? \n -Me: Nah, don't want my ass to be- \n -Mitka: C'mon you'll be paid very well for that. Bring me one piece of all mutant parts so I can stitch sum' fancy clothes. \n -Me: Only whenever I hunt them. See you.
+\n (Reward: 4000 Rubles, +2 Reputation) """
+
+[template_sergoyaQuestline]
+text: Secret PDA
+description:""" Sergoya: Welcome to home of traders, brother! Drink, eat, talk, rest, and anything else allowed here dude! I'm head of the trader post and got the responsibility for defending here. \n -Me: Good. Do you have any work to be done? \n -Sergoya: Your help is always needed, tough guy. Marauder bitches are going crazy on our asses nowadays. Those bastards kidnapped poor innocent survivors. So, you are not very known here, what a good point. You should steal the PDA from their base which contains location of survivors, location is like a slave trading center but unknown. Some of their members should be carrying a PDA, so shoot them all then get the PDA. You will be rewarded much, good luck. Also, if you have spotted there before this conversation, what a lucky guy... Did you really manage to escape Aleria's bullets? (In order to receive the PDA, kill many marauders till you get the PDA) 
+\n (Reward: 10000 Rubles, +8 Reputation) """
+
+[template_sergoyaQuestline2]
+text: Rescue Survivors
+description:""" Sergoya: That's my boy! You made a great job! Everything is great now, but the problem is PDA shows us they are moving to their base again with our men. So listen up boy, we have to attack their destination location, in short, their base and make a happy suprise to them, and then, come back with our boys. I believe you, go with Alexei's veteran stalker group. Good luck. 
+\n (Reward: 20000 Rubles, +10 Reputation) """
+
+[template_bladeQuestline]
+text: Steal PDA From Anton
+description: Anton: Who is this utterly shit-faced guy?!? \n Me: Chill, came here to talk sum'... Business. \n Anton: Who, the hell, are you? \n Me: Just a casual thug, drinking booze that's all, you want some? \n Anton: Ahh my maan!!! *grabs the vodka bottle and drinks* Uughhhg... \n Me: Want to talk about yourself and plans? \n Anton: Say hello to Marauders. Ughhh... All we do is the tactical way bandits do nowadays. I was a bandit in the past. Overwhelmed with such bad situations and left them. Re-grouped same people and united them under this place. And Started my own business. \n Me: What kind of business? \n Anton: Lots of. From mercenaries to assasinations, raiding and "bad person" trading. All it is sparked by the money, you know hehe. \n Me: Sounds.. Ehh. Is there any work to be done? \n Anton: You must know those stalker bitches, we captured some of them while they were hunting some artifacty stuff in the lake of anomalies. We put them in our outpost, go help them to defend the outpost. I'm sure those bitches will try to rescue them. You will be paid in dollars, hahah. Here is the locations. \n Me: I'm leaving.
+
+[template_alyinaQuestline]
+text: Talk to Aleria
+description: -Aleria: Stop right there who are you? \n Me: Came here to talk with your leader. \n Aleria: What do you mean by leader? That is me *grins*. Kidding, he is inside.
+
+
+[template_arthurQuestline]
+text: Talk With Team Leader
+description: Me: Okay, now can you tell me what happened? Arthur: Did you meet the guy in Science Bunker named Hadrian? I was with him for some time. We made a lot of progress. Then we came here to look for artifacts and while hunting we noticed that we were getting stalked. Then they captured all of us in a "tacti cool" way, heh. Just a day ago. I'm sure we would be hunting artifacts for bandits till we die if you haven't rescued us. 
+
+[template_strangeTrioQuestline]
+text: Strange Trio
+description: Me: What are you three ass looking guys doing in front of a hatch?? \n The Armoured One: What ARE you really doing here? \n Me: Passing by. \n The Naked One: Then help us opening this hatch. \n Me: So what do you need to open it? \n The Confident One: Five grands, three bottles of vodka, two packs of cigarettes, one golden coin, and yeah an axe.
+
+[template_strangeTrioText1]
+showMessageToPlayer: You gave all the things to the confident one.
+
+[template_strangeTrioText2]
+showMessageToPlayer: Then he drunk one bottle of vodka, gave remaining vodkas to others.
+
+[template_strangeTrioText3]
+showMessageToPlayer: Then he put all the rubles in his pocket, then threw the coin in hatch's hole.
+
+[template_strangeTrioText4]
+showMessageToPlayer: Then all of them started smoking and staring at you.
+
+[template_strangeTrioText5]
+showMessageToPlayer: Me: What the fuck?!
+
+[template_strangeTrioText6]
+showMessageToPlayer: The naked one grabbed the axe and opened the hatch.
+
+[template_strangeTrioText7]
+showMessageToPlayer: Me: If you could do that already only with the axe...
+
+[template_strangeTrioText8]
+showMessageToPlayer: ...Then why the fuck I bringed all the crap to you?
+
+[template_strangeTrioText9]
+showMessageToPlayer: Armored One: Chill man, we just tested your patience. And you are patient enough.
+
+[template_strangeTrioText10]
+showMessageToPlayer: ...Here, we opened the hatch. See? Just a gun "bella" written on it. Now leave us alone.
+
+[template_bellaQuestline]
+text: Hire Guardian
+description: Guardian Bella: You look like a wanderer. \n Me: Yep I am. Who are you? \n Guardian Bella: Just a mercenary. I lost my gun, if you find it I will just follow you. 
+
+[template_bellaQuestline2]
+text: Hire Guardian
+description: Me: Yo I found your gun. \n Bella: Where!? \n It's inside an hatch protected by three really bastards. They are kind of stupid. They wanted all the shit around this fucking map and only used an axe and scammed me! That's it. \n Bella: No way that three guys came with me to the fucking city? When they will stop following me... Kill them if you hate them too.
+
+
+[template_l30]
+text: L-30 ML
+description:"""
+-One of the most stupid gun I have ever seen. It uses 7.62x54 cartridges with drum magazines, It has a 8x scope and a very long barrel also very slow fire rate... The word "bella" noted with a knife on the stock.
+"""
+
+
+[template_Questline]
+text: 
+description: 
+
+#____________________________ OCCUPATIONS __________________________________#
+
+[template_male]
+text: Male
+description: -Male gender \n -Male characters are durable and strong. Based on fighting \n PROS \n +2 Strength +1 Fitness \n Higher stamina regenation \n Does not extra taken damage \n Recovers mental health faster \n CONS \n -1 Lightfooted \n Runs slower \n Gets hungry and thirsty faster \n Sweats more 
+
+[template_female]
+text: Female
+description: -Female gender \n Female characters are lightfooted, stealthy and evasive. Based on stealth \n PROS \n +1 Lightfooted +1 Nimble +1 Running +1 Fitness \n Running and attacking requires lesser stamina \n Gets hungry and thirsty slower \n Sweats lesser \n CONS \n -1 Strength \n Deals less damage \n Getting a wound is heavier \n Recovers mental health slower
+
+[template_soldier]
+text: Soldier
+description:"""
+Desensitized warriors await only death
+\n\n PROS:
+\n +2 Strength +3 Aiming
+\n %50 More punch damage
+\n Does not panic
+\n\n CONS:
+\n -1 Crafting -1 First Aid
+\n Requires more water and food 
+\n %{select(self.globalTeamTags(includes="touristMode"),"[TOURIST MODE LOADOUT] \n 1x USP / 30x .45 acp / 1x Leather Jacket"," ")}. """
+#DO NOT TRANSLATE THE CODE!!
+#Example:
+#\n %{select(self.globalTeamTags(includes="touristMode"),"[TURIST MODU EKİPMANI] \n 1x USP / 30x .45 acp / 1x Deri Ceket"," ")}. """
+
+[template_commander]
+text: Leader Soul
+description:"""
+In an old age, in a young leader soul. 
+\n\n PROS: 
+\n Unlimited group size
+\n\n CONS: 
+\n -1 Strength -1 Fitness 
+\n %50 More taken damage 
+\n %{select(self.globalTeamTags(includes="touristMode"),"[TOURIST MODE LOADOUT] \n 1x PM / 30x 9x18 / 1x Radio "," ")}. """
+
+[template_stalker]
+text: Stalker
+description:""" -Hunts, trades, uses valuable artifacts, refracts the reality. 
+\n\n PROS: 
+\n +1 Nimble 
+\n %50 More endured to radiation 
+\n\n CONS: 
+\n -1 First Aid
+\n Requires more food and water 
+\n %{select(self.globalTeamTags(includes="touristMode"),"[TOURIST MODE LOADOUT] \n 1x Detector / 2x Radkit / 1x Sunrise Suit / 1x PM "," ")}. """
+
+[template_hunter]
+text: Hunter
+description:"""
+Man of nature, hunter of radiation meats. 
+\n\n PROS: 
+\n Durable to cold weather 
+\n\n CONS: 
+\n %15 More taken damage 
+\n %{select(self.globalTeamTags(includes="touristMode"),"[TOURIST MODE LOADOUT] \n 1x TOZ-34 / 15x 12x70 Buckshot / 3x Raw Meat / 1x Overcoat "," ")}. """
+
+[template_scout]
+text: Scout
+description:"""
+Sharp eyes, attentive steps among the shadows. 
+\n\n PROS: 
+\n +3 Lightfooted +3 Aiming 
+\n Higher stamina regenation 
+\n\n CONS:
+\n -1 Strength -1 Nimble -1 First Aid -1 Crafting
+\n %{select(self.globalTeamTags(includes="touristMode"),"[TOURIST MODE LOADOUT] \n 1x SVT-40 / 10x 7.62x54 / 2x Soda "," ")}. """
+
+[template_thief]
+text: Burglar
+description:"""
+Stealing exceeds production. 
+\n\n PROS: 
+\n +2 Lightfooted 
+\n Can lockpick vehicles 
+\n\n CONS: 
+\n -6 Reputation
+\n -1 First Aid
+\n %{select(self.globalTeamTags(includes="touristMode"),"[TOURIST MODE LOADOUT] \n 1x Kitchen Knife / 2x Vodka / 1x Bandit Jacket / 1x PM / 1x Fuel Canister "," ")}. """
+
+[template_doctor]
+text: Doctor
+description:"""
+Intelligence among the dead brain. 
+\n\n PROS: 
+\n +4 First Aid 
+\n Nearby ally players will get regenation 
+\n Starts with medical items
+\n\n CONS: 
+\n -1 Strength -1 Fitness -1 Crafting -1 Aiming
+\n %{select(self.globalTeamTags(includes="touristMode"),"[TOURIST MODE LOADOUT] \n 5x AI-2 Medkit / 2x Radkit / 1x Hazmat Suit"," ")}. """
+
+[template_dancer]
+text: Dancer
+description:""" 
+Somehow survived the apocalypse, for dodging bullets, not shaking butt. 
+\n\n PROS: 
+\n +1 Lightfooted +1 Nimble +2 Running 
+\n +%35 Chance to dodge bullets 
+\n\n CONS: 
+\n -1 Strength -1 First Aid -2 Aiming 
+\n Panics more 
+\n %{select(self.globalTeamTags(includes="touristMode"),"[TOURIST MODE LOADOUT] \n 1x E-Giwl Gamew Hibew-XXX Pro-Headphones / 1x E-Giwl Gamew OLED Flexible Keyboawd / 3500x Money "," ")}. """
+
+[template_worker]
+text: Worker
+description:"""
+Finally, it is time to work for himself. 
+\n\n PROS: 
+\n +4 Crafting +2 Strength 
+\n Can build advanced structures 
+\n Can repair vehicles 
+\n Can craft anything 
+\n\n CONS: 
+\n -2 Fitness -1 First Aid -1 Lightfooted -1 Aiming 
+\n Sweats more 
+\n %{select(self.globalTeamTags(includes="touristMode"),"[TOURIST MODE LOADOUT] \n 1x Axe / 1x Blowtorch / 10x Material Package / 1x Overcoat "," ")}. """
+
+[template_truckDriver]
+text: Truck Driver
+description:"""
+Each truck has a driver, each driver doesn't have a truck. 
+\n\n PROS: 
+\n +1 Strength 
+\n Long term driving does not bore 
+\n CONS: 
+\n -1 Crafting -1 Lightfooted 
+\n %{select(self.globalTeamTags(includes="touristMode"),"[TOURIST MODE LOADOUT] \n 1x Baseball Bat / 10x Cigarettes / 2x Vodka "," ")}. """
+
+[template_chef]
+text: Chef
+description: Cooking is on development
+
+[template_unemployed]
+text: Unemployed
+description: -Sidewalk engineer \n No cons and pros \n %{select(self.globalTeamTags(includes="touristMode"),"[TOURIST MODE LOADOUT] \n 1x Fire Axe / 1x Overcoat / 2x Canned Beans / 2x Water "," ")}.
+#the term "sidewalk engineer" is meaning of a funny turkish word that means "idler, unemployed", because there is no job like this
+#so translate it to any word in your language
+
+#PANELS
+
+#____________________________ BUTTONS __________________________________#
+
+#leave a blank for texts
+
+[template_bag]
+text:
+description:Inventory. Open it to take items from containers.
+
+[template_craftt]
+text:
+description:Shows what you can craft.
+
+[template_skills]
+text:
+description:Skills and abilities.
+
+[template_trade]
+text:
+description:Drop items to players or containers.
+
+[template_equipments]
+text:
+description:Vitals. Shows body healths.
+
+[template_interact]
+text:
+description:For interacting with NPCs.
+
+[template_recruitment]
+text:
+description:Manage your companions.
+
+[template_reactions]
+text:
+description:Removed lolol
+
+[template_pda]
+text:
+description:Shows information/time
+#its meaning is Personal Digital Assistant
+#So if i will translate it into turkish, it must be DPA, because it means Dijital Personel Asistanı
+
+
+
+[template_categorym]
+text:Category
+description: Sort items for their category
+
+[template_setAll]
+text:All
+description:                      
+
+[template_setMaterial]
+text:Materials
+description:                      
+
+[template_setEquipment]
+text:Equipments
+description:                      
+
+[template_setMedical]
+text:Medical
+description:                      
+
+[template_setArtifact]
+text:Mutant/Artifacts
+description:                      
+
+[template_setSupply]
+text:Supplies
+description:                      
+
+#____________________________ ITEMS __________________________________#
+
+[template_9x18]
+text: 9x18
+description: Encumbrance: 0.01 KG \n The 9x18 cartridge was originally designed for the PM. The 9x18 cartridge is very common, cheap and carried by almost all survivors who managed to survive. 
+
+[template_9x19]
+text: 9x19
+description: Encumbrance: 0.01 KG \n This basic 9x19 caliber round with simple damage and simple to produce. The round is popular due to is cheap for cheap machineguns. Ineffective against most body armors.
+
+[template_12x70]
+text: 12x70
+description: Encumbrance: 0.01 KG \n A standard 12 calibre round filled with 6 mm shot. It's deadly at a close range. It is designed for shotguns. One of the popular rounds in the Zone due to its mutant-killing power.
+
+[template_545x39]
+text: 5.45x39
+description: Encumbrance: 0.01 KG \n Military 5.45x39 caliber improved piercing round for automatic rifles of Warsaw Pact countries. Provides better accuracy than the 7.62 caliber round thanks to reduced recoil. Rarely carried and found.
+
+[template_556x45]
+text: 5.56x45
+description: Encumbrance: 0.01 KG \n A standard issue NATO 5.56x45 caliber round specially designed for accurate automatic fire. Provides good ballistic characteristics, having been designed on the basis of a hunting round. Very rare around the Zone and rarely used by survivors due to its price.
+
+[template_762x54]
+text: 7.62x54
+description: Encumbrance: 0.01 KG \n A 7.62 caliber sniper round with a steel penetrator specially designed for the SVT-40 and SVD rifles. Unlike the machine gun round, the 7.62x54 rounds provide tight groupings and excellent penetration characteristics. Usually found on trained stalkers and bandits.
+
+[template_9x39]
+text: 9x39
+description: Encumbrance: 0.01 KG \n 9x39mm rounds are subsonic rounds modeled after the soviet 7.62x39mm cartridge but having a larger neck to accommodate the 9mm slug. These rounds were specifically made for special forces use as they were meant to be chambered in stealth weapons.
+
+[template_battery]
+text: Battery
+description: Encumbrance: 0.5 KG \n Energy cells prepared with lethal elements in a Gauss rifle magazine. The energy source is an encapsulated piece of the Flash artifact.
+
+[template_45acp]
+text: .45 ACP
+description: Encumbrance: 0.01 KG \n A standard round for some pistols. It has a standard core and a full-jacketed bullet.
+
+
+[template_keys]
+text: Keys
+description:"""
+The keys you have: \n
+Army Prep %{self.resource.keyArmyPrep} \n
+Police Station %{self.resource.keyPoliceStation} \n
+Exormor %{self.resource.keyExormor} \n
+Fossol Gas %{self.resource.keyFossolGas} \n
+X1 %{self.resource.keyX1} \n
+X2 %{self.resource.keyX2} \n
+X3 %{self.resource.keyX3} 
+"""
+
+[template_wood]
+text: Wood Log
+description: Encumbrance: 1 KG \n -Chopped wood log from a tree \n Needs to be shapen with a saw.
+text_tr: Kütük
+description_tr: -Testere ile şekillendirilmelidir
+
+[template_bow]
+text: Bow
+description: Encumbrance: 1 KG \n -Ranged handmade weapon
+
+
+[template_ductTape]
+text: Duct Tape
+description: Encumbrance: 0.2 KG \n -Durable material for sticking two materials.
+
+[template_cloth]
+text: Cloth
+description: Encumbrance: 0.05 KG \n -A pack of ripped clothing, pretty essential in tailoring.
+
+[template_scrap]
+text: Scrap
+description: Encumbrance: 0.45 KG \n -A little bit rusty, but will come handy for durable things.
+
+[template_plastic]
+text: Plastic
+description: Encumbrance: 0.4 KG \n -A pack of plastics. Containing a plate, cup, spoon and an empty bootle, pretty useful for plastic constructing.
+
+[template_tentacle]
+text: Bloodsucker Tentacles
+description: Encumbrance: 0.02 KG \n -'Found from bloodsucking a#%$holes' \n Mitka will pay for this
+
+[template_leather]
+text: Leather
+description: Encumbrance: 0.15 KG \n -Worn leather that is quite durable than a fabric. Used for durable clothings
+
+[template_carapace]
+text: Hornbug Carapace
+description: Encumbrance: 0.2 KG \n -Very tough but remarkably light bettle carapace
+
+[template_engine]
+text: Car Battery
+description: Encumbrance: 5 KG \n -A heavy car battery of a car that deposites power for cars.
+
+[template_screws]
+text: Screws
+description: Encumbrance: None (Seriously) \n -Now you need a screwdriver to use them
+
+[template_nails]
+text: Nails
+description: Encumbrance: None (Yes Seriously) \n Now you need a hammer to hit the nail
+
+[template_screwdriver]
+text: Screwdriver
+description: Encumbrance: 0.3 KG \n -Universal tool of amateur electricians.
+
+[template_hammer]
+text: Hammer
+description: Encumbrance: 1 KG \n -The nail hitting tool
+
+[template_castMetal]
+text: Cast Metal
+description: Encumbrance: 1 KG \n -Very tough and heavy piece of metal. Can be melted into metal sheets
+
+[template_glockMag]
+text: PM Mag.
+description: Encumbrance: 0.6 KG \n Magazine filled with bullets
+
+[template_mp5Mag]
+text: MP5 Mag.
+description: Encumbrance: 0.8 KG \n Magazine filled with bullets
+
+[template_akMag]
+text: AK47 Mag.
+description: Encumbrance: 0.8 KG \n Magazine filled with bullets
+
+[template_m4Mag]
+text: LR300 Mag.
+description: Encumbrance: 0.8 KG \n Magazine filled with bullets
+
+
+[template_brokenGlock]
+text: Broken PM
+description: Encumbrance: 0.9 KG \n -Repair this gun at a repair station to use.
+
+[template_brokenMp5]
+text: Broken MP-5
+description: Encumbrance: 1 KG \n -Repair this gun at a repair station to use.
+
+[template_brokenAk47]
+text: Broken AK-47
+description: Encumbrance: 2.5 KG \n -Repair this gun at a repair station to use.
+
+[template_brokenM4]
+text: Broken LR300
+description: Encumbrance: 1.8 KG \n -Repair this gun at a repair station to use.
+
+[template_brokenToz34]
+text: Broken TOZ34
+description: Encumbrance: 2 KG \n -Repair this gun at a repair station to use.
+
+[template_brokenSvt40]
+text: Broken SVT40
+description: Encumbrance: 2 KG \n -Repair this gun at a repair station to use.
+
+[template_gunParts]
+text: Gun Parts
+description: Encumbrance: 0.1 KG \n -Some spare parts that fits for most guns
+
+[template_pistolParts]
+text: Pistol Parts
+description: Encumbrance: 0.35 KG \n -Some spare parts that was stripped from various pistols.
+
+[template_smgParts]
+text: SMG Parts
+description: Encumbrance: 0.4 KG \n -Some spare parts that was stripped from various Sub Machine Guns.
+
+[template_rifleParts]
+text: Rifle Parts
+description: Encumbrance: 0.5 KG \n -Some spare parts that was stripped from various assault rifles
+
+[template_gaussParts]
+text: Gauss Parts
+description: Encumbrance: 0.7 KG \n Various technological parts that was dropped from a broken gauss rifle. 
+
+
+[template_guitar]
+text: Guitar
+description: Encumbrance: 0.5 KG \n -Household \n -"He was a good stalker..."
+
+[template_heart]
+text: Burer Heart
+
+[template_sewingCloth]
+text: Sewing Cloth
+description: Encumbrance: 2 KG \n -Level 2 fabric
+
+[template_food]
+text: Canned Beans
+description: Encumbrance: 0.35 KG \n -Tasty beans and meat pieces inside, yummy. Also a note on the tin can saying "Let me put in a language you can understand." \n ● Hunger: +40 \n ● Thirst: +20 \n ● Toxicity: +1 \n ● Usage Time: 7s
+
+[template_crackers]
+text: Crackers
+description: Encumbrance: 0.07 KG \n -A pack full of small snacks. Often found with the survivors. The basis of small meals. \n ● Hunger: +20 \n ● Thirst: -7 \n ● Toxicity: +3 \n ● Usage Time: 7s
+
+[template_cannedTuna]
+text: Canned Tuna
+description: Encumbrance: 0.3 KG \n -A can of tuna that has been eaten for years without rotting. It is carried by most hunters as it does not rot easily. It's hearty and juicy.  \n ● Hunger: +35 \n ● Thirst: +15 \n ● Toxicity: -1 \n ● Usage Time: 7s
+
+[template_mre]
+text: MRE
+description: Encumbrance: 0.8 KG \n MRE (Meal, Ready-to-Eat) is an individual daily food ration developed for the United States Army. MRE packaging is designed for harsh operating conditions and protection from weather exposure, which allows not to worry about storage conditions. One of the best meal you can find in this nuclear situation. \n ● Hunger: +60 \n ● Thirst: +55 \n ● Toxicity: -1 \n ● Usage Time: 8s
+
+[template_snack]
+text: Snacks
+description: Encumbrance: 0.035 KG \n -Small portion food for fighting peckish. When I also read the tiny texts on its package, I see a note saying "hey can't still find a snack? I did just in case, oh.". \n ● Hunger: +15 \n ● Toxicity: +1 \n ● Usage Time: 1s
+
+[template_meat]
+text: Meat
+description: Encumbrance: 0.25 KG \n -Common food can be found from boxes, zombiefied humans or killing wolves, kinda radiated too. Also I was expecting it to be in the CONGRALUATION form. \n ● Hunger: +35 \n ● Thirst: -10 \n ● Toxicity: +3 \n ● Usage Time: 7s
+
+[template_bloodBag]
+text: Blood Bag
+description: Encumbrance: 0.35 KG \n -Bag of someones blood. It is used to keep the blood level in your body properly. It takes a long time use. \n ● Blood: +100 (And more) \n ● Head: +80 | Torso: +80 | Arms: +80 | Legs: +80 \n ● Usage Time: 12s
+
+[template_water]
+text: Water Bottle
+description: Encumbrance: 0.5 KG \n -It's hard to find a water, nuclear wars has started water wars. Classic and most important thing to live. Rarely found from boxes and enemies. \n ● Thirst: +45 \n ● Toxicity: -2 \n ● Usage Time: 7s
+
+[template_fruitJuice]
+text: Fruit Juice
+description: Encumbrance: 0.45 KG \n -A pack of fresh fruit juice. Enough to stop your thirst. Often carried by rookie hunters. \n ● Hunger: +10 \n ● Thirst: +20 \n ● Toxicity: +3 \n ● Usage Time: 4.5s
+
+[template_vodka]
+text: Vodka
+description: Encumbrance: 0.45 KG \n -Bottle of Vodka. Significantly reduces the effects of radiation, but for obvious reasons should be enjoyed in moderation. Extremely common among the survivors, who can't get an anti-rad in their hands, while this fun juice does the same way. \n ● Hunger: +15 \n ● Thirst: +20 \n ● Radiation: -20 \n ● Usage Time: 3s
+
+[template_cigarettes]
+text: Cigarettes
+description: Encumbrance: 0.06 KG \n -Pack of cigarettes, it is considered dangerous for human health, but smoking in this world throws away radiation from your body. \n ● Thirst: -5 \n ● Radiation: -15 \n ● Usage Time: 8s
+
+[template_plank]
+text: Plank
+description: Encumbrance: 0.65 KG \n -Dense wood that pretty essential for carpentry.
+
+[template_metalSheet]
+text: Metal Sheet
+description: Encumbrance: 1.3 KG \n -Strong and durable metal sheet for advanced buildings
+
+[template_blowtorch]
+text: Blowtorch
+description: Encumbrance: 1 KG \n -A blowtorch used in metalworking.
+
+[template_saw]
+text: Saw
+description: Encumbrance: 1.3 KG \n -Universal tool of carpentry \n -Used to craft planks
+
+[template_materialPackage]
+text: Material Package
+description: Encumbrance: 0.6 KG \n -A package that was belonged to a factory or company, don't know what's inside. Sounds of tools and materials can be heard when shaked.
+
+[template_generator]
+text: Generator
+description: Encumbrance: 15 KG \n An pre-war portable power generator. Requires fuel supply to generate power. It is too heavy. \n Requires to be connected with wires. \n ● Fuel Consumption: 3mL/s
+
+[template_wire]
+text: Wire Cable
+description: Encumbrance: 0.2 KG \n A pack of copper wire that was ripped from a device. \n Can be used to connect electrical devices.
+
+[template_oldTech]
+text: Old Tech.
+description: Encumbrance: 0.5 KG \n A green technology card. \n Required for some devices.
+
+[template_fuelCanister]
+text: Fuel Canister
+description: Encumbrance: 2.2 KG \n A red canister of two litres of gasoline. \n It is wealthy like gold.
+
+[template_pumpJackParts]
+text: Pumpjack Parts
+description: Encumbrance: 12 KG \n "Pompoil" brand tiny but heavy parts for setting up a small oil derrick. \n Used for setting up a pumpjack.
+
+[template_turretParts]
+text: Turret Parts
+description: Encumbrance: 6.5 KG \n A very rare advanced technological high quality "Exormor" brand spare turret parts. Contains various metal sticks, batteries, CPU, memory card and pack of weird things. It was produced for fortifying unmanned high level country-sides. \n Can be used for building a turret.
+
+
+[template_bulletproofplate]
+text: Bulletproof Plate
+description: Encumbrance: 0.95 KG \n -Extra protection \n -Used for protecting torso area of body from severe bullets \n -Has got 100 durability
+
+[template_picture]
+text: Picture
+description: "A Stalker holding guitar in his hands"
+
+[template_note]
+text: Bloody Note
+description: "This is written in another language, and never seen it before, I must give this to Mark"
+
+[template_syringe]
+text: Syringe
+description: A medical syringe that can be used for medical items.
+
+[template_wheat]
+text: Wheat
+description: A pack of wheat, nothing can be done with this, sell to someone
+
+[template_rawMeat]
+text: Raw Meat
+description: A piece of raw fresh meat, a bit radioactive but it would be so delicious after cooking
+
+[template_book]
+text: Book "Radioman"
+description: A big sized book in "Radioman" title \n Guiding how to operate a radio
+
+[template_radio]
+text: Radio
+description: Old radio \n This thing is still working, can be used to communicate
+
+[template_money]
+text: Money %{self.resource.money}
+
+[template_oldBalaclava]
+text: Old Balaclava
+description: -A shabby cloth mask used to hide face or protect from cold the face \n ● Can be disassembled
+
+[template_oldSportJacket]
+text: Old Sport Jacket
+description: -It's rugged and unusable. Still popular among the bandits even after all the long time. \n ● Can be disassembled
+
+[template_dirtyLeatherJacket]
+text: Dirty Jacket
+description: -One of the most popular clothing that novice loners use, have different colour versions of different factions \n ● Can be disassembled
+
+[template_dirtyShirt]
+text: Dirty Shirt
+description: -Common clothing, most survivors wear this under their clothings. It is rugged and bloody \n ● Can be disassembled
+
+[template_dirtyPants]
+text: Dirty Pants
+description: -Just an old pants \n ● Can be disassembled
+
+[template_oldVest]
+text: Old Vest
+description: An old military vest, using this will not grant you any defense \n ● Can be disassembled for High tech fabrics
+
+[template_usedGasmask]
+text: Used Gasmask
+description: People using gasmasks to protect human body from the radiation, but the fact is using a gas mask shitty like this will be more dangerous \n ● Can be disassembled
+
+[template_shabbyBanditOutfit]
+description: Old bandit outfit. This suit is common among the bandits \n ● Can be disassembled
+text: Old Bandit Outfit
+
+[template_shabbySweater]
+description: ● Can be disassembled
+text: Shabby Sweater
+
+[template_highTechFabric]
+text: Hi-Tech Fabric
+description: It's in super condition, rare fabric very suitable for advanced armors.
+
+[template_headlamp]
+text: Headlamp
+description: It is helpful in darkness, often sold by mechanics
+
+[template_keyArmyPrep]
+text: Army Prep Key
+description: A key that opens the door in the Army Prep surplus store storage.
+
+[template_keyPoliceStation]
+text: Police Key
+description: A key that opens the locked room in the Police station.
+
+[template_keyFossolGas]
+text: Fossol Key
+description: A key opens the door in the gas station.
+
+[template_keyExormor]
+text: Exormor Key
+description: A key that opens the door in the storage room of the Exormor factory.
+
+[template_keyX1]
+text: X1 Key
+description: A key that opens the entrance door of X1 laboratory.
+
+[template_keyX2]
+text: X2 Key
+description: A key that opens the entrance door of X2 laboratory.
+
+[template_keyX3]
+text: X3 Key
+description: A key that opens the entrance door of X3 laboratory.
+
+
+[template_goldCoins]
+text: Gold Coins
+description: Encumbrance: 3 KG \n A very valuable shiny gold coin pack. 
+
+[template_goldDagger]
+text: Gold Dagger
+description: Encumbrance: 1 KG \n A quite very valuable gold dagger. It is not quite sharp but sharp in the eyes of rich people. 
+
+[template_militaryComputer]
+text: Military Computer
+description: Encumbrance: 3.5 KG \n A strong laptop used for military operations. Some useful data inside. 
+
+[template_militaryHeadsets]
+text: Military Headsets
+description: Encumbrance: 0.6 KG \n A high quality pair of headsets for military operations. 
+
+[template_galvanizedSquareSteel]
+text: Galvanized Square Steel
+description: Encumbrance: 1 KG \n It's galvanized, it's square, it's steel... It is galvanized square steel!
+
+[template_tactieGiwl]
+text: Tactiegiwl Pwo Uwu Niwgt Wision
+description: Encumbrance: 0.69 KG \n A very high quality last technology ultra performance professional night vision designed for advanced ultra real serious chad soldiers. Has definitely a great performance, right?
+
+[template_banditPatch]
+text: Bandit Patch
+description: A worn patch used by bandits. Quest item.
+
+[template_marauderPda]
+text: Marauder PDA
+description: A PDA owned by a Marauder. Has some created waypoints named as "Clients".
+
+
+[template_soda]
+text: Soda
+description: Encumbrance: 0.4 KG \n -Can be found from boxes and enemies. Its usage is fast. \n ● Thirst: +25 \n ● Hunger: +5 \n ● Toxicity: +1 \n ● Usage Time: 3s
+description:"""
+Encumbrance: 0.4 KG
+\n A juicy bottle of freshing soda. Fast usage.
+\n ● Thirst +25
+\n ● Hunger +5
+\n ● Toxicity +1
+"""
+
+[template_dirtyWaters]
+text: Tainted Water
+description: Encumbrance: 0.5 KG \n -It's very dangerous to drink this crappy water. Can cause poisoning. \n ● Thirst: +15 \n ● Toxicity: +20 \n ● Usage Time: 7s
+description:"""
+Encumbrance: 0.5 KG
+\n Bottle of water that looks pretty dirty. Drinking it is a stupid idea.
+\n ● Thirst +15
+\n ● Toxicity +20
+\n ● Causes sickness
+"""
+
+[template_bread]
+text: Bread
+description: Encumbrance: 0.4 KG \n -No longer any way left to produce this meal since there is no bakery left. Can be found from, well, boxes and enemies. \n● Hunger: +20 \n● Thirst: -5\n ● Toxicity: +3 \n● Usage Time: 7s
+description:"""
+Encumbrance: 0.4 KG
+\n A fine looking bread loaf that was baked by someone nowadays.
+\n ● Hunger +20
+\n ● Thirst -5
+\n ● Toxicity +3
+"""
+
+[template_tweezer]
+text: Tweezer
+description: Encumbrance: 0.03 KG \n Medical item \n -Can be used to remove any lodged bullets from the wound
+description:"""
+Encumbrance: 0.03 KG
+\n Very tiny bright metal tool. Used for removing bullets from the wound.
+\n ● Treats logded bullets leaving a laceration behind it
+"""
+
+[template_needle]
+text: Needle
+description:"""
+Encumbrance: 0.01 KG
+\n Tailoring tool that can be used as a meeical tool. Can be used to stitch deep lacerations
+\n ● Treats deep laceration
+"""
+
+
+[template_rags]
+text: Rags
+description:"""
+Encumbrance: 0.05 KG
+\n Old rags that ripped off from a clothing. Tie it like a bandage.
+\n ● Stops Bleeding (120s)
+\n ● Arms: +7
+"""
+
+[template_bandage]
+text: Bandage
+description:"""
+Encumbrance: 0.05 KG
+\n A normal elastic bandage used to stop bleeding and prevent infection of wounds. For regular bleeding, carefully apply the bandage to the wound. For arterial bleeding, urgently tie the bandage around the affected area.
+\n Common medical item. Can be used to cover wounds to don't loose blood.
+\n ● Stops Bleeding (210s)
+\n ● Arms: +10 | Legs: +5
+"""
+
+[template_gauze]
+text: Gauze Pad
+description:"""
+Encumbrance: 0.05 KG
+\n A sterilized medical gauze sponge. Carefully apply it for the best wound treat.
+\n ● Stops Bleeding (270s)
+\n ● Health: +15 
+\n ● Toxicity: -10
+\n ● Head: +5
+"""
+
+[template_medickit]
+text: Medical Kit
+description:"""
+Encumbrance: 1.35 KG
+\n A medical package, designed for use specifically in harsh conditions. It contains a large amount of drugs for the purposes of countering severe wounds.
+\n ● Instant Health: +10
+\n ● Health: +120
+\n ● Radiation: -30 
+\n ● Toxicity: -30
+\n ● Torso: +50
+\n ● Arms: +20 | Legs: +20
+\n ● Can block pain 
+\n ● Includes bandages 
+\n ● Includes tweezers 
+\n ● Includes needles
+"""
+
+[template_radkits]
+text: Anti Rad. Kit
+description:"""
+Encumbrance: 0.085 KG 
+\n Mexaminum radiation protection drugs are common in the Zone. When used, this drug induces contraction of peripheral blood vessels and oxygen deprivation, which serve to treat and prevent radiation exposure.
+\n ● Radiation: -75
+\n ● Torso: +10
+"""
+
+[template_antidote]
+text: Antidote
+description:"""
+Encumbrance: 0.45 KG 
+\n The IP2 antitoxin is a complex drug comprising several antidotes, including metoclopramidum, pyridoxine, thiamine, riboxin and other pharmaceuticals. The drug is used to inject a range of antibiotics to neutralise natural poisons, together with synthetic poison absorbers, into the bloodstream. The effects of the drug are long-lasting. Take one capsule at a time.
+\n ● Health: +15 
+\n ● Toxicity: -50
+\n ● Head: +3
+\n ● Legs: +8
+"""
+
+[template_ai2medkit]
+text: AI-2 Kit
+description:"""
+Encumbrance: 1 KG 
+\n Small medkit with bunch of syringes. It was designed as a first aid for Soviet Union. Includes anti-radiation drugs, medical supplies, syringes. It looks like a cheese.
+\n ● Health: +80 
+\n ● Radiation: -20 
+\n ● Toxicity: -20
+\n ● Head: +5 | Torso: +10
+\n ● Arms: +10 | Legs: +10
+"""
+
+[template_carMedkit]
+text: Car Medkit
+description:"""
+Encumbrance: 1 KG 
+\n Medical First Aid Kit. Red coloured zipped medkit. It can be rarely found in the trunks of the cars, if it's owner cares about themselves.
+\n ● Health: +80 
+\n ● Toxicity: -10
+\n ● Head: +15 | Torso: +35
+\n ● Arms: +5
+\n ● Includes bandages 
+\n ● Includes needles
+"""
+
+[template_grizzlyMedkit]
+text: Grizzly Medkit
+description:"""
+Encumbrance: 2.75 KG 
+\n Advanced First Aid Kit. It is considered as one of the best medkits. It contains everything necessary for almost all types of wounds, and included with some first aid guide books
+\n ● Instant Health: +100 
+\n ● Health: +120 
+\n ● Radiation: -75
+\n ● Toxicity: -50
+\n ● Head: +35 | Torso: +60
+\n ● Arms: +45 | Legs: +45
+\n ● Includes painkillers 
+\n ● Includes bandages 
+\n ● Includes drugs 
+\n ● Includes tweezers 
+\n ● Includes needles 
+"""
+
+[template_ifak]
+text: I.F.A.K.
+description:"""
+Encumbrance: 1 KG 
+\n "Individual First Aid Kit" Last first aid kit in the U.S. Marine Corps IFAK with well-designed contents. 
+\n ● Instant Health: +40 
+\n ● Health: +60 
+\n ● Torso: +15
+\n ● Arms: +15
+\n ● Includes bandages 
+\n ● Includes painkillers
+"""
+
+[template_antibacterialsolution]
+text: Antiseptic
+description:"""
+Encumbrance: 0.55 KG 
+\n Medical liquid. Chemicals for cleaning the skin and wounds, it can kill or prevent the growth of microorganisms.
+\n ● Arms: +15 | Legs: +15
+\n ● Improves the effectiveness of a bandage
+"""
+
+[template_painkillers]
+text: Painkillers
+description:"""
+Encumbrance: 0.2 KG 
+\n -Medical drug. Can block the pain in your wounds but can't cure them
+\n ● Head: +5
+\n ● Can block pain
+"""
+
+[template_antiraddrug]
+text: Antirad Drug
+description:"""
+Encumbrance: 0.05 KG
+\n B190 Indraline radioprotectant, included in medkits issued to nuclear power plant personnel. Used in the Zone instead of the excessively toxic PC1 cysteamine hydrochloride, repeated use of which often caused death. Reduces the effects of gamma radiation on live tissue. Best consumed before exposure, as effects are not instant, but the drug lasts a long time. Take one capsule at a time.
+\n ● Head: +10
+\n ● Radiation Protection For 2 Minutes
+"""
+
+[template_drug]
+text: Drug
+description:"""
+Encumbrance: 0.05 KG 
+\n Pack of various drugs. Used in medicine.
+\n ● Torso: +3
+\n ● Toxicity: -15
+"""
+
+[template_emrNightVision]
+text: EMR Night Vision
+description:"""
+ Encumbrance: 1 KG \n
+-Emerald Night Vision Goggles. Wipespread and and popular device of low price category for tactical rookies. \n This device enhances the vision on darkness and reduces the field of view much more.
+"""
+
+[template_rubyNightVision]
+text: RUBY Night Vision
+description:"""
+ Encumbrance: 1 KG \n
+-Ruby Night Vision Goggles. One of the most rarest devices. Rumors say that this device was affected by an anomaly. \n This device enhances the vision on darkness, increases the clearance and reduces the field of view a bit.
+"""
+
+[template_spphNightVision]
+text: SPPH Night Vision
+description:"""
+ Encumbrance: 1 KG \n
+-Sapphire Night Vision Goggles. Expensive and rare category for real tactical soldiers. \n This device enhances the vision on darkness greatly and does not reduce the field of view so much compared to other devices.
+"""
+
+[template_schoolBag]
+text: School Bag
+description:"""
+Encumbrance: 1 KG \n
+A small school bag. This thing now carries shooters instead of books, but isn't that also happened before? \n
+● +1 Torso Armor \n
+● +0.15 Move Speed \n 
+● +20 Carry Weight """
+
+[template_duffleBag]
+text: Duffle Bag
+description:"""
+Encumbrance: 1 KG \n
+A large sports duffle bag. Long barrel guns fits inside this pretty neat. \n
+● +2 Torso Armor \n
+● +0 Move Speed \n 
+● +30 Carry Weight """
+
+[template_paratusBag]
+text: Alice Pack
+description:"""
+Encumbrance: 2.5 KG \n
+A modular, PVC-backed, polyester backpack for tactical operators who are going to be traversing across the rugged terrain of the wasteland. \n
+● +4 Torso Armor \n
+● +0.1 Move Speed \n 
+● +50 Carry Weight """
+
+[template_6sh118Bag]
+text: Rucksack
+description:"""
+Encumbrance: 4 KG \n
+The 6Sh118 raid backpack is part of the 2nd generation "Ratnik" gear kit for combat. This backpack is desinged to carry various military equipments plus individual belongings. Also pretty good for scavengers who prefer to loot any crap they see. \n
+● +6 Torso Armor \n
+● -0.15 Move Speed \n 
+● +85 Carry Weight """
+
+
+[template_leatherJacket]
+text: Leather Jacket
+description:"""
+Encumbrance: 1.4 KG \n
+The essential clothing of the adventurers, an ordinary thick jacket. \n
+● Faction: Stalker/Survivor \n
+● +10 Armour (H:1 T:3 A:2 L:2) \n
+● +0.1 Move Speed \n 
+● +6 Carry Weight \n
+● Average Insulation """
+
+[template_banditJacket]
+text: Bandit Jacket
+description:"""
+Encumbrance: 1.5 KG \n
+A tougher version of the leather jacket. Often wore by bandits. \n
+● Faction: Bandit \n
+● +14 Armour (H:1 T:4 A:3 L:3) \n
+● +0.1 Move Speed \n 
+● +7 Carry Weight \n
+● Average Insulation """
+
+[template_trenchcoat]
+text: Overcoat
+description:"""
+Encumbrance: 3 KG \n
+Heavy and long trenchcoat. It isn't too comfortable but keeps the wearer warmer.
+● Faction: None \n
+● +19 Armour (H:2 T:4 A:4 L:4) \n
+● -0.1 Move Speed \n 
+● +9 Carry Weight \n
+● High Insulation """
+
+[template_sunriseSuit]
+text: Sunrise Suit
+description:"""
+Encumbrance: 6 KG \n
+A light military outfit crafted by stalkers. With inserted kevlar plates. \n
+● Faction: Stalker \n
+● +40 Armour (H:5 T:15 A:7 L:8) \n
+● +0.1 Move Speed \n 
+● +15 Carry Weight \n
+● Average Insulation """
+
+[template_sunsetSuit]
+text: Sunset Suit
+description:"""
+Encumbrance: 5 KG \n
+A dark version of Sunrise suit. It was probably ripped off from a stalker. \n
+● Faction: Bandit \n
+● +34 Armour (H:5 T:15 A:5 L:5) \n
+● +0.1 Move Speed \n 
+● +13 Carry Weight \n
+● Average Insulation """
+
+[template_rbSuit]
+text: rB Suit
+description:"""
+Encumbrance: 4 KG \n
+Owned by Aleria. It is a quite light but at the same time powerful armour. Doesn't fit well on males.
+● Faction: Marauder \n
+● +45 Armour (H:5 T:20 A:10 L:10) \n
+● +0.25 Move Speed \n 
+● +5 Carry Weight \n
+● Low Insulation """
+
+[template_hazmatSuit]
+text: Hazmat Suit
+description:"""
+Encumbrance: 3 KG \n
+Scientific hazard suit. It protects completely on highly radioactive and toxic areas. But it can't protect damage well.
+● Faction: None \n
+● +15 Armour (H:5 T:5 A:3 L:2) \n
+● +0.1 Move Speed \n 
+● +20 Carry Weight \n
+● Complete Radiation Protection \n
+● Low Insulation """
+
+[template_exoskeleton]
+text: Exoskeleton
+description:"""
+Encumbrance: 35 KG \n
+This exoskeleton can only be found in its factories or simply from its previous users. Provides very strong protection. \n
+● Faction: None \n
+● +70 Armour (H:20 T:30 A:10 L:20) \n
+● +0.05 Move Speed \n 
+● +45 Carry Weight \n
+● High Insulation """
+
+[template_steelHelmet]
+text: Steel Helmet
+description:"""
+Encumbrance: 1 KG \n
+This is a steel helmet for protection against sharpnels and tired bullets.
+● +10 Armour (H:10) \n
+● +0.05 Move Speed """
+
+[template_pm]
+text: PM
+description:"""
+The most widespread pistol used by survivors. It is a legacy of the Soviet era. It is relatively reliable and cheap, has low magazine capacity, low power and an unsatisfactory grouping of shots, poor damage.
+\n ● Magazine Capacity: 8
+\n ● Cartridge: 9x18mm  """
+
+[template_toz]
+text: TOZ-34
+description:"""
+This extremely common over-and-under hunting shotgun can offer better protection against mutants than a pistol, thanks to its accuracy and stopping power. Used mostly by rookies. Does not require any magazines.
+\n ● Magazine Capacity: 2 
+\n ● Cartridge: 12x70 buckshot """
+
+[template_svt]
+text: SVT-40
+description:"""
+This rifle is a Soviet semi-automatic battle rifle that saw widespread service during and after World War II. The rifle fits pretty well for hunters.
+\n ● Magazine Capacity: 10 
+\n ● Cartridge: 7.62x54mm """
+
+[template_mp5]
+text: H&K MP-5
+description:"""
+-This submachine gun has gained popularity around the world thanks to its reliability, ease of use and accuracy, not creating pain while carrying due to its weight. Not surprisingly, having flooded the global black markets.
+\n ● Magazine Capacity: 30
+\n ● Cartridge: 9x19mm """
+
+[template_ak47]
+text: AK-47
+description:"""
+This weapon, designed in 1974, signaled the adoption of small caliber and low impulse rounds by Warsaw Pact countries. A descendant of the most popular assault rifle in the world. As before, the rifle is very simple and reliable.
+\n ● Magazine Capacity: 30
+\n ● Cartridge: 5.45x39mm """
+
+[template_lr300]
+text: LR-300 ML
+description:"""
+A light rifle with an effective fire range of up to 300 meters. Due its to exceptionally easy triggering, high ergonomics and low weight, the weapon is highly accurate, though it is too sensitive to dirt and is not always suitable for use under difficult field conditions, it is not easy to find it.
+\n ● Magazine Capacity: 30
+\n ● Cartridge: 5.56x45mm """
+
+[template_groza]
+text: Groza
+description:"""
+An assault rifle. It is a very good type of assault rifle for the Zone conditions: it is compact, reliable, but universal and powerful.
+\n ● Magazine Capacity: 40
+\n ● Cartridge: 9x39mm """
+
+[template_fn2000]
+text: FN F2000
+description:"""
+An assault rifle combined with a grenade launcher. It is equipped with an electronic fire control module and a 40-mm grenade launcher.
+\n ● Magazine Capacity: 40 
+\n ● Cartridge: 5.56x45 """
+
+[template_gauss]
+text: Gauss Rifle
+description:"""
+A super-accurate weapon made by the scientists in the Zone. It is almost noiseless, because instead of gunpowder, it uses the artifact's energy for firing rather than steam gases. In spite of the Gauss gun’s tremendous firepower, the recoil is insignificant. The accuracy and the killing power of this gun exceed those of all other small arms.
+\n ● Magazine Capacity: 5
+\n ● Cartridge: Batteries """
+
+[template_xr1]
+text: XR-1
+description:"""
+An upgraded version of Gauss Rifle. It comes from the future, and has improved in magazine capacity and burst firing decreasing the impact power.
+\n ● Magazine Capacity: 24
+\n ● Cartridge: Batteries """
+
+[template_vityaz]
+text: PP-19 Vityaz
+description:"""
+The PP-19 Vityaz is a 9×19mm submachine gun developed in 2004 by Russian small arms manufacturer Izhmash. It is based on the AK-74 and offers a high degree of parts commonality with the AK-74. The gun is directly developed from the PP-19 Bizon.
+\n ● Magazine Capacity: 30
+\n ● Cartridge: 9x19mm """
+
+[template_usp]
+text: H&K USP
+description:"""
+This trustworthy weapon boasts German quality and reliability. The compact short-range weapon is especially popular with the Zone's veterans. Uses .45 ammo.
+\n ● Magazine Capacity: 15
+\n ● Cartridge: .45 ACP """
+
+[template_val]
+text: AS VAL
+description:"""
+This weapon is based on the Vintorez noiseless sniper rifle, but it has a folding butt, can fire bursts and has a larger magazine. It was originally designed for special forces operating in conditions demanding noiseless and flameless fire.
+\n ● Magazine Capacity: 20
+\n ● Cartridge: 9x39mm """
+
+
+
+[template_blade]
+text: Kitchen Knife
+description:"""
+ Encumbrance: 0.6 KG \n
+Fighting tool of women.
+\n ● Damage: 10 \n ● Armor Piercing: 15 \n ● Knockback: 0.175 \n ● Swing Delay: 0.5s \n ● Range: 28 (1.2 Tiles)
+"""
+
+[template_spear]
+text: Spear
+description:"""
+ Encumbrance: 0.6 KG \n
+It's a spear. It is long.
+\n ● Damage: 15 \n ● Armor Piercing: 15 \n ● Knockback: 0.175 \n ● Swing Delay: 0.9s \n ● Range: 60 (3 Tiles)
+"""
+
+[template_bat]
+text: Bat
+description:"""
+ Encumbrance: 1.5 KG \n
+Weapon of baseball players. Moderate damage with no armor piercing.
+\n ● Damage: 20 \n ● Armor Piercing: 0 \n ● Knockback: 0.375 \n ● Swing Delay: 1.1s \n ● Range: 35 (1.75 Tiles)
+"""
+
+[template_axe]
+text: Axe
+description:"""
+ Encumbrance: 3 KG \n
+An old crafted axe that can easily chop down a tree, or a head.
+\n ● Damage: 20 \n ● Armor Piercing: 20 \n ● Knockback: 0.450 \n ● Swing Delay: 1.5s \n ● Range: 36 (1.8 Tiles)
+"""
+
+[template_fireAxe]
+text: Fire Axe
+description:"""
+ Encumbrance: 2 KG \n
+Heavy life saving tool is now a killing machine's weapon
+\n ● Damage: 35 \n ● Armor Piercing: 35 \n ● Knockback: 0.650 \n ● Swing Delay: 1.3s \n ● Range: 38 (1.9 Tiles)
+"""
+
+[template_machete]
+text: Machete
+description:"""
+ Encumbrance: 1 KG \n
+Rarest melee weapon. Sharp, light and deadly.
+\n ● Damage: 60 \n ● Armor Piercing: 15 \n ● Knockback: 0.450 \n ● Swing Delay: 1s \n ● Range: 45 (2.25 Tiles)
+"""
+
+
+[template_bloodFlower]
+text: Blood Flower
+description:"""
+ Encumbrance: 2 KG \n
+A rare artifact discovered by some unknown stalkers years ago. When held, the skin feels it so soft, hands start to shake and after a few seconds the holder feels refreshed. 
+\n ● Randomly Regenerates HP: -5, 10
+\n ● Radiation: +0.2/s
+\n ● Holding it in bag will effect.
+\n ● The effects does not stack!
+"""
+
+[template_grawy]
+text: Grawy
+description:"""
+ Encumbrance: 2 KG \n
+A really weird artifact. When held, the holder feels quite tough. It looks like a sea shell. Often carried and bought by scavenger since it is so good helper for them.
+\n ● Carry Weight: +15
+\n ● Melee Damage Multiplier: +0.3x
+\n ● Radiation: +0.25/s
+\n ● Holding it in bag will effect.
+\n ● The effects does not stack!
+"""
+
+[template_redStone]
+text: Red Stone
+description:"""
+ Encumbrance: 2 KG \n
+ One of the most common artifacts. It also acts weird. It is found in Springboard anomalies and many thing is known about it. People think that somewhat it consumes the food inside stomach to fight radiation, it is still meaningless to scientists.
+\n ● Hunger: -0.05/s
+\n ● Radiation: -0.3/s
+\n ● Holding it in bag will effect.
+\n ● The effects does not stack!
+"""
+
+[template_remedyRose]
+text: Remedy Rose
+description:"""
+ Encumbrance: 0.2 KG \n
+Rare Artifact. Quite weird rose found by Marauder Aleria. Only one is found so it is quite expensive, but at the same time quite useful. It is too regenerative. Just cutting one of its leaves will grow it back.
+\n ● Healing While Not Attackking: +1/s
+\n ● Bleeding: -0.1
+\n ● Melee Damage Multiplier: -0.45x
+\n ● Holding it in bag will effect.
+\n ● The effects does not stack!
+"""
+
+[template_ruby]
+text: Ruby
+description:"""
+ Encumbrance: 2 KG \n
+An artifact found in red anomalies. With zero negative effects
+\n ● Medkit Effectiveness: +5
+\n ● Holding it in bag will effect.
+\n ● The effects does not stack!
+"""
+
+[template_shock]
+text: Shock
+description:"""
+ Encumbrance: 2 KG \n
+A blue shiny artifact found inside electrical anomalies. It emits bright light. Shot bullets are powered.
+\n ● Bullet Damage: +10
+\n ● Radiation: +0.25/s
+\n ● Holding it in bag will effect.
+\n ● The effects does not stack!
+"""
+
+#____________________________ CRAFTINGS __________________________________#
+
+[template_craftRags]
+text: Craft Rags
+
+[template_craftKnife]
+text: Make Scrap Knife
+
+[template_craftBow]
+text: Make Bow
+
+[template_craftArrow]
+text: Make Arrows
+
+[template_sawPlank]
+text: Saw Log
+
+[template_craftBat]
+text: Make Bat
+
+[template_craftAxe]
+text: Make Axe
+
+[template_craftSpear]
+text: Make Spear
+
+[template_craftMachete]
+text: Make Machete
+
+[template_craftMedkit]
+text: Make Medical Kit
+
+[template_craftAI2MEDKIT]
+text: Make AI-2 Med.
+
+[template_craftifakMedkit]
+text: Make IFAK
+
+[template_craftRadkit]
+text: Make Radkit
+
+[template_makeGrizzlyMedkit]
+text: Make Grizzly Medkit
+
+[template_craftAntidote]
+text: Make Antidote 
+
+[template_craftBandage]
+text: Make Bandage 4x
+
+[template_craftGauze]
+text: Make Gauze 3x
+
+
+[template_craftLeatherJacket]
+text: Leather Jacket
+
+[template_craftBanditJacket]
+text: Bandit Jacket
+
+[template_craftSunriseSuit]
+text: Sunrise Suit
+
+[template_craftHazmatSuit]
+text: Hazmat Suit
+
+[template_craftDuffleBag]
+text: Duffle Bag
+
+[template_craftParatusBag]
+text:Paratus Bag
+
+[template_craft6sh118Bag]
+text:6Sh118 Bag
+
+
+
+
+#Закладка
+
+[template_makeMetalSheet]
+text: Make Metal Sheet
+
+[template_repairpm]
+text: Repair PM
+
+[template_repairmp5]
+text: Repair MP-5
+
+[template_repairsvt40]
+text: Repair SVT-40
+
+[template_repairtoz34]
+text: Repair TOZ-34
+
+[template_repairak47]
+text: Repair AK-47
+
+[template_repairlr300]
+text: Repair LR-300
+
+[template_repairUsp]
+text: Repair USP
+
+[template_repairVityaz]
+text: Repair Vityaz
+
+[template_repairGroza]
+text: Repair Groza
+
+[template_repairFn2000]
+text: Repair FN2K
+
+[template_repairVal]
+text: Repair VAL
+
+[template_repairGaussRifle]
+text: Repair Gauss
+
+[template_repairXr1]
+text: Repair XR1
+
+[template_craftHammer]
+text: Make Hammer
+text_ru: Создать: Молоток
+
+[template_craftSewingCloth]
+text: Sew Sewing Clothes (5x)
+text_ru: Создать: Швейная Ткань (5х)
+
+[template_craftNails]
+text: Make Nails
+text_ru: Создать: Гвозди
+
+[template_cookMeat]
+text: Cook Meat
+text_ru: Приготовить: Мясо
+
+[template_cleanWater]
+text: Sterilize Water
+text_ru: Очистить: Грязная вода
+
+[template_scavenge]
+text: Scavenge
+
+
+#____________________________ PDA INFOS __________________________________#
+
+#Закладка 
+
+
+
+[template_iAndrew]
+displayText: Andrew
+displayDescription: He was a leader of a small group of stalkers. He sells some stuff and looks for parts for his table.
+
+[template_iWalter]
+displayText: Walter
+displayDescription: Walter is a craftsman came from faraway lands. He is able to craft some unusual armors, platemails boots and anything else. He needs some supplies to craft armours and he gives some information about Hornbugs
+
+[template_iBarkeeper]
+displayText: Barkeeper
+displayDescription: Barkeeper was a known local trader and also expert stalker in the Zone, located in Rostok which was guarded by Duty. He moved outside of the zone after the nuclear wars.
+
+[template_iAlex]
+displayText: Alex
+displayDescription: Alex is a retired bandit mechanic. He left bandits due to their current situation and moved to the Trader Post. He always buys mechanical tools for his team, and also can sell tools. He has a good will against the bad reputated people. Located in Bar.
+
+[template_iMitka]
+displayText: Mitka
+displayDescription: Mitka is an old tailor came from Liubech-1 station, had lots of huge troubles at the Liubech outlands and came to the Trader Post as a tailor. Trades clothings. Alex's friend.
+
+[template_iDmitry]
+displayText: Dmitry
+displayDescription: Ivan's close friend. He does nothing rather than sitting and chilling all day. Stalkers often complain about seeing him all day.
+
+[template_iFarmer]
+displayText: Farmer
+displayDescription: A group of farmer awaiting for Alex's package.
+
+[template_iHadrian]
+displayText: Hadrian
+displayDescription: Veteran wastelander warrior. 
+
+[template_iHenry]
+displayText: Henry
+displayDescription: He is a blackmarket trader. Henry often trades illegal stuff, such as artifacts. 
+
+[template_iHip]
+displayText: Hip
+displayDescription: She is a former Freedom member. She is one of the first female stalkers appeared in the Zone, before the nuclear wars. She is looking for adventure.
+
+[template_iIvan]
+displayText: Ivan
+displayDescription: Dmitry's close friend. Does the same Dmitry does.
+
+[template_iMark]
+displayText: Mark
+displayDescription: A lone wastelander. He is in hazmat suit. He is so weird guy.
+
+[template_iNimble]
+displayText: Nimble
+displayDescription: He is one of the survived stalkers. He trades rare guns. 
+
+[template_iNimblesWife]
+displayText: Nimble's Wife
+displayDescription: She is Nimble's wife who baked the major part of breads consumed in the Zone.
+
+[template_iPilot]
+displayText: Pilot
+displayDescription: He is from military, but likes to do business with stalkers.
+
+[template_iScavenger]
+displayText: Scavenger
+displayDescription: No one knows why he likes absolute trash.
+
+[template_iSergoya]
+displayText: Sergoya
+displayDescription: Head of the Bar. He has a lot of really serious tasks.
+
+[template_iSidorovich]
+displayText: Sidorovich
+displayDescription: The legendary trader. Nowadays he is not quite visited. Since the stalker population got decreased but the "Survivor" population increased after the nuclear war.
+
+[template_iFlora]
+displayText: Flora
+displayDescription: The weapon trader. She trades most of the common guns stalkers use. She really doesn't like bad reputated people, since she sells most of her weaponry to known people. But her prices are good.
+
+[template_iSophia]
+displayText: Sophia
+displayDescription: She is an old nurse. She was with a group of wastelanders, she moved to a little hospital in city and created large business with stalkers and bandits.
+
+[template_iStrelok]
+displayText: Strelok
+displayDescription: The legendary stalker. He managed to shut down the Brain Scorcher. And he gained a large reputation in the Zone. He is now old.
+
+[template_i]
+displayText: 
+displayDescription:
+
+[template_i]
+displayText: 
+displayDescription:
+
+[template_i]
+displayText: 
+displayDescription:
+
+[template_i]
+displayText: 
+displayDescription:
+
+[template_i]
+displayText: 
+displayDescription:
+
+
+[template_pdaWastelandersInfo]
+text: Info: Wastelanders
+description: Members of advanced men of desert survivors created by Turner, they came from a desert they call as Great Wasteland. Their objective is survive, They are made up of advanced wastelander squads, they were having pain with local bandits and mutants. \n -Leader: Turner \n -Main Locations: Crater, Great Wasteland, Warehouse \n Allies: Survivors, Stalkers, Nomads, Duty, Delta, PCWRC \n Enemies: Bandits, Marauders, Monolith, Sin
+description_tr: Turner'ın öncülüğünde bilgin çöl hayatta kalanlarından oluşan bir gruptur, onlar Great Wasteland adını verdikleri bir çölden geldiler. Amaçları hayatta kalmak, Gelişmiş Wastelander takımlarından oluşurlar. Bölgedeki banditler ve mutantlarla büyük bir bela içindedirler \n -Lider: Turner \n -Ana Konumlar: Great Wasteland, Depo
+
+[template_pdaNomadsInfo]
+text: Info: Nomads
+description: A group of poor Arab and Asian people. They came from a great desert. They are stil loosing their men against giants bugs they call as Hornbugs. Some of their men is literally using scimitars or handmade axes. Their goal is have a comfortable place to live. \n -Leader: John \n -Main Location: Deep Oasis \n Allies: Survivors, Stalkers, Wastelanders, Duty, Delta, PCWRC \n Enemies: Bandits, Marauders, Monolith, Sin
+description_tr: Bir avuç Arap ve Asyalı insanından oluşan bir grup. Büyük çölden geldiler. Hâlen üyelerini Hornbug adını verdikleri devasa böceklere kaybedyorlar. Adamlarından bazıları kelimenin tam anlamıyla kılıçlar ve ev yapımı balta kulanırlar. Amaçları yaşayacak rahat bir yer bulmaktır \n -Lider: John \n -Ana Konum: Derin Vaha
+
+[template_pdaStalkersInfo]
+text: Info: Stalkers
+description: Stalkers exploring the Zone on their own. Most stalkers work this way since being a member of a group takes precious time, and part of the loot. Some of them managed to get the outside of the Zone, and the others managed to get into the Zone and after the nuclear wars, almost all of them were wiped out. \n -Leader: They haven't got an official leader \n -Main Location: Warehouse, Crater, Red Forest \n Allies: Survivors, Wastelanders, Nomads, Duty, Delta \n Enemies: Bandits, Marauders, PCWRC, Monolith, Sin
+description_tr: Stalkerlar Zone'u kendi başlarına keşfederler. Çoğu stalkerlsr bu işi yağmaladıklarının bir miktarını ve vaktini verdikleri grupların üyesi olarak yaparlar. Bazıları nükleer savaşlardan Zone dışına çıkmayı başardı, diğer insanlar ise Zone'a girmeyi. Olaylardan sonra çoğu stalker yok oldu. \n -Lider: Belirli bir liderleri yok \n -Ana Konumlar: Depo, Krater, Kızıl Orman
+
+[template_pdaDeltaInfo]
+text: Info: Delta
+description: The Delta Faction is an organization of people from many factions have destroyed with the Catastrophe such as Freedom. Their men is highly skilled in mutant tamers. And a different tactic, uses mutants in fights. Their goal is same to Freedom's goal. \n -Leader: Barry \n -Locations: Dead Farms \n Allies: Survivors, Stalkers, Wastelanders, Marauders, Nomads \n Enemies: Duty, PCWRC, Bandits, Monolith, Sin
+
+[template_pdaSurvivorsInfo]
+text: Info: Survivors
+description: Survivors are people who managed to survive the Catastrophe inside underground tunnels, bunkers, shelters and metro tunnels. They're poorly armed rookies. They usually move in small groups. And mostly join other post-catastrophe factions. Neutral with several factions. \n -Leader: None, they're usually alone \n Locations: Trader Post \n Allies: Stalkers, Wastelanders, Nomads, Duty, Delta, PCWRC \n Enemies: Marauders, Bandits, Monolith, Sin
+
+[template_pdaMaraudersInfo]
+text: Info: Marauders
+description: The Marauders are ruthless mercenaries such as criminals, thieves and fugitives. It is a vigorous group. Most of its members are retired and veteran Bandits and Mercs dislikes their situation, while some members are criminal outlaws from around the world. They don't commit many crimes like bandits but still a huge threat. They're well-organized and tactical. They're creating a huge fear for Survivors. \n -Leader: Blade \n -Locations: Many \n Allies: Bandits, Delta \n Enemies: Survivors, Stalkers, Wastelanders, Nomads, Duty, PCWRC, Monolith, Sin
+
+[template_pdaDutyInfo]
+text: Info: Duty
+description: A paramilitary group known for its discipline, whose members live according to a strict code. Their primary objective was protecting the outside world from the Zone's dangers but their goals were failed cause of the nuclear wars outside of the Zone. Their current goal is getting out of the Zone. \n -Leader: Voronin \n -Main Location: Yantar \n Allies: Survivors, Stalkers, Wastelanders, Nomads, PCWRC \n Enemies: Delta, Marauders, Bandits, Monolith, Sin
+description_tr: Disipliniyle bilinen bir askeri gruptur, belirli bir düzende yaşayan üyeleriyle. Onların birincil görevleri dış dünyayı Zone'dan korumakdı fakat nükleer savaşlar sonrası bütün planlar suya düştü. Şuanlık amaçları ise Zone'dan çıkabilmekdir \n -Lider: General Voronin \n -Ana Konum: Yantar
+
+[template_pdaBanditInfo]
+text: Info: Bandits:
+description: Members of the criminal underworld who came to the Zone and escaped from there for different reasons: to make money by selling artifacts, hide from the law or trade in weapons. They are made up of poor survivors who move in groups, a big nuisance to the survivors because of their dense population. \n -Leader: Unknown \n -Main Locations: Crater, Wasteland \n Allies: Marauders \n Enemies: Survivors, Stalkers, Wastelanders, Nomads, Duty, Delta, PCWRC, Monolith, Sin
+description_tr: Bölgeye giden ve farklı nedenlerle oradan kaçan yeraltı suç dünyasının üyeleri, nedenleri: artefakt satarak para kazanmak, kanundan saklanmak veya silah ticareti yapmak. Gruplar halinde hareket eden fakir insanlardan oluşuyorlar, bu da yoğun nüfusları nedeniyle stalkerlar ve hayatta kalanlar için büyük bir sıkıntı yaratıyor. \n -Lider: Bilinmiyor \n -Ana Konumlar: Krater, Wasteland
+
+[template_pdaMonolithInfo]
+text: Info: Monolith
+description: They are a brainwashed group that still managed to protect the center of Chernobyl despite the events of nuclear wars outside of the Zone \n -Leader: C-Consciousness \n -Main Locations: Pripyat, Yantar \n Allies: Sin \n Enemies: Survivors, Stalkers, Wastelanders, Bandits, Marauders, Nomads, Duty, Delta, PCWRC
+description_tr: Çernobilin merkezini korumayı dış dünyadaki nükleer savaşlara rağmen hâlen sürdüren beyinleri yıkanmış askerlerden oluşan bir gruptur \n -Lider: C-Consciousness \n -Ana Konumlar: Pripyat, Yantar
+
+[template_pdaSinInfo]
+text: Info: Sin
+description: Almost zombified, cannibal Sin members also called Dark Stalkers are bloody fanatics believes the essence of the Zone. They attack everyone what they see, Allied with mutants. They are located in an area filled with unknown mutant generators, the job they are doing in there is unknown, with their religion. \n -Leader: Unknown \n -Main Location: Great Wasteland \n Allies: Monolith \n Enemies: Survivors, Stalkers, Wastelanders, Nomads, Bandits, Marauders, Duty, Delta, PCWRC
+description_tr: Neredeyse zombileşmiş, yamyamlaşmış sin üyeleri bir başka deyişle Dark Stalker'lar Zone'nun ruhuna ve özüne inanan fanatiklerdir. Ne görürlerse saldırırlar, mutantlarla dost halindedirler. Bilinmeyen mutant üreten generatorlarla dolu bir bölgede bulunuyorlar, orda ne yaptıkları dinleri gibi bilinmiyor. \n -Lider: Bilinmiyor \n -Ana Konumlar: Great Wasteland

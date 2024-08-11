@@ -1,0 +1,45 @@
+
+[core]
+copyFrom:"""
+ROOT:/codes/temp/resources.template,
+ROOT:/codes/temp/effects.template,
+ROOT:strings.txt """
+extraBuildRangeWhenBuildingThis: 20
+fogOfWarSightRange:0
+mass: 9000
+isBuilding: true
+autoTriggerCheckRate: every8Frames
+
+[action_destroyBuilding]
+text: Destroy
+description: Destroy the building. Resources will drop.
+buildSpeed: 0.5s
+price: 0
+isVisible: true
+pos: 0
+displayType: infoOnly
+deleteSelf: true
+
+[hiddenAction_autoTags]
+autoTriggerOnEvent: created
+temporarilyAddTags: smallWoodenObject, damageable
+
+[graphics]
+image_shadow:AUTO_ANIMATED
+shadowOffsetX:2
+shadowOffsetY:-4
+
+[decal_ssao]
+layer: beforeBody
+order: 1
+imageStack: SHARED:light_50.png
+total_frames: 1
+stack_hOffset: 0
+hOffset: 0
+onlyWithZoomLevelOrMore:0
+dirOffset: 0
+imageScale: 0.8
+yOffsetRelative: 0
+xOffsetRelative: 0
+alpha: 0.25
+color: black

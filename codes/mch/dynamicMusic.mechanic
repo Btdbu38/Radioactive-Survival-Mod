@@ -1,0 +1,51 @@
+[core]
+@memory musicPlaying:bool
+
+[hiddenAction_setMusicPlayingToFalse]
+autoTrigger: if not self.tags(includes="musicMemorySet")
+temporarilyAddTags: musicMemorySet
+setUnitMemory: musicPlaying=false
+
+[hiddenAction_triggerProjectZomboidZombieChaseOST]
+autoTrigger: if self.numberOfUnitsInAllTeams(withTag="chasing", withinRange=450) > 16
+requireConditional: if memory.musicPlaying == false and self.globalTeamTags(includes="ost")
+alsoTriggerAction:"""
+playProjectZomboidSoundTracks
+"""
+
+[hiddenAction_playProjectZomboidSoundTracks]
+requireConditional: if memory.musicPlaying == false
+setUnitMemory: musicPlaying=true
+spawnUnits="""
+moreAreComing(spawnChance=0.85, maxSpawnLimit=1),
+run(spawnChance=0.85, maxSpawnLimit=1)
+"""
+
+[hiddenAction_noSoundTrackPlaying]
+autoTrigger: if self.numberOfUnitsInTeam(withTag="music") == 0
+setUnitMemory: musicPlaying=false
+
+
+
+[hiddenAction_checkIfInAction]
+autoTriggerOnEvent: tookDamage(withTag="bullet")
+requireConditional: if self.numberOfUnitsInAllTeams(withTag="aleria", withinRange=340) > 0
+temporarilyAddTags: inAction
+
+[hiddenAction_checkIfInActionTwo]
+autoTrigger: if self.numberOfUnitsInAllTeams(withTag="aleria", withinRange=340) == 0
+temporarilyRemoveTags: inAction
+
+[hiddenAction_triggerStalkerOST]
+autoTrigger: if self.tags(includes="inAction")
+requireConditional: if memory.musicPlaying == false and self.globalTeamTags(includes="ost")
+alsoTriggerAction:"""
+playStalkerOST
+"""
+
+[hiddenAction_playStalkerOST]
+requireConditional: if memory.musicPlaying == false
+setUnitMemory: musicPlaying=true
+spawnUnits="""
+combat3(spawnChance=1, maxSpawnLimit=1),
+"""

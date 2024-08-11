@@ -1,0 +1,136 @@
+
+[hiddenAction_startingItems]
+autoTriggerOnEvent: created
+temporarilyAddTags: all, lightClose, bloodFlowerDequip, redStoneDequip, grawyDequip, hatDequip, pmDequip, akDequip, mpDequip, lrDequip, tozDequip, svtDequip, bowDequip, knifeDequip, macheteDequip, axeDequip, fireAxeDequip, batDequip
+addResourcesWithLogic:"""
+reputation:100 + select(self.globalTeamTags(includes="touristMode"),15,0),
+armor:1, 
+hunger: 90 - select(self.globalTeamTags(includes="cruelMode"),20,0), 
+thirst: 95 - select(self.globalTeamTags(includes="cruelMode"),20,0), 
+radiation: 0 + select(self.globalTeamTags(includes="cruelMode"),10,0), 
+temperature: 20, 
+blood: 100,
+mental: 100,
+toxic: 0 + select(self.globalTeamTags(includes="cruelMode"),20,0), 
+stamina: 100, 
+maxstamina:100, 
+headHP:100, 
+armHP:100, 
+legHP:100,
+torsoHP:100,
+plank:1,
+money: 0 + select(self.globalTeamTags(includes="touristMode"),3000,0), 
+schoolBag: 0 + select(self.globalTeamTags(includes="touristMode"),1,0), 
+mre: 0 + select(self.globalTeamTags(includes="touristMode"),1,0), 
+snacks: 1 - select(self.globalTeamTags(includes="cruelMode"),1,0),
+soda: 1 - select(self.globalTeamTags(includes="cruelMode"),1,0)
+"""
+
+[hiddenAction_startingItemsMale]
+autoTriggerOnEvent: created
+requireConditional: if self.globalTeamTags(includes="male")
+addResources: strength: 2, fitness: 1, lightfooted: -1
+
+[hiddenAction_startingItemsFemale]
+autoTriggerOnEvent: created
+requireConditional: if self.globalTeamTags(includes="female")
+addResources: lightfooted: 1, nimble:1, fitness: 1, running:1, strength: -1
+
+
+[hiddenAction_startingItemsSoldier]
+autoTriggerOnEvent: created
+requireConditional: if self.globalTeamTags(includes="skirmisher")
+addResources: strength: 2, aiming: 3, crafting:-1, firstAid:-1
+alsoTriggerAction: startingItemsSoldier_t
+[hiddenAction_startingItemsSoldier_t]
+requireConditional: if self.globalTeamTags(includes="touristMode")
+addResources: usp:1, 45acp:30, leatherJacket:1
+
+[hiddenAction_startingItemsScout]
+autoTriggerOnEvent: created
+requireConditional: if self.globalTeamTags(includes="scout")
+addResources: lightfooted: 3, aiming: 3, strength:-1, nimble:-1, firstAid:-1, crafting:-1
+alsoTriggerAction: startingItemsScout_t
+[hiddenAction_startingItemsScout_t]
+requireConditional: if self.globalTeamTags(includes="touristMode")
+addResources: svt40:1, 762x54:20, soda:2
+
+[hiddenAction_startingItemsDancer]
+autoTriggerOnEvent: created
+requireConditional: if self.globalTeamTags(includes="dancer")
+addResources: lightfooted: 1, nimble: 1, running: 2, strength:-1, aiming:-1, crafting:-1, firstAid:-1
+alsoTriggerAction: startingItemsDancer_t
+[hiddenAction_startingItemsDancer_t]
+requireConditional: if self.globalTeamTags(includes="touristMode")
+addResources: emrNightVision:2, money: 3500
+
+[hiddenAction_startingItemsHunter]
+autoTriggerOnEvent: created
+requireConditional: if self.globalTeamTags(includes="hunter")
+addResources: knife: 15
+alsoTriggerAction: startingItemsHunter_t
+[hiddenAction_startingItemsHunter_t]
+requireConditional: if self.globalTeamTags(includes="touristMode")
+addResources: toz34:1, 12x70:15, rawMeat:3, trenchcoat:1
+
+[hiddenAction_startingItemsStalker]
+autoTriggerOnEvent: created
+requireConditional: if self.globalTeamTags(includes="stalker")
+addResources: nimble: 1, firstAid:-1
+alsoTriggerAction: startingItemsStalker_t
+[hiddenAction_startingItemsStalker_t]
+requireConditional: if self.globalTeamTags(includes="touristMode")
+addResources: detector:1, radkit:2, sunriseSuit:1, pm:1
+
+[hiddenAction_startingItemsThief]
+autoTriggerOnEvent: created
+requireConditional: if self.globalTeamTags(includes="thief")
+addResources: lightfooted: 2, blade:1, reputation: -6
+alsoTriggerAction: startingItemsThief_t
+[hiddenAction_startingItemsThief_t]
+requireConditional: if self.globalTeamTags(includes="touristMode")
+addResources: knife:1, vodka:2, banditJacket:1, pm:1, fuelCanister:1
+
+[hiddenAction_startingItemsLeaderSoul]
+autoTriggerOnEvent: created
+requireConditional: if self.globalTeamTags(includes="commander")
+addResources: strength: -1, fitness: -1
+alsoTriggerAction: startingItemsLs_t
+[hiddenAction_startingItemsLs_t]
+requireConditional: if self.globalTeamTags(includes="touristMode")
+addResources: pm:1, 9x18:36, radio:1
+
+[hiddenAction_startingItemsDoctor]
+autoTriggerOnEvent: created
+addResources: firstaid: 4, crafting:-1, aiming:-1, bandage: 3, gauze: 2, drug: 1, medkit: 1, medkitCar: 1, syringe: 2, radkit: 1
+requireConditional: if self.globalTeamTags(includes="medic")
+alsoTriggerAction: startingItemsDoc_t
+[hiddenAction_startingItemsDoc_t]
+requireConditional: if self.globalTeamTags(includes="touristMode")
+addResources:medkitAi2:5, radkit:2, hazmatSuit:1
+
+[hiddenAction_startingItemsWorker]
+autoTriggerOnEvent: created
+addResources: strength: 2, crafting: 4, firstAid:-1
+requireConditional: if self.globalTeamTags(includes="worker")
+alsoTriggerAction: startingItemsWorker_t
+[hiddenAction_startingItemsWorker_t]
+requireConditional: if self.globalTeamTags(includes="touristMode")
+addResources: axe:1, blowtorch:1, materialPackage:5, trenchcoat:1
+
+[hiddenAction_startingItemsTruckDriver]
+autoTriggerOnEvent: created
+addResources: strength: 1, firstAid:-1
+requireConditional: if self.globalTeamTags(includes="truckDriver")
+alsoTriggerAction: startingItems_t
+[hiddenAction_startingItems_t]
+requireConditional: if self.globalTeamTags(includes="touristMode")
+addResources: bat:1, cigarettes:10, vodka:2
+
+[hiddenAction_startingItemsUnemployed]
+autoTriggerOnEvent: created
+requireConditional: if self.globalTeamTags(includes="unemployed")
+alsoTriggerAction: startingItemsUnemp_t
+[hiddenAction_startingItemsUnemp_t]
+requireConditional: if self.globalTeamTags(includes="touristMode")
+addResources: fireAxe:1, trenchcoat:1, food:2, water:2

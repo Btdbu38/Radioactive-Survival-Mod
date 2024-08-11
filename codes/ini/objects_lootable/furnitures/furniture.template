@@ -1,0 +1,110 @@
+[core]
+copyFrom: ROOT:/codes/temp/dropLists.template, ROOT:/codes/temp/resources.template
+tags: furniture, object, loot
+radius: 10
+price: 10
+maxHp: 150
+showOnMinimap: false
+mass: 10000
+techLevel: 1
+buildSpeed: 0s
+isBio: true
+isBug: false
+isBuilding: true
+explodeOnDeath: false
+hideScorchMark: true
+isUnselectable: false
+createOnAggressiveTeam: true
+canNotBeDirectlyAttacked: true
+autoTriggerCooldownTime: 0.5s
+
+[hiddenAction_dontHaveLoot]
+autoTrigger: if not self.hasResources(npcLoot=1)
+temporarilyRemoveTags: loot
+
+[hiddenAction_haveLoot]
+autoTrigger: if self.customTimer(laterThanSeconds=750)
+temporarilyAddTags: loot
+addResources: npcLoot:1
+resetCustomTimer: true
+
+[hiddenAction_spawnCalculateVars]
+autoTriggerOnEvent: created
+addResources: lootAvailable: 1, npcLoot:1
+addResourcesWithLogic: maxItems: rnd(0,5)
+
+[hiddenAction_someoneOpening]
+autoTrigger: if self.numberOfUnitsInEnemyTeam(withTag="main", withinRange=33, greaterThan=0)
+requireConditional: if not self.resource(type='search', greaterThan=4) and not self.tags(includes="opened") 
+addResources: search: 1
+spawnEffects: CUSTOM:search
+#self.resource(type='lootAvailable', greaterThan=0)
+
+[hiddenAction_someoneOpenedMe]
+autoTrigger: if self.resource(type='search', greaterThan=4)
+addResources: search: -99
+temporarilyAddTags: opened
+
+[hiddenAction_someoneLootingItems]
+autoTrigger: if self.numberOfUnitsInEnemyTeam(withTag="main", withinRange=33, greaterThan=0) and not self.resource(type='isearch', greaterThan=3)
+requireConditional: if not self.resource(type='isearch', greaterThan=3) and self.resource(type='maxItems', greaterThan=0) and self.tags(includes="opened")
+addResources: isearch: 1
+spawnEffects: CUSTOM:search
+
+[hiddenAction_lootItem]
+autoTrigger: if self.resource(type='isearch', greaterThan=3)
+addResources: maxItems:-15, isearch:-15
+
+[resource_search]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Search Cooldown
+
+[resource_isearch]
+hidden: true
+displayRoundedDown: true
+displayNameShort: IT Search Cooldown
+
+[resource_lootAvailable]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Loot Available
+
+[resource_maxItems]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Max Items
+
+
+[effect_search]
+priority: critical
+life: 300
+attachedToUnit: false
+scaleFrom: 1.5
+scaleTo: 1.5
+alpha: 3
+drawUnderUnits: false
+liveAfterAttachedDies: true
+image: ROOT:/images/loading.png
+total_frames: 16
+animateFrameStart: 0
+animateFrameEnd: 15
+animateFrameSpeed: 0.5
+
+[graphics]
+image_offsetY: -5
+total_frames: 1
+imageScale: 0.8
+image: ROOT:/images/objects/${image}.png
+image_shadow: auto
+shadowOffsetX: 2
+shadowOffsetY: -4
+icon_zoomed_out_neverShow: true
+showEnergyBar: false
+
+[attack]
+canAttack: false
+
+[movement]
+movementType: BUILDING
+moveSpeed: 0

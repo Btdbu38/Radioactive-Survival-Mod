@@ -1,0 +1,380 @@
+
+[effect_deleteSmoke]
+priority: critical
+attachedToUnit: false
+life: 300
+physics: false
+scaleFrom: 2
+scaleTo: 1.7
+alpha: 0.7
+dirOffset: 20
+dirOffsetRandom: 4
+dirSpeed:0.5
+dirSpeedRandom:0.5
+xSpeedRelativeRandom: 0.3
+ySpeedRelativeRandom: 0.3
+hSpeed: 0.05
+stripIndex: effects
+frameIndex: 0
+color: #433b34
+drawUnderUnits: false
+
+[effect_hurt]
+priority: critical
+life: 100
+spawnChance: 0.9
+attachedToUnit: false
+scaleFrom: 1.1
+scaleTo: 1.1
+alpha: 1
+drawUnderUnits: false
+liveAfterAttachedDies: true
+dirOffsetRandom: 130
+image: ROOT:/images/effects/hurt.png
+total_frames: 6
+animateFrameStart: 0
+animateFrameEnd: 6
+animateFrameSpeed: 0.4
+xOffsetRelativeRandom: 10
+yOffsetRelativeRandom: 10
+alsoEmitEffects=CUSTOM:sparkHR*2
+
+[effect_sparkHR]
+priority: high
+attachedToUnit: false
+life: 20
+physics: true
+scaleFrom: 1
+scaleTo: 1
+dirOffset: 20
+dirOffsetRandom: 4
+dirSpeed:5
+dirSpeedRandom:2
+xSpeedRelativeRandom: 0.6
+ySpeedRelativeRandom: 1
+hSpeed: 1.6
+alpha:3
+image:ROOT:/images/effects/spark.png
+drawUnderUnits: false
+xOffsetRelativeRandom: 0.3
+yOffsetRelativeRandom: 0.3
+
+
+[effect_dirty]
+priority: critical
+life: 200
+spawnChance:0.8
+attachedToUnit: false
+scaleFrom: 1.2
+scaleTo: 1.5
+alpha: 1
+drawUnderUnits: false
+liveAfterAttachedDies: true
+image: ROOT:/images/effects/dirty.png
+total_frames: 5
+animateFrameStart: 0
+animateFrameEnd: 5
+animateFrameSpeed: 0.35
+alwayStartDirAtZero: true
+alsoEmitEffects: CUSTOM:dust*2, CUSTOM:dust2*3, CUSTOM:crater
+
+[effect_crater]
+spawnChance: 0.8
+image:ROOT:/images/effects/crater.png
+priority: critical
+life: 250
+fadeOut: true
+attachedToUnit: false
+dirOffsetRandom: 360
+alpha: 1.5
+scaleFrom: 0.2
+scaleTo: 0.2
+drawUnderUnits: true
+createWhenOverLiquid: false
+
+[effect_dust]
+priority: high
+attachedToUnit: false
+life: 30
+physics: true
+scaleFrom: 2.4
+scaleTo: 3
+dirOffset: 18
+dirOffsetRandom: 9
+dirSpeed:3
+dirSpeedRandom:2
+xSpeedRelativeRandom: 1
+ySpeedRelativeRandom: 1
+hSpeed: 2.5
+alpha: 2
+image: ROOT:/images/effects/dust2.png
+drawUnderUnits: false
+
+[effect_dust2]
+priority: high
+attachedToUnit: false
+life: 50
+physics: true
+scaleFrom: 0.55
+scaleTo: 1.5
+#xSpeedRelativeRandom: 0
+ySpeedRelativeRandom: 0
+hSpeed: 1.5
+hSpeedRandom: 1
+alpha: 0.8
+image: ROOT:/images/effects/dust.png
+drawUnderUnits: false
+alwayStartDirAtZero: true
+
+[effect_bullet]
+fadeOut:false
+priority: verylow
+attachedToUnit: false
+life: 250
+physics: true
+scaleFrom: 1
+scaleTo: 1
+dirOffset: 20
+dirOffsetRandom: 4
+dirSpeed:5
+dirSpeedRandom:2
+xSpeedRelativeRandom: 0.3
+hSpeed: 2
+image: ROOT:/images/effects/bullet.png
+drawUnderUnits: false
+yOffsetRelative: 3
+xSpeedRelative: 0.3
+
+[effect_smoke]
+frameIndex: 0
+stripIndex: dust
+spawnChance: 1
+priority: high
+createWhenZoomedOut: false
+life: 60
+fadeOut: true
+attachedToUnit: false
+#color: #fdc14d
+color: #FFFFFF
+fadeInTime:0.1
+scaleFrom: 0.5
+scaleTo: 1.25
+alpha: 0.8
+drawUnderUnits:false
+liveAfterAttachedDies: false
+hSpeed: 0.01
+dirOffsetRandom:10
+ySpeedRelative: 0.3
+ySpeedRelativeRandom: 0.05
+xSpeedRelativeRandom: 0.25
+yOffsetRelative: 5
+atmospheric: true
+color: white
+
+[effect_trail]
+image: ROOT:/images/effects/mermi.png
+priority: verylow
+scaleFrom: 0.4
+scaleTo: 0.4
+alpha: 0.3
+life: 20
+attachedToUnit: false
+drawUnderUnits: false
+fadeOut: true
+yOffsetRelative: -3
+xOffsetRelativeRandom: 0.1
+color: gray
+
+[effect_blood2]
+priority: critical
+attachedToUnit: false
+life: 50
+dirOffset: 10
+dirOffsetRandom: 4
+dirSpeed:2
+dirSpeedRandom:2
+physics: true
+scaleFrom: 0.6
+scaleTo: 0.07
+xSpeedRelativeRandom: 0.6
+ySpeedRelativeRandom: 0.6
+hSpeed: 2
+image:ROOT:/images/effects/blood.png
+drawUnderUnits: false
+
+[effect_bloodBulletBack]
+alpha: 0.6
+priority: low
+dirOffsetRandom: 360
+attachedToUnit: false
+life: 45
+physics: true
+scaleFrom: 0.3
+scaleTo: 0.85
+xSpeedRelativeRandom: 0.08
+ySpeedRelativeRandom: -2
+ySpeedRelative: 2
+hSpeed: 0.3
+hSpeedRandom: 0.2
+hOffset: 12
+image: ROOT:/images/effects/blood.png
+drawUnderUnits: false
+
+
+[effect_smokeShot]
+stripIndex: smoke_white
+frameIndex: 0
+priority: high
+life: 50
+ySpeedRelative: 0.3
+ySpeedRelativeRandom: 0.3
+xSpeedRelativeRandom: 0.1
+fadeOut: true
+attachedToUnit: false
+scaleFrom: 0.2
+scaleTo: 0.5
+alpha: 0.9
+drawUnderUnits: false
+yOffsetRelative: 9
+
+[effect_smokeShot2]
+stripIndex: smoke_white
+frameIndex: 0
+priority: high
+life: 50
+ySpeedRelativeRandom: 0.1
+xSpeedRelativeRandom: 0.3
+fadeOut: true
+attachedToUnit: false
+scaleFrom: 0.2
+scaleTo: 0.5
+alpha: 0.9
+drawUnderUnits: false
+yOffsetRelative: 8
+
+#gun effects
+
+[effect_shootflame]
+life: 60
+fadeInTime: 0
+fadeOut: false
+attachedToUnit: true
+image: ROOT:images/effects/shootflame.png
+total_frames: 4
+animateFrameStart: 0
+animateFrameEnd: 3
+animateFramePingPong: false
+animateFrameSpeed: 0.2
+alpha:1
+scaleFrom: 0.6
+scaleTo: 0.4
+hOffset: 5
+yOffsetRelative: 5
+
+
+[effect_shootflame2]
+life: 60
+fadeInTime: 0
+fadeOut: false
+attachedToUnit: true
+image: ROOT:images/effects/shootflame2.png
+total_frames: 4
+animateFrameStart: 0
+animateFrameEnd: 3
+animateFramePingPong: false
+animateFrameSpeed: 0.2
+alpha:1
+scaleFrom: 0.72
+scaleTo: 0.72
+hOffset: 5
+yOffsetRelative: 5
+
+#melee effects
+
+[effect_expSword]
+life: 60
+hOffset: 0
+fadeInTime: 0
+fadeOut: true
+attachedToUnit: true
+image: ROOT:/images/effects/expSword.png
+total_frames: 5
+animateFrameStart: 0
+animateFrameEnd: 4
+animateFramePingPong: false
+animateFrameSpeed: 0.19
+alpha:0.8
+scaleFrom: 0.6
+scaleTo: 0.6
+
+
+[template_swing]
+life: 60
+hOffset: 17
+fadeInTime: 0
+fadeOut: true
+attachedToUnit: true
+image: ROOT:/images/effects/swingSharp.png
+total_frames: 5
+animateFrameStart: 0
+animateFrameEnd: 4
+animateFramePingPong: false
+animateFrameSpeed: 0.19
+alpha:1
+scaleFrom: 0.9
+scaleTo: 0.9
+
+[effect_knifeSwing]
+@copyFromSection: template_swing
+image: ROOT:/images/effects/swingSharp.png
+scaleFrom: 0.4
+scaleTo: 0.4
+
+[effect_spearSwing]
+@copyFromSection: template_swing
+image: ROOT:/images/effects/swingSpear.png
+
+[effect_batSwing]
+@copyFromSection: template_swing
+image: ROOT:/images/effects/swingBat.png
+
+[effect_axeSwing]
+@copyFromSection: template_swing
+image: ROOT:/images/effects/swingAxe.png
+
+[effect_fireAxeSwing]
+@copyFromSection: template_swing
+image: ROOT:/images/effects/swingFireAxe.png
+
+[effect_macheteSwing]
+@copyFromSection: template_swing
+image: ROOT:/images/effects/swingSharp.png
+
+
+
+###################################
+
+[effect_axeEffect]
+life: 1
+image: SHARED:blank.png
+alsoPlaySound:ROOT:/soundFx/weapon_melee/axeHit1.ogg:0.6, ROOT:/soundFx/weapon_melee/axeHit2.ogg:0.6, ROOT:/soundFx/weapon_melee/axeHit3.ogg:0.6
+
+[effect_knifeEffect]
+life: 1
+image: SHARED:blank.png
+alsoPlaySound:ROOT:/soundFx/weapon_melee/knifeHit1.ogg:0.6, ROOT:/soundFx/weapon_melee/knifeHit2.ogg:0.6, ROOT:/soundFx/weapon_melee/knifeHit3.ogg:0.6
+
+[effect_spearEffect]
+life: 1
+image: SHARED:blank.png
+alsoPlaySound:ROOT:/soundFx/weapon_melee/knifeHit1.ogg:1, ROOT:/soundFx/weapon_melee/knifeHit2.ogg:1, ROOT:/soundFx/weapon_melee/knifeHit3.ogg:1
+
+[effect_batEffect]
+life: 1
+image: SHARED:blank.png
+alsoPlaySound:ROOT:/soundFx/weapon_melee/batHit1.ogg:0.6, ROOT:/soundFx/weapon_melee/batHit2.ogg:0.6, ROOT:/soundFx/weapon_melee/batHit3.ogg:0.6
+
+[effect_macheteEffect]
+life: 1
+image: SHARED:blank.png
+alsoPlaySound: ROOT:/soundFx/weapon_melee/macheteHit1.ogg:0.8, ROOT:/soundFx/weapon_melee/macheteHit2.ogg:0.8, ROOT:/soundFx/weapon_melee/macheteHit3.ogg:0.8

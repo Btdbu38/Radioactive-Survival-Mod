@@ -1,0 +1,80 @@
+[core]
+copyFrom: ROOT:/codes/temp/resources.template
+tags: cover, tree, object, smallWoodenObject
+displayText: Tree
+mass: 99999
+buildSpeed: 0s
+radius: 5
+isBio: true
+isBug: false
+isBuilding: true
+explodeOnDeath: false
+hideScorchMark: true
+price: wood: 8, cloth: 3
+maxHp: 400
+showOnMinimap: false
+createOnAggressiveTeam: true
+stayNeutral:true
+
+[hiddenAction_switch]
+autoTrigger: if not self.hasFlag(id=1)
+switchToAggressiveTeam: true
+addResources: setFlag=1
+
+[hiddenAction_chopped]
+autoTriggerOnEvent: destroyed
+spawnUnits:"""
+wood(spawnChance= 0.33, offsetRandomX=10, offsetRandomY=10),
+wood(spawnChance= 0.33, offsetRandomX=10, offsetRandomY=10),
+wood(spawnChance= 0.33, offsetRandomX=10, offsetRandomY=10),
+wood(spawnChance= 0.33, offsetRandomX=10, offsetRandomY=10),
+wood(spawnChance= 0.33, offsetRandomX=10, offsetRandomY=10),
+wood(spawnChance= 0.33, offsetRandomX=10, offsetRandomY=10),
+wood(spawnChance= 0.33, offsetRandomX=10, offsetRandomY=10),
+wood(spawnChance= 0.33, offsetRandomX=10, offsetRandomY=10),
+wood(spawnChance= 0.33, offsetRandomX=10, offsetRandomY=10),
+wood(spawnChance= 0.33, offsetRandomX=10, offsetRandomY=10),
+wood(spawnChance= 0.33, offsetRandomX=10, offsetRandomY=10)
+"""
+
+[hiddenAction_nearbyRuins]
+autoTrigger:"""
+if self.numberOfUnitsInTeam(withinRange=160, withTag="ruinSpawner1", greaterThan=0) or 
+self.numberOfUnitsInTeam(withinRange=160, withTag="ruinSpawner2", greaterThan=1) or  
+self.numberOfUnitsInTeam(withinRange=160, withTag="planeSpawner1", greaterThan=0) 
+"""
+deleteSelf: true
+playSoundAtUnit: warning
+
+[graphics]
+image: ROOT:/images/objects/${core.name}.png
+total_frames: 3
+animation_idle_start: 0
+animation_idle_end: 2
+animation_idle_speed: 4
+animation_idle_pingPong: true
+imageScale: 1
+image_shadow: shadow.png
+shadowOffsetX: 1
+shadowOffsetY: 1
+icon_zoomed_out_neverShow: true
+showHealthBar: false
+showEnergyBar: false
+
+[attack]
+canAttack: false
+
+[decal_treeshadow]
+xOffsetRelative: 10
+yOffsetRelative: 15
+image: SHARED:blank.png
+isVisible: true
+layer: shadow
+alpha: 0.29
+dirOffset: 30
+
+[movement]
+movementType: BUILDING
+
+[ai]
+notPassivelyTargetedByOtherUnits: true

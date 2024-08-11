@@ -1,0 +1,93 @@
+
+Radioactive Survival
+
+> Note <
+If you got disturbed by the usage of the sound file in this mod, you can ask us for them to be removed. This is not a commercial project.
+
+
+> Contact <
+Discord: @Btdbu
+Discord Server:
+https://discord.gg/Vxpm2kQnEp
+
+
+> Publishing <
+BTDbu
+Srainzy
+
+
+> Coding <
+BTDbu
+SioxerNikita (Easy Text, HP Bars)
+Hawko (Line of Sight)
+
+
+> Gameplay and Balance <
+BTDbu
+
+
+> Graphical Desing <
+BTDbu
+
+
+> Level and Tileset Desing <
+BTDbu
+Reik RTS
+
+
+> Musics <
+GSC Game World
+
+
+> Sound Effects <
+BTDbu
+GSC Game World
+BattleState Games
+
+
+> Translators <
+ZetterZet (Russian)
+
+
+> Beta Testers <
+Toasty Bread
+Mark Lolan
+RenterOflefort
+DAS
+u/Regular
+sk7m
+
+
+> Special Thanks <
+TheoDrHashiriya
+spacemanager
+Mark lolan
+Norio Katyusha
+Toasty Bread
+[ECM]HamSter
+
+
+> Lore <
+Factions named "Stalkers, Bandits, Sin, Duty, Monolith" their names, lores, functions are belonged to S.T.A.L.K.E.R Series
+
+Mutants named "Snork, Blind Dogs, Controller, Burer, Chimera" their lores and appearance is belonged to S.T.A.L.K.E.R Series
+
+Mutant named "Hornbug" and item named "Carapace" are inspired from Omega Vanitas
+
+Characters named "Strelok, Barkeeper, Scientists, Valerian" their names, lores and apperances is belonged to S.T.A.L.K.E.R Series
+
+Characters named "Alex and Mitka" are inspired from Stay Out
+
+Items named "Sunrise Suit, Sunrise Jacket, Leather Jacket" are inspired from S.T.A.L.K.E.R Series
+
+Item named "G-Suit" is inspired from Omega Vanitas
+
+Mod mechanics "Body health system, Realistic magazine mechanic" are inspired from Escape From Tarkov
+
+Mod mechanics "Skills system, Moodles" are inspired from Project Zomboid
+
+Ambiance, NPC voice, Item usage sounds from S.T.A.L.K.E.R Series
+
+Item pick sounds from Fallout series
+
+Footstep sounds from Escape from Tarkov

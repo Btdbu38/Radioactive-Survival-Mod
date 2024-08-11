@@ -1,0 +1,157 @@
+[core]
+
+@global clothingLoot:"""
+dirtyShirt(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+dirtyPants(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+dirtyLeatherJacket(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+oldSportJacket(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+oldBalaclava(spawnChance= 0.14, offsetRandomX=10, offsetRandomY=10),
+shabbySweater(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+leather(spawnChance= 0.25, offsetRandomX=10, offsetRandomY=10),
+highTechFabric(spawnChance= 0.025, offsetRandomX=10, offsetRandomY=10)
+"""
+
+@global hardwareLoot:"""
+blade(spawnChance= 0.45, offsetRandomX=10, offsetRandomY=10),
+plastic(spawnChance= 0.8, offsetRandomX=10, offsetRandomY=10),
+plank(spawnChance= 0.15, offsetRandomX=10, offsetRandomY=10),
+scrap(spawnChance= 0.6, offsetRandomX=10, offsetRandomY=10),
+cloth(spawnChance= 0.5, offsetRandomX=10, offsetRandomY=10),
+ductTape(spawnChance= 0.4, offsetRandomX=10, offsetRandomY=10),
+screws(spawnChance= 0.35, offsetRandomX=10, offsetRandomY=10),
+nails(spawnChance= 0.35, offsetRandomX=10, offsetRandomY=10),
+nails(spawnChance= 0.35, offsetRandomX=10, offsetRandomY=10),
+screwdriver(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+castMetal(spawnChance= 0.2, offsetRandomX=10, offsetRandomY=10),
+wheat(spawnChance= 0.05, offsetRandomX=10, offsetRandomY=10),
+radio(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+book(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+saw(spawnChance= 0.03, offsetRandomX=10, offsetRandomY=10)
+"""
+
+@global fridgeLoot:"""
+rawMeat(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+snacks(spawnChance= 0.13, offsetRandomX=10, offsetRandomY=10),
+crackers(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+water(spawnChance= 0.015, offsetRandomX=10, offsetRandomY=10),
+taintedWater(spawnChance= 0.04, offsetRandomX=10, offsetRandomY=10),
+soda(spawnChance= 0.08, offsetRandomX=10, offsetRandomY=10),
+fruitJuice(spawnChance= 0.08, offsetRandomX=10, offsetRandomY=10),
+vodka(spawnChance= 0.09, offsetRandomX=10, offsetRandomY=10),
+"""
+
+@global boxLoot1:"""
+rawMeat(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+food(spawnChance= 0.08, offsetRandomX=10, offsetRandomY=10),
+snacks(spawnChance= 0.13, offsetRandomX=10, offsetRandomY=10),
+cannedTuna(spawnChance= 0.05, offsetRandomX=10, offsetRandomY=10),
+crackers(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+mre(spawnChance= 0.01, offsetRandomX=10, offsetRandomY=10),
+water(spawnChance= 0.015, offsetRandomX=10, offsetRandomY=10),
+taintedWater(spawnChance= 0.04, offsetRandomX=10, offsetRandomY=10),
+soda(spawnChance= 0.08, offsetRandomX=10, offsetRandomY=10),
+fruitJuice(spawnChance= 0.08, offsetRandomX=10, offsetRandomY=10),
+vodka(spawnChance= 0.09, offsetRandomX=10, offsetRandomY=10),
+cigarettes(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+
+bandage(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+medkitAi2(spawnChance= 0.01, offsetRandomX=10, offsetRandomY=10),
+radkit(spawnChance= 0.01, offsetRandomX=10, offsetRandomY=10),
+bloodBag(spawnChance= 0.03, offsetRandomX=10, offsetRandomY=10),
+antidote(spawnChance=0.05, offsetRandomX=10, offsetRandomY=10),
+tweezer(spawnChance= 0.25, offsetRandomX=20, offsetRandomY=20),
+needle(spawnChance= 0.23, offsetRandomX=20, offsetRandomY=20),
+
+plank(spawnChance= 0.8, offsetRandomX=10, offsetRandomY=10),
+plastic(spawnChance= 0.8, offsetRandomX=10, offsetRandomY=10),
+scrap(spawnChance= 0.6, offsetRandomX=10, offsetRandomY=10),
+cloth(spawnChance= 0.5, offsetRandomX=10, offsetRandomY=10),
+ductTape(spawnChance= 0.4, offsetRandomX=10, offsetRandomY=10),
+screws(spawnChance= 0.35, offsetRandomX=10, offsetRandomY=10),
+nails(spawnChance= 0.35, offsetRandomX=10, offsetRandomY=10),
+nails(spawnChance= 0.35, offsetRandomX=10, offsetRandomY=10),
+screwdriver(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+castMetal(spawnChance= 0.2, offsetRandomX=10, offsetRandomY=10),
+wheat(spawnChance= 0.05, offsetRandomX=10, offsetRandomY=10),
+radio(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+book(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+carBattery(spawnChance= 0.03, offsetRandomX=10, offsetRandomY=10),
+money(spawnChance= 0.45, offsetRandomX=10, offsetRandomY=10),
+
+leatherJacket(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+
+
+12x70(spawnChance= 0.065, offsetRandomX=10, offsetRandomY=10),
+9x18(spawnChance= 0.08, offsetRandomX=10, offsetRandomY=10),
+9x19(spawnChance= 0.045, offsetRandomX=10, offsetRandomY=10),
+rifleParts(spawnChance= 0.03, offsetRandomX=10, offsetRandomY=10),
+rifleParts(spawnChance= 0.01, offsetRandomX=10, offsetRandomY=10),
+
+pistolParts(spawnChance= 0.007, offsetRandomX=10, offsetRandomY=10),
+pistolParts(spawnChance= 0.005, offsetRandomX=10, offsetRandomY=10),
+
+blade(spawnChance= 0.25, offsetRandomX=10, offsetRandomY=10),
+bat(spawnChance= 0.1, offsetRandomX=10, offsetRandomY=10),
+axe(spawnChance= 0.08, offsetRandomX=10, offsetRandomY=10),
+fireAxe(spawnChance= 0.01, offsetRandomX=10, offsetRandomY=10),
+machete(spawnChance= 0.005, offsetRandomX=10, offsetRandomY=10)
+"""
+	
+@global boxLootMedical:"""
+tweezer(spawnChance= 0.25, offsetRandomX=20, offsetRandomY=20),
+needle(spawnChance= 0.23, offsetRandomX=20, offsetRandomY=20),
+mre(spawnChance= 0.03, offsetRandomX=20, offsetRandomY=20),
+bloodBag(spawnChance= 0.1, offsetRandomX=20, offsetRandomY=20),
+antidote(spawnChance=0.6, offsetRandomX=20, offsetRandomY=20),
+antisolution(spawnChance=0.9, offsetRandomX=20, offsetRandomY=20),
+drug(spawnChance= 0.5, offsetRandomX=20, offsetRandomY=20),
+radkit(spawnChance= 0.1, offsetRandomX=20, offsetRandomY=20),
+antiraddrug(spawnChance= 0.1, offsetRandomX=20, offsetRandomY=20),
+medkitAi2(spawnChance= 0.4, offsetRandomX=20, offsetRandomY=20),
+bandage(spawnChance= 0.2, offsetRandomX=20, offsetRandomY=20),
+gauze(spawnChance= 0.3, offsetRandomX=20, offsetRandomY=20),
+syringe(spawnChance= 0.9, offsetRandomX=20, offsetRandomY=20),
+gauze(spawnChance= 0.5, offsetRandomX=20, offsetRandomY=20),
+painkillers(spawnChance= 0.5, offsetRandomX=20, offsetRandomY=20),
+medkitCar(spawnChance= 0.1, offsetRandomX=20, offsetRandomY=20),
+medkitIfak(spawnChance= 0.1, offsetRandomX=20, offsetRandomY=20)
+"""
+	
+@global boxLootMilitary:"""
+mre(spawnChance= 0.25, offsetRandomX=20, offsetRandomY=20),
+9x18*3(spawnChance= 0.6, offsetRandomX=20, offsetRandomY=20),
+9x19*2(spawnChance= 0.5, offsetRandomX=20, offsetRandomY=20),
+12x70*2(spawnChance= 0.4, offsetRandomX=20, offsetRandomY=20),
+545x39(spawnChance= 0.3, offsetRandomX=20, offsetRandomY=20),
+556x45(spawnChance= 0.2, offsetRandomX=20, offsetRandomY=20),
+762x54*2(spawnChance= 0.4, offsetRandomX=20, offsetRandomY=20),
+medkitIfak(spawnChance= 0.1, offsetRandomX=20, offsetRandomY=20),
+bandage(spawnChance= 0.15, offsetRandomX=20, offsetRandomY=20),
+oldVest(spawnChance= 0.18, offsetRandomX=20, offsetRandomY=20),
+fireAxe(offsetRandomX=20, offsetRandomY=20, spawnChance=0.08),
+"""
+
+@global boxLootAdvanced:"""
+mre(spawnChance= 1, offsetRandomX=20, offsetRandomY=20),
+fruitJuice(spawnChance= 0.3, offsetRandomX=20, offsetRandomY=20),
+vodka(spawnChance= 0.45, offsetRandomX=20, offsetRandomY=20),
+cigarettes(spawnChance= 0.5, offsetRandomX=20, offsetRandomY=20),
+cannedTuna(spawnChance= 0.1, offsetRandomX=20, offsetRandomY=20),
+crackers(spawnChance= 0.1, offsetRandomX=20, offsetRandomY=20),
+bloodBag(spawnChance= 0.5, offsetRandomX=20, offsetRandomY=20),
+9x18*3(spawnChance= 0.6, offsetRandomX=20, offsetRandomY=20),
+45acp*2(spawnChance= 0.5, offsetRandomX=20, offsetRandomY=20),
+12x70*2(spawnChance= 0.4, offsetRandomX=20, offsetRandomY=20),
+545x39(spawnChance= 0.3, offsetRandomX=20, offsetRandomY=20),
+556x45(spawnChance= 0.2, offsetRandomX=20, offsetRandomY=20),
+762x54*2(spawnChance= 0.4, offsetRandomX=20, offsetRandomY=20),
+soda(spawnChance=1, offsetRandomX=20, offsetRandomY=20),
+snacks(spawnChance=1, offsetRandomX=20, offsetRandomY=20),
+medkitGrizzly(spawnChance=1, offsetRandomX=20, offsetRandomY=20),
+radkit(spawnChance=1, offsetRandomX=20, offsetRandomY=20),
+antidote(spawnChance=1, offsetRandomX=20, offsetRandomY=20),
+screws(offsetRandomX=20, offsetRandomY=20, spawnChance=0.3),
+screwdriver(offsetRandomX=20, offsetRandomY=20, spawnChance=0.1),
+castMetal(offsetRandomX=20, offsetRandomY=20, spawnChance=0.2),
+bandage(spawnChance=1, offsetRandomX=20, offsetRandomY=20)
+"""

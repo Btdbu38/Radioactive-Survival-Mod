@@ -1,0 +1,13 @@
+[template_companionTemp]
+pos: 0.2
+isVisible: if memory.recruitment == true
+iconExtraImage:${section.iconImage}
+iconExtraColor: #FFFFFF
+displayType: infoOnly
+allowMultipleInQueue: false
+canPlayerCancel:true
+isActive: true
+buildSpeed: 0.3s
+
+
+

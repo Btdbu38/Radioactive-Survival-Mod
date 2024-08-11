@@ -1,0 +1,167 @@
+
+#Forces the units to move forward to enemy when the enemy hides in a cover for a long time
+#And immediately stops in direct contact
+[resource_chargeFactor]
+hidden: true
+
+[hiddenAction_chargeAddFactor]
+autoTriggerOnEvent: newMessage(withTag="losCheckNotPassed")
+addResources: chargeFactor: 1
+requireConditional:"""
+if not self.isMoving() 
+and self.isAttacking()
+and not self.tags(includes="melee") 
+and self.resource.chargeFactor <= 4 """
+
+[hiddenAction_startCharging]
+autoTrigger: if self.resource.chargeFactor >= 4
+requireConditional: if self.isAttacking() and not self.tags(includes="melee") 
+setUnitStats: maxAttackRange=80
+
+[hiddenAction_chargeResetFactorAttackingSaw]
+autoTriggerOnEvent: newMessage(withTag="stopCharging")
+setResourcesWithLogic: chargeFactor: 0
+setUnitStats: maxAttackRange=400
+
+[hiddenAction_chargeResetFactorSelfSaw]
+autoTriggerOnEvent: newMessage(withTag="losCheckPassed")
+requireConditional: if self.resource.chargeFactor <= 4 and not self.tags(includes="melee") 
+setResourcesWithLogic: chargeFactor: 0
+setUnitStats: maxAttackRange=400
+
+[hiddenAction_chargeResetTakenDamage]
+autoTriggerOnEvent: tookDamage
+requireConditional: if self.resource.chargeFactor <= 4 and not self.tags(includes="melee") 
+setResourcesWithLogic: chargeFactor: 0
+setUnitStats: maxAttackRange=400
+
+[hiddenAction_chargeResetIdle]
+autoTrigger: if not self.isAttacking()
+requireConditional: if self.resource.chargeFactor > 0 and not self.tags(includes="melee") 
+setResourcesWithLogic: chargeFactor: 0
+setUnitStats: maxAttackRange=400
+
+
+
+
+
+############### cover ##########################
+[hiddenAction_runBackWhenEnemyTooNearby]
+#this action makes the unit runs backwards when under melee attack
+autoTrigger: if distanceBetween(self, attacking) < 60
+
+requireConditional:"""
+if not self.hasActiveWaypoint(type="move")  
+and self.maxMoveSpeed() < 1.43 
+and self.tags(includes="inAction")
+and not self.tags(includes="melee") 
+"""
+addWaypoint_type: move
+addWaypoint_position_relativeOffsetFromSelf: 0, -100
+addWaypoint_prepend: true
+addWaypoint_maxTime: 3s
+#clearAllWaypoints: true
+setUnitStats: moveSpeed=1.45, maxTurnSpeed=20
+resourceAmount: coverWait2
+resourceAmount_setValue: 0
+
+
+[hiddenAction_combatStarted]
+autoTrigger: if self.isAttacking()
+requireConditional: if not self.tags(includes="inAction")
+temporarilyAddTags: inAction, notCovered
+
+[hiddenAction_combatFinished]
+autoTrigger: if not self.isAttacking() or attacking.tags(includes="${faction}")
+requireConditional: if self.tags(includes="inAction")
+temporarilyAddTags: notCovered
+temporarilyRemoveTags: inAction, covered
+setUnitStats: moveSpeed=${speed}, maxTurnSpeed=${movement.maxTurnSpeed}
+
+#Tries to go a cover
+[hiddenAction_getCover]
+autoTrigger:"""
+if self.tags(includes="notCovered") and 
+self.tags(includes="inAction") and 
+self.resource.coverWait > 3
+
+"""
+requireConditional:"""
+if not self.hasActiveWaypoint(type='move') and not self.tags(includes="melee") 
+"""
+#and not self.numberOfUnitsInNeutralTeam(withTag="cover", withinRange=40,  greaterThan=0)
+addWaypoint_type: touchTarget
+addWaypoint_prepend: true
+addWaypoint_target_randomUnit_tagged: cover
+addWaypoint_target_randomUnit_team: any
+addWaypoint_target_randomUnit_maxRange: 170
+addWaypoint_maxTime: 4s
+setUnitStats: moveSpeed=1.2, maxTurnSpeed=20
+resourceAmount: coverWait
+resourceAmount_setValue: 0
+alsoTriggerAction: voiceDetour
+
+[hiddenAction_arrivedAtCover]
+autoTriggerOnEvent: touchTargetSuccess
+requireConditional: if self.tags(includes="notCovered") and not self.tags(includes="melee") 
+temporarilyAddTags: covered
+temporarilyRemoveTags notCovered
+alsoTriggerAction: voiceAttack
+
+[hiddenAction_justWaitingAtCover]
+autoTrigger: if self.tags(includes="covered")
+addResources: coverWait2: 0.35
+temporarilyRemoveTags: notCovered
+
+#Moves hortinozally parallel to cover
+[hiddenAction_leaveTheCoverToFire]
+autoTrigger:"""
+if self.tags(includes="covered") and 
+self.resource.coverWait2 > 5 
+and self.tags(includes="inAction")
+"""
+requireConditional:"""
+if not self.hasActiveWaypoint(type='move') and not self.tags(includes="melee") 
+"""
+addWaypoint_type: move
+addWaypoint_position_randomOffsetFromSelf: 35, 0
+addWaypoint_prepend: true
+addWaypoint_maxTime: 3s
+setUnitStats: moveSpeed=1.2, maxTurnSpeed=20
+resourceAmount: coverWait2
+resourceAmount_setValue: 0
+alsoQueueAction: leftTheCoverToFire
+alsoTriggerAction: voiceDetour
+
+[hiddenAction_leftTheCoverToFire]
+buildSpeed: 1s
+requireConditional: if self.tags(includes="covered") and not self.tags(includes="melee") 
+temporarilyAddTags: notCovered, firingFromLeftCover
+temporarilyRemoveTags: covered
+
+[hiddenAction_firedAndGettingCovered]
+autoTrigger: if self.tags(includes="notCovered") and self.tags(includes="inAction") and not self.tags(includes="melee") 
+addResources: coverWait: 0.5
+
+
+
+[hiddenAction_waiting]
+autoTrigger: if not self.isMoving() and self.tags(includes="inAction")
+addResources: cool:1
+
+[hiddenAction_waitingReduceSpeed]
+autoTrigger: if self.resource.cool > 4
+setUnitStats: moveSpeed=${speed}, maxTurnSpeed=${movement.maxTurnSpeed}
+addResources: cool:-4
+
+[resource_cool]
+hidden: true
+
+[resource_coverWait]
+hidden: true
+
+[resource_coverWait2]
+hidden: true
+
+[resource_rapidFire]
+hidden: true

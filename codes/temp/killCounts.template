@@ -1,0 +1,36 @@
+
+[hiddenAction_KilledAUnit]
+autoTriggerOnEvent: killedAnyUnit
+alsoTriggerAction: KilledMutant, KilledStalker, KilledZombie, KilledChimera, KilledBandit, KilledKilla, KilledMarauder
+#If this doesn't work, reverse the order of the actions in alsoTriggerAction
+#ok
+addResources: setFlag=0
+
+[hiddenAction_KilledMutant]
+requireConditional: if eventSource.tags(includes="mutant")
+addResources: mutantKillCount=1, reputation:0.1, unsetFlag=0
+
+[hiddenAction_KilledStalker]
+requireConditional: if eventSource.tags(includes="npc")
+addResources: npcKillCount=1, reputation:0.05, unsetFlag=0
+
+[hiddenAction_KilledZombie]
+requireConditional: if eventSource.tags(includes="zombie")
+addResources: zombieKillCount=1, reputation:0.01, unsetFlag=0
+
+[hiddenAction_KilledChimera]
+requireConditional: if eventSource.tags(includes="chimera")
+addResources: chimeraKillCount=1, reputation: 0.1,  unsetFlag=0
+
+[hiddenAction_KilledBandit]
+requireConditional: if eventSource.tags(includes="bandit")
+addResources: banditKillCount=1, reputation: 0.15, unsetFlag=0
+
+[hiddenAction_KilledKilla]
+requireConditional: if eventSource.tags(includes="killa")
+addResources: killaKillCount=1, reputation:1.5, unsetFlag=0
+
+[hiddenAction_KilledMarauder]
+requireConditional: if eventSource.tags(includes="marauder")
+addResourcesWithLogic: marauderPda=select(rnd(0,100)>25, 1, 0), reputation:0.15
+addResources: unsetFlag=0

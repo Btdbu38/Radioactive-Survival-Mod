@@ -1,0 +1,19 @@
+[mod]
+title: Radioactive Survival | v1.5.3b
+description:"""
+In the desperate years of the dark apocalypse, The Zone has expanded all over the world... Humanity have formed an apocalypse to purge themselves... Would humanity rather suffer their outcome? Or resist? 
+\n\n IMPORTANT NOTES \n
+Don't play vanilla maps. \n
+Maps are embedded in mod files, no need to download separately. \n
+Overheats, crashes, lags can happen. Please report any bug to us. \n
+Minimum Rusted Warfare version required: 1.15 Official \n\n
+Discord contact: @Btdbu \n
+Developed by Radiorum
+"""
+tags: survival, rs, radioactive, hardcore, individual, single, rpg, bestmodxdlolxdlol
+thumbnail: thumbnail.png
+minVersion: 1.15p11
+
+[music]
+sourceFolder: soundFx/music
+whenUsingUnitsFromThisMod_playExclusively: true

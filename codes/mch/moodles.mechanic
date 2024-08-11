@@ -1,0 +1,339 @@
+[hiddenAction_tookDamage]
+autoTriggerOnEvent: tookDamage
+spawnEffects: CUSTOM:blood2*2
+addResources: pain: 3, stamina: -0.01
+
+[template_statusTemp]
+iconExtraColor: #ffffff
+isActive: false
+price: 0
+displayType: infoOnlyNoBox
+isGuiBlinking: true
+allowMultipleInQueue: false
+canPlayerCancel: false
+alwaysSinglePress: true
+buildSpeed: 0s
+pos: 99999
+
+
+
+[action_cruelInfo]
+@copyFromSection: template_statusTemp, template_actionCruelInfo
+isVisible: if self.globalTeamTags(includes="cruelMode") and memory.anyMenu == false
+iconExtraImage: ROOT:/images/moodles/cruel.png
+
+[action_touristInfo]
+@copyFromSection: template_statusTemp, template_actionTouristInfo
+isVisible: if self.globalTeamTags(includes="touristMode") and memory.anyMenu == false
+iconExtraImage: ROOT:/images/moodles/tourist.png
+
+[action_wet]
+@copyFromSection: template_statusTemp
+autoTrigger: if self.hasResources(wetness=1)
+isVisible: if self.hasResources(wetness=1)
+text: Wetness %{int(self.resource.wetness)} %
+iconExtraImage: ROOT:/images/moodles/wetness.png
+description: -You are wet \n Wetness can be increased if you are sweating, or inside water \n Slows down the character \n Can catch a cold if character is low on temperature \n Can be dealt with a fire source
+addResources: wetness: -0.08, temperature: -0.15
+
+[action_healing]
+@copyFromSection: template_statusTemp, template_actionHealingInfo
+autoTrigger: if self.hasResources(healing=1)
+isVisible: if self.hasResources(healing=1)
+iconExtraImage: ROOT:/images/moodles/healing.png
+description: You are being healed \n -Head, Torso, Arms and Legs are being very slowly healed
+addResourcesWithLogic: healing:-1, hp:4 + (self.resource.firstAid / 3), blood: 0.3, headHP:0.02, armHP:0.1, legHP:0.1, torsoHP:0.3
+
+[action_bloodRegenation]
+@copyFromSection: template_statusTemp, template_actionBloodRegenInfo
+autoTrigger: if self.hasResources(bloodR=1)
+isVisible: if self.hasResources(bloodR=1)
+iconExtraImage: ROOT:/images/moodles/bloodHealing.png
+addResources: bloodR:-0.35, blood:0.35
+
+[action_panic]
+@copyFromSection: template_statusTemp, template_actionPanicInfo
+autoTrigger: if self.hasResources(panic=1)
+isVisible: if self.hasResources(panic=1)
+iconExtraImage: ROOT:/images/moodles/panic.png
+addResources: panic:-2, stamina:-0.4
+
+[action_pain]
+@copyFromSection: template_statusTemp, template_actionPainInfo
+autoTrigger: if self.hasResources(pain=1)
+isVisible: if self.hasResources(pain=1)
+iconExtraImage: ROOT:/images/moodles/pain.png
+addResources: pain:-0.15, stamina: -0.2, headHP:-0.02
+
+[action_bleeding]
+@copyFromSection: template_statusTemp, template_actionBleedingInfo
+autoTrigger: if self.hasResources(bleeding=1)
+isVisible: if self.hasResources(bleeding=1)
+iconExtraImage: ROOT:/images/moodles/bleeding.png
+addResources: hp:-0.01, bleeding: -0.05, pain:0.1
+addResourcesWithLogic: blood: -0.02 + (self.resource.bleeding / 550 - select(self.resource.remedyRose >= 1, 0.2, 0))
+
+[action_scratch]
+@copyFromSection: template_statusTemp, template_actionScratchInfo
+autoTrigger: if self.hasResources(scratch=1)
+isVisible: if self.hasResources(scratch=1)
+iconExtraImage: ROOT:/images/moodles/scratch.png
+addResources: hp:-0.015, bleeding: 0.07, pain: 0.3
+
+[action_laceration]
+@copyFromSection: template_statusTemp, template_actionLacerationInfo
+autoTrigger: if self.hasResources(laceration=1)
+isVisible: if self.hasResources(laceration=1)
+iconExtraImage: ROOT:/images/moodles/laceration.png
+addResources: hp:-0.25, bleeding: 0.2, pain:1.5
+
+[action_lodgedBullet]
+@copyFromSection: template_statusTemp, template_actionLodgedBulletInfo
+autoTrigger: if self.hasResources(lodgedBullet=1)
+isVisible: if self.hasResources(lodgedBullet=1)
+iconExtraImage: ROOT:/images/moodles/lodgedBullet.png
+addResources: hp:-0.1, bleeding: 0.1, pain:0.8
+
+
+[hiddenAction_headHealing]
+autoTrigger: if self.hasResources(headHealing=1)
+addResourcesWithLogic: headHealing: -1, headHP: 1 + (self.resource.firstAid / 3)
+
+[hiddenAction_torsoHealing]
+autoTrigger: if self.hasResources(torsoHealing=1)
+addResourcesWithLogic: torsoHealing: -1, torsoHP: 1 + (self.resource.firstAid / 3)
+
+[hiddenAction_armHealing]
+autoTrigger: if self.hasResources(armHealing=1)
+addResourcesWithLogic: armHealing: -1, armHP: 1 + (self.resource.firstAid / 3)
+
+[hiddenAction_legHealing]
+autoTrigger: if self.hasResources(legHealing=1)
+addResourcesWithLogic: legHealing: -1, legHP: 1 + (self.resource.firstAid / 3)
+
+
+
+[decal_healing]
+yOffsetAbsolute: 9
+xOffsetAbsolute: -21
+layer: beforeBody
+order: 3
+image: ROOT:/images/moodles/healing.png
+total_frames: 1
+stack_hOffset: 0
+hOffset: 0
+onlyWithZoomLevelOrMore:0
+teamColors: true
+alwayStartDirAtZero: true
+dirOffset: 0
+imageScale: 0.7
+isVisible: if self.hasResources(healing=1)
+[decal_bloodR]
+yOffsetAbsolute: 1
+xOffsetAbsolute: -21
+layer: beforeBody
+order: 3
+image: ROOT:/images/moodles/bloodHealing.png
+total_frames: 1
+stack_hOffset: 0
+hOffset: 0
+onlyWithZoomLevelOrMore:0
+teamColors: true
+alwayStartDirAtZero: true
+dirOffset: 0
+imageScale: 0.7
+isVisible: if self.hasResources(bloodR=1)
+
+
+[template_statDecal]
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+layer: onTop
+order: 3
+alwayStartDirAtZero: true
+dirOffset: 0
+imageScale: 0.06
+
+[decal_wet]
+@copyFromSection: template_statDecal
+image: ROOT:/images/moodles/wetness.png
+yOffsetAbsolute: 10
+xOffsetAbsolute: -18
+isVisible: if self.hasResources(wetness=1)
+
+[decal_panic]
+@copyFromSection: template_statDecal
+image: ROOT:/images/moodles/panic.png
+yOffsetAbsolute: 10
+xOffsetAbsolute: -12
+isVisible: if self.hasResources(panic=1)
+
+[decal_pain]
+@copyFromSection: template_statDecal
+image: ROOT:/images/moodles/pain.png
+yOffsetAbsolute: 10
+xOffsetAbsolute: -6
+isVisible: if self.hasResources(pain=1)
+
+[decal_bleeding]
+@copyFromSection: template_statDecal
+image: ROOT:/images/moodles/bleeding.png
+yOffsetAbsolute: 10
+xOffsetAbsolute: 0
+isVisible: if self.hasResources(bleeding=1)
+
+[decal_scratch]
+@copyFromSection: template_statDecal
+image: ROOT:/images/moodles/scratch.png
+yOffsetAbsolute: 10
+xOffsetAbsolute: 6
+isVisible: if self.hasResources(scratch=1)
+
+[decal_laceration]
+@copyFromSection: template_statDecal
+image: ROOT:/images/moodles/laceration.png
+yOffsetAbsolute: 10
+xOffsetAbsolute: 12
+isVisible: if self.hasResources(laceration=1)
+
+[decal_lodgedBullet]
+@copyFromSection: template_statDecal
+image: ROOT:/images/moodles/lodgedBullet.png
+yOffsetAbsolute: 10
+xOffsetAbsolute: 18
+isVisible: if self.hasResources(lodgedBullet=1)
+
+
+
+
+[hiddenAction_bleedingTrait]
+autoTrigger: if self.hasResources(bleeding=1)
+requireConditional: if self.globalTeamTags(includes="commander") or self.globalTeamTags(includes="hunter")
+addResources: blood:-0.1, stamina: -0.1
+[hiddenAction_woundTrait]
+autoTrigger: if self.hasResources(wound=1)
+requireConditional: if self.globalTeamTags(includes="commander") or self.globalTeamTags(includes="hunter")
+addResources: hp:-0.075,
+[hiddenAction_painSkirmisher]
+autoTrigger: if self.globalTeamTags(includes="skirmisher")
+resourceAmount: pain
+resourceAmount_setValue: 0
+
+
+
+[action_radprotect]
+autoTrigger: if self.hasResources(radprot=1)
+isVisible: if self.hasResources(radprot=1)
+text: Rad. Prot. %{self.resource(type='radprot')}
+iconExtraColor: #ffffff
+iconExtraImage: ROOT:/images/moodles/radprot.png
+description: -Temporarily protects your body from radioactive areas 
+addResources: radprot: -0.35, radiation: -0.05
+isActive: false
+price: 0
+displayType: infoOnly
+isGuiBlinking: true
+allowMultipleInQueue: false
+canPlayerCancel: false
+alwaysSinglePress: true
+buildSpeed: 0s
+pos: 99999
+
+[decal_radprotbuff]
+yOffsetAbsolute: 9
+xOffsetAbsolute: -6
+layer: beforeBody
+order: 3
+image: ROOT:/images/moodles/radprot.png
+onlyWithZoomLevelOrMore:0
+teamColors: true
+alwayStartDirAtZero: true
+dirOffset: 0
+@define TimeAliveMultipler: 500
+@define scaleVariance: 0.01
+imageScale: 0.08+cos(self.timeAlive()*${TimeAliveMultipler})*${scaleVariance}
+isVisible: if self.hasResources(radprot=1)
+
+
+[action_poisoned]
+autoTrigger: if self.hasResources(poison=1)
+isVisible: if self.hasResources(poison=1)
+text: Poisoned! %{self.resource(type='poison')}
+iconExtraColor: #ffffff
+description: -You are poisoned \n Seek medical attention!
+iconExtraImage: ROOT:/images/moodles/poison.png
+addResources: poison:-1, hp:-1
+spawnEffects: custom:poison
+isActive: false
+price: 0
+displayType: infoOnly
+isLocked: true
+isGuiBlinking: true
+allowMultipleInQueue: false
+canPlayerCancel: false
+alwaysSinglePress: true
+buildSpeed: 0s
+pos: 99999
+[effect_poison]
+life: 20
+image: ROOT:/images/moodles/poison.png
+alwayStartDirAtZero: true
+alpha: 2
+scaleFrom: 0.2
+scaleTo: 0.3
+fadeOut: true
+priority: critical
+
+
+[hiddenAction_increasePanicBullet]
+addResources: panic:10
+autoTriggerOnEvent: tookDamage(withTag="bullet")
+requireConditional: if not self.globalTeamTags(includes='skirmisher')
+
+[hiddenAction_increasePanic]
+addResources: panic:3
+autoTrigger: if self.numberOfUnitsInAllTeams(withTag='enemy', withinRange=300) > 2
+requireConditional: if not self.globalTeamTags(includes='skirmisher')
+
+[hiddenAction_increasePanic2]
+addResources: panic:3
+autoTrigger: if self.numberOfUnitsInEnemyTeam(withTag="human", withinRange=300) > 2
+requireConditional: if not self.globalTeamTags(includes='skirmisher')
+
+[effect_blood2]
+priority: critical
+attachedToUnit: false
+life: 100
+dirOffset: 20
+dirOffsetRandom: 4
+dirSpeed:5
+dirSpeedRandom:2
+physics: true
+scaleFrom: 0.4
+scaleTo: 0.1
+alpha: 0.5
+xSpeedRelativeRandom: 0.1
+ySpeedRelativeRandom: -0.7
+ySpeedRelative: -1.3
+hSpeed: 1.5
+image: ROOT:/images/effects/blood.png
+drawUnderUnits: false
+hOffset: 12
+
+[effect_blood]
+spawnChance: 0.4
+priority: critical
+attachedToUnit: false
+life: 150
+dirOffset: 20
+dirOffsetRandom: 4
+dirSpeed:5
+dirSpeedRandom:2
+physics: true
+scaleFrom: 0.1
+scaleTo: 0.03
+xSpeedRelativeRandom: 0.9
+ySpeedRelativeRandom: 0.9
+hSpeed: 0
+image: ROOT:/images/effects/blooddrop1.png
+drawUnderUnits: false

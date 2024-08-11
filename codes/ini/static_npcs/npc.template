@@ -1,0 +1,31 @@
+[core]
+copyFrom: ROOT:strings.txt
+name: ${id}
+tags: ${id}, npc, human
+displayText: ${name}
+class: CustomUnitMetadata
+price: 0
+maxHp: 200
+mass: 9000
+radius: 11
+displayRadius: 11
+isUnrepairableUnit: true
+buildSpeed: 0
+isBuilding: true
+stayNeutral: true
+createNeutral: true
+canNotBeDamaged: true
+
+[graphics]
+imageScale: 1.1
+image: ROOT:/images/sprites/npc/${id}.png
+image_shadow: AUTO_ANIMATED
+shadowOffsetX: 1
+shadowOffsetY: -2
+
+[attack]
+canAttack: false
+
+[movement]
+movementType: NONE
+moveSpeed: 0

@@ -1,0 +1,1298 @@
+[core]
+@global defineEncumbrance:encumbrance:""" (
+self.resource.9x18 * 0.01 + 
+self.resource.9x19 * 0.01 + 
+self.resource.545x39 * 0.02 + 
+self.resource.556x45 * 0.02 + 
+self.resource.12x70 * 0.03 + 
+self.resource.762x54 * 0.045 +
+self.resource.9x39 * 0.02 +
+self.resource.45acp * 0.02 +
+self.resource.battery * 0.5 + 
+self.resource.wood * 1 + 
+self.resource.ductTape * 0.3 + 
+self.resource.scrap * 0.45 + 
+self.resource.cloth * 0.05 +
+self.resource.plastic * 0.4 + 
+self.resource.tentacle * 0.02 + 
+self.resource.leather * 0.15 + 
+self.resource.carapace * 0.2 + 
+self.resource.carBattery * 5 + 
+self.resource.screws * 0.01 + 
+self.resource.nails * 0.01 + 
+self.resource.screwdriver * 0.5 + 
+self.resource.hammer * 1 + 
+self.resource.castMetal * 1 + 
+self.resource.guitar * 1 + 
+self.resource.sewingCloth * 0.05 + 
+self.resource.food * 0.35 + 
+self.resource.crackers * 0.15 + 
+self.resource.cannedTuna * 0.45 + 
+self.resource.mre * 0.8 + 
+self.resource.snacks * 0.035 + 
+self.resource.meat * 0.5 +
+self.resource.rawMeat * 0.5 + 
+self.resource.bloodBag * 0.65 + 
+self.resource.fruitJuice * 0.9 + 
+self.resource.water * 0.8 + 
+self.resource.taintedWater * 0.8 + 
+self.resource.vodka * 0.45 + 
+self.resource.cigarettes * 0.06 + 
+self.resource.plank * 0.65 + 
+self.resource.metalSheet * 1.3 + 
+self.resource.blowtorch * 1 + 
+self.resource.saw * 1.3 + 
+self.resource.bulletproofPlate * 0.95 +
+self.resource.soda * 0.4 + 
+self.resource.bread * 0.4 + 
+self.resource.tweezer * 0.03 + 
+self.resource.needle * 0.01 + 
+self.resource.rags * 0.05 + 
+self.resource.bandage * 0.05 + 
+self.resource.gauze * 0.05 + 
+self.resource.medkit * 1.35 + 
+self.resource.radkit * 0.085 + 
+self.resource.antidote * 0.45 + 
+self.resource.medkitAi2 * 1 + 
+self.resource.medkitCar * 1 + 
+self.resource.medkitGrizzly * 2.75 + 
+self.resource.medkitIfak * 1 + 
+self.resource.antisolution * 0.55 + 
+self.resource.painkillers * 0.2 + 
+self.resource.antiraddrug * 0.05 + 
+self.resource.drug * 0.05 + 
+self.resource.materialPackage * 0.6 + 
+self.resource.generator * 15 + 
+self.resource.wire * 0.2 + 
+self.resource.oldTech * 0.5 + 
+self.resource.fuelCanister * 2.2 +
+self.resource.goldCoins * 3 +
+self.resource.goldDagger * 1 +
+self.resource.militaryComputer * 3.5 +
+self.resource.militaryHeadsets * 0.6 +
+self.resource.schoolBag * 1 +
+self.resource.duffleBag * 1 +
+self.resource.paratusBag * 2.5 +
+self.resource.6sh118Bag * 4 +
+self.resource.leatherJacket * 1.4 + 
+self.resource.banditJacket * 2.5 + 
+self.resource.trenchcoat * 3.5 + 
+self.resource.sunriseSuit * 5 + 
+self.resource.sunsetSuit * 5 + 
+self.resource.rbSuit * 4 +
+self.resource.hazmatSuit * 3 +
+self.resource.exoskeleton * 35 + 
+self.resource.emrNightVision * 1 + 
+self.resource.rubyNightVision * 1 + 
+self.resource.spphNightVision * 1 +
+self.resource.pistolParts * 0.35 +
+self.resource.smgParts * 0.4 +
+self.resource.rifleParts * 0.5 +
+self.resource.gaussParts * 0.7 + 
+self.resource.pm * 0.6 +
+self.resource.usp * 0.8 + 
+self.resource.toz34 * 3 + 
+self.resource.svt40 * 3 + 
+self.resource.mp5 * 1.6 +
+self.resource.vityaz * 2 +
+self.resource.val * 2.6 +
+self.resource.groza * 3.5 +
+self.resource.fn2000 * 4 +
+self.resource.gauss * 6 +
+self.resource.xr1 * 7 +
+self.resource.ak47 * 3.5 + 
+self.resource.lr300 * 3 )
+"""
+
+
+[template_resourceglobal]
+displayNameHideWhenIconShownInHUD: true
+displayWhenZero: true
+displayDigitGrouping: space
+displayRoundedDown: true
+displayTextPrefix:
+displayTextPostfix:|
+
+
+[global_resource_thirst]
+@copyFromSection: template_resourceglobal
+iconImage:ROOT:/images/ui/thirst.png
+displayColor: #0098ff
+displayTextAppendResource: hunger
+displayPos: 4
+
+[global_resource_hunger]
+@copyFromSection: template_resourceglobal
+iconImage:ROOT:/images/ui/food.png
+displayColor: #a17142
+hidden: true
+displayTextAppendResource: radiation
+displayPos: 3
+
+[global_resource_radiation]
+@copyFromSection: template_resourceglobal
+iconImage:ROOT:/images/ui/radiation.png
+displayColor: #cec500
+hidden: true
+displayTextAppendResource: toxic
+displayPos: 2
+
+[global_resource_toxic]
+@copyFromSection: template_resourceglobal
+iconImage:ROOT:/images/ui/toxic.png
+displayColor: #009028
+hidden: true
+displayPos: 1
+
+
+
+[global_resource_blood]
+@copyFromSection: template_resourceglobal
+iconImage:ROOT:/images/ui/iconBlood.png
+displayColor: #d40f00
+hidden: true
+displayPos: 5
+
+[global_resource_mental]
+@copyFromSection: template_resourceglobal
+iconImage:ROOT:/images/ui/mental.png
+displayColor: #ea6277
+displayTextAppendResource: blood
+displayPos: 5
+
+[global_resource_temperature]
+@copyFromSection: template_resourceglobal
+iconImage:ROOT:/images/ui/temperature.png
+hidden:false
+displayColor: #d2eaff
+displayTextPostfix:°C
+displayPos: 6
+
+[resource_money]
+@copyFromSection: template_resourceglobal
+displayName: Money
+displayNameShort: M
+priority: 7
+hidden:false
+iconImage: ROOT:/images/items/money.png
+displayNameHideWhenIconShownInText: true
+displayNameHideWhenIconShownInHUD: true
+displayColor: #72a55d
+displayPos: 4
+
+
+
+
+
+#conf resources
+
+[resource_regen]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Regen
+
+[resource_bleeding]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Bleeding
+
+[resource_pain]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Pain
+
+[resource_panic]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Panic
+
+[resource_scratch]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Scratch
+
+[resource_laceration]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Laceration
+
+[resource_lodgedBullet]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Lodged Bullet
+
+[resource_wound]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Wound
+
+[resource_radprot]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Radprot
+
+[resource_poison]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Poison
+
+[resource_bloodR]
+hidden: true
+displayRoundedDown: false
+
+[resource_bandageBleedRed]
+hidden: true
+displayRoundedDown: true
+
+
+[resource_armor]
+hidden: true
+displayRoundedDown: true
+
+[resource_stamina]
+hidden: true
+displayRoundedDown: true
+
+[resource_maxstamina]
+hidden: true
+displayRoundedDown: true
+
+[resource_encumbrance]
+hidden: true
+displayRoundedDown: true
+
+[resource_maxEncumbrance]
+hidden: true
+displayRoundedDown: true
+
+[resource_encumbranceReduction]
+hidden: true
+displayRoundedDown: true
+
+[resource_cloWeight]
+hidden: true
+displayRoundedDown: true
+
+[resource_bagWeight]
+hidden: true
+displayRoundedDown: true
+
+[resource_sweaty]
+hidden: true
+displayRoundedDown: true
+
+[resource_wetness]
+hidden: true
+displayRoundedDown: true
+
+[resource_packageAlex]
+hidden: true
+
+[resource_survivors]
+hidden: true
+
+[resource_npcAmmo]
+hidden: true
+
+[global_resource_mutantKillCount]
+hidden: true
+
+[global_resource_npcKillCount]
+hidden: true
+
+[global_resource_banditKillCount]
+hidden: true
+
+[global_resource_zombieKillCount]
+hidden: true
+
+[global_resource_chimeraKillCount]
+hidden: true
+
+[global_resource_killaKillCount]
+hidden: true
+
+
+[global_resource_reputation]
+hidden: true
+
+[resource_suspection]
+hidden: true
+
+[resource_fuel]
+hidden: true
+
+[global_resource_power]
+hidden: true
+
+[resource_xp]
+hidden: true
+displayRoundedDown: true
+displayNameShort: XP
+
+[resource_maxXp]
+hidden: true
+displayRoundedDown: true
+displayNameShort: maxxp
+
+[resource_skillPoint]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Point
+
+[resource_level]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Level
+
+######## BHS ###################################
+[resource_staminaRecovery]
+hidden: true
+displayRoundedDown: true
+
+[resource_damageMultiplier]
+hidden: true
+displayRoundedDown: true
+
+[resource_delayMultiplier]
+hidden: true
+displayRoundedDown: true
+
+[resource_speedMultiplier]
+hidden: true
+displayRoundedDown: true
+
+[resource_aimingMultiplier]
+hidden: true
+displayRoundedDown: true
+
+[resource_strength]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Strength
+[resource_strengthXp]
+hidden: true
+displayRoundedDown: true
+displayNameShort: STR XP
+[resource_strengthXpCap]
+hidden: true
+displayRoundedDown: true
+displayNameShort: STR XP CAP
+
+
+[resource_fitness]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Fitness
+[resource_fitnessXp]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Fitness XP
+[resource_fitnessXpCap]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Fitness XP CAP
+
+[resource_aiming]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Aiming
+[resource_aimingXp]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Aiming XP
+[resource_aimingXpCap]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Aiming XP CAP
+
+[resource_running]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Running
+[resource_runningXp]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Running XP
+[resource_runningXpCap]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Running XP CAP
+
+[resource_nimble]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Nimble
+[resource_nimbleXp]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Nimble XP
+[resource_nimbleXpCap]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Nimble XP CAP
+
+[resource_lightfooted]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Lightfooted
+[resource_lightfootedXp]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Lightfooted XP
+[resource_lightfootedXpCap]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Lightfooted XP CAP
+
+[resource_firstaid]
+hidden: true
+displayRoundedDown: true
+displayNameShort: First Aid
+[resource_firstaidXp]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Firstaid XP
+[resource_firstaidXpCap]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Firstaid XP CAP
+
+[resource_crafting]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Crafting
+[resource_craftingXp]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Crafting XP
+[resource_craftingXpCap]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Crafting XP CAP
+######## SKILLS ###################################
+
+######## BHS ###################################
+[resource_healing]
+hidden: true
+displayRoundedDown: true
+[resource_headHealing]
+hidden: true
+displayRoundedDown: true
+[resource_torsoHealing]
+hidden: true
+displayRoundedDown: true
+[resource_armHealing]
+hidden: true
+displayRoundedDown: true
+[resource_legHealing]
+hidden: true
+displayRoundedDown: true
+
+
+[resource_headHP]
+hidden: true
+displayRoundedDown: true
+[resource_armHP]
+hidden: true
+displayRoundedDown: true
+[resource_torsoHP]
+hidden: true
+displayRoundedDown: true
+[resource_legHP]
+hidden: true
+displayRoundedDown: true
+
+[resource_headArmor]
+hidden: true
+[resource_torsoArmor]
+hidden: true
+[resource_armArmor]
+hidden: true
+[resource_legArmor]
+hidden: true
+######## BHS ###################################
+
+######## TIME STUFF ###################################
+[global_resource_night]
+hidden: true
+displayRoundedDown: true
+displayNameShort:Night
+
+[global_resource_day]
+hidden: true
+displayRoundedDown: true
+displayNameShort:Day
+
+[global_resource_minute]
+hidden: true
+displayName: Minute
+
+[global_resource_hour]
+hidden: true
+displayName: Hour
+
+[global_resource_day]
+hidden: true
+displayName: Day
+
+[global_resource_daysPassed]
+hidden: true
+displayName: Days Passed
+
+[global_resource_month]
+hidden: true
+displayName: Month
+
+[global_resource_monthsPassed]
+hidden: true
+displayName: Months Passed
+
+[global_resource_year]
+hidden: true
+displayName: Year
+
+[global_resource_yearsPassed]
+hidden: true
+displayName: Years Passed
+
+[global_resource_nightDarkness]
+hidden: true
+displayName: Night Darkness
+
+[global_resource_dayBrightness]
+hidden: true
+displayName: Day Brightness
+
+[global_resource_disasterChance]
+hidden: true
+
+[global_resource_emissionsPassed]
+hidden: true
+
+[global_resource_psyStormsPassed]
+hidden: true
+
+######## TIME STUFF ###################################
+
+#item resources
+
+#root names must be same on resource names, item png file name and visible name, otherwise u will see error :D
+
+[template_itemResource]
+hidden: true
+displayRoundedDown: true
+displayNameShort: ${rootName}
+iconImage: ROOT:/images/items/${rootName}.png
+displayNameHideWhenIconShownInText: true
+
+#template
+#[resource_]
+#@copyFromSection: template_itemResource
+#@define rootName:
+
+
+[resource_wood]
+@copyFromSection: template_itemResource
+@define rootName:wood
+
+[resource_scrap]
+@copyFromSection: template_itemResource
+@define rootName:scrap
+
+[resource_cloth]
+@copyFromSection: template_itemResource
+@define rootName:cloth
+
+[resource_plastic]
+@copyFromSection: template_itemResource
+@define rootName:plastic
+
+[resource_food]
+@copyFromSection: template_itemResource
+@define rootName:food
+
+[resource_water]
+@copyFromSection: template_itemResource
+@define rootName:water
+
+[resource_taintedWater]
+@copyFromSection: template_itemResource
+@define rootName:taintedWater
+
+[resource_bloodBag]
+@copyFromSection: template_itemResource
+@define rootName:bloodBag
+
+[resource_cigarettes]
+@copyFromSection: template_itemResource
+@define rootName:cigarettes
+
+[resource_crackers]
+@copyFromSection: template_itemResource
+@define rootName:crackers
+
+[resource_cannedTuna]
+@copyFromSection: template_itemResource
+@define rootName:cannedTuna
+
+[resource_fruitJuice]
+@copyFromSection: template_itemResource
+@define rootName:fruitJuice
+
+[resource_mre]
+@copyFromSection: template_itemResource
+@define rootName:mre
+
+[resource_vodka]
+@copyFromSection: template_itemResource
+@define rootName:vodka
+
+[resource_9x18]
+@copyFromSection: template_itemResource
+@define rootName:9x18
+
+[resource_9x19]
+@copyFromSection: template_itemResource
+@define rootName:9x19
+
+[resource_12x70]
+@copyFromSection: template_itemResource
+@define rootName:12x70
+
+[resource_545x39]
+@copyFromSection: template_itemResource
+@define rootName:545x39
+
+[resource_556x45]
+@copyFromSection: template_itemResource
+@define rootName:556x45
+
+[resource_762x54]
+@copyFromSection: template_itemResource
+@define rootName:762x54
+
+[resource_9x39]
+@copyFromSection: template_itemResource
+@define rootName:9x39
+
+[resource_45acp]
+@copyFromSection: template_itemResource
+@define rootName:45acp
+
+[resource_battery]
+@copyFromSection: template_itemResource
+@define rootName:battery
+
+
+
+[resource_keyArmyPrep]
+hidden: true
+
+[resource_keyPoliceStation]
+hidden: true
+
+[resource_keyFossolGas]
+hidden: true
+
+[resource_keyX1]
+hidden: true
+
+[resource_keyX2]
+hidden: true
+
+[resource_keyX3]
+hidden: true
+
+[resource_keyExormor]
+hidden: true
+
+[resource_meat]
+@copyFromSection: template_itemResource
+@define rootName:meat
+
+[resource_rawMeat]
+@copyFromSection: template_itemResource
+@define rootName:rawMeat
+
+[resource_ductTape]
+@copyFromSection: template_itemResource
+@define rootName:ductTape
+
+[resource_rags]
+@copyFromSection: template_itemResource
+@define rootName:rags
+
+[resource_bandage]
+@copyFromSection: template_itemResource
+@define rootName:bandage
+
+[resource_medkit]
+@copyFromSection: template_itemResource
+@define rootName:medkit
+
+[resource_radkit]
+@copyFromSection: template_itemResource
+@define rootName:radkit
+
+[resource_syringe]
+@copyFromSection: template_itemResource
+@define rootName:syringe
+
+[resource_needle]
+@copyFromSection: template_itemResource
+@define rootName:needle
+
+[resource_tweezer]
+@copyFromSection: template_itemResource
+@define rootName:tweezer
+
+[resource_recorder]
+@copyFromSection: template_itemResource
+@define rootName:recorder
+
+[resource_carBattery]
+@copyFromSection: template_itemResource
+@define rootName:carBattery
+
+[resource_wheat]
+@copyFromSection: template_itemResource
+@define rootName:wheat
+
+[resource_bread]
+@copyFromSection: template_itemResource
+@define rootName:bread
+
+[resource_snacks]
+@copyFromSection: template_itemResource
+@define rootName:snacks
+
+[resource_soda]
+@copyFromSection: template_itemResource
+@define rootName:soda
+
+[resource_antidote]
+@copyFromSection: template_itemResource
+@define rootName:antidote
+
+[resource_leather]
+@copyFromSection: template_itemResource
+@define rootName:leather
+
+[resource_tentacle]
+@copyFromSection: template_itemResource
+@define rootName:tentacle
+
+[resource_guitar]
+@copyFromSection: template_itemResource
+@define rootName:guitar
+
+[resource_picture]
+@copyFromSection: template_itemResource
+@define rootName:picture
+
+[resource_note]
+@copyFromSection: template_itemResource
+@define rootName:note
+
+[resource_book]
+@copyFromSection: template_itemResource
+@define rootName:book
+
+[resource_grenade]
+@copyFromSection: template_itemResource
+@define rootName:grenade
+
+[resource_radio]
+@copyFromSection: template_itemResource
+@define rootName:radio
+
+[resource_knife]
+@copyFromSection: template_itemResource
+@define rootName:knife
+
+[resource_carapace]
+@copyFromSection: template_itemResource
+@define rootName:carapace
+
+[resource_castMetal]
+@copyFromSection: template_itemResource
+@define rootName:castMetal
+
+[resource_nails]
+@copyFromSection: template_itemResource
+@define rootName:nails
+
+[resource_screws]
+@copyFromSection: template_itemResource
+@define rootName:screws
+
+[resource_screwdriver]
+@copyFromSection: template_itemResource
+@define rootName:screwdriver
+
+[resource_hammer]
+@copyFromSection: template_itemResource
+@define rootName:hammer
+
+[resource_sewingCloth]
+@copyFromSection: template_itemResource
+@define rootName:sewingCloth
+
+[resource_goldCoins]
+@copyFromSection: template_itemResource
+@define rootName:goldCoins
+
+[resource_goldDagger]
+@copyFromSection: template_itemResource
+@define rootName:goldDagger
+
+[resource_militaryComputer]
+@copyFromSection: template_itemResource
+@define rootName:militaryComputer
+
+[resource_militaryHeadsets]
+@copyFromSection: template_itemResource
+@define rootName:militaryHeadsets
+
+[resource_galvanizedSquareSteel]
+@copyFromSection: template_itemResource
+@define rootName:galvanizedSquareSteel
+
+
+[resource_arrow]
+@copyFromSection: template_itemResource
+@define rootName:arrow
+
+[resource_bow]
+@copyFromSection: template_itemResource
+@define rootName:bow
+
+[resource_medkitAi2]
+@copyFromSection: template_itemResource
+@define rootName:medkitAi2
+
+[resource_medkitCar]
+@copyFromSection: template_itemResource
+@define rootName:medkitCar
+
+[resource_medkitIfak]
+@copyFromSection: template_itemResource
+@define rootName:medkitIfak
+
+[resource_medkitGrizzly]
+@copyFromSection: template_itemResource
+@define rootName:medkitGrizzly
+
+[resource_gauze]
+@copyFromSection: template_itemResource
+@define rootName:gauze
+
+[resource_drug]
+@copyFromSection: template_itemResource
+@define rootName:drug
+
+[resource_painkillers]
+@copyFromSection: template_itemResource
+@define rootName:painkillers
+
+[resource_antisolution]
+@copyFromSection: template_itemResource
+@define rootName:antisolution
+
+[resource_antiraddrug]
+@copyFromSection: template_itemResource
+@define rootName:antiraddrug
+
+[resource_plank]
+@copyFromSection: template_itemResource
+@define rootName:plank
+
+[resource_metalSheet]
+@copyFromSection: template_itemResource
+@define rootName:metalSheet
+
+[resource_blowtorch]
+@copyFromSection: template_itemResource
+@define rootName:blowtorch
+
+[resource_saw]
+@copyFromSection: template_itemResource
+@define rootName:saw
+
+[resource_materialPackage]
+@copyFromSection: template_itemResource
+@define rootName:materialPackage
+
+[resource_generator]
+@copyFromSection: template_itemResource
+@define rootName:generator
+
+[resource_wire]
+@copyFromSection: template_itemResource
+@define rootName:wire
+
+[resource_oldTech]
+@copyFromSection: template_itemResource
+@define rootName:oldTech
+
+[resource_fuelCanister]
+@copyFromSection: template_itemResource
+@define rootName:fuelCanister
+
+[resource_pumpJackParts]
+@copyFromSection: template_itemResource
+@define rootName:pumpJackParts
+
+[resource_turretParts]
+@copyFromSection: template_itemResource
+@define rootName:turretParts
+
+
+[resource_headlamp]
+@copyFromSection: template_itemResource
+@define rootName:headlamp
+
+[resource_bulletproofplate]
+@copyFromSection: template_itemResource
+@define rootName:bulletproofplate
+
+[resource_emrNightVision]
+@copyFromSection: template_itemResource
+@define rootName:emrNightVision
+
+[resource_rubyNightVision]
+@copyFromSection: template_itemResource
+@define rootName:rubyNightVision
+
+[resource_spphNightVision]
+@copyFromSection: template_itemResource
+@define rootName:spphNightVision
+
+[resource_schoolBag]
+@copyFromSection: template_itemResource
+@define rootName:schoolBag
+
+[resource_duffleBag]
+@copyFromSection: template_itemResource
+@define rootName:duffleBag
+
+[resource_paratusBag]
+@copyFromSection: template_itemResource
+@define rootName:paratusBag
+
+[resource_6sh118Bag]
+@copyFromSection: template_itemResource
+@define rootName:6sh118Bag
+
+[resource_leatherJacket]
+@copyFromSection: template_itemResource
+@define rootName:leatherJacket
+
+[resource_banditJacket]
+@copyFromSection: template_itemResource
+@define rootName:banditJacket
+
+[resource_trenchcoat]
+@copyFromSection: template_itemResource
+@define rootName:trenchcoat
+
+[resource_sunriseSuit]
+@copyFromSection: template_itemResource
+@define rootName:sunriseSuit
+
+[resource_sunsetSuit]
+@copyFromSection: template_itemResource
+@define rootName:sunsetSuit
+
+[resource_rbSuit]
+@copyFromSection: template_itemResource
+@define rootName:rbSuit
+
+[resource_hazmatSuit]
+@copyFromSection: template_itemResource
+@define rootName:hazmatSuit
+
+[resource_exoskeleton]
+@copyFromSection: template_itemResource
+@define rootName:exoskeleton
+
+[resource_blade]
+@copyFromSection: template_itemResource
+@define rootName:blade
+
+[resource_spear]
+@copyFromSection: template_itemResource
+@define rootName:spear
+
+[resource_axe]
+@copyFromSection: template_itemResource
+@define rootName:axe
+
+[resource_fireAxe]
+@copyFromSection: template_itemResource
+@define rootName:fireAxe
+
+[resource_machete]
+@copyFromSection: template_itemResource
+@define rootName:machete
+
+[resource_bat]
+@copyFromSection: template_itemResource
+@define rootName:bat
+
+[resource_pm]
+@copyFromSection: template_itemResource
+@define rootName:pm
+
+[resource_usp]
+@copyFromSection: template_itemResource
+@define rootName:usp
+
+[resource_ak47]
+@copyFromSection: template_itemResource
+@define rootName:ak47
+
+[resource_mp5]
+@copyFromSection: template_itemResource
+@define rootName:mp5
+
+[resource_vityaz]
+@copyFromSection: template_itemResource
+@define rootName:vityaz
+
+[resource_lr300]
+@copyFromSection: template_itemResource
+@define rootName:lr300
+
+[resource_svt40]
+@copyFromSection: template_itemResource
+@define rootName:svt40
+
+[resource_toz34]
+@copyFromSection: template_itemResource
+@define rootName:toz34
+
+[resource_groza]
+@copyFromSection: template_itemResource
+@define rootName:groza
+
+[resource_val]
+@copyFromSection: template_itemResource
+@define rootName:val
+
+[resource_fn2000]
+@copyFromSection: template_itemResource
+@define rootName:fn2000
+
+[resource_gauss]
+@copyFromSection: template_itemResource
+@define rootName:gauss
+
+[resource_xr1]
+@copyFromSection: template_itemResource
+@define rootName:xr1
+
+
+[resource_brokenPm]
+@copyFromSection: template_itemResource
+@define rootName:brokenPm
+
+[resource_brokenMp5]
+@copyFromSection: template_itemResource
+@define rootName:brokenMp5
+
+[resource_brokenAk47]
+@copyFromSection: template_itemResource
+@define rootName:brokenAk47
+
+[resource_brokenLr300]
+@copyFromSection: template_itemResource
+@define rootName:brokenLr300
+
+[resource_brokenToz34]
+@copyFromSection: template_itemResource
+@define rootName:brokenToz34
+
+[resource_brokenSvt40]
+@copyFromSection: template_itemResource
+@define rootName:brokenSvt40
+
+[resource_gunParts]
+@copyFromSection: template_itemResource
+@define rootName:gunParts
+
+[resource_pistolParts]
+@copyFromSection: template_itemResource
+@define rootName:pistolParts
+
+[resource_smgParts]
+@copyFromSection: template_itemResource
+@define rootName:smgParts
+
+[resource_rifleParts]
+@copyFromSection: template_itemResource
+@define rootName:rifleParts
+
+[resource_gaussParts]
+@copyFromSection: template_itemResource
+@define rootName:gaussParts
+
+[resource_pmMag]
+@copyFromSection: template_itemResource
+@define rootName:pmMag
+
+[resource_pmMagEmpty]
+@copyFromSection: template_itemResource
+@define rootName:pmMagEmpty
+
+[resource_mp5Mag]
+@copyFromSection: template_itemResource
+@define rootName:mp5Mag
+
+[resource_mp5MagEmpty]
+@copyFromSection: template_itemResource
+@define rootName:mp5MagEmpty
+
+[resource_ak47Mag]
+@copyFromSection: template_itemResource
+@define rootName:ak47Mag
+
+[resource_ak47MagEmpty]
+@copyFromSection: template_itemResource
+@define rootName:ak47MagEmpty
+
+[resource_lr300Mag]
+@copyFromSection: template_itemResource
+@define rootName:lr300Mag
+
+[resource_lr300MagEmpty]
+@copyFromSection: template_itemResource
+@define rootName:lr300MagEmpty
+
+[resource_dirtyLeatherJacket]
+@copyFromSection: template_itemResource
+@define rootName:dirtyLeatherJacket
+
+[resource_dirtyShirt]
+@copyFromSection: template_itemResource
+@define rootName:dirtyShirt
+
+[resource_dirtyPants]
+@copyFromSection: template_itemResource
+@define rootName:dirtyPants
+
+[resource_oldBalaclava]
+@copyFromSection: template_itemResource
+@define rootName:oldBalaclava
+
+[resource_oldSportJacket]
+@copyFromSection: template_itemResource
+@define rootName:oldSportJacket
+
+[resource_oldVest]
+@copyFromSection: template_itemResource
+@define rootName:oldVest
+
+[resource_usedGasmask]
+@copyFromSection: template_itemResource
+@define rootName:usedGasmask
+
+[resource_shabbyBanditOutfit]
+@copyFromSection: template_itemResource
+@define rootName:shabbyBanditOutfit
+
+[resource_shabbySweater]
+@copyFromSection: template_itemResource
+@define rootName:shabbySweater
+
+[resource_highTechFabric]
+@copyFromSection: template_itemResource
+@define rootName:highTechFabric
+
+[resource_bloodFlower]
+@copyFromSection: template_itemResource
+@define rootName:bloodFlower
+
+[resource_redStone]
+@copyFromSection: template_itemResource
+@define rootName:redStone
+
+[resource_grawy]
+@copyFromSection: template_itemResource
+@define rootName:grawy
+
+[resource_ruby]
+@copyFromSection: template_itemResource
+@define rootName:ruby
+
+[resource_remedyRose]
+@copyFromSection: template_itemResource
+@define rootName:remedyRose
+
+[resource_shock]
+@copyFromSection: template_itemResource
+@define rootName:shock
+
+
+[resource_banditPatch]
+@copyFromSection: template_itemResource
+@define rootName:banditPatch
+
+[resource_marauderPda]
+@copyFromSection: template_itemResource
+@define rootName:marauderPda
+
+
+[resource_detector]
+@copyFromSection: template_itemResource
+@define rootName:detector
+
+[resource_heart]
+@copyFromSection: template_itemResource
+@define rootName:heart
+
+
+
+
+
+
+[global_resource_recruited]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Recruited
+
+[global_resource_ready]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Ready
+
+[resource_search]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Search Cooldown
+
+[resource_isearch]
+hidden: true
+displayRoundedDown: true
+displayNameShort: IT Search Cooldown
+
+[resource_lootAvailable]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Loot Available
+
+[resource_npcLoot]
+hidden: false
+displayRoundedDown: true
+displayNameShort: Loot NPC
+
+
+[resource_maxItems]
+hidden: true
+displayRoundedDown: true
+displayNameShort: Max Items
+
+[core]
+#showInEditor: false
+#Well, Do not change that code for your shitty screenshot roleplay, you mfing kid.

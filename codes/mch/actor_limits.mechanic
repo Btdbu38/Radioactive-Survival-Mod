@@ -1,0 +1,192 @@
+
+[hiddenAction_hungerLimit]
+autoTrigger: if self.resource(type='hunger')>100
+resourceAmount: hunger
+resourceAmount_setValue: 100
+
+[hiddenAction_hungerLimit2]
+autoTrigger: if self.resource(type='hunger')<0
+resourceAmount: hunger
+resourceAmount_setValue: 1
+
+[hiddenAction_panicLimit]
+autoTrigger: if self.resource(type='panic')>100
+resourceAmount: panic
+resourceAmount_setValue: 100
+
+[hiddenAction_waterLimit]
+autoTrigger: if self.resource(type='thirst')>100
+resourceAmount: thirst
+resourceAmount_setValue: 100
+
+[hiddenAction_waterLimit2]
+autoTrigger: if self.resource(type='thirst')<0
+resourceAmount: thirst
+resourceAmount_setValue: -1
+
+[hiddenAction_radLimit]
+autoTrigger: if self.resource(type='radiation')>100
+resourceAmount: radiation
+resourceAmount_setValue: 100
+
+[hiddenAction_radLimit2]
+autoTrigger: if self.resource(type='radiation')<0
+resourceAmount: radiation
+resourceAmount_setValue: 2
+
+[hiddenAction_tempLimit]
+autoTrigger: if self.resource(type='temperature')>40
+resourceAmount: temperature
+resourceAmount_setValue: 40
+
+[hiddenAction_tempLimit2]
+autoTrigger: if self.resource(type='temperature')<0
+resourceAmount: temperature
+resourceAmount_setValue: 0
+
+[hiddenAction_chemicalLimit]
+autoTrigger: if self.resource(type='toxic')>100
+resourceAmount: toxic
+resourceAmount_setValue: 100
+
+[hiddenAction_chemicalLimit2]
+autoTrigger: if self.resource(type='toxic')<0
+resourceAmount: toxic
+resourceAmount_setValue: -1
+
+[hiddenAction_bloodLimit]
+autoTrigger: if self.resource(type='blood')>100
+resourceAmount: blood
+resourceAmount_setValue: 100
+
+[hiddenAction_bloodLimit2]
+autoTrigger: if self.resource(type='blood')<0
+resourceAmount: blood
+resourceAmount_setValue: 1
+
+[hiddenAction_mentalLimit]
+autoTrigger: if self.resource(type='mental')>100
+resourceAmount: mental
+resourceAmount_setValue: 100
+
+[hiddenAction_mentalLimit2]
+autoTrigger: if self.resource(type='mental')<0
+resourceAmount: mental
+resourceAmount_setValue: 1
+
+[hiddenAction_staminaLimit]
+autoTrigger: if self.resource(type='stamina')>100
+resourceAmount: stamina
+resourceAmount_setValue: 100
+
+[hiddenAction_staminaLimit2]
+autoTrigger: if self.resource(type='stamina')<0
+resourceAmount: stamina
+resourceAmount_setValue: 1
+
+[hiddenAction_painLimit1]
+autoTrigger: if self.resource(type='pain')<-1
+resourceAmount: pain
+resourceAmount_setValue: 0
+
+[hiddenAction_painLimit2]
+autoTrigger: if self.resource(type='pain')>100
+resourceAmount: pain
+resourceAmount_setValue: 100
+
+[hiddenAction_scratchLimit]
+autoTrigger: if self.resource(type='scratch')>3
+resourceAmount: scratch
+resourceAmount_setValue: 3
+
+[hiddenAction_lacerLimit]
+autoTrigger: if self.resource(type='laceration')>2
+resourceAmount: laceration
+resourceAmount_setValue: 2
+
+[hiddenAction_lodgedbulletLimit]
+autoTrigger: if self.resource(type='lodgedBullet')>2
+resourceAmount: lodgedBullet
+resourceAmount_setValue: 2
+
+[hiddenAction_sweatLimit1]
+autoTrigger: if self.resource(type='sweaty')<-1
+resourceAmount: sweaty
+resourceAmount_setValue: 0
+
+[hiddenAction_sweatLimit2]
+autoTrigger: if self.resource(type='sweaty')>100
+resourceAmount: sweaty
+resourceAmount_setValue: 100
+
+[hiddenAction_wetLimit1]
+autoTrigger: if self.resource(type='wetness')<-1
+resourceAmount: wetness
+resourceAmount_setValue: 0
+
+[hiddenAction_wetLimit2]
+autoTrigger: if self.resource(type='wetness')>100
+resourceAmount: wetness
+resourceAmount_setValue: 100
+
+[hiddenAction_pullLimit1]
+autoTrigger: if self.resource(type='pull')<-1
+resourceAmount: pull
+resourceAmount_setValue: 0
+
+[hiddenAction_pullLimit2]
+autoTrigger: if self.resource(type='pull')>5
+resourceAmount: pull
+resourceAmount_setValue: 5
+
+[hiddenAction_pLimit1]
+autoTrigger: if self.resource(type='fallDownChance')<-1
+resourceAmount: fallDownChance
+resourceAmount_setValue: 0
+
+[hiddenAction_pLimit2]
+autoTrigger: if self.resource(type='fallDownChance')>15
+resourceAmount: fallDownChance
+resourceAmount_setValue: 15
+
+
+
+[hiddenAction_headhplimit1]
+autoTrigger: if self.resource(type='headHP')<0
+resourceAmount: headHP
+resourceAmount_setValue: 0
+
+[hiddenAction_headhplimit2]
+autoTrigger: if self.resource(type='headHP')>100
+resourceAmount: headHP
+resourceAmount_setValue: 100
+
+[hiddenAction_armhplimit1]
+autoTrigger: if self.resource(type='armHP')<0
+resourceAmount: armHP
+resourceAmount_setValue: 0
+
+[hiddenAction_armhplimit2]
+autoTrigger: if self.resource(type='armHP')>100
+resourceAmount: armHP
+resourceAmount_setValue: 100
+
+[hiddenAction_torsohplimit1]
+autoTrigger: if self.resource(type='torsoHP')<0
+resourceAmount: torsoHP
+resourceAmount_setValue: 0
+
+[hiddenAction_torsohplimit2]
+autoTrigger: if self.resource(type='torsoHP')>100
+resourceAmount: torsoHP
+resourceAmount_setValue: 100
+
+[hiddenAction_leghplimit1]
+autoTrigger: if self.resource(type='legHP')<0
+resourceAmount: legHP
+resourceAmount_setValue: 0
+
+[hiddenAction_leghplimit2]
+autoTrigger: if self.resource(type='legHP')>100
+resourceAmount: legHP
+resourceAmount_setValue: 100

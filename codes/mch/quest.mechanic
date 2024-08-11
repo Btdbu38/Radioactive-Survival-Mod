@@ -1,0 +1,825 @@
+
+[template_questStarting]
+pos: 0.11
+iconImage: ROOT:/images/faces/${npcName}.png
+iconExtraImage: ROOT:/images/faces/${npcName}.png
+iconExtraColor: #FFFFFF
+displayType: infoOnly
+allowMultipleInQueue: false
+canPlayerCancel: false
+buildSpeed: 0.2s
+addGlobalTeamTags:${npcName}Completed${order}
+price: ${required}
+addResources: ${reward}
+showQuickWarLogToPlayer: Reputation: %{self.resource.reputation}
+isVisible:"""
+if memory.quest == true 
+and self.numberOfUnitsInNeutralTeam(withTag="${npcName}", withinRange=60, greaterThan=0) 
+and not self.globalTeamTags(includes="${npcName}Completed${order}")
+"""
+
+[template_questContinious]
+@copyFromSection:template_questStarting
+isVisible:"""
+if memory.quest == true 
+and self.numberOfUnitsInNeutralTeam(withTag="${npcName}", withinRange=60, greaterThan=0) 
+and self.globalTeamTags(includes="${npcName}Completed${previousOrder}") 
+and not self.globalTeamTags(includes="${npcName}Completed${order}")
+"""
+
+[comment_Questline]
+@copyFromSection:"""
+template_Questline, 
+template_questStarting
+"""
+@define npcName:
+@define order:
+@define required:
+@define reward:
+showMessageToPlayer: 
+
+[comment_Questline2]
+@copyFromSection:"""
+template_Questline, 
+template_questContinious
+"""
+@define npcName:
+@define previousOrder:
+@define order:
+@define required:
+@define reward:
+showMessageToPlayer: Task Completed.
+
+
+
+[action_questScavenger]
+@copyFromSection:"""
+template_questScavenger, 
+template_questStarting
+"""
+@define npcName:scavenger
+@define order:0
+@define required: dirtyShirt:5, dirtyPants:5
+@define reward: metalSheet: 3, castMetal:3, reputation: 2
+showMessageToPlayer: Task "Scavenger" Completed
+
+
+[action_questFindGunParts]
+@copyFromSection:"""
+template_questFindGunParts, 
+template_questStarting
+"""
+@define npcName:questFindGunParts
+@define order:0
+@define required: pistolParts:5
+@define reward: money: 800, 9x19:45, reputation: 2
+showMessageToPlayer: Task "Find Gun Parts 5x" Completed
+
+[action_questFindMachete]
+@copyFromSection:"""
+template_questFindMachete, 
+template_questStarting
+"""
+@define npcName:questFindMachete
+@define order:0
+@define required: machete:1
+@define reward: medkitAi2: 5, syringe: 5, reputation: 4.5
+showMessageToPlayer: Task "Find Machete" Completed
+
+[action_questFirstAid]
+@copyFromSection:"""
+template_questFirstAid, 
+template_questStarting
+"""
+@define npcName:questFirstAid
+@define order:0
+@define required: medkitAi2:1, medkitCar:1
+@define reward: food:1, water:5, reputation: 3
+showMessageToPlayer: Task "First Aid" Completed
+
+[action_questFindPM]
+@copyFromSection:"""
+template_questFindPM, 
+template_questStarting
+"""
+@define npcName:questFindPM
+@define order:0
+@define required: pm:1
+@define reward: money:800, vodka:4, oldTech:1, reputation: 4
+showMessageToPlayer: Task "Find PM" Completed
+
+[action_questFindToz34]
+@copyFromSection:"""
+template_questFindTOZ34, 
+template_questStarting
+"""
+@define npcName:questFindTOZ34
+@define order:0
+@define required: toz34:1
+@define reward: money:1350, needle:2, screws:2, blowtorch:1, saw:1, reputation: 4
+showMessageToPlayer: Task "Find TOZ-34" Completed
+
+[action_questCannedBeans]
+@copyFromSection:"""
+template_questCannedBeans, 
+template_questStarting
+"""
+@define npcName:questCannedBeans
+@define order:0
+@define required:food:5
+@define reward:medkit:2, reputation: 2.5
+showMessageToPlayer: Task "Canned Beans" Completed
+
+[action_questFunJuice]
+@copyFromSection:"""
+template_questFunJuice, 
+template_questStarting
+"""
+@define npcName:questFunJuice
+@define order:0
+@define required:vodka:4
+@define reward:money: 900, radkit:2, reputation:2.5
+showMessageToPlayer: Task "Fun Juice" Completed
+
+[action_questKillAleria]
+@copyFromSection:"""
+template_questKillAleria, 
+template_questStarting
+"""
+@define npcName:ivan
+@define order:0
+@define required:rubyNightVision:1
+@define reward:money:5000, mp5:1, reputation: 6
+showMessageToPlayer: Task "Kill The Marauder" Completed
+
+[action_questMobbingTheMob]
+@copyFromSection:"""
+template_questMobbingTheMob, 
+template_questStarting
+"""
+@define npcName:sergoya
+@define order:10
+@define required:banditPatch:6
+@define reward: money: 2500, rifleParts:3, reputation:4.5
+showMessageToPlayer: Task "Mobbing the Mob" Completed
+
+[action_questKillTheBandit]
+@copyFromSection:"""
+template_questKillTheBandit, 
+template_questStarting
+"""
+@define npcName:questKillTheBandit
+@define order:0
+@define required:banditPatch:1
+@define reward: money: 1000, 556x45:60, reputation: 2
+showMessageToPlayer: Task "Kill The Bandit" Completed
+
+[action_questKillAKilla]
+@copyFromSection:"""
+template_questKillAKilla, 
+template_questStarting
+"""
+@define npcName:alex
+@define order:0
+@define required:killaKillCount:1
+@define reward:money:5000, fuelCanister:1, medkitGrizzly:3, reputation:4.5
+showMessageToPlayer:Task "Kill a Killa" Completed
+
+[action_questHunter]
+@copyFromSection:"""
+template_questHunter, 
+template_questStarting
+"""
+@define npcName:questHunter
+@define order:0
+@define required:zombieKillCount:20
+@define reward: money:2500, reputation:1.5
+showMessageToPlayer: Task "Hunter" Completed
+
+[action_questChimeraHunt]
+@copyFromSection:"""
+template_questChimeraHunt, 
+template_questStarting
+"""
+@define npcName:mitka
+@define order:0
+@define required:0
+@define reward:stamina:1
+showMessageToPlayer: Kill a Chimera
+
+[action_chimeraQuest2]
+@copyFromSection:"""
+template_questChimeraHuntAccepted, 
+template_questContinious
+"""
+@define npcName:mitka
+@define previousOrder:0
+@define order:1
+@define required:chimeraKillCount:1
+@define reward:money:1000, rifleParts:10, reputation: 5
+showMessageToPlayer: Task "Chimera Hunt" Completed.
+
+
+
+[action_sidovorichQuestline1]
+@copyFromSection:"""
+template_sidovorichQuestline1, 
+template_questStarting
+"""
+@define npcName:sidorovich
+@define order:0
+@define required:0
+@define reward:stamina:1
+
+[action_sidovorichQuestline2]
+@copyFromSection:"""
+template_sidovorichQuestline2, 
+template_questContinious
+"""
+@define npcName:sidorovich
+@define previousOrder:0
+@define order:1
+@define required:0
+@define reward:stamina:1
+showMessageToPlayer: Meet with Strelok
+
+[action_nimbleQuestline]
+@copyFromSection:"""
+template_nimbleQuestline, 
+template_questStarting
+"""
+@define npcName:nimble
+@define order:0
+@define required:0
+@define reward:stamina:1
+
+[action_nimblesWifeQuestline]
+@copyFromSection:"""
+template_nimblesWifeQuestline, 
+template_questStarting
+"""
+@define npcName:nimblesWife
+@define order:0
+@define required:0
+@define reward:stamina:1
+
+
+[action_skullQuestline]
+@copyFromSection:"""
+template_skullQuestline, 
+template_questStarting
+"""
+@define npcName:skull
+@define order:0
+@define required:0
+@define reward:stamina:1
+
+[action_hadrianQuestline]
+@copyFromSection:"""
+template_hadrianQuestline, 
+template_questStarting
+"""
+@define npcName:hadrian
+@define order:0
+@define required:0
+@define reward:stamina:1
+
+[action_bulletQuestline]
+@copyFromSection:"""
+template_bulletQuestline, 
+template_questStarting
+"""
+@define npcName:bullet
+@define order:0
+@define required:0
+@define reward:stamina:1
+
+
+[action_pilotQuestline1]
+@copyFromSection:"""
+template_pilotQuestline1, 
+template_questStarting
+"""
+@define npcName:pilot
+@define order:0
+@define required:0
+@define reward:craftingXp:1
+
+[action_pilotQuestline2]
+@copyFromSection:"""
+template_pilotQuestline2, 
+template_questContinious
+"""
+@define npcName:pilot
+@define previousOrder:0
+@define order:1
+@define required:bloodFlower:1, shock:1, grawy:1
+@define reward:money: 2000, keyExormor:1
+showMessageToPlayer: Task "Artifacts for Military" Completed. (Exormor Factory key obtained) 
+
+[action_pilotQuestline3]
+@copyFromSection:"""
+template_pilotQuestline3, 
+template_questContinious
+"""
+@define npcName:pilot
+@define previousOrder:1
+@define order:2
+@define required:turretParts:2
+@define reward:money:3000
+showMessageToPlayer: Task "Abandoned Factory" Completed.
+
+[action_pilotQuestline4]
+@copyFromSection:"""
+template_pilotQuestline4, 
+template_questContinious
+"""
+@define npcName:pilot
+@define previousOrder:2
+@define order:3
+@define required:0
+@define reward:stamina:1
+
+[action_pilotQuestline5]
+@copyFromSection:"""
+template_pilotQuestline5, 
+template_questContinious
+"""
+@define npcName:pilot
+@define previousOrder:3
+@define order:4
+@define required:0
+@define reward:stamina:1
+
+[action_pilotQuestline6]
+@copyFromSection:"""
+template_pilotQuestline6, 
+template_questContinious
+"""
+@define npcName:pilot
+@define previousOrder:4
+@define order:5
+@define required:0
+@define reward:stamina:1
+
+
+[action_hireStalker]
+isLocked: if (self.numberOfUnitsInTeam(withTag="companion") >= 2 and not self.tags(includes="commander"))
+isLockedMessage: Group size reached
+@copyFromSection:"""
+template_hireStalker, 
+template_questStarting
+"""
+@define npcName:hireStalker
+@define order:0
+@define required:money:3000, 9x19:30, medkitAi2:2
+@define reward:stamina:1
+temporarilyAddTags:${npcName}Completed${order}
+[hiddenAction_hireStalkerRemoveTag]
+autoTrigger: if self.tags(includes="hireStalkerCompleted0")
+removeGlobalTeamTags: hireStalkerCompleted0
+temporarilyRemoveTags: hireStalkerCompleted0
+
+[action_hireMercenary]
+isLocked: if (self.numberOfUnitsInTeam(withTag="companion") >= 2 and not self.tags(includes="commander"))
+isLockedMessage: Group size reached
+@copyFromSection:"""
+template_hireMercenary, 
+template_questStarting
+"""
+@define npcName:hireMercenary
+@define order:0
+@define required:money:7000, mre:1, water:2
+@define reward:stamina:1
+temporarilyAddTags:${npcName}Completed${order}
+[hiddenAction_hireMercenaryRemoveTag]
+autoTrigger: if self.tags(includes="hireMercenaryCompleted0")
+removeGlobalTeamTags: hireMercenaryCompleted0
+temporarilyRemoveTags: hireMercenaryCompleted0
+
+#andrew
+
+[action_andrewQuestline1]
+@copyFromSection:"""
+template_andrewQuestline, 
+template_questStarting
+"""
+@define npcName:andrew
+@define order:0
+@define required: 0
+@define reward: stamina:1
+showMessageToPlayer: Find a radio and a book about it.
+
+[action_andrewQuestline2]
+@copyFromSection:"""
+template_andrewQuestline2, 
+template_questContinious
+"""
+@define npcName:andrew
+@define previousOrder:0
+@define order:1
+@define required: radio:1, book:1
+@define reward: money:100, fireAxe:1, keyFossolGas:1
+showMessageToPlayer: Task "Andrew's Radar" Completed. (Obtained gas station key) 
+
+
+[action_walterQuestline]
+@copyFromSection:"""
+template_walterQuestline, 
+template_questStarting
+"""
+@define npcName:walter
+@define order:0
+@define required:needle:1, sewingCloth:2
+@define reward:money:500, reputation: 1
+showMessageToPlayer: Task "Amateur Tailor" Completed
+
+[action_walterQuestline2]
+@copyFromSection:"""
+template_walterQuestline, 
+template_questContinious
+"""
+@define npcName:walter
+@define previousOrder:0
+@define order:1
+@define required:carapace:5
+@define reward:trenchcoat:1, reputation: 5
+showMessageToPlayer: Task "Heavy Bettles" Completed.
+
+
+[action_annaQuestline1]
+isLocked: if (self.numberOfUnitsInTeam(withTag="companion") >= 2 and not self.tags(includes="commander"))
+isLockedMessage: Group size reached
+@copyFromSection:"""
+template_annaQuestline, 
+template_questStarting
+"""
+@define npcName:anna
+@define order:0
+@define required:0
+@define reward: stamina:1
+showMessageToPlayer: Find medical items in order to save her.
+
+[action_annaQuestline2]
+@copyFromSection:"""
+template_annaQuestline, 
+template_questContinious
+"""
+@define npcName:anna
+@define previousOrder:0
+@define order:1
+@define required:medkit:1, needle:1, tweezer:1
+@define reward:firstaidXp:20, reputation:5.5
+showMessageToPlayer: Task "Wounded Woman" Completed.
+temporarilyAddTags:${npcName}Completed${order}
+
+[action_markQuestline]
+@copyFromSection:"""
+template_markQuestline, 
+template_questStarting
+"""
+@define npcName:mark
+@define order:0
+@define required:note:1
+@define reward:money:2800
+showMessageToPlayer: Task "Notes from Shadows" Completed
+
+[action_bashakovQuestline]
+@copyFromSection:"""
+template_bashakovQuestline, 
+template_questStarting
+"""
+@define npcName:bashakov
+@define order:0
+@define required:medkitAi2:1, vodka:1
+@define reward:firstaidXp:45, reputation:-1
+showMessageToPlayer: Task "Defected Bandit" Completed
+temporarilyAddTags:${npcName}Completed${order}
+
+[action_hipQuestline]
+isLocked: if (self.numberOfUnitsInTeam(withTag="companion") >= 2 and not self.tags(includes="commander"))
+isLockedMessage: Group size reached
+@copyFromSection:"""
+template_talkToHip, 
+template_questStarting
+"""
+@define npcName:hip
+@define order:0
+@define required:12x70:50, bread:10
+@define reward:reputation:1
+temporarilyAddTags:${npcName}Completed${order}
+
+
+[action_refillFuel]
+@copyFromSection:template_actionRefillFuel
+isVisible: if memory.quest == true and self.numberOfUnitsInAllTeams(withTag='needFuel', withinRange=75, greaterThan=0) and not self.resource(type="reviving", greaterThan=0)
+buildSpeed: 0
+price: fuelCanister: 1
+showMessageToPlayer: Refilled the Generator with Fuel.
+allowMultipleInQueue: false
+sendMessageTo: nearestUnit(withTag="generator")
+sendMessageWithTags: addFuel
+
+
+[action_refillFuelVehicle]
+@copyFromSection:template_actionRefillCar
+isVisible: if memory.quest == true and self.numberOfUnitsInNeutralTeam(withTag='needFuelCar', withinRange=110, greaterThan=0)
+buildSpeed: 0
+price: fuelCanister: 1
+showMessageToPlayer: Refilled the Vehicle with Fuel.
+allowMultipleInQueue: false
+sendMessageTo: nearestUnit(withTag="vehicle")
+sendMessageWithTags: addFuelToCar
+
+[action_repairVehicle]
+@copyFromSection:template_actionRepairCar
+isVisible: if memory.quest == true and self.numberOfUnitsInNeutralTeam(withTag='vehicle', withinRange=110, greaterThan=0)
+buildSpeed: 0
+price: metalSheet:2, screws:2
+showMessageToPlayer: Repaired the vehicle.
+allowMultipleInQueue: false
+sendMessageTo: nearestUnit(withTag="vehicle")
+sendMessageWithTags: repairCar
+
+
+[action_reviveSurvivor]
+@copyFromSection:template_actionReviveSurvivor
+isVisible: if memory.quest == true and self.numberOfUnitsInAllTeams(withTag='died', withinRange=70, greaterThan=0) and not self.resource(type="reviving", greaterThan=0)
+buildSpeed: 0.3s
+price: 0
+addResources: reviving:10
+showMessageToPlayer: Reviving a player...
+allowMultipleInQueue: false
+
+[resource_reviving]
+hidden:true
+
+[hiddenAction_addReviveTag]
+autoTrigger: if self.resource(type="reviving", greaterThan=0)
+temporarilyAddTags: reviving
+
+[hiddenAction_removeReviveTag]
+autoTrigger: if self.resource(type="reviving", lessThan=1)
+temporarilyRemoveTags: reviving
+
+[hiddenAction_removeRevivePoints]
+autoTrigger: if self.resource(type="reviving", greaterThan=0)
+addResources: reviving: -0.4
+
+
+
+[action_strelokQuestline]
+@copyFromSection:"""
+template_strelokQuestline1, 
+template_questStarting
+"""
+@define npcName:strelok
+@define order:0
+@define required:0
+@define reward: fruitJuice:1, food:1, snacks:1
+showMessageToPlayer: Strelok gave you some food. Open inventory and use them.
+
+[action_strelokQuestline2]
+@copyFromSection:"""
+template_strelokQuestline2, 
+template_questContinious
+"""
+@define npcName:strelok
+@define previousOrder:0
+@define order:1
+@define required:0
+@define reward:strengthXp:5, fitnessXp:5, nimbleXp:5, lightfootedXp:5, craftingXp:5, aimingXp:5
+
+[action_strelokQuestline3]
+@copyFromSection:"""
+template_strelokQuestline3, 
+template_questContinious
+"""
+@define npcName:strelok
+@define previousOrder:1
+@define order:2
+@define required:0
+@define reward:leatherJacket:1
+showMessageToPlayer: Someone gave you a clothing. Wear it. (Open the inventory)
+
+
+[action_johnQuestline]
+@copyFromSection:"""
+template_johnQuestline, 
+template_questStarting
+"""
+@define npcName:john
+@define order:0
+@define required:0
+@define reward:money:100,water:3,meat:3,needle:1,tweezer:1,gauze:2
+showMessageToPlayer: Find Maxim 
+
+[action_hassamQuestline]
+@copyFromSection:"""
+template_hassamQuestline, 
+template_questStarting
+"""
+@define npcName:hassam
+@define order:0
+@define required:plank:15, scrap:15, cloth:20
+@define reward: toz34:1, reputation: 3
+iconImage: ROOT:/images/faces/nomad.png
+showMessageToPlayer: Task "Supplies for Hassam" Completed.
+
+[action_farmer2Questline]
+@copyFromSection:"""
+template_farmerQuestline, 
+template_questStarting
+"""
+@define npcName:farmer2
+@define order:0
+@define required:water:5
+@define reward:money:250, wheat: 5, bread:6, reputation: 3
+showMessageToPlayer: Task "Watering the Radioactive Farm" Completed
+
+[action_farmer2QuestlineDelivery]
+@copyFromSection:"""
+template_farmerQuestline2, 
+template_questStarting
+"""
+@define npcName:farmer2
+@define order:1
+@define required:packageAlex:1
+@define reward:food:2, money:1300, keyArmyPrep:1, reputation: 1.5
+showMessageToPlayer: Alex's package is delivered. (Army Prep GunStore key obtained) 
+temporarilyAddTags:packageAlexDelivered
+#'
+
+[action_turnerQuestline]
+@copyFromSection:"""
+template_turnerQuestline, 
+template_questStarting
+"""
+@define npcName:turner
+@define order:0
+@define required:0
+@define reward:stamina:1
+
+
+[action_sophiaQuestline]
+@copyFromSection:"""
+template_medicHello, 
+template_questStarting
+"""
+@define npcName:sophia
+@define order:0
+@define required:0
+@define reward:firstaidXp:120
+
+[action_sophiaQuestline2]
+@copyFromSection:"""
+template_medicHeal, 
+template_questContinious
+"""
+@define npcName:sophia
+@define previousOrder:0
+@define order:1
+@define required:money:500
+@define reward:hp:200, legHP:100, armHP:100, headHP:100, torsoHP:100, toxic:-50, radiation:-50, blood:50
+addGlobalTeamTags:none
+
+[action_maximQuestline]
+@copyFromSection:"""
+template_maximQuestline, 
+template_questStarting
+"""
+@define npcName:maxim
+@define order:0
+@define required:carBattery:1, metalSheet:10, blowtorch:3, screws:10
+@define reward:money:69
+showMessageToPlayer: Car has been repaired. It is ready to move.
+temporarilyAddTags: endgame
+
+
+[action_commanderQuestline]
+@copyFromSection:"""
+template_questStarting
+"""
+@define npcName:commander
+@define order:0
+@define required:vodka:1
+@define reward:credits:0
+text: Talk to Soldier
+description: -Me: Hey, are you okay? \n -Soldier: Yeah, absolutely... Just give me that vodka.
+temporarilyAddTags: commanderWait
+
+
+[action_sergoyaQuestline]
+@copyFromSection:"""
+template_sergoyaQuestline, 
+template_questStarting
+"""
+@define npcName:sergoya
+@define order:0
+@define required:marauderPda:1
+@define reward:money:10000, reputation: 8
+showMessageToPlayer: Task "Secret PDA" Completed
+
+[action_sergoyaQuestline2]
+@copyFromSection:"""
+template_sergoyaQuestline2, 
+template_questContinious
+"""
+@define npcName:sergoya
+@define previousOrder:0
+@define order:1
+@define required:survivors:1
+@define reward:money:20000, reputation: 10
+showMessageToPlayer: Task "Rescue Survivors" Completed.
+
+
+[action_aleriaQuestline]
+@copyFromSection:"""
+template_alyinaQuestline, 
+template_questStarting
+"""
+@define npcName:aleria
+@define order:0
+@define required:0
+@define reward: stamina:1
+
+[action_bladeQuestline]
+@copyFromSection:"""
+template_bladeQuestline, 
+template_questStarting
+"""
+@define npcName:anton
+@define order:0
+@define required:0
+@define reward:marauderPda:1
+showMessageToPlayer: You stole the PDA, go back to Sergoya
+
+
+[action_henryQuestline]
+@copyFromSection:"""
+template_henryQuestline, 
+template_questStarting
+"""
+@define npcName:henry
+@define order:0
+@define required:money:3000
+@define reward:detector:1
+#
+
+[action_barkeeperQuestline]
+@copyFromSection:"""
+template_barkeepQuestline, 
+template_questStarting
+"""
+@define npcName:barkeeper
+@define order:0
+@define required:mre:3
+@define reward:money:2500, reputation: 1
+showMessageToPlayer: Task completed
+
+[action_alexQuestline]
+@copyFromSection:"""
+template_alexQuestline, 
+template_questContinious
+"""
+@define npcName:alex
+@define order:1
+@define previousOrder:0
+@define required:pm:2, 9x18:30, oldVest:2, usedGasmask:2
+@define reward:money:8000, reputation: 4.5
+showMessageToPlayer: Task "Gear for Rookies" Completed
+
+[action_alexQuestline2]
+@copyFromSection:"""
+template_alexQuestline2, 
+template_questStarting
+"""
+@define npcName:alex
+@define order:0
+@define required:0
+@define reward:packageAlex:1
+showMessageToPlayer: Deliver the package to farmers. (Located somewhere in farm)
+
+
+[action_mitkaQuestline1]
+@copyFromSection:"""
+template_mitkaQuestline, 
+template_questStarting
+"""
+@define npcName:mitka
+@define order:2
+@define required:leatherJacket:1
+@define reward:money:600, reputation: 1.5
+showMessageToPlayer: Task "Amateur Tailor" Completed
+
+[action_mitkaQuestline2]
+@copyFromSection:"""
+template_mitkaQuestline2, 
+template_questContinious
+"""
+@define npcName:mitka
+@define previousOrder:2
+@define order:3
+@define required:leather:1, tentacle:1, carapace:1
+@define reward:money:4000, reputation: 2
+showMessageToPlayer: Task "Huntsman" Completed.

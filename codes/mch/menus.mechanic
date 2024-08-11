@@ -1,0 +1,270 @@
+
+
+[hiddenAction_createdSetMenuMemories]
+autoTriggerOnEvent: created
+setUnitMemory:"""
+inventory= false,
+inventory_category= false,
+crafting= false,
+equipments= false,
+quest= false,
+recruitment= false,
+pda= false,
+skills= false,
+dropping= false,
+anyMenu= false
+"""
+
+[template_menu]
+whenBuilding_cannotMove: false
+buildSpeed: 0s
+allowMultipleInQueue: false
+alwaysSinglePress: true
+displayType: action
+iconExtraImage: ${section.iconImage}
+iconExtraColor: #FFFFFFFF
+isLocked: if self.queueSize() > 0
+isGuiBlinking: true
+
+[action_openBag]
+@copyFromSection: template_menu, template_bag
+displayType: infoOnly
+pos: 0.1
+iconImage: ROOT:/images/ui/bag.png
+iconExtraImage: ROOT:/images/ui/bag.png
+playSoundToPlayerOnQueue: ROOT:/soundFx/itemUsage/invOpen.ogg:1
+isVisible: if memory.inventory == false and memory.anyMenu == false
+setUnitMemory: inventory=true, anyMenu=true
+
+[action_closeBag]
+text:"""
+%{self.resource.encumbrance} / %{self.resource.maxEncumbrance} KG
+"""
+#text: %{self.resource.encumbrance} / %{self.resource.maxEncumbrance} KG
+@copyFromSection: template_menu, template_bag
+pos: 0.1
+iconImage: ROOT:/images/ui/bag.png
+iconExtraImage: ROOT:/images/ui/bag.png
+playSoundToPlayerOnQueue: ROOT:/soundFx/itemUsage/invClose.ogg:1
+isVisible: if memory.inventory == true and memory.anyMenu == true
+setUnitMemory: inventory=false, anyMenu=false
+
+
+
+[action_openCategory]
+@copyFromSection: template_menu, template_category
+displayType: infoOnly
+pos: 0.11
+iconImage: ROOT:/images/ui/sortInventory.png
+iconExtraImage: ${section.iconImage}
+iconExtraColor: #FFFFFFFF
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/button.ogg:0.3
+isVisible: if memory.inventory_category == false and memory.inventory == true
+setUnitMemory: inventory_category=true, inventory=false
+isGuiBlinking: false
+
+#all equipments artifacts medical supplies materials
+
+[template_category]
+pos: 0.12
+whenBuilding_cannotMove: false
+buildSpeed: 0s
+allowMultipleInQueue: false
+alwaysSinglePress: true
+displayType: action
+isLocked: if self.queueSize() > 0
+iconExtraImage: ${section.iconImage}
+iconExtraColor: #FFFFFFFF
+setUnitMemory: inventory_category=false, inventory=true
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/button.ogg:0.3
+isVisible: if memory.inventory_category == true
+
+[action_categorySetAll]
+@copyFromSection: template_category, template_setAll
+displayType: infoOnly
+iconImage: ROOT:/images/ui/sortAll.png
+temporarilyAddTags: all
+temporarilyRemoveTags: equipment, artifact, medical, supply, material
+
+[action_categorySetEquipment]
+@copyFromSection: template_category, template_setEquipment
+displayType: infoOnly
+iconImage: ROOT:/images/ui/sortEquipment.png
+temporarilyAddTags: equipment
+temporarilyRemoveTags: all, artifact, medical, supply, material
+
+[action_categorySetArtifact]
+@copyFromSection: template_category, template_setArtifact
+displayType: infoOnly
+iconImage: ROOT:/images/ui/sortArtifact.png
+temporarilyAddTags: artifact
+temporarilyRemoveTags: all, equipment, medical, supply, material
+
+[action_categorySetMedical]
+@copyFromSection: template_category, template_setMedical
+displayType: infoOnly
+iconImage: ROOT:/images/ui/sortMedical.png
+temporarilyAddTags: medical
+temporarilyRemoveTags: all, equipment, artifact, supply, material
+
+[action_categorySetSupply]
+@copyFromSection: template_category, template_setSupply
+displayType: infoOnly
+iconImage: ROOT:/images/ui/sortSupply.png
+temporarilyAddTags: supply
+temporarilyRemoveTags: all, equipment, artifact, medical, material
+
+[action_categorySetMaterial]
+@copyFromSection: template_category, template_setMaterial
+displayType: infoOnly
+iconImage: ROOT:/images/ui/sortMaterial.png
+temporarilyAddTags: material
+temporarilyRemoveTags: all, equipment, artifact, medical, supply
+
+
+
+[action_openCraft]
+@copyFromSection: template_menu, template_craftt
+pos: 0.2
+iconImage: ROOT:/images/ui/craft.png
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/button.ogg:0.3
+isVisible: if memory.crafting == false and memory.anyMenu == false
+setUnitMemory: crafting=true, anyMenu=true
+
+[action_closeCraft]
+@copyFromSection: template_menu, template_craftt
+pos: 0.1
+iconImage: ROOT:/images/ui/craft.png
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/button2.ogg:0.3
+isVisible: if memory.crafting == true and memory.anyMenu == true
+setUnitMemory: crafting=false, anyMenu=false
+
+
+[action_openSkills]
+@copyFromSection: template_menu, template_skills
+pos: 0.5
+iconImage: ROOT:/images/ui/stat.png
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/button.ogg:0.3
+isVisible: if memory.skills == false and memory.anyMenu == false
+setUnitMemory: skills=true, anyMenu=true
+
+[action_closeSkills]
+@copyFromSection: template_menu, template_skills
+pos: 0.1
+iconImage: ROOT:/images/ui/stat.png
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/button2.ogg:0.3
+isVisible: if memory.skills == true and memory.anyMenu == true
+setUnitMemory: skills=false, anyMenu=false
+
+
+
+
+[action_openTrade]
+@copyFromSection: template_menu, template_trade
+pos: 0.6
+iconImage: ROOT:/images/ui/trade.png
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/button.ogg:0.3
+isVisible: if memory.dropping == false and memory.anyMenu == false
+setUnitMemory: dropping=true, anyMenu=true
+temporarilyAddTags: droppingItems
+
+[action_closeTrade]
+@copyFromSection: template_menu, template_trade
+pos: 0.1
+iconImage: ROOT:/images/ui/trade.png
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/button2.ogg:0.3
+isVisible: if memory.dropping == true and memory.anyMenu == true
+setUnitMemory: dropping=false, anyMenu=false
+temporarilyRemoveTags: droppingItems
+
+
+[action_openEquipments]
+displayType: infoOnly
+@copyFromSection: template_menu, template_equipments
+pos: 0.3
+iconImage: ROOT:/images/ui/equipments.png
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/button.ogg:0.3
+isVisible: if memory.equipments == false and memory.anyMenu == false
+setUnitMemory: equipments=true, anyMenu=true
+
+[action_closeEquipments]
+@copyFromSection: template_menu, template_equipments
+pos: 0.1
+iconImage: ROOT:/images/ui/equipments.png
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/button2.ogg:0.3
+isVisible: if memory.equipments == true and memory.anyMenu == true
+setUnitMemory: equipments=false, anyMenu=false
+
+
+
+
+
+[action_openQuest]
+@copyFromSection: template_menu, template_interact
+pos: 0.4
+iconImage: ROOT:/images/ui/quest.png
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/button.ogg:0.3
+isVisible: if memory.quest == false and memory.anyMenu == false
+setUnitMemory: quest=true, anyMenu=true
+
+[action_closeQuest]
+@copyFromSection: template_menu, template_interact
+pos: 0.1
+iconImage: ROOT:/images/ui/quest.png
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/button2.ogg:0.3
+isVisible: if memory.quest == true and memory.anyMenu == true
+setUnitMemory: quest=false, anyMenu=false
+
+[action_openPDA]
+buildSpeed: 0.6s
+@copyFromSection: template_menu, template_pda
+pos: 0.8
+iconImage: ROOT:/images/ui/pda.png
+isVisible: if memory.pda == false and memory.anyMenu == false
+setUnitMemory: pda=true, anyMenu=true
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/pda_draw.ogg:1
+
+[action_closePDA]
+@copyFromSection: template_menu, template_pda
+pos: 0.1
+iconImage: ROOT:/images/ui/pda.png
+isVisible: if memory.pda == true and memory.anyMenu == true
+setUnitMemory: pda=false, anyMenu=false
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/pda_holster.ogg:1
+
+
+[action_openRwc]
+@copyFromSection: template_menu, template_recruitment
+pos: 0.9
+iconImage: ROOT:/images/ui/companions.png
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/button.ogg:0.3
+isVisible: if memory.recruitment == false and memory.anyMenu == false
+setUnitMemory: recruitment=true, anyMenu=true
+
+[action_closeRec]
+@copyFromSection: template_menu, template_recruitment
+pos: 0.1
+iconImage: ROOT:/images/ui/companions.png
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/button2.ogg:0.3
+isVisible: if memory.recruitment == true and memory.anyMenu == true
+setUnitMemory: recruitment=false, anyMenu=false
+
+
+
+[action_openadebug]
+text: %{self.resource.suspection}
+description: Debug Menu (For BETA Testers)
+@copyFromSection: template_menu
+pos: 10
+iconImage: ROOT:/images/ui/debug.png
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/button.ogg:0.3
+isVisible: if memory.debug == false and memory.anyMenu == false and self.numberOfUnitsInTeam(withTag="debug") >= 1
+setUnitMemory: debug=true, anyMenu=true
+
+[action_closedebug]
+@copyFromSection: template_menu
+pos: 10
+iconImage: ROOT:/images/ui/debug.png
+playSoundToPlayerOnQueue: ROOT:/soundFx/interface/button2.ogg:0.3
+isVisible: if memory.debug == true and memory.anyMenu == true
+setUnitMemory: debug=false, anyMenu=false

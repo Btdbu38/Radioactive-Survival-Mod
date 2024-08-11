@@ -1,0 +1,138 @@
+
+
+[template_skill]
+pos: 0.2
+isVisible: if memory.skills == true
+iconExtraColor: #FFFFFF
+displayType: infoOnly
+allowMultipleInQueue: true
+canPlayerCancel: true
+alwaysSinglePress: false
+buildSpeed: 0
+
+[action_XP]
+@copyFromSection: template_skill, template_actionSkillsInfo
+#iconImage: stat.png
+#iconExtraImage: stat.png
+displayRemainingStockpile: false
+buildSpeed: 0s
+
+
+[template_levelUpTemplate]
+showMessageToPlayer: +
+autoTrigger:"""
+if self.isResourceLargerThan(source='Xp', compareTarget='XpCap')
+"""
+requireConditional: if self.resource. < 10
+addResources: skillPoint: 4, maxXp: 150, level:1
+resourceAmount: Xp
+resourceAmount_setValue: 0
+
+[hiddenAction_lvlUpStrength]
+@copyFromSection:template_actionLvlUpStrenght
+autoTrigger:"""
+if self.isResourceLargerThan(source='strengthXp', compareTarget='strengthXpCap')
+"""
+requireConditional: if self.resource.strength < 10
+addResources: strength:1
+addResourcesWithLogic: strengthXpCap: self.resource.strengthXpCap * 1
+resourceAmount: strengthXp
+resourceAmount_setValue: 0
+
+[hiddenAction_lvlUpFitness]
+@copyFromSection: template_actionLvlUpFitness
+autoTrigger:"""
+if self.isResourceLargerThan(source='fitnessXp', compareTarget='fitnessXpCap')
+"""
+requireConditional: if self.resource.fitness < 10
+addResources: fitness:1
+addResourcesWithLogic: fitnessXpCap: self.resource.fitnessXpCap * 1
+resourceAmount: fitnessXp
+resourceAmount_setValue: 0
+
+[hiddenAction_lvlUpAiming]
+@copyFromSection: template_actionLvlUpAiming
+autoTrigger:"""
+if self.isResourceLargerThan(source='aimingXp', compareTarget='aimingXpCap')
+"""
+requireConditional: if self.resource.aiming < 10
+addResources: aiming:1
+addResourcesWithLogic: aimingXpCap: self.resource.aimingXpCap * 1
+resourceAmount: aimingXp
+resourceAmount_setValue: 0
+
+[hiddenAction_lvlUpNimble]
+@copyFromSection: template_actionLvlUpNimble
+autoTrigger:"""
+if self.isResourceLargerThan(source='nimbleXp', compareTarget='nimbleXpCap')
+"""
+requireConditional: if self.resource.nimble < 10
+addResources: nimble:1
+addResourcesWithLogic: nimbleXpCap: self.resource.nimbleXpCap * 1
+resourceAmount: nimbleXp
+resourceAmount_setValue: 0
+
+[hiddenAction_lvlUpLightfooted]
+@copyFromSection: template_actionLvlUpLightfooted
+autoTrigger:"""
+if self.isResourceLargerThan(source='lightfootedXp', compareTarget='lightfootedXpCap')
+"""
+requireConditional: if self.resource.lightfooted < 10
+addResources: lightfooted:1
+addResourcesWithLogic: lightfootedXpCap: self.resource.lightfootedXpCap * 1
+resourceAmount: lightfootedXp
+resourceAmount_setValue: 0
+
+[hiddenAction_lvlUpRunning]
+@copyFromSection: template_actionLvlUpRunning
+autoTrigger:"""
+if self.isResourceLargerThan(source='runningXp', compareTarget='runningXpCap')
+"""
+requireConditional: if self.resource.running < 10
+addResources: running:1
+addResourcesWithLogic: runningXpCap: self.resource.runningXpCap * 1
+resourceAmount: runningXp
+resourceAmount_setValue: 0
+
+[hiddenAction_lvlUpCrafting]
+@copyFromSection: template_actionLvlUpCrafting
+autoTrigger:"""
+if self.isResourceLargerThan(source='craftingXp', compareTarget='craftingXpCap')
+"""
+requireConditional: if self.resource.crafting < 10
+addResources: crafting:1
+addResourcesWithLogic: craftingXpCap: self.resource.craftingXpCap * 1
+resourceAmount: craftingXp
+resourceAmount_setValue: 0
+
+[hiddenAction_lvlUpFirstAid]
+@copyFromSection: template_actionLvlUpFirstAid
+autoTrigger:"""
+if self.isResourceLargerThan(source='firstaidXp', compareTarget='firstaidXpCap')
+"""
+requireConditional: if self.resource.firstaid < 10
+addResources: firstaid:1
+addResourcesWithLogic: firstaidXpCap: self.resource.firstaidXpCap * 1
+resourceAmount: firstaidXp
+resourceAmount_setValue: 0
+
+[hiddenAction_startingSkills]
+autoTriggerOnEvent:created
+addResources:"""
+strength:1,
+fitness:1,
+aiming:1,
+nimble:1,
+lightfooted:1,
+running:1,
+crafting:1,
+firstaid:1,
+strengthXpCap:50,
+fitnessXpCap:50,
+aimingXpCap:35,
+nimbleXpCap:45,
+lightfootedXpCap:35,
+runningXpCap:35,
+craftingXpCap:10,
+firstaidXpCap:20
+"""

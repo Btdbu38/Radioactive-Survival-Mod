@@ -1,0 +1,156 @@
+############### attack ##########################
+[attack]
+canAttack: true
+canAttackLandUnits:       true
+canAttackFlyingUnits:     false
+canAttackUnderwaterUnits: false
+isFixedFiring: true
+maxAttackRange: ${range}
+shootDelay: ${delay}
+aimOffsetSpread: 0
+isMelee: true
+meleeEngangementDistance: 440
+
+[hiddenAction_rapidFire]
+autoTrigger: if self.resource.rapidFire < 1
+addResourcesWithLogic: rapidFire:"""
+- select(
+     distanceBetween(
+                self, attacking
+                    ) < 400 , 1, 0
+        ) +
+  select(
+     distanceBetween(
+                self, attacking
+                    ) < 200, 1.5, 0
+        ) +
+  select(
+     distanceBetween(
+                self, attacking
+                    ) < 100, 2, 0
+        )
+"""
+
+[hiddenAction_rapidFireReload]
+autoTrigger: if self.resource.rapidFire <= -3
+setResourcesWithLogic: rapidFire:${burstFireAmount}
+
+
+[turret_1]
+x:0
+y:0
+barrelHeight: 11
+shoot_light: #faff89
+shoot_flame: CUSTOM:smokeShot*2, CUSTOM:smokeShot2*2, CUSTOM:shootflame
+energyUsage: 1
+resourceUsage: rapidFire:1
+projectile: ${weapon}New
+#resourceUsage: 
+shoot_sound_vol: 0.5
+shoot_sound: ROOT:/soundFx/weapon/${weapon}/shot.ogg
+
+onShoot_playAnimation: gunShot
+onShoot_triggerActions: triggerAttacking, distanceSounds
+canOnlyAttackUnitsWithoutTags: safe, tree, barrel, ${friends}
+
+canAttackCondition:"""
+if not self.tags(includes="melee") and 
+self.tags(includes='losCheckPassed') and not 
+self.tags(includes='searchForNewTarget') and not 
+self.tags(includes="safe") and 
+self.resource.npcAmmo >= 0
+"""
+
+[turret_melee]
+canOnlyAttackUnitsWithoutTags: safe, tree
+onShoot_playAnimation: use
+x:0
+y:0
+turnSpeed:0
+showRangeUIGuide: false
+delay: 1.2s
+size: 12
+limitingRange: 45
+projectile: ${meleeWeapon}
+shoot_flame: CUSTOM:${meleeWeapon}Swing
+shoot_sound: ROOT:/soundFx/weapon_melee/${meleeWeapon}Fire1.ogg
+shoot_sound_vol: 1
+canAttackCondition:"""
+if self.tags(includes="melee") and not 
+self.tags(includes="safe")
+"""
+
+
+[hiddenAction_reload]
+autoTrigger: if self.resource(type='energy') < 1 and self.hasResources(npcAmmo=1)
+alsoQueueAction: reload2
+addResources: energy: 1
+playSoundAtUnit: ROOT:/soundFx/weapon/${weapon}/reload.ogg:0.5
+
+[action_reload2]
+allowMultipleInQueue: false
+addResources: energy:100, npcAmmo:-1
+buildSpeed: 4s
+isVisible: false
+
+[hiddenAction_triggerAttacking]
+temporarilyAddTags: alert
+alsoTriggerAction: voiceAttack
+
+[hiddenAction_notAttacking]
+autoTrigger: if self.timeAlive(laterThanSeconds=1)
+requireConditional: if self.tags(includes="alert")
+temporarilyRemoveTags: alert
+
+[hiddenAction_distanceSounds]
+buildSpeed:0
+#alsoTriggerAction: close, medium, far
+
+[hiddenAction_close]
+requireConditional:"""
+if self.${UIAT}(withTag="main", withinRange=700, greaterThan=0) 
+and not self.${UIAT}(withTag="main", withinRange=400, greaterThan=0) """
+playSoundGlobally: ROOT:/soundFx/weapon/${weapon}/shotClose.ogg
+
+[hiddenAction_medium]
+requireConditional:"""
+if self.${UIAT}(withTag="main", withinRange=1000, greaterThan=0) 
+and not self.${UIAT}(withTag="main", withinRange=700, greaterThan=0) """
+playSoundGlobally: ROOT:/soundFx/weapon/${weapon}/shotMedium.ogg
+
+[hiddenAction_far]
+requireConditional:"""
+if not self.${UIAT}(withTag="main", withinRange=700, greaterThan=0) """
+playSoundGlobally: ROOT:/soundFx/weapon/${weapon}/shotFar.ogg
+
+
+[hiddenAction_towerRange]
+autoTrigger: if self.hasParent(withTag="tower")
+setUnitStats: maxAttackRange=600
+
+[hiddenAction_fixRange]
+autoTriggerOnEvent: leftTransport
+setUnitStats: maxAttackRange=400
+
+
+############### deathMessages ##########################
+[core]
+@memory deathCause:string
+
+[hiddenAction_setDeathCauseBulletShots]
+autoTriggerOnEvent: tookDamage(withTag="bullet")
+setUnitMemory: deathCause = "Bullet wounds."
+
+[hiddenAction_setDeathCauseUnknown]
+autoTriggerOnEvent: destroyed
+requireConditional: if lastDamagedBy == nullUnit
+setUnitMemory: deathCause = "Unknown."
+
+[comment_die]
+autoTriggerOnEvent: destroyed
+playSoundGlobally: ROOT:/soundFx/message.wav
+showQuickWarLogToAllPlayers: Death Report!
+alsoTriggerAction: die2
+
+[comment_die2]
+showQuickWarLogToAllPlayers: %{memory.npcName} | Cause: %{memory.deathCause}

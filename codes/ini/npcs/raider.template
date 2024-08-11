@@ -1,0 +1,76 @@
+[core]
+@memory dialogueText:string
+
+
+
+[hiddenAction_sendTheDialogue]
+sendMessageTo: self.attachment(slot="dialogue")
+sendMessageWithTags: newString
+sendMessageWithData:"""
+string=memory.dialogueText,
+fontSize=0.12, 
+color="white", 
+maxWidth=9999, 
+horizontal="center", 
+vertical="middle",
+offsetY=-35,
+offsetX=0
+"""
+
+[hiddenAction_removeText]
+addResources: timerTxt:6
+sendMessageTo: self.attachment(slot="dialogue")
+sendMessageWithTags: newString
+sendMessageWithData:"""
+string=" ",
+fontSize=0.07, 
+color="white", 
+maxWidth=9999, 
+horizontal="center", 
+vertical="middle",
+offsetY=-45,
+offsetX=0
+"""
+
+[attachment_dialogue]
+x: 0
+y: 0
+setDrawLayerOnTop: true
+onCreateSpawnUnitOf: npcDialogue
+isUnselectable: false
+rotateWithParent: false
+resetRotationWhenNotAttacking: false
+lockRotation: true
+
+
+[hiddenAction_triggerTakenDamageDialogues]
+autoTriggerOnEvent: tookDamage
+alsoTriggerAction:"""
+takenDamageText1,
+takenDamageText2
+"""
+
+[resource_timerTxt]
+hidden: true
+[hiddenAction_createdAddResource]
+autoTriggerOnEvent: created
+addResources: timerTxt:6
+[hiddenAction_reduceTimer]
+autoTrigger: if self.tags(includes="dialogueSent")
+addResources: timerTxt:-0.3
+[hiddenAction_remove]
+autoTrigger: if self.resource.timerTxt < 0
+alsoTriggerAction: removeText
+temporarilyRemoveTags: dialogueSent
+
+[hiddenAction_takenDamageText1]
+setUnitMemory: dialogueText="Aaaaahhh!! Shiit! It fucking hurts!!"
+temporarilyAddTags: dialogueSent
+requireConditional: if rnd(0,100) < 25 and rnd(0, 100) 
+alsoTriggerAction: sendTheDialogue
+
+[hiddenAction_takenDamageText2]
+setUnitMemory: dialogueText="MMPPHH, I will be stripping your fucking corpse!"
+temporarilyAddTags: dialogueSent
+requireConditional: if rnd(0,100) > 75
+alsoTriggerAction: sendTheDialogue

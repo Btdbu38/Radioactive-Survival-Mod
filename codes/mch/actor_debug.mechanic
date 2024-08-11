@@ -1,0 +1,429 @@
+
+
+#DEBUG CODES
+
+[template_debug]
+isVisible: if memory.debug == true
+displayType: upgrade
+buildSpeed: 0
+iconExtraImage: ROOT:/images/ui/debug.png
+
+[action_godmodeOn]
+@copyFromSection: template_debug
+pos: 10.1
+isVisible: if memory.debug == true and not self.tags(includes="debugging")
+text: God Mode
+iconExtraImage: ROOT:/images/ui/debug.png
+description: -
+temporarilyAddTags: debugging
+
+[action_godmodeOff]
+@copyFromSection: template_debug
+pos: 10.2
+isVisible: if memory.debug == true and self.tags(includes="debugging")
+text: Close God Mode
+iconExtraImage: ROOT:/images/ui/debug.png
+description: -
+temporarilyRemoveTags: debugging
+setUnitStats: armour=${core.armour}
+
+[action_encmOn]
+@copyFromSection: template_debug
+pos: 10.3
+isVisible: if memory.debug == true and not self.tags(includes="weightDebug")
+text: Unlimited Weight
+iconExtraImage: ROOT:/images/ui/debug.png
+description: -
+temporarilyAddTags: weightDebug
+
+[action_encmOff]
+@copyFromSection: template_debug
+pos: 10.4
+isVisible: if memory.debug == true and self.tags(includes="weightDebug")
+text: Close U. Weight
+iconExtraImage: ROOT:/images/ui/debug.png
+description: -
+temporarilyRemoveTags: weightDebug
+
+[action_addAllResources]
+@copyFromSection: template_debug
+pos: 10.41
+isVisible: if memory.debug == true
+text: Add Resources (15)
+iconExtraImage: ROOT:/images/ui/debug.png
+description: -
+addResourcesWithLogic:"""
+9x18:  15,
+9x19:  15,
+545x39:  15,
+556x45:  15,
+12x70:  15,
+762x54:  15,
+9x39: 15,
+battery: 15,
+45acp: 15,
+wood:  15,
+ductTape:  15,
+scrap:  15,
+plastic:  15,
+cloth:  15,
+tentacle:  15,
+leather:  15,
+carapace:  15,
+carBattery:  15,
+screws:  15,
+nails:  15,
+screwdriver:  15,
+hammer:  15,
+castMetal:  15,
+gunParts:  15,
+guitar:  15,
+sewingCloth:  15,
+food:  15,
+crackers:  15,
+cannedTuna:  15,
+mre:  15,
+snacks:  15,
+meat:  15,
+bloodBag:  15,
+fruitJuice:  15,
+water:  15,
+taintedWater:  15,
+vodka:  15,
+cigarettes:  15,
+plank:  15,
+metalSheet:  15,
+blowtorch:  15,
+saw:  15,
+bulletproofPlate:  15,
+soda:  15,
+bread:  15,
+tweezer:  15,
+needle:  15,
+rags:  15,
+bandage:  15,
+gauze:  15,
+medkit:  15,
+radkit:  15,
+antidote:  15,
+medkitAi2:  15,
+medkitCar:  15,
+medkitGrizzly:  15,
+medkitIfak:  15,
+antisolution:  15,
+painkillers:  15,
+antiraddrug:  15,
+drug:  15,
+schoolBag: 15,
+duffleBag: 15,
+paratusBag: 15,
+6sh118Bag: 15,
+exoskeleton:  15,
+leatherJacket:  15,
+banditJacket:  15,
+trenchcoat :  15,
+sunriseSuit:  15,
+sunsetSuit:  15,
+pm:  15,
+usp: 15,
+toz34:  15,
+svt40:  15,
+mp5:  15,
+vityaz: 15,
+ak47:  15,
+lr300:  15,
+groza: 15,
+fn2000: 15,
+gauss: 15,
+xr1: 15,
+val: 15,
+bat:  15,
+blade:  15,
+axe:  15,
+fireAxe:  15,
+machete:  15,
+materialPackage: 15
+"""
+
+
+[action_clearInv]
+@copyFromSection: template_debug
+pos: 10.42
+isVisible: if memory.debug == true
+text: Clear Inventory
+iconExtraImage: ROOT:/images/ui/debug.png
+description: -
+setResourcesWithLogic:"""
+9x18:  0,
+9x19:  0,
+545x39:  0,
+556x45:  0,
+12x70:  0,
+762x54:  0,
+45acp: 0,
+battery: 0,
+9x39: 0,
+45acp: 0,
+wood:  0,
+ductTape:  0,
+scrap:  0,
+plastic:  0,
+cloth:  0,
+tentacle:  0,
+leather:  0,
+carapace:  0,
+carBattery:  0,
+screws:  0,
+nails:  0,
+screwdriver:  0,
+hammer:  0,
+castMetal:  0,
+gunParts:  0,
+guitar:  0,
+sewingCloth:  0,
+food:  0,
+crackers:  0,
+cannedTuna:  0,
+mre:  0,
+snacks:  0,
+meat:  0,
+bloodBag:  0,
+fruitJuice:  0,
+water:  0,
+taintedWater:  0,
+vodka:  0,
+cigarettes:  0,
+plank:  0,
+metalSheet:  0,
+blowtorch:  0,
+saw:  0,
+bulletproofPlate:  0,
+soda:  0,
+bread:  0,
+tweezer:  0,
+needle:  0,
+rags:  0,
+bandage:  0,
+gauze:  0,
+medkit:  0,
+radkit:  0,
+antidote:  0,
+medkitAi2:  0,
+medkitCar:  0,
+medkitGrizzly:  0,
+medkitIfak:  0,
+antisolution:  0,
+painkillers:  0,
+antiraddrug:  0,
+drug:  0,
+exoskeleton:  0,
+leatherJacket:  0,
+banditJacket:  0,
+trenchcoat :  0,
+sunriseSuit:  0,
+sunsetSuit:  0,
+pm:  0,
+toz34:  0,
+svt40:  0,
+mp5:  0,
+vityaz: 0,
+ak47:  0,
+lr300:  0,
+bat:  0,
+blade:  0,
+axe:  0,
+fireAxe:  0,
+machete:  0,
+materialPackage: 0
+"""
+
+
+[action_addAllMoodlesPositive]
+@copyFromSection: template_debug
+pos: 10.5
+isVisible: if memory.debug == true
+text: Add Positive Moodles
+iconExtraImage: ROOT:/images/ui/debug.png
+description: -
+addResources: healing: 15, bloodR: 15, radprot: 15
+
+[action_addAllMoodlesNegative]
+@copyFromSection: template_debug
+pos: 10.6
+isVisible: if memory.debug == true
+text: Add Negative Moodles
+iconExtraImage: ROOT:/images/ui/debug.png
+description: -
+addResources: panic:15, pain:15, scratch:3, laceration:2, lodgedBullet: 2, bleeding:15, wetness: 15
+
+[action_removeAllMoodles]
+@copyFromSection: template_debug
+pos: 10.7
+isVisible: if memory.debug == true
+text: Remove All Moodles
+iconExtraImage: ROOT:/images/ui/debug.png
+description: -
+setResourcesWithLogic: healing:0, bloodR:0, radprot:0, panic:0, pain:0, scratch:0, laceration:0, lodgedBullet:0, bleeding:0, wetness:0
+
+[action_increaseSkills]
+@copyFromSection: template_debug
+pos: 10.71
+isVisible: if memory.debug == true
+text: Increase All Skills
+iconExtraImage: ROOT:/images/ui/debug.png
+description: -
+alsoTriggerAction: lvlUpStrength, lvlUpFitness, lvlUpRunning, lvlupNimble, lvlupAiming, lvlupLightfooted, lvlupCrafting, lvlupFirstaid
+
+
+
+[action_info]
+pos: 10.9
+@copyFromSection: template_debug
+text: Info
+description:"""
+Direction between lastDamagedBy %{directionBetween(self, lastDamagedBy)}  \n
+Sweaty: %{self.resource.sweaty} \n
+Stamina %{self.resource.stamina} \n
+Male? %{select(self.globalTeamTags(includes="male"), "Yes", "No")} \n
+Female? %{select(self.globalTeamTags(includes="female"), "Yes", "No")}
+"""
+
+
+[action_BONUSES]
+pos: 10.8
+@copyFromSection: template_debug
+text: Bonuses
+description:"""
+Damage Bonus: %{self.resource.damageMultiplier} \n
+(Strength: %{self.resource.strength / 40}, Pain: - %{self.resource.pain / 350}) \n \n
+
+Stamina Regeneration: %{self.resource.staminaRecovery} \n
+(Fitness: %{self.resource.fitness / 50}) \n \n
+
+Aiming Bonus: %{self.resource.aimingMultiplier} \n
+(Aiming: %{self.resource.aiming / 50}, Panic: - %{self.resource.panic / 350}, Dancer?: -%{select(self.globalTeamTags(includes="dancer"), 0.1, 0)}) \n \n
+
+Speed Bonus: %{self.resource.speedMultiplier} \n
+(Running: %{self.resource.running / 30}, Wetness: - %{self.resource.wetness / 350}) \n \n
+
+Encumbrance Reduction: %{self.resource.encumbranceReduction} \n 
+Swing Delay Bonus: %{self.resource.delayMultiplier} (NOT IMPLEMENTED)
+"""
+
+
+[action_setWalkingOverDirt]
+@copyFromSection: template_debug
+pos: 12
+isVisible: if memory.debug == true
+text: Set Walking Over Dirt
+iconExtraImage: ROOT:/images/ui/debug.png
+description: -
+temporarilyRemoveTags:walkingOverStone, walkingOverWood
+
+[action_setWalkingOverStone]
+@copyFromSection: template_debug
+pos: 12.1
+isVisible: if memory.debug == true
+text: Set Walking Over Stone
+iconExtraImage: ROOT:/images/ui/debug.png
+description: -
+temporarilyAddTags:walkingOverStone
+temporarilyRemoveTags:walkingOverWood
+
+[action_setWalkingOverWood]
+@copyFromSection: template_debug
+pos: 12.2
+isVisible: if memory.debug == true
+text: Set Walking Over Wood
+iconExtraImage: ROOT:/images/ui/debug.png
+description: -
+temporarilyAddTags:walkingOverWood
+temporarilyRemoveTags:walkingOverStone
+
+[action_decreaseBodyHpOfHead]
+@copyFromSection: template_debug
+pos: 13
+isVisible: if memory.debug == true
+text: Decrease Head
+iconExtraImage: ROOT:/images/ui/debug.png
+addResources:headHP:-10
+
+[action_decreaseBodyHpOfTorso]
+@copyFromSection: template_debug
+pos: 13.1
+isVisible: if memory.debug == true
+text: Decrease Torso
+iconExtraImage: ROOT:/images/ui/debug.png
+addResources:torsoHP:-10
+
+[action_decreaseBodyHpOfArms]
+@copyFromSection: template_debug
+pos: 13.2
+isVisible: if memory.debug == true
+text: Decrease Arms
+iconExtraImage: ROOT:/images/ui/debug.png
+addResources: armHP:-10
+
+[action_decreaseBodyHpOfLegs]
+@copyFromSection: template_debug
+pos: 13.3
+isVisible: if memory.debug == true
+text: Decrease Legs
+iconExtraImage: ROOT:/images/ui/debug.png
+addResources: legHP:-10
+
+
+[action_setEffectNight]
+@copyFromSection: template_debug
+pos: 14
+isVisible: if memory.debug == true
+text: Set Eff. Night
+iconExtraImage: ROOT:/images/ui/debug.png
+temporarilyAddTags:nightEffect
+temporarilyRemoveTags:flashEffect, nvEffect, damageEffect
+
+[action_setEffectNightVis]
+@copyFromSection: template_debug
+pos: 14.1
+isVisible: if memory.debug == true
+text: Set Eff. Night V.
+iconExtraImage: ROOT:/images/ui/debug.png
+temporarilyAddTags:nvEffect
+temporarilyRemoveTags:flashEffect, nightEffect, damageEffect
+
+[action_setEffectFlash]
+@copyFromSection: template_debug
+pos: 14.2
+isVisible: if memory.debug == true
+text: Set Eff. Flash
+iconExtraImage: ROOT:/images/ui/debug.png
+temporarilyAddTags:flashEffect
+temporarilyRemoveTags:nightEffect, nvEffect, damageEffect
+
+[action_setEffectDamage]
+@copyFromSection: template_debug
+pos: 14.3
+isVisible: if memory.debug == true
+text: Set Eff. Damage
+iconExtraImage: ROOT:/images/ui/debug.png
+temporarilyAddTags:damageEffect
+temporarilyRemoveTags:flashEffect, nvEffect, nightEffect
+
+[action_increaseRadiation]
+@copyFromSection: template_debug
+pos: 15
+isVisible: if memory.debug == true
+text: Irradiate
+iconExtraImage: ROOT:/images/ui/debug.png
+addResources: radiation:5
+
+
+[hiddenAction_godmode]
+autoTrigger: if self.tags(includes="debugging")
+addResources: hunger: 100, thirst: 100, radiation: -100, toxic:-100, temperature:40, mental:100, hp:100, blood:100, headHP:100, armHP:100, legHP:100, torsoHP:100
+setResourcesWithLogic: stamina: 100
+setUnitStats: fogOfWarSightRange=999, armour=9999
+
+[hiddenAction_encm]
+autoTrigger: if self.tags(includes="weightDebug")
+addResourcesWithLogic: maxEncumbrance: 100 / 0

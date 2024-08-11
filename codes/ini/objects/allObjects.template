@@ -1,0 +1,49 @@
+[core]
+canNotBeDirectlyAttacked: true
+class: CustomUnitMetadata
+createNeutral: true
+stayNeutral: true
+price: 100
+maxHp: 99999
+mass: 100
+tags: cover, object
+techLevel: 1
+buildSpeed: 10
+radius: 10
+isBuilding: true
+isBio: false
+numBitsOnDeath: 0
+explodeOnDeath: false
+isUnselectable: true
+footprint: 0,0,1,1
+constructionFootprint:0,0,1,1
+buildingToFootprintOffsetX:20
+buildingToFootprintOffsetY:20
+
+[graphics]
+imageScale: 0.9
+image_shadow:AUTO
+shadowOffsetX:2
+shadowOffsetY:-4
+
+[attack]
+canAttack: false
+
+[movement]
+movementType: BUILDING
+moveSpeed: 0
+
+[decal_ssao]
+layer: beforeBody
+order: 1
+imageStack: SHARED:light_50.png
+color:black
+total_frames: 1
+stack_hOffset: 0
+hOffset: 0
+onlyWithZoomLevelOrMore:0
+dirOffset: 0
+imageScale: 1.3
+yOffsetRelative: 0
+xOffsetRelative: 0
+alpha: 0.35

@@ -1,0 +1,331 @@
+[effect_blur] 
+image: ROOT:/images/effects/screenFlash.png
+life: 45
+drawUnderUnits:false
+createWhenOffscreen:true
+showInFog:true
+priority: critical
+fadeOut: true
+alpha: 0.5
+hOffset: 0
+dirOffsetRandom: 360
+drawType: displacement
+
+
+
+[decal_undergroundEffect]
+isVisible: if not self.tags(includes="nv") and self.numberOfUnitsInNeutralTeam(withTag="underground", withinRange=600)>=1
+#isVisible: if self.tags(includes="nightEffect")
+onlyTeam: own
+image: ROOT:/images/effects/screenNight.png
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+alpha:"""
+0.95 - (select(attachment(slot=1) != null, 0.2, 0)) - (select(self.numberOfUnitsInAllTeams(withinRange=170, withTag="campfire") >= 1, (170 - distanceBetween(self, nearestUnit(withTag="campfire"))), 0) / 300) - (select(attachment(slot=1) != null, 0.06, 0)) - (select(self.numberOfUnitsInNeutralTeam(withinRange=170, withTag="campfire") >= 1, (170 - distanceBetween(self, nearestUnit(withTag="campfire"))), 0) / 300) + select(self.numberOfUnitsInNeutralTeam(withTag="emission")>=1, 0.15, 0)                                
+"""
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true
+
+
+[decal_nightEffect]
+isVisible: if not self.tags(includes="nv") and self.numberOfUnitsInNeutralTeam(withTag="lightning")<=0 and self.numberOfUnitsInNeutralTeam(withTag="underground", withinRange=600)<=0
+#isVisible: if self.tags(includes="nightEffect")
+onlyTeam: own
+image: ROOT:/images/effects/screenNight.png
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+#alpha: 0.92
+alpha:"""
+0 + select(customTarget2.tags(includes="night"), sin(customTarget2.resource.nightDarkness / 1.8), 0) - (select(attachment(slot=1) != null, 0.06, 0)) - (select(self.numberOfUnitsInAllTeams(withinRange=170, withTag="campfire") >= 1, (170 - distanceBetween(self, nearestUnit(withTag="campfire"))), 0) / 300) - (select(attachment(slot=1) != null, 0.06, 0)) - (select(self.numberOfUnitsInNeutralTeam(withinRange=170, withTag="campfire") >= 1, (170 - distanceBetween(self, nearestUnit(withTag="campfire"))), 0) / 300) + select(self.numberOfUnitsInNeutralTeam(withTag="emission")>=1, 0.25, 0)                                
+"""
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true
+
+[decal_dayEffect]
+isVisible: if (customTarget2.resource.hour >= 8 or customTarget2.resource.hour <= 20) and self.numberOfUnitsInNeutralTeam(withTag="underground", withinRange=600)<=0
+onlyTeam: own
+image: ROOT:/images/effects/screenDay.png
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+#alpha: 0.92
+alpha:"""
+0 + sin(customTarget2.resource.dayBrightness / 13)
+"""
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true
+
+[decal_nightVisEffect]
+isVisible: if self.tags(includes="emrNvOpened")
+onlyTeam: own
+image: ROOT:/images/effects/screenNightVision.png
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+alpha: 0.35
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true
+
+[decal_nightVisEffectRed]
+isVisible: if self.tags(includes="rubyNvOpened")
+onlyTeam: own
+image: ROOT:/images/effects/screenNightVisionRed.png
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+alpha: 0.28
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true
+
+[decal_nightVisEffectBlue]
+isVisible: if self.tags(includes="spphNvOpened")
+onlyTeam: own
+image: ROOT:/images/effects/screenNightVisionBlue.png
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+alpha: 0.20
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true
+
+
+[decal_flashEffect]
+isVisible: if self.tags(includes="flashEffect")
+onlyTeam: own
+image: ROOT:/images/effects/screenFlash.png
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+alpha: 0.85
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true
+
+[decal_radiationEffect]
+isVisible: if self.resource.radiation >= 5
+onlyTeam: own
+image: ROOT:/images/effects/screenRadiation.png
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+alpha: 0 + (sin(self.resource.radiation) / 3)
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true
+
+[decal_damageEffect]
+isVisible: if self.hp() <= 190
+onlyTeam: own
+image: ROOT:/images/effects/screenBleed.png
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+alpha: 0 + (self.maxHp() - self.hp) / 700
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true
+
+[decal_bleedingEffect]
+isVisible: if self.hasResources(bleeding=1)
+onlyTeam: own
+image: ROOT:/images/effects/screenBleed.png
+color: red
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+alpha:""" 0.05 + 
+	cos(
+		self.timeAlive() * ${AlphaTimeAliveMultipler} 
+		+ (self.resource.bleeding * 5)
+	)
+		*
+	(
+		${AlphaScaleVariance}
+		 * 
+		cos(
+		self.resource.bleeding
+		)
+	)
+"""
+@define AlphaTimeAliveMultipler: 100
+@define AlphaScaleVariance: 0.1
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true
+
+
+
+[decal_veryLowHPEffect]
+isVisible: if self.hp < 40
+onlyTeam: own
+image: ROOT:/images/effects/screenDeadly.png
+color: black
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+alpha: -1+cos(self.timeAlive()*${AlphaTimeAliveMultipler})*${AlphaScaleVariance}
+@define AlphaTimeAliveMultipler: 80
+@define AlphaScaleVariance: 2
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true
+
+[decal_veryLowHPEffectDeathFlash]
+isVisible: if self.hp < 20
+onlyTeam: own
+image: ROOT:/images/effects/screenFlash.png
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+alpha: 0.05+cos(self.timeAlive()*${AlphaTimeAliveMultipler})*${AlphaScaleVariance}
+@define AlphaTimeAliveMultipler: 50
+@define AlphaScaleVariance: 0.8
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true
+
+
+
+
+[decal_psyEffect]
+isVisible: if self.numberOfUnitsInAggressiveTeam(withTag="controller", withinRange=550)>=1
+onlyTeam: own
+image: ROOT:/images/effects/screenPsy.png
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+alpha: 0.2+cos(self.timeAlive()*${AlphaTimeAliveMultipler})*${AlphaScaleVariance}
+@define AlphaTimeAliveMultipler: 200
+@define AlphaScaleVariance: 0.1
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true
+
+[decal_psyEffect2]
+isVisible: if self.numberOfUnitsInAggressiveTeam(withTag="controller", withinRange=550)>=1
+onlyTeam: own
+image: ROOT:/images/effects/screenPurple.png
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+alpha: 0.2+cos(self.timeAlive()*${AlphaTimeAliveMultipler})*${AlphaScaleVariance}
+@define AlphaTimeAliveMultipler: 65
+@define AlphaScaleVariance: 0.1
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true
+
+
+
+
+[decal_findShelter]
+layer: beforeBody
+order: 0
+#imageScale: 0.9
+isVisible: if self.numberOfUnitsInNeutralTeam(withTag="findShelter") >= 1 and not self.tags(includes="sheltered")
+yOffsetRelative: 0
+alpha:1
+drawLineTo: nearestUnit(withTag="shelter", relation="any", withinRange=1500)
+color: #ffd569
+lineWidth:1
+
+
+[decal_ambLightning]
+isVisible: if self.numberOfUnitsInNeutralTeam(withTag="lightning")>=1
+onlyTeam: own
+image: ROOT:/images/effects/screenLightning.png
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+alpha: 0.25+cos(self.timeAlive()*${AlphaTimeAliveMultipler})*${AlphaScaleVariance}
+@define AlphaTimeAliveMultipler:2000
+@define AlphaScaleVariance: 0.2
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true
+
+[decal_emissionEffectBlack]
+isVisible: if (self.numberOfUnitsInNeutralTeam(withTag="emission")>=1 or self.numberOfUnitsInNeutralTeam(withTag="psyStorm")>=1) and self.numberOfUnitsInNeutralTeam(withTag="lightning")<=0
+onlyTeam: own
+image: ROOT:/images/effects/screenNight.png
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+alpha: 0.3+cos(self.timeAlive()*${AlphaTimeAliveMultipler})*${AlphaScaleVariance}
+@define AlphaTimeAliveMultipler: 15
+@define AlphaScaleVariance: 0.3
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true
+
+[decal_emissionEffectRed]
+isVisible: if self.numberOfUnitsInNeutralTeam(withTag="emissionStarted")>=1
+onlyTeam: own
+image: ROOT:/images/effects/screenRed.png
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+alpha: 0.2+cos(self.timeAlive()*${AlphaTimeAliveMultipler})*${AlphaScaleVariance}
+@define AlphaTimeAliveMultipler: 200
+@define AlphaScaleVariance: 0.1
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true
+
+[decal_emissionEffectPurple]
+isVisible: if self.numberOfUnitsInNeutralTeam(withTag="emissionStarted")>=1
+onlyTeam: own
+image: ROOT:/images/effects/screenPurple.png
+layer: beforeUI
+order: 1
+hOffset: 0
+imageScale: 1000
+alpha: 0.2+cos(self.timeAlive()*${AlphaTimeAliveMultipler})*${AlphaScaleVariance}
+@define AlphaTimeAliveMultipler: 65
+@define AlphaScaleVariance: 0.1
+#dirOffset: 0
+yOffsetAbsolute: 0
+xOffsetAbsolute: 0
+alwayStartDirAtZero: true

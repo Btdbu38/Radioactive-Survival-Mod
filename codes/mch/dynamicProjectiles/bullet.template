@@ -1,0 +1,201 @@
+       
+[core]
+showInEditor: false
+copyFrom: ROOT:/codes/temp/effects.template, ROOT:/codes/temp/resources.template, ROOT:/codes/temp/killCounts.template
+tags: projectile
+price: 0
+maxHp: 99999
+mass: 99999
+buildSpeed: 0
+radius: 0
+fogOfWarSightRange: 0
+disableAllUnitCollisions: true
+canNotBeDirectlyAttacked: true
+isUnrepairableUnit: true
+showOnMinimap: false
+isUnselectable: true
+disableDeathOnZeroHp: true
+autoTriggerCheckRate: everyFrame
+autoTriggerCooldownTime: 0.01s
+autoTriggerCooldownTime_allowDangerousHighCPU: true
+effectOnDeath: NONE
+explodeOnDeath: false
+stayNeutral: true
+
+[hiddenAction_created]
+autoTriggerOnEvent: created
+addWaypoint_type: move
+addWaypoint_position_relativeOffsetFromSelf: 0,100
+setUnitStats: shootDamageMultiplier+= (customTarget1.resource.aiming / 20)
+
+
+[hiddenAction_life]
+autoTrigger: if self.timeAlive(laterThanSeconds=0.5)
+alsoTriggerAction: delete
+
+[hiddenAction_overWall]
+autoTrigger: if self.isOverClift
+alsoTriggerAction: delete
+playSoundAtUnit:"""
+ROOT:/soundFx/bullet/1.ogg:0.55,
+ROOT:/soundFx/bullet/2.ogg:0.55,
+ROOT:/soundFx/bullet/3.ogg:0.55,
+ROOT:/soundFx/bullet/4.ogg:0.55,
+ROOT:/soundFx/bullet/5.ogg:0.55,
+ROOT:/soundFx/bullet/6.ogg:0.55,
+ROOT:/soundFx/bullet/7.ogg:0.55,
+ROOT:/soundFx/bullet/8.ogg:0.55,
+ROOT:/soundFx/bullet/9.ogg:0.55,
+ROOT:/soundFx/bullet/10.ogg:0.55,
+ROOT:/soundFx/bullet/11.ogg:0.55,
+ROOT:/soundFx/bullet/12.ogg:0.55,
+ROOT:/soundFx/bullet/13.ogg:0.55,
+ROOT:/soundFx/bullet/14.ogg:0.55,
+ROOT:/soundFx/bullet/15.ogg:0.55,
+ROOT:/soundFx/bullet/16.ogg:0.55,
+ROOT:/soundFx/bullet/17.ogg:0.55
+"""
+
+[hiddenAction_impactWoodenSmallObject]
+requireConditional: if self.timeAlive(laterThanSeconds=0.05)
+autoTrigger: if self.numberOfUnitsInAllTeams(withTag='smallWoodenObject', withinRange=20, greaterThan=0)
+alsoTriggerAction: delete
+spawnEffects: CUSTOM:dirty
+deleteSelf: true
+spawnUnits: ${core.name}(spawnChance=0.7, offsetRandomDir=6)
+playSoundAtUnit:"""
+ROOT:/soundFx/bullet/wood1.ogg:0.55,
+ROOT:/soundFx/bullet/wood2.ogg:0.55,
+ROOT:/soundFx/bullet/wood3.ogg:0.55,
+ROOT:/soundFx/bullet/wood4.ogg:0.55
+"""
+
+[hiddenAction_impactWoodenBigObject]
+requireConditional: if self.timeAlive(laterThanSeconds=0.05)
+autoTrigger: if numberOfUnitsInAllTeams(withTag='bigWoodenObject', withinRange=30, greaterThan=0)
+alsoTriggerAction: delete
+spawnEffects: CUSTOM:dirty
+deleteSelf: true
+spawnUnits: ${core.name}(spawnChance=0.1, offsetRandomDir=12)
+playSoundAtUnit:"""
+ROOT:/soundFx/bullet/wood1.ogg:0.55,
+ROOT:/soundFx/bullet/wood2.ogg:0.55,
+ROOT:/soundFx/bullet/wood3.ogg:0.55,
+ROOT:/soundFx/bullet/wood4.ogg:0.55
+"""
+
+[hiddenAction_impactMetalSmallObject]
+requireConditional: if self.timeAlive(laterThanSeconds=0.05)
+autoTrigger: if self.numberOfUnitsInAllTeams(withTag='smallMetalObject', withinRange=20, greaterThan=0)
+alsoTriggerAction: delete
+spawnEffects: CUSTOM:hurt
+deleteSelf: true
+spawnUnits: ${core.name}(spawnChance=0.33, offsetRandomDir=19)
+playSoundAtUnit:"""
+ROOT:/soundFx/bullet/metal1.ogg:0.55,
+ROOT:/soundFx/bullet/metal2.ogg:0.55,
+ROOT:/soundFx/bullet/metal3.ogg:0.55,
+ROOT:/soundFx/bullet/metal4.ogg:0.55
+"""
+
+[hiddenAction_impactMetalBigObject]
+requireConditional: if self.timeAlive(laterThanSeconds=0.05)
+autoTrigger: if numberOfUnitsInAllTeams(withTag='bigMetalObject', withinRange=38, greaterThan=0)
+alsoTriggerAction: delete
+spawnEffects: CUSTOM:hurt
+deleteSelf: true
+spawnUnits: ${core.name}(spawnChance=0.33, offsetRandomDir=275)
+playSoundAtUnit:"""
+ROOT:/soundFx/bullet/metal1.ogg:0.55,
+ROOT:/soundFx/bullet/metal2.ogg:0.55,
+ROOT:/soundFx/bullet/metal3.ogg:0.55,
+ROOT:/soundFx/bullet/metal4.ogg:0.55
+"""
+
+[hiddenAction_impactEnemy]
+autoTrigger:"""
+if numberOfUnitsInEnemyTeam(withTag="damageable", withinRange=15) > 0
+ """
+fireTurretXAtGround: impact
+fireTurretXAtGround_withTarget: nearestUnit(withTag="damageable", withinRange=15)
+#fireTurretXAtGround_withTarget: customTarget1.attacking
+deleteSelf: true
+spawnUnits: ${core.name}(spawnChance=0.35, offsetRandomDir=6, offsetY=20)
+sendMessageTo: nearestUnit(withTag="damageable", withinRange=15)
+sendMessageWithTags: bulletImpact
+sendMessageWithData: bulletDamage = ${bhsDamage}
+
+[hiddenAction_impactEnemyAggressive]
+autoTrigger:"""
+if numberOfUnitsInAggressiveTeam(withTag="damageable", withinRange=15, greaterThan=0) and self.teamId() != -2
+ """
+fireTurretXAtGround: impact
+fireTurretXAtGround_withTarget: nearestUnit(withTag="damageable", withinRange=15)
+#fireTurretXAtGround_withTarget: customTarget1.attacking
+deleteSelf: true
+spawnUnits: ${core.name}(spawnChance=0.35, offsetRandomDir=6, offsetY=20)
+sendMessageTo: nearestUnit(withTag="damageable", withinRange=15)
+sendMessageWithTags: bulletImpact
+sendMessageWithData: bulletDamage = ${bhsDamage}
+
+[hiddenAction_delete]
+deleteSelf: true
+
+[hiddenAction_delayedDelete]
+deleteSelf: true
+requireConditional: if self.timeAlive(laterThanSeconds=0.03)
+
+[graphics]
+drawLayer: top
+total_frames: 1
+showQueueBar: false
+imageScale: 0.2
+image: ROOT:/images/effects/mermi.png
+image_shadow: NONE
+image_offsetY: -14
+shadowOffsetX:3
+shadowOffsetY:3
+icon_zoomed_out_neverShow: true
+
+[attack]
+canAttack: false
+canAttackFlyingUnits: false
+canAttackLandUnits: true
+canAttackUnderwaterUnits: false
+#dieOnAttack: true
+maxAttackRange: 0
+shootDelay: 0
+
+[turret_impact]
+x:0
+y:0
+canShoot: false
+projectile: main
+turnSpeed: 9999
+#canAttackMaxAngle: 360
+
+[projectile_main]
+life:1
+speed:10
+tags: bullet
+areaDamage: 0
+areaRadius: 5
+instant: true
+areaDamageNoFalloff: true
+explodeOnEndOfLife: true
+turnSpeed: 0
+explodeEffect: NONE
+
+[movement]
+movementType: AIR
+moveSpeed: 28
+moveAccelerationSpeed: 999999
+moveDecelerationSpeed: 0
+targetHeight: 11
+targetHeightDrift: 0
+reverseSpeedPercentage:0
+maxTurnSpeed: 0
+turnAcceleration: 0
+moveSlidingMode :false
+moveIgnoringBody:false
+moveSlidingDir:  45

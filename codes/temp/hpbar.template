@@ -1,0 +1,270 @@
+[core]
+@global HealthChunks:50
+
+[graphics]
+showHealthBar: false
+showEnergyBar: false
+
+[template_health]
+isVisible:"""
+if self.hasTakenDamage(withinSeconds=5) or 
+self.tags(includes="main") or 
+self.hasResources(healing=1) or 
+self.numberOfUnitsInAllTeams(withTag="medic", withinRange=75) > 0 or 
+self.numberOfUnitsInAllTeams(withTag="campfire", withinRange=85) > 0 
+"""
+#onlyWhenSelectedByAnyPlayer: true
+alpha:0.7
+yOffsetAbsolute: 16
+alwaysStartDirAtZero: true
+layer: beforeUI
+onlyWithZoomLevelOrMore: 1.3
+
+[decal_hpbartakendmg]
+@copyFromSection: template_health
+alpha: 0.3+cos(self.timeAlive()*${TimeAliveMultipler1})*${alphaVariance}
+layer: beforeUI
+order: 99
+imageScale: 0.5
+color: red
+image: ROOT:images\ui\health.damage.png
+isVisible: if self.hasTakenDamage(withinSeconds=0.25)
+
+@define TimeAliveMultipler1: 3500
+@define alphaVariance: 0.2
+
+[decal_hpbarhealing]
+@copyFromSection: template_health
+alpha: 0.15+cos(self.timeAlive()*${TimeAliveMultipler})*${scaleVariance}
+layer: beforeUI
+order: 99
+imageScale: 0.5
+
+image: ROOT:images\ui\health.damage.png
+isVisible: if self.hasResources(healing=1) or self.numberOfUnitsInAllTeams(withTag="medic", withinRange=75)>0 or self.numberOfUnitsInAllTeams(withTag="campfire", withinRange=85)>0
+@define TimeAliveMultipler: 500
+@define scaleVariance: 0.2
+
+[decal_healthbar]
+@copyFromSection: template_health
+isVisible: if self.hasTakenDamage(withinSeconds=5) or self.tags(includes="main")
+order: 2
+image: ROOT:images\ui\health.back.png
+imageScale: 0.5
+
+[decal_healthfront]
+@copyFromSection: template_health
+order: 5
+image: ROOT:images\ui\health.front.png
+imageScale: 0.5
+
+[decal_pipfull]
+@copyFromSection: template_health
+order: 3
+image: ROOT:images\ui\health.pips.png
+xOffsetAbsolute: -12.5*(1-self.hp()/self.maxHp())
+imageScaleX: self.hp()/self.maxHp()*25
+
+[template_healthline]
+isVisible:"""
+if (self.hasTakenDamage(withinSeconds=5) or 
+self.tags(includes="main") or 
+self.hasResources(healing=1) or 
+self.numberOfUnitsInAllTeams(withTag="medic", withinRange=75) > 0 or 
+self.numberOfUnitsInAllTeams(withTag="campfire", withinRange=85) > 0) and self.maxHp() > ${HealthChunks*Nr}
+"""
+@copyFromSection: template_health
+order: 4
+image: ROOT:images\ui\health.line.png
+imageScale: 0.5
+xOffsetAbsolute: 52/self.maxHp()*${HealthChunks*Nr/2}-13
+
+[decal_healthline_1]
+@copyFromSection: template_healthline
+@define Nr: 1
+
+[decal_healthline_2]
+@copyFromSection: template_healthline
+@define Nr: 2
+
+[decal_healthline_3]
+@copyFromSection: template_healthline
+@define Nr: 3
+
+[decal_healthline_4]
+@copyFromSection: template_healthline
+@define Nr: 4
+
+[decal_healthline_5]
+@copyFromSection: template_healthline
+@define Nr: 5
+
+[decal_healthline_6]
+@copyFromSection: template_healthline
+@define Nr: 6
+
+[decal_healthline_7]
+@copyFromSection: template_healthline
+@define Nr: 7
+
+[decal_healthline_8]
+@copyFromSection: template_healthline
+@define Nr: 8
+
+[decal_healthline_9]
+@copyFromSection: template_healthline
+@define Nr: 9
+
+[decal_healthline_10]
+@copyFromSection: template_healthline
+@define Nr: 10
+
+[decal_healthline_11]
+@copyFromSection: template_healthline
+@define Nr: 11
+
+[decal_healthline_12]
+@copyFromSection: template_healthline
+@define Nr: 12
+
+[decal_healthline_13]
+@copyFromSection: template_healthline
+@define Nr: 13
+
+[decal_healthline_14]
+@copyFromSection: template_healthline
+@define Nr: 14
+
+[decal_healthline_15]
+@copyFromSection: template_healthline
+@define Nr: 15
+
+[decal_healthline_16]
+@copyFromSection: template_healthline
+@define Nr: 16
+
+[decal_healthline_17]
+@copyFromSection: template_healthline
+@define Nr: 17
+
+[decal_healthline_18]
+@copyFromSection: template_healthline
+@define Nr: 18
+
+[decal_healthline_19]
+@copyFromSection: template_healthline
+@define Nr: 19
+
+[template_healthpips]
+@define maxPips: 10
+order: 1
+image: ROOT:images\ui\health.pips.png
+alwaysStartDirAtZero: true
+yOffsetAbsolute: ${core.radius}
+xOffsetAbsolute: ${-9.25+(hp*2)}
+imageScaleX: 2
+isVisible: if not self.hp(full=true)
+alpha: min(1,max(0,(self.hp()-${(core.maxHp/maxPips)*hp}) / ${core.maxHp/maxPips}))
+
+
+
+[hiddenAction_tearBody]
+autoTriggerOnEvent: tookDamage(withTag="tear")
+spawnEffects:CUSTOM:bloodDust*4, CUSTOM:blood*3, CUSTOM:deadlyBlood*6, CUSTOM:gore*8, CUSTOM:shck
+playSoundAtUnit: ROOT:/soundFx/anomaly/body_tear.ogg
+
+[effect_shck]
+drawType: displacement
+attachedToUnit: true
+life: 70
+stripIndex:shockwave_large
+scaleFrom: 0.1
+scaleTo: 3.5
+alpha: 0.01
+
+[effect_bloodDust]
+priority: high
+attachedToUnit: false
+life: 30
+#physics: true
+scaleFrom: 0.8
+scaleTo: 2
+color: red
+xOffsetRelativeRandom: 2
+yOffsetRelativeRandom: 2
+xSpeedRelativeRandom: 1
+ySpeedRelativeRandom: 1
+alpha: 0.6
+image: ROOT:/images/effects/bloodyDust.png
+drawUnderUnits: false
+alwayStartDirAtZero: true
+createWhenOverLand: true
+createWhenOverLiquid: false
+
+[effect_gore]
+life: 750
+priority: critical
+spawnChance: 1
+attachedToUnit: false
+dirOffset: 20
+dirOffsetRandom: 360
+dirSpeed:5
+dirSpeedRandom:2
+physics: true
+scaleFrom: 0.33
+scaleTo: 0.33
+xSpeedRelativeRandom: 2.5
+ySpeedRelativeRandom: 0.3
+hSpeedRandom:1
+hSpeed: 2.5
+image:ROOT:/images/effects/gore.png
+drawUnderUnits: false
+alpha: 2.5
+
+
+[effect_blood]
+life: 45
+priority: critical
+spawnChance: 1
+attachedToUnit: false
+dirOffset: 20
+dirOffsetRandom: 360
+dirSpeed:5
+dirSpeedRandom:2
+physics: true
+scaleFrom: 1.2
+scaleTo: 3
+xSpeedRelativeRandom: 2
+ySpeedRelativeRandom: 2.5
+hSpeed: 1
+hSpeedRandom:3
+image:ROOT:/images/effects/blood.png
+drawUnderUnits: false
+alpha: 0.7
+
+[effect_deadlyBlood]
+life: 120
+priority: critical
+spawnChance: 1
+attachedToUnit: false
+dirOffset: 20
+dirOffsetRandom: 360
+dirSpeed:0.1
+dirSpeedRandom:0.2
+physics: true
+scaleFrom: 1.2
+scaleTo: 1.5
+xOffsetRelativeRandom: 15
+yOffsetRelativeRandom: 15
+xSpeedRelativeRandom: 2
+ySpeedRelativeRandom: 2
+hSpeed: 1
+hSpeedRandom:3
+image:ROOT:/images/effects/deadlyBlood.png
+drawUnderUnits: false
+alpha: 2
+total_frames: 7
+animateFrameStart: 0
+animateFrameEnd: 6
+animateFramePingPong: false
+animateFrameSpeed: 0.15

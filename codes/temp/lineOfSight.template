@@ -1,0 +1,88 @@
+
+[turret_checkLoS]
+x:0
+y:0
+turnSpeed: 99
+turnSpeedAcceleration:99
+delay: 0.3s
+size:0
+#shoot_flame: small
+projectile: checkLoS
+invisible: true
+#canAttackFlyingUnits: false
+canAttackUnderwaterUnits: false
+canAttackCondition: if not self.tags(includes='losCheckPassed')
+onShoot_triggerActions: losCheckReset
+limitingRange: 400
+
+[projectile_checkLoS]
+life:0
+directDamage: 0
+explodeEffect: NONE
+explodeEffectOnShield: NONE
+drawSize: 0
+explodeOnEndOfLife: true
+spawnUnit: checkLoS(skipIfOverlapping=false, spawnChance=1)
+
+[projectile_blank]
+life:0
+directDamage: 0
+explodeEffect: NONE
+explodeEffectOnShield: NONE
+drawSize: 0
+invisible: true
+
+[hiddenAction_losCheckPassed]
+autoTriggerOnEvent: newMessage(withTag="losCheckPassed")
+temporarilyAddTags: losCheckPassed
+temporarilyRemoveTags: searchForNewTarget
+
+[hiddenAction_losCheckNotPassed]
+autoTriggerOnEvent: newMessage(withTag="losCheckNotPassed")
+temporarilyRemoveTags: losCheckPassed
+addWaypoint_type: attack
+addWaypoint_maxTime: 0.00000001s
+#addWaypoint_prepend: true
+addWaypoint_target_fromReference: nearestUnit(relation="enemy", withTag="damageable")
+
+[hiddenAction_losCheckReset]
+autoTrigger: if self.tags(includes='losCheckPassed') and self.resource.losCooldown > 2
+resourceAmount: losCooldown
+resourceAmount_setValue: 0
+temporarilyRemoveTags: losCheckPassed
+
+[hiddenAction_isAttacking]
+autoTrigger: if self.isAttacking and not self.tags(includes='losCheckPassed')
+temporarilyAddTags: searchForNewTarget
+
+[hiddenAction_blank]
+addResources: hp=0
+
+[comment_turret_1]
+x: 0
+y: 0
+canAttackCondition: if self.tags(includes='losCheckPassed') and not self.tags(includes='searchForNewTarget') or self.isOverClift or attacking.isOverClift
+onShoot_triggerActions: losCheckReset
+
+[template_turretLoS]
+canAttackCondition: if self.tags(includes='losCheckPassed') and not self.tags(includes='searchForNewTarget') or self.isOverClift or attacking.isOverClift
+onShoot_triggerActions: losCheckReset
+x:0
+y:0
+
+[template_turretLoSUnderwater]
+#same as template_turretLoS but for underwater or anti-sub turrets
+
+canAttackCondition: if self.isOverWater and self.tags(includes='losCheckPassed') and not self.tags(includes='searchForNewTarget')
+onShoot_triggerActions: losCheckReset
+
+[template_secondaryTurretLoS]
+#mostly for stuff like hover and mechs, put this on the "base" turret or you'll end up with units starring at each other thru walls
+canAttackCondition: if self.tags(includes='losCheckPassed') and not self.tags(includes='searchForNewTarget') or attacking.isFlying or self.isOverClift or attacking.isOverClift
+
+[resource_losCooldown]
+hidden: true
+
+[hiddenAction_losCooldownAdd]
+autoTrigger: true
+addResources: losCooldown: 0.4

@@ -1,0 +1,196 @@
+[template_NewProjectile]
+directDamage:0
+life:1
+speed:0
+explodeEffect: none
+explodeOnEndOfLife: true
+
+[projectile_pmNew]
+@copyFromSection: template_NewProjectile
+@define accuracy: 5
+spawnUnit: pm_projectile(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+[projectile_uspNew]
+@copyFromSection: template_NewProjectile
+@define accuracy: 2
+spawnUnit: pm_projectile(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+[projectile_mp5New]
+@copyFromSection: template_NewProjectile
+@define accuracy: 5
+spawnUnit: mp5_projectile(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+[projectile_vityazNew]
+@copyFromSection: template_NewProjectile
+@define accuracy: 3
+spawnUnit: mp5_projectile(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+[projectile_toz34New]
+@copyFromSection: template_NewProjectile
+@define accuracy: 6
+spawnUnit: toz34_projectile*10(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+[projectile_saigaNew]
+@copyFromSection: template_NewProjectile
+@define accuracy: 8
+spawnUnit: toz34_projectile*6(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+[projectile_svt40New]
+@copyFromSection: template_NewProjectile
+@define accuracy: 1
+spawnUnit: svt40_projectile(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+[projectile_ak47New]
+@copyFromSection: template_NewProjectile
+@define accuracy: 5
+spawnUnit: ak47_projectile(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+[projectile_lr300New]
+@copyFromSection: template_NewProjectile
+@define accuracy: 2
+spawnUnit: lr300_projectile(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+[projectile_fn2000New]
+@copyFromSection: template_NewProjectile
+@define accuracy: 2
+spawnUnit: lr300_projectile(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+[projectile_grozaNew]
+@copyFromSection: template_NewProjectile
+@define accuracy: 3
+spawnUnit: 9x39_projectile(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+[projectile_valNew]
+@copyFromSection: template_NewProjectile
+@define accuracy: 2
+spawnUnit: 9x39_projectile(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+[projectile_vintorezNew]
+@copyFromSection: template_NewProjectile
+@define accuracy: 1
+spawnUnit: 9x39_projectile(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+[projectile_m98bNew]
+@copyFromSection: template_NewProjectile
+@define accuracy: 1
+spawnUnit: m98b_projectile(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+[projectile_pkmNew]
+@copyFromSection: template_NewProjectile
+@define accuracy: 6
+spawnUnit: pkm_projectile(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+[projectile_gaussNew]
+@copyFromSection: template_NewProjectile
+@define accuracy: 1
+spawnUnit: gauss_projectile(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+[projectile_xr1New]
+@copyFromSection: template_NewProjectile
+@define accuracy: 4
+spawnUnit: x1_projectile(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+[projectile_laserNew]
+@copyFromSection: template_NewProjectile
+@define accuracy: 7
+spawnUnit: laser_projectile(offsetRandomDir=${accuracy}, skipIfOverlapping=false, spawnChance=1)
+
+
+
+[projectile_knife]
+disableLeadTargeting: true
+leadTargetingSpeedCalculation: 0
+directDamage: 10
+armourIgnoreAmount: 15
+life: 20
+instant: true
+turnSpeed: 0
+pushForce: 175
+delayedStartTimer: 0.15s
+explodeEffect: CUSTOM:knifeEffect
+
+[projectile_spear]
+disableLeadTargeting: true
+leadTargetingSpeedCalculation: 0
+directDamage: 15
+armourIgnoreAmount: 15
+tags: sharp
+life: 20
+instant: true
+turnSpeed: 0
+pushForce: 175
+delayedStartTimer: 0.15s
+explodeEffect: CUSTOM:spearEffect
+
+
+[projectile_bat]
+disableLeadTargeting: true
+leadTargetingSpeedCalculation: 0
+areaDamage: 20
+areaRadius: 24
+tags: blunt
+life: 20
+instant: true
+turnSpeed: 0
+pushForce: 375
+delayedStartTimer: 0.2s
+explodeEffect: CUSTOM:batEffect
+
+[projectile_axe]
+disableLeadTargeting: true
+leadTargetingSpeedCalculation: 0
+areaDamage: 20
+areaRadius: 20
+armourIgnoreAmount: 20
+tags: sharp
+life: 20
+instant: true
+turnSpeed: 0
+pushForce:  450
+delayedStartTimer: 0.3s
+explodeEffect: CUSTOM:axeEffect
+
+[projectile_fireAxe]
+disableLeadTargeting: true
+leadTargetingSpeedCalculation: 0
+areaDamage: 35
+areaRadius: 10
+armourIgnoreAmount: 35
+tags: sharp
+life: 20
+instant: true
+turnSpeed: 0
+pushForce:  650
+delayedStartTimer: 0.3s
+explodeEffect: CUSTOM:axeEffect
+
+[projectile_machete]
+disableLeadTargeting: true
+leadTargetingSpeedCalculation: 0
+areaDamage: 60
+areaRadius: 25
+tags: sharp
+armourIgnoreAmount: 15
+life: 20
+instant: true
+turnSpeed: 0
+pushForce: 450
+delayedStartTimer: 0.2s
+explodeEffect: CUSTOM:macheteEffect
+
+
+[projectile_arrow]
+life: 60
+explodeOnEndOfLife: true
+instant: false
+speed: 9
+targetSpeed: 10
+areaRadius: 25
+areaDamage: 35
+targetGround: true
+targetGroundSpread: 11
+explodeEffect: smoke
+initialUnguidedSpeedHeight: 1.2
+gravity:0.11
+image: ROOT:/images/effects/arrow.png
+drawSize: 0.9

@@ -1,0 +1,112 @@
+[core]
+copyFrom: ROOT:/codes/temp/dropLists.template
+price: 0
+maxHp: 170
+showOnMinimap: false
+stayNeutral: true
+createOnAggressiveTeam: true
+mass: 10
+techLevel: 1
+buildSpeed: 0s
+radius: 10
+isBio: true
+isBug: false
+isBuilding: true
+explodeOnDeath: false
+hideScorchMark: true
+fireTurretXAtSelfOnDeath: 1
+tags: damageable
+
+[hiddenAction_destroyed]
+playSoundAtUnit:"""
+ROOT:/soundFx/crateBreak1.ogg,
+ROOT:/soundFx/crateBreak2.ogg,
+ROOT:/soundFx/crateBreak3.ogg
+"""
+
+autoTriggerOnEvent: destroyed
+spawnEffects: CUSTOM:1*2,CUSTOM:2*2,CUSTOM:3*3, CUSTOM:smok*7
+
+[graphics]
+image: ROOT:/images/objects/${image}.png
+imageScale: 0.65
+total_frames: 1
+image_shadow: auto
+shadowOffsetX: 1
+shadowOffsetY: -4
+icon_zoomed_out_neverShow: true
+showHealthBar: true
+showEnergyBar: false
+
+
+
+[effect_smok]
+image: ROOT:/images/effects/smoke2.png
+priority: high
+life: 60
+ySpeedRelativeRandom: 1
+xSpeedRelativeRandom: 1
+fadeOut: true
+attachedToUnit: false
+scaleFrom: 0.5
+scaleTo: 1.1
+alpha: 0.4
+drawUnderUnits: false
+hSpeed: 0.05
+dirSpeedRandom: 3
+yOffsetRelativeRandom: 3
+xOffsetRelativeRandom: 3
+
+[effect_1]
+priority: high
+attachedToUnit: false
+life: 300
+alpha: 4
+physics: true
+scaleFrom: 0.7
+scaleTo: 0.7
+fadeOut: true
+image: ROOT:/images/effects/1.png
+drawUnderUnits: false
+xSpeedRelativeRandom: 1
+ySpeedRelativeRandom: 1
+hSpeed: 1
+hSpeedRandom: 3
+dirOffset: 10
+dirOffsetRandom: 360
+dirSpeed:5
+dirSpeedRandom:5
+
+[effect_2]
+@copyFromSection: effect_1
+image: ROOT:/images/effects/2.png
+
+[effect_3]
+@copyFromSection: effect_1
+image: ROOT:/images/effects/3.png
+
+[turret_1]
+x: 0
+y: 0
+projectile: 1
+
+[projectile_1]
+areaDamage: 0
+areaRadius: 50
+pushForce: 10
+delayedStartTimer: 0.1s
+friendlyFire: true
+areaDamageNoFalloff: true
+life: 1
+instant: true
+explodeEffect: none
+
+[attack]
+canAttack: false
+
+[movement]
+movementType: BUILDING
+moveSpeed: 0
+
+[ai]
+notPassivelyTargetedByOtherUnits: true

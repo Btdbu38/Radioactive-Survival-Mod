@@ -1,0 +1,48 @@
+
+[hiddenAction_tip1]
+@copyFromSection:template_actionTip1
+autoTrigger: if self.timeAlive(laterThanSeconds=10)
+requireConditional: if not self.globalTeamTags(includes="tipTaken1") and self.globalTeamTags(includes="tipsOn")
+addGlobalTeamTags: tipTaken1
+
+playSoundToPlayer: ROOT:soundFx/interface/pda_beep_1.ogg:1
+
+[hiddenAction_tip2]
+@copyFromSection:template_actionTip2
+autoTrigger: if self.timeAlive(laterThanSeconds=25)
+requireConditional: if not self.globalTeamTags(includes="tipTaken2") and self.globalTeamTags(includes="tipsOn")
+addGlobalTeamTags: tipTaken2
+
+playSoundToPlayer: ROOT:soundFx/interface/pda_beep_2.ogg:1
+
+[hiddenAction_tip3]
+@copyFromSection:template_actionTip3
+autoTrigger: if self.timeAlive(laterThanSeconds=40)
+requireConditional: if not self.globalTeamTags(includes="tipTaken3") and self.globalTeamTags(includes="tipsOn")
+addGlobalTeamTags: tipTaken3
+
+playSoundToPlayer: ROOT:soundFx/interface/pda_beep_1.ogg:1
+
+[hiddenAction_tip4]
+@copyFromSection:template_actionTip4
+autoTrigger: if self.timeAlive(laterThanSeconds=55)
+requireConditional: if not self.globalTeamTags(includes="tipTaken4") and self.globalTeamTags(includes="tipsOn")
+addGlobalTeamTags: tipTaken4
+
+playSoundToPlayer: ROOT:soundFx/interface/pda_beep_2.ogg:1
+
+[hiddenAction_tip5]
+@copyFromSection:template_actionTip5
+autoTrigger: if self.timeAlive(laterThanSeconds=65)
+requireConditional: if not self.globalTeamTags(includes="tipTaken5") and self.globalTeamTags(includes="tipsOn")
+addGlobalTeamTags: tipTaken5
+
+playSoundToPlayer: ROOT:soundFx/interface/pda_beep_1.ogg:1
+
+[hiddenAction_tip6]
+@copyFromSection:template_actionTip6
+autoTrigger: if self.timeAlive(laterThanSeconds=70)
+requireConditional: if not self.globalTeamTags(includes="tipTaken6") and self.globalTeamTags(includes="tipsOn")
+addGlobalTeamTags: tipTaken6
+
+playSoundToPlayer: ROOT:soundFx/interface/pda_beep_2.ogg:1

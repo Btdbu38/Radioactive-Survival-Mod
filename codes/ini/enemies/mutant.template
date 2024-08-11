@@ -1,0 +1,80 @@
+[core]
+copyFrom: ROOT:/codes/temp/resources.template, ROOT:/codes/temp/blood.template, ROOT:/codes/temp/hpbar.template
+tags: enemy, mutant, damageable
+radius: 6
+isBio: true
+isBug: false
+hideScorchMark: true
+effectOnDeath: none
+createOnAggressiveTeam: true
+mass: 80
+price: 0
+softCollisionOnAll: 10
+generation_resources: cooldown1:1
+autoTriggerCheckRate: every8Frames
+
+[hiddenAction_moveToHeardSound]
+autoTrigger: if self.numberOfUnitsInAllTeams(withTag="alert", withinRange=650, greaterThan=0) and not self.isAttacking()
+requireConditional: if not self.hasActiveWaypoint()
+addWaypoint_type: attackMove
+addWaypoint_prepend: true
+addWaypoint_maxTime: 60s
+addWaypoint_target_nearestUnit_tagged: alert
+addWaypoint_target_nearestUnit_team: any
+addWaypoint_target_nearestUnit_maxRange: 1000
+addWaypoint_target_mapMustBeReachable: true
+resetCustomTimer: true
+clearActiveWaypoint: true
+
+[hiddenAction_moving]
+autoTrigger: if self.customTimer(laterThanSeconds=10)
+requireConditional:"""
+if not self.hasActiveWaypoint() 
+or not self.isMoving()
+"""
+addWaypoint_type: move
+addWaypoint_prepend: true
+addWaypoint_position_randomOffsetFromSelf: 75, 75
+addWaypoint_target_mapMustBeReachable: true
+addWaypoint_maxTime: 20s
+resetCustomTimer: true
+
+[hiddenAction_tooManyWaypoints]
+autoTrigger: if self.numberOfQueuedWaypoints() >= 2
+clearAllWaypoints: true
+
+[hiddenAction_cooldownDead]
+autoTrigger: if self.resource(type='cooldown1',greaterThan=500)
+addResources: cooldown1: -500, hp: -99999
+deleteSelf: true
+resetCustomTimer: true
+
+[resource_cooldown1]
+hidden:true
+
+[hiddenAction_safeZone]
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="safeZone", withinRange=1000, greaterThan=0)
+addResources: hp: -999
+
+[attack]
+meleeEngangementDistance: 90
+
+[projectile_1]
+tags: melee
+explodeEffect: CUSTOM:expSword
+
+[effect_expSword]
+life: 60
+hOffset: 0
+fadeInTime: 0
+fadeOut: true
+attachedToUnit: true
+image: ROOT:/images/effects/expSword.png
+total_frames: 5
+animateFrameStart: 0
+animateFrameEnd: 4
+animateFramePingPong: false
+animateFrameSpeed: 0.19
+alpha:0.35
+scaleFrom: 0.6
+scaleTo: 0.6

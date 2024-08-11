@@ -1,0 +1,24 @@
+[core]
+price: 100
+maxHp: 10
+mass: 9999
+techLevel: 1
+buildSpeed: 0s
+radius: 1
+isBuilding: true
+disableAllUnitCollisions: true
+isUnselectable: false
+canNotBeDirectlyAttacked: true
+showOnMinimap: false
+effectOnDeath:NONE
+explodeOnDeath: false
+hideScorchMark: true
+createNeutral:true
+stayNeutral:true
+
+[graphics]
+image:SHARED:blank.png
+[attack]
+canAttack: false
+[movement]
+movementType: air

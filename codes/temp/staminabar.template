@@ -1,0 +1,34 @@
+[core]
+@global EnergyChunks1:2
+
+[graphics]
+showHealthBar: false
+showEnergyBar: false
+
+[template_energy1]
+onlyWhenSelectedByAnyPlayer: true
+alpha:0.7
+yOffsetAbsolute: 20
+alwaysStartDirAtZero: true
+layer: beforeUI
+onlyWithZoomLevelOrMore: 1.3
+isVisible: true
+
+[decal_energybar1]
+@copyFromSection: template_energy1
+order: 2
+image: ROOT:images\ui\energy.back.png
+imageScale: 0.5
+color:gray
+[decal_energyfront1]
+@copyFromSection: template_energy1
+order: 5
+image: ROOT:images\ui\energy.front.png
+imageScale: 0.5
+color:gray
+[decal_pipefull1]
+@copyFromSection: template_energy1
+order: 3
+image: ROOT:images\ui\staminapips.png
+xOffsetAbsolute: -12.5*(1-self.resource.stamina/self.resource.maxstamina)
+imageScaleX: self.resource.stamina/self.resource.maxstamina*25

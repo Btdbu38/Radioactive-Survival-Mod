@@ -1,0 +1,409 @@
+
+[template_equipment]
+pos: 0.2
+isVisible: if memory.equipments == true
+iconExtraColor: #FFFFFF
+displayType: infoOnly
+allowMultipleInQueue: false
+canPlayerCancel:true
+isActive: false
+buildSpeed: 1s
+displayRemainingStockpile: true
+
+
+[action_help]
+@copyFromSection:template_actionBhsInfo
+isActive: false
+whenBuilding_cannotMove: true
+pos: 0.11
+displayType: infoOnly
+allowMultipleInQueue: false
+canPlayerCancel: false
+isVisible: if memory.equipments == true
+
+
+
+
+[action_unequip2]
+text: Unequip\n(Helmet)
+whenBuilding_cannotMove: true
+pos: 0.11
+displayType: infoOnly
+buildSpeed: 2s
+iconExtraColor: #FFFFFFFF
+convertTo_keepCurrentTags: true
+convertTo_keepCurrentFields: maxHp
+allowMultipleInQueue: false
+canPlayerCancel: false
+temporarilyRemoveTags: equipedHelmet
+isLocked: if not self.tags(includes="equipedHelmet")
+isLockedMessage: You are not wearing a helmet
+playSoundToPlayerOnQueue:"""
+ROOT:/soundFx/crafting/cloth2.ogg:0.9,
+ROOT:/soundFx/crafting/cloth3.ogg:0.9
+"""
+setUnitStats: armour=0
+isVisible: false
+#isVisible: if memory.equipments == true
+iconImage: ROOT:images/ui/unequip.png
+iconExtraImage: ROOT:images/ui/unequip.png
+alsoTriggerAction: unequip
+
+
+
+#########################################################
+########### DECALS NEW NEW NEW NEW NEW NEW ##############
+#########################################################
+
+
+#The copyFrom that is used for all 
+[template_bhs]
+alpha: 1
+layer: beforeUI
+order: 1
+hOffset: 0
+alwayStartDirAtZero: true
+dirOffset: 0
+imageScale: 0.5
+isVisible: if memory.equipments == true
+yOffsetAbsolute: -94
+xOffsetAbsolute: 0
+onlyWhenSelectedByAnyPlayer: true
+
+#decals for mini character
+[decal_bhsBase]
+@copyFromSection: template_bhs
+imageStack: ROOT:/images/ui/bodyHealth/base.png
+isVisible: if memory.equipments == true
+
+[decal_bhsBaseActorMale]
+@copyFromSection: template_bhs
+imageStack: ROOT:/images/ui/bodyHealth/base_male.png
+isVisible: if memory.equipments == true and self.globalTeamTags(includes="male")
+
+[decal_bhsBaseActorMaleDamaged]
+@copyFromSection: template_bhs
+imageStack: ROOT:/images/ui/bodyHealth/base_damage_male.png
+isVisible: if memory.equipments == true and self.globalTeamTags(includes="male")
+alpha: 0 + (self.maxHp - self.hp) / 100
+
+[decal_bhsBaseActorFemale]
+@copyFromSection: template_bhs
+imageStack: ROOT:/images/ui/bodyHealth/base_female.png
+isVisible: if memory.equipments == true and self.globalTeamTags(includes="female")
+
+[decal_bhsBaseActorFemaleDamaged]
+@copyFromSection: template_bhs
+imageStack: ROOT:/images/ui/bodyHealth/base_damage_female.png
+isVisible: if memory.equipments == true and self.globalTeamTags(includes="female")
+alpha: 0 + (self.maxHp - self.hp) / 100
+
+
+# and self.hasTakenDamage(withinSeconds=6)
+#Mini decals
+[decal_bhsBaseMini]
+@copyFromSection: template_bhs
+imageStack: ROOT:/images/ui/bodyHealth/base.png
+isVisible: if self.hasTakenDamage(withinSeconds=6) or memory.alwaysShowMiniBhs == true
+yOffsetAbsolute: -5
+xOffsetAbsolute: 15
+imageScale: 0.1
+imageScaleX: 0.5
+alpha: 0.5
+
+[decal_bhsBaseMiniActorMale]
+@copyFromSection: template_bhs
+imageStack: ROOT:/images/ui/bodyHealth/base_male.png
+isVisible: if self.globalTeamTags(includes="male") and (self.hasTakenDamage(withinSeconds=6) or memory.alwaysShowMiniBhs == true)
+yOffsetAbsolute: -5
+xOffsetAbsolute: 15
+imageScale: 0.1
+[decal_bhsBaseMiniActorFemale]
+@copyFromSection: decal_bhsBaseMiniActorMale
+isVisible: if self.globalTeamTags(includes="female") and (self.hasTakenDamage(withinSeconds=6) or memory.alwaysShowMiniBhs == true)
+imageStack: ROOT:/images/ui/bodyHealth/base_female.png
+
+[decal_bhsBaseMiniActorMaleHead]
+@copyFromSection: template_bhs
+imageStack: ROOT:/images/ui/bodyHealth/base_male_p_head.png
+isVisible: if self.globalTeamTags(includes="male") and (self.hasTakenDamage(withinSeconds=6) or memory.alwaysShowMiniBhs == true)
+yOffsetAbsolute: -5
+xOffsetAbsolute: 15
+imageScale: 0.1
+alpha: 1 - (100 - self.resource.headHP) / 100
+[decal_bhsBaseMiniActorFemaleHead]
+@copyFromSection: decal_bhsBaseMiniActorMaleHead
+imageStack: ROOT:/images/ui/bodyHealth/base_female_p_head.png
+isVisible: if self.globalTeamTags(includes="female") and (self.hasTakenDamage(withinSeconds=6) or memory.alwaysShowMiniBhs == true)
+
+[decal_bhsBaseMiniActorMaleTorso]
+@copyFromSection: template_bhs
+imageStack: ROOT:/images/ui/bodyHealth/base_male_p_torso.png
+isVisible: if self.globalTeamTags(includes="male") and (self.hasTakenDamage(withinSeconds=6) or memory.alwaysShowMiniBhs == true)
+yOffsetAbsolute: -5
+xOffsetAbsolute: 15
+imageScale: 0.1
+alpha: 1 - (100 - self.resource.torsoHP) / 100
+[decal_bhsBaseMiniActorFemaleTorso]
+@copyFromSection: decal_bhsBaseMiniActorMaleTorso
+imageStack: ROOT:/images/ui/bodyHealth/base_female_p_torso.png
+isVisible: if self.globalTeamTags(includes="female") and (self.hasTakenDamage(withinSeconds=6) or memory.alwaysShowMiniBhs == true)
+
+[decal_bhsBaseMiniActorMaleArms]
+@copyFromSection: template_bhs
+imageStack: ROOT:/images/ui/bodyHealth/base_male_p_arms.png
+isVisible: if self.globalTeamTags(includes="male") and (self.hasTakenDamage(withinSeconds=6) or memory.alwaysShowMiniBhs == true)
+yOffsetAbsolute: -5
+xOffsetAbsolute: 15
+imageScale: 0.1
+alpha: 1 - (100 - self.resource.armHP) / 100
+[decal_bhsBaseMiniActorFemaleArms]
+@copyFromSection: decal_bhsBaseMiniActorMaleArms
+imageStack: ROOT:/images/ui/bodyHealth/base_female_p_arms.png
+isVisible: if self.globalTeamTags(includes="female") and (self.hasTakenDamage(withinSeconds=6) or memory.alwaysShowMiniBhs == true)
+
+
+[decal_bhsBaseMiniActorMaleLegs]
+@copyFromSection: template_bhs
+imageStack: ROOT:/images/ui/bodyHealth/base_male_p_legs.png
+isVisible: if self.globalTeamTags(includes="male") and (self.hasTakenDamage(withinSeconds=6) or memory.alwaysShowMiniBhs == true)
+yOffsetAbsolute: -5
+xOffsetAbsolute: 15
+imageScale: 0.1
+alpha: 1 - (100 - self.resource.legHP) / 100
+[decal_bhsBaseMiniActorFemaleLegs]
+@copyFromSection: decal_bhsBaseMiniActorMaleLegs
+imageStack: ROOT:/images/ui/bodyHealth/base_female_p_legs.png
+isVisible: if self.globalTeamTags(includes="female") and (self.hasTakenDamage(withinSeconds=6) or memory.alwaysShowMiniBhs == true)
+
+
+#Texts over the part health
+[decal_headhptxt]
+isVisible: if memory.equipments == true
+yOffsetAbsolute: -142.5
+xOffsetAbsolute: -30
+layer: beforeUI
+order: 3
+image: ROOT:/images/ui/headhp.png
+alwayStartDirAtZero: true
+dirOffset: 0
+imageScale: 0.18
+alpha: 0.8
+onlyWhenSelectedByAnyPlayer: true
+
+[decal_torsohptext]
+@copyFromSection: decal_headhptxt
+yOffsetAbsolute: -142.5
+xOffsetAbsolute: 30
+imageScale: 0.18
+image: ROOT:/images/ui/torsohp.png
+
+[decal_armhptext]
+@copyFromSection: decal_headhptxt
+yOffsetAbsolute: -112.5
+xOffsetAbsolute: -32
+imageScale: 0.18
+image: ROOT:/images/ui/armhp.png
+
+[decal_leghptext]
+@copyFromSection: decal_headhptxt
+yOffsetAbsolute: -112.5
+xOffsetAbsolute: 32
+imageScale: 0.18
+image: ROOT:/images/ui/leghp.png
+
+
+
+#The part health bars
+[decal_bhsPipHead]
+@copyFromSection: template_bhs
+imageStack: ROOT:/images/ui/bodyHealth/pip_back.png
+isVisible: if memory.equipments == true
+yOffsetAbsolute: -135
+xOffsetAbsolute: -30
+
+[decal_bhsHeadHP]
+@copyFromSection: template_bhs
+order: 2
+imageStack: ROOT:/images/ui/bodyHealth/pip.png
+yOffsetAbsolute: -135
+xOffsetAbsolute: -42.5
+imageScaleX: self.resource.headHP/100*50
+
+
+[decal_bhsPipTorso]
+@copyFromSection: template_bhs
+imageStack: ROOT:/images/ui/bodyHealth/pip_back.png
+isVisible: if memory.equipments == true
+yOffsetAbsolute: -135
+xOffsetAbsolute: 30
+
+[decal_bhsTorsoHP]
+@copyFromSection: template_bhs
+order: 2
+imageStack: ROOT:/images/ui/bodyHealth/pip.png
+yOffsetAbsolute: -135
+xOffsetAbsolute: 17.5
+imageScaleX: self.resource.torsoHP/100*50
+
+
+[decal_bhsPipArms]
+@copyFromSection: template_bhs
+imageStack: ROOT:/images/ui/bodyHealth/pip_back.png
+isVisible: if memory.equipments == true
+yOffsetAbsolute: -105
+xOffsetAbsolute: -32
+
+[decal_bhsArmsHP]
+@copyFromSection: template_bhs
+order: 2
+imageStack: ROOT:/images/ui/bodyHealth/pip.png
+yOffsetAbsolute: -105
+xOffsetAbsolute: -44.5
+imageScaleX: self.resource.armHP/100*50
+
+
+[decal_bhsPipLegs]
+@copyFromSection: template_bhs
+imageStack: ROOT:/images/ui/bodyHealth/pip_back.png
+isVisible: if memory.equipments == true
+yOffsetAbsolute: -105
+xOffsetAbsolute: 32
+
+[decal_bhsLegsHP]
+@copyFromSection: template_bhs
+order: 2
+imageStack: ROOT:/images/ui/bodyHealth/pip.png
+yOffsetAbsolute: -105
+xOffsetAbsolute: 19.5
+imageScaleX: self.resource.legHP/100*50
+#####################################################
+#End of the new body health decals
+
+[comment_panelBase]
+alpha: 1
+layer: beforeBody
+order: 1
+imageStack: ROOT:/images/ui/panel.png
+hOffset: 0
+alwayStartDirAtZero: true
+dirOffset: 0
+imageScale: 0.5
+isVisible: if memory.equipments == true
+yOffsetAbsolute: -35
+xOffsetAbsolute: 15
+onlyWhenSelectedByAnyPlayer: true
+
+
+[decal_plateTakenDmg]
+isVisible: if self.hasResources(shield=1) and self.hasTakenDamage(withinSeconds=0.1)
+yOffsetAbsolute: 16
+xOffsetAbsolute: 17
+layer: afterBody
+order: 1
+image: ROOT:images/ui/plate1.png
+alwayStartDirAtZero: true
+dirOffset: 0
+imageScale: 0.37
+alpha: 1
+color: #0086fa
+onlyWhenSelectedByAnyPlayer: true
+
+[decal_plate1]
+isVisible: if self.resource(type="shield") < 101 and self.resource(type="shield") > 75
+yOffsetAbsolute: 16
+xOffsetAbsolute: 17
+layer: beforeBody
+order: 3
+image: ROOT:/images/ui/plate1.png
+alwayStartDirAtZero: true
+dirOffset: 0
+imageScale: 0.37
+alpha: 1
+#color: gray
+onlyWhenSelectedByAnyPlayer: true
+
+[decal_plate2]
+@copyFromSection: decal_plate1
+isVisible: if self.resource(type="shield") < 75 and self.resource(type="shield") > 50
+image: ROOT:/images/ui/plate2.png
+
+[decal_plate3]
+@copyFromSection: decal_plate1
+isVisible: if self.resource(type="shield") < 50 and self.resource(type="shield") > 24
+image: ROOT:/images/ui/plate3.png
+
+[decal_plate4]
+@copyFromSection: decal_plate1
+isVisible: if self.resource(type="shield") < 25 and self.resource(type="shield") > 0
+image: ROOT:/images/ui/plate4.png
+
+[decal_plate5]
+@copyFromSection: decal_plate1
+isVisible: if not self.hasResources(shield=1)
+image: ROOT:/images/ui/plate5.png
+alpha: 0.5
+
+
+
+
+[decal_panelHeadMedium]
+image: ROOT:/images/ui/panelHeadMedium.png
+isVisible: if self.resource.headHP < 80 and self.resource.headHP > 50 and memory.equipments == true
+alpha: 0.8
+order: 1
+layer: onTop
+hOffset: 0
+alwayStartDirAtZero: true
+dirOffset: 0
+imageScale: 0.5
+yOffsetAbsolute: -35
+xOffsetAbsolute: 15
+onlyWhenSelectedByAnyPlayer: true
+[decal_panelHeadHeavy]
+image: ROOT:/images/ui/panelHeadHeavy.png
+isVisible: if self.resource.headHP < 50 and self.resource.HP > 25 and memory.equipments == true
+@copyFromSection: decal_panelHeadMedium
+[decal_panelHeadDead]
+image: ROOT:/images/ui/panelHeadDead.png
+isVisible: if self.resource.headHP < 25 and self.resource.HP > -5 and memory.equipments == true
+@copyFromSection: decal_panelHeadMedium
+
+[decal_panelBodyMedium]
+image: ROOT:/images/ui/panelBodyMedium.png
+isVisible: if self.resource.torsoHP < 80 and self.resource.torsoHP > 50 and memory.equipments == true
+@copyFromSection: decal_panelHeadMedium
+[decal_panelBodyHeavy]
+image: ROOT:/images/ui/panelBodyHeavy.png
+isVisible: if self.resource.torsoHP < 50 and self.resource.torsoHP > 25 and memory.equipments == true
+@copyFromSection: decal_panelHeadMedium
+[decal_panelBodyDead]
+image: ROOT:/images/ui/panelBodyDead.png
+isVisible: if self.resource.torsoHP < 25 and self.resource.torsoHP > -5 and memory.equipments == true
+@copyFromSection: decal_panelHeadMedium
+
+[decal_panelArmsMedium]
+image: ROOT:/images/ui/panelArmsMedium.png
+isVisible: if self.resource.armHP < 80 and self.resource.armHP > 50 and memory.equipments == true
+@copyFromSection: decal_panelHeadMedium
+[decal_panelArmsHeavy]
+image: ROOT:/images/ui/panelArmsHeavy.png
+isVisible: if self.resource.armHP < 50 and self.resource.armHP > 25 and memory.equipments == true
+@copyFromSection: decal_panelHeadMedium
+[decal_panelArmsDead]
+image: ROOT:/images/ui/panelArmsDead.png
+isVisible: if self.resource.armHP < 25 and self.resource.armHP > -5 and memory.equipments == true
+@copyFromSection: decal_panelHeadMedium
+
+[decal_panelLegsMedium]
+image: ROOT:/images/ui/panelLegMedium.png
+isVisible: if self.resource.legHP < 80 and self.resource.legHP > 50 and memory.equipments == true
+@copyFromSection: decal_panelHeadMedium
+[decal_panelLegsHeavy]
+image: ROOT:/images/ui/panelLegHeavy.png
+isVisible: if self.resource.legHP < 50 and self.resource.legHP > 25 and memory.equipments == true
+@copyFromSection: decal_panelHeadMedium
+[decal_panelLegDead]
+image: ROOT:/images/ui/panelLegDead.png
+isVisible: if self.resource.legHP < 25 and self.resource.legHP > -5 and memory.equipments == true
+@copyFromSection: decal_panelHeadMedium

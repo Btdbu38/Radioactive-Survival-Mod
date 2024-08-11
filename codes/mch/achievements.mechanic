@@ -1,0 +1,92 @@
+
+[template_achi]
+pos: 0.2
+isVisible: if self.hasFlag(id=9)
+iconExtraColor: #FFFFFF
+displayType: infoOnly
+allowMultipleInQueue: false
+canPlayerCancel:true
+isActive: false
+buildSpeed: 1s
+
+[action_debug]
+text: Unlock All Achievements
+buildSpeed: 1
+isVisible: if self.hasFlag(id=9)
+addGlobalTeamTags: bloodyBastard, crateSlayer, masterWastelander, giveMeMore, isThisTheEnd, soScared, unbeliveable
+
+[action_bloodyBastard]
+@copyFromSection: template_achi
+text: Bloody Bastard
+description: 'This is so easy if there is a bloodsucker, right?' \n -Get 'bleeding' status more over than 500.
+iconImage: ROOT:/achievements/bloodyBastard.png
+iconExtraImage: ROOT:/achievements/bloodyBastard.png
+isLocked: if not self.globalTeamTags(includes='bloodyBastard')
+
+[action_giveMeMore]
+@copyFromSection: template_achi
+text: Give Me More!
+description: 'How many monsters did you kill?' \n -Collect 500 items
+iconImage: ROOT:/achievements/giveMeMore.png
+iconExtraImage: ROOT:/achievements/giveMeMore.png
+isLocked: if not self.globalTeamTags(includes='giveMeMore')
+
+[action_masterWastelander]
+@copyFromSection: template_achi
+text: Master Wastelander
+description: 'Everything done?!' \n -Craft a hazmat suit and unlock all of the special abilites, and get all of the skills
+iconImage: ROOT:/achievements/masterWastelander.png
+iconExtraImage: ROOT:/achievements/masterWastelander.png
+isLocked: if not self.globalTeamTags(includes='masterWastelander')
+
+[action_crateSlayer]
+@copyFromSection: template_achi
+text: Crate Slayer
+description: 'Well, brain, but how did you find enough crates to destroy?' \n -Destroy 50 crates
+iconImage: ROOT:/achievements/crateSlayer.png
+iconExtraImage: ROOT:/achievements/crateSlayer.png
+isLocked: if not self.globalTeamTags(includes='crateSlayer')
+
+[action_isThisTheEnd]
+@copyFromSection: template_achi
+text: Is This The End?
+description: 'No, this is the starting!' \n -Survive your first night.
+iconImage: ROOT:/achievements/end.png
+iconExtraImage: ROOT:/achievements/end.png
+isLocked: if not self.globalTeamTags(includes='isThisTheEnd')
+
+[action_unbeliveable]
+@copyFromSection: template_achi
+text: Unbeliveable
+description: 'I'll not die!' \n -Do NOT die even during 'starving' for 180 seconds.
+iconImage: ROOT:/achievements/unbeliveable.png
+iconExtraImage: ROOT:/achievements/unbeliveable.png
+isLocked: if not self.globalTeamTags(includes='unbeliveable')
+
+[action_soScared]
+@copyFromSection: template_achi
+text: So Scared
+description: 'It's so dark' \n -Survive your first nightmare moon.
+iconImage: ROOT:/achievements/soScared.png
+iconExtraImage: ROOT:/achievements/soScared.png
+isLocked: if not self.globalTeamTags(includes='soScared')
+
+
+
+[hiddenAction_applyBloodyBastard]
+autoTrigger: if self.resource(type='bleeding', greaterThan=499)
+addGlobalTeamTags: bloodyBastard
+requireConditional: if not self.globalTeamTags(includes='bloodyBastard')
+showMessageToPlayer: Achievement Unlocked! - Bloody Bastard
+
+[hiddenAction_applyIsthisend]
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag='nightF', greaterThan=0)
+addGlobalTeamTags: isThisTheEnd
+requireConditional: if not self.globalTeamTags(includes='isThisTheEnd')
+showMessageToPlayer: Achievement Unlocked! - Is This The End?
+
+[hiddenAction_applySoScared]
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag='nightmareF', greaterThan=0)
+addGlobalTeamTags: soScared
+requireConditional: if not self.globalTeamTags(includes='soScared')
+showMessageToPlayer: Achievement Unlocked! - So Scared

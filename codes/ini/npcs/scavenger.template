@@ -1,0 +1,246 @@
+[core]
+@memory searching:bool
+@memory looting:bool
+@memory lootingTimer:number
+@memory foundLoot:number
+@memory returning:bool
+@memory trading:bool
+@memory tradingTimer:number
+@memory resting:bool
+@memory restingTimer:number
+@memory waiting:bool
+@memory waitingTimer:number
+@memory restingCampfire:unit
+
+[hiddenAction_scavengerEnteredZone]
+autoTriggerOnEvent: created
+setUnitMemory:"""
+searching=false,
+looting=false,
+lootingTimer=0,
+foundLoot=0,
+returning=false,
+trading=false,
+tradingTimer=0,
+resting=false,
+restingTimer=0,
+waiting=true,
+waitingTimer=0,
+restingCampfire=nearestUnit(withTag="campfire")
+"""
+
+
+
+#Waiting
+
+[hiddenAction_scavengerTriggerWaitingTimer]
+autoTrigger: if memory.waiting == true
+setUnitMemory: waitingTimer= (1 + memory.waitingTimer)
+debugMessage: isWaiting
+
+#[hiddenAction_scavenger]
+
+[hiddenAction_scavengerWaitedEnough]
+autoTrigger: if memory.waiting == true and memory.waitingTimer >= 35
+requireConditional: if rnd(0,100) >= 85
+alsoTriggerAction: scavengerStartToSearch
+setUnitMemory: waiting=false, waitingTimer=0
+debugMessage: isReadyForLoot
+
+
+
+
+#Searching
+
+[hiddenAction_scavengerStartToSearch]
+requireConditional: if memory.searching == false
+setUnitMemory: searching=true
+
+addWaypoint_type: attackMove
+addWaypoint_prepend: false
+addWaypoint_triggerActionIfFailed: removeWaypoints
+addWaypoint_triggerActionIfMatched: searchingStarted
+addWaypoint_target_mapMustBeReachable: true
+#addWaypoint_target_fromReference
+#addWaypoint_position_offsetFromSelf
+addWaypoint_target_randomUnit_tagged: loot
+addWaypoint_target_randomUnit_team: any
+clearAllWaypoints: true
+
+debugMessage: targetedAnObject
+
+[hiddenAction_removeWaypoints]
+clearAllWaypoints: true
+
+[hiddenAction_searchingStarted]
+showMessageToAllPlayers: A Loner is going for looting.
+
+
+
+
+#Looting
+
+[hiddenAction_scavengerFoundALootAndMovingToIt]
+autoTrigger:"""
+if self.numberOfUnitsInAllTeams(withTag="loot",withinRange=120) > 0
+ or self.numberOfUnitsInNeutralTeam(withTag="loot",withinRange=120) > 0
+ or self.numberOfUnitsInAggressiveTeam(withTag="loot",withinRange=120) > 0
+ and memory.looting == false
+"""
+requireConditional: if memory.searching == true and not self.isAttacking() and not self.tags(includes="lootedThis")
+setUnitMemory: searching=false, looting=true
+
+addWaypoint_type: move
+addWaypoint_prepend: false
+addWaypoint_triggerActionIfFailed: removeWaypoints
+addWaypoint_triggerActionIfMatched: foundAStash
+addWaypoint_target_mapMustBeReachable: true
+#addWaypoint_target_fromReference
+#addWaypoint_position_offsetFromSelf
+addWaypoint_target_randomUnit_tagged: loot
+addWaypoint_target_randomUnit_team: any
+addWaypoint_target_randomUnit_maxRange: 120
+clearAllWaypoints: true
+
+debugMessage: movingToTheLootObject
+
+[hiddenAction_foundAStash]
+showMessageToAllPlayers: Hmm, let's see what's inside.
+
+
+[hiddenAction_scavengerTriggerLootingTimer]
+autoTrigger: if memory.looting == true
+requireConditional: if memory.foundLoot < 3
+setUnitMemory: lootingTimer= (1 + memory.lootingTimer)
+debugMessage: isLooting
+
+[hiddenAction_scavengerLootedEnough]
+autoTrigger: if memory.looting == true and memory.lootingTimer >= 20
+requireConditional: if memory.foundLoot < 3
+alsoTriggerAction: scavengerLookForOtherObjectNearby
+setUnitMemory: looting=false, lootingTimer=0, foundLoot= (1 + memory.foundLoot)
+debugMessage: lootedAnObject
+takeResources: npcLoot:1
+takeResources_includeUnitsWithinRange: 60
+takeResources_includeUnitsWithinRange_team: any
+takeResources_excludeUnitsWithoutTags: loot
+takeResources_maxUnits:1
+
+[hiddenAction_scavengerLookForOtherObjectNearby]
+requireConditional: if memory.looting == false and not self.isAttacking()
+setUnitMemory: searching=true
+
+addWaypoint_type: move
+addWaypoint_prepend: false
+addWaypoint_triggerActionIfFailed: scavengerLookForOtherLootArea
+addWaypoint_triggerActionIfMatched: foundAnotherStash
+addWaypoint_target_mapMustBeReachable: true
+#addWaypoint_target_fromReference
+#addWaypoint_position_offsetFromSelf
+addWaypoint_target_randomUnit_tagged: loot
+addWaypoint_target_randomUnit_team: any
+addWaypoint_target_randomUnit_maxRange: 500
+clearAllWaypoints: true
+
+debugMessage: movingToTheNewObject
+
+[hiddenAction_foundAnotherStash]
+showMessageToAllPlayers: Hmm, let's continue our hunt.
+setUnitMemory: looting=true
+
+[hiddenAction_scavengerLookForOtherLootArea]
+setUnitMemory: searching=true
+alsoTriggerAction: scavengerStartToSearch
+debugMessage: searchingAgain
+
+
+#Returning
+
+
+
+[action_scavengerReturning]
+isVisible: true
+autoTrigger: if memory.returning == false and memory.foundLoot >= 3
+setUnitMemory: returning=true, looting=false
+
+addWaypoint_type: attackMove
+addWaypoint_prepend: false
+addWaypoint_triggerActionIfFailed: scavengerReturning
+addWaypoint_triggerActionIfMatched: returning
+addWaypoint_target_mapMustBeReachable: true
+#addWaypoint_target_fromReference
+#addWaypoint_position_offsetFromSelf
+addWaypoint_target_nearestUnit_tagged: base
+addWaypoint_target_nearestUnit_team: any
+clearAllWaypoints: true
+
+debugMessage: movingToBase
+
+[hiddenAction_returning]
+showMessageToAllPlayers: Let's go back to the base.
+
+[hiddenAction_scavengerLookForOtherLootArea]
+setUnitMemory: searching=false
+alsoTriggerAction: scavengerStartToSearch
+debugMessage: searchingAgain
+
+
+
+[hiddenAction_scavengerSawTheNpcAndMovingIt]
+autoTrigger: if numberOfUnitsInNeutralTeam(withTag="alex", withinRange=200) > 0
+requireConditional: if memory.returning == true and memory.foundLoot >= 3
+setUnitMemory: returning=false, foundLoot=(memory.foundLoot - 1)
+
+addWaypoint_type: touchTarget
+addWaypoint_prepend: false
+addWaypoint_target_mapMustBeReachable: true
+#addWaypoint_target_fromReference
+#addWaypoint_position_offsetFromSelf
+addWaypoint_target_nearestUnit_tagged: alex
+addWaypoint_target_nearestUnit_team: any
+clearAllWaypoints: true
+
+debugMessage: sawTheTrader
+
+[hiddenAction_scavengerStartTrading]
+autoTriggerOnEvent: touchTargetSuccess
+setUnitMemory: trading=true
+
+debugMessage: startingATrading
+
+
+[hiddenAction_scavengerTradingTimer]
+autoTrigger: if memory.trading == true
+setUnitMemory: tradingTimer= (1 + memory.tradingTimer)
+debugMessage: tradingGoods
+
+[hiddenAction_scavengerTradingOver]
+autoTrigger: if memory.trading == true and memory.tradingTimer >= 25
+alsoTriggerAction: scavengerGoACampfireForRest
+setUnitMemory: trading=false, tradingTimer=0, foundLoot= 0
+debugMessage: tradingOver, searchingACampfire
+
+
+[hiddenAction_scavengerGoACampfireForRest]
+setUnitMemory: resting=true
+
+addWaypoint_type: move
+addWaypoint_prepend: false
+addWaypoint_target_mapMustBeReachable: true
+addWaypoint_target_fromReference: createMarker(memory.restingCampfire.x + 30, memory.restingCampfire.y + 30)
+#addWaypoint_position_offsetFromSelf
+clearAllWaypoints: true
+
+debugMessage: movingToCampfire
+
+
+[hiddenAction_scavengerTriggerRestingTimer]
+autoTrigger: if memory.resting == true
+setUnitMemory: restingTimer= (1 + memory.restingTimer)
+debugMessage: isResting
+
+[hiddenAction_scavengerRestedEnough]
+autoTrigger: if memory.resting == true and memory.restingTimer >= 55
+setUnitMemory: waiting=true, resting=false, waitingTimer=0, restingTimer=0
+debugMessage: isNowWaiting
+

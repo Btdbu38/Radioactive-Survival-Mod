@@ -1,0 +1,38 @@
+############### medkit #########################
+
+[resource_npcMedkit]
+hidden: true
+
+[hiddenAction_medkit]
+pos:0.2
+price: npcMedkit:1
+addResources: healing: 10, hp: 30
+temporarilyRemoveTags: usingAMedkit
+buildSpeed: 6s
+
+
+[action_healing]
+pos:0.4
+autoTrigger: if self.hasResources(healing=1)
+isVisible: if self.hasResources(healing=1)
+text: Healing
+iconExtraColor: #ffffff
+iconExtraImage: ROOT:/images/moodles/healing.png
+addResources: healing:-1, hp:5
+price: 0
+allowMultipleInQueue: false
+buildSpeed: 0s
+pos: 99999
+
+[hiddenAction_autoMedkit]
+autoTrigger: if self.hp() < self.maxHp / 3
+requireConditional: if not self.tags(includes="usingAMedkit") and self.resource(type='npcMedkit', greaterThan=0)
+temporarilyAddTags: usingAMedkit
+resetCustomTimer: true
+alsoQueueAction: medkit
+playSoundAtUnit: ROOT:/soundFx/itemUsage/medkit.ogg:0.2
+addResources: npcMedkit:-1
+
+[hiddenAction_addResourcesOnSpawn]
+autoTriggerOnEvent: created
+addResourcesWithLogic: npcMedkit: ${medkit}, rapidFire: ${burstFireAmount}, npcAmmo: rnd(3,6) + select(self.tags(includes="companion"), 9999, 0)

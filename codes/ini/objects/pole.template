@@ -1,0 +1,46 @@
+[core]
+displayText: Pole
+mass: 99999
+techLevel: 1
+buildSpeed: 0s
+radius: 15
+isBio: true
+isBug: false
+isBuilding: true
+explodeOnDeath: false
+hideScorchMark: true
+maxHp: 1000
+showOnMinimap: false
+stayNeutral: true
+createNeutral: true
+price:0
+
+[graphics]
+image: ROOT:/images/objects/${core.name}.png
+total_frames: 11
+animation_idle_start: 0
+animation_idle_end: 10
+animation_idle_speed: 6
+imageScale: 1
+image_offsetY: -35
+image_offsetX: 7
+shadowOffsetX: 1
+shadowOffsetY: 1
+icon_zoomed_out_neverShow: true
+showHealthBar: false
+showEnergyBar: false
+
+[attack]
+canAttack: false
+
+[decal_treeshadow]
+xOffsetRelative: 24
+yOffsetRelative: 35
+image: SHARED:blank.png
+isVisible: true
+layer: shadow
+alpha: 0.29
+dirOffset: 30
+
+[movement]
+movementType: BUILDING

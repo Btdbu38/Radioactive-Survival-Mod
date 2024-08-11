@@ -1,0 +1,319 @@
+[core]
+copyFrom:"""
+ROOT:/codes/ini/npcs/sounds.template,
+ROOT:/codes/ini/npcs/npcAttack.template,
+ROOT:/codes/ini/npcs/npcAutoWaypoints.template,
+ROOT:/codes/ini/npcs/npcBaseDefends.template,
+ROOT:/codes/ini/npcs/npcItems.template,
+ROOT:/codes/mch/items.mechanic,
+ROOT:/codes/temp/killCounts.template,
+ROOT:/codes/temp/lineOfSight.template,
+ROOT:/codes/temp/resources.template,
+ROOT:/codes/temp/projectiles.template,
+ROOT:/codes/temp/effects.template,
+ROOT:/codes/temp/hpbar.template,
+ROOT:/codes/temp/blood.template,
+ROOT:/strings.txt
+"""
+#ROOT:/codes/ini/npcs/npcDialogues.template,
+name: ${name}
+displayText: ${text}
+displayDescription: ${description}
+maxHp: ${health}
+armour: ${armor}
+armourMinDamageToKeep: 8
+tags: npc, human, damageable, ownPda, canOpenDoors, ${faction}, ${name}, ${type}
+mass: ${weight * 4.5}
+fogOfWarSightRange: ${sightRange}
+selfRegenRate: ${regen}
+energyMax: ${magSize}
+
+price: 0
+radius: 8
+energyRegen: 0
+energyNeedsToRechargeToFull: true
+buildSpeed: 0
+isBio: true
+isBug: false
+effectOnDeath: NONE
+explodeOnDeath: false
+autoTriggerCooldownTime: 0.4s
+autoTriggerCheckRate: every8Frames
+
+selfRegenRate: 0.005
+@global UIAT:numberOfUnitsInAllTeams
+
+@memory damage:number
+@memory dropping:bool
+
+isBuilder: true
+nanoRange: 30
+nanoBuildSpeed: 1
+nanoRepairSpeed: 1
+nanoReclaimSpeed: 4
+canReclaimResources: true
+canReclaimResourcesNextSearchRange: 45
+canReclaimResourcesOnlyWithTags: item
+
+showActionsWithMixedSelectionIfOtherUnitsHaveTag: true
+
+[hiddenAction_onDeathDropWeapon]
+autoTriggerOnEvent: destroyed
+alsoTriggerAction: voiceDeath
+addResources: reputation:-4
+
+[hiddenAction_tookDamageSound]
+autoTriggerOnEvent: tookDamage
+alsoTriggerAction: voiceHit
+
+############### visual ##########################
+[graphics]
+image: ROOT:/images/sprites/npc_${image}.png
+frame_width: 28
+frame_height: 37
+image_offsetY: -11
+
+shadowOffsetX:3
+shadowOffsetY:-12
+
+animation_idle_start: 0
+animation_idle_end: 1
+animation_idle_speed: 24
+animation_direction_starting: 270
+animation_direction_strideX: 0
+animation_direction_strideY: 1
+animation_direction_units: 90
+
+rotate_with_direction:false
+image_shadow: auto_animated
+image_shield: SHARED:blank.png
+lock_body_rotation_with_main_turret: true
+
+#showShieldBar: true
+reclaimEffect: none
+repairEffect: none
+showSelectionIndicator: false
+
+[decal_select]
+layer: beforeUI
+order: 1
+imageStack: ROOT:/images/ui/select.png
+onlyWhenSelectedByAnyPlayer: true
+total_frames: 1
+color: white
+alwayStartDirAtZero: true
+dirOffset: 0
+imageScale: 0.32
+
+[decal_ssao]
+layer: beforeBody
+order: 1
+imageStack: SHARED:light_50.png
+color:black
+total_frames: 1
+stack_hOffset: 0
+hOffset: 0
+onlyWithZoomLevelOrMore:0
+dirOffset: 0
+imageScale: 0.5
+yOffsetRelative: 0
+xOffsetRelative: 0
+alpha: 0.2
+
+[decal_faction]
+image: ROOT:/images/factionIcons/${faction}.png
+layer: afterBody
+order: 999
+yOffsetAbsolute:10
+xOffsetAbsolute:-9
+onlyWithZoomLevelOrMore: 1.3
+alwayStartDirAtZero: true
+dirOffset: 0
+imageScale: 0.08
+isVisible: true
+onlyWhileAlive: true
+
+[animation_move]
+KeyframeTimeScale: 1
+onActions: move
+body_0s: {frame:2}
+body_0.1s: {frame:3}
+body_0.2s: {frame:4}
+body_0.3s: {frame:5}
+body_0.4s: {frame:6}
+body_0.5s: {frame:7}
+body_0.6s: {frame:8}
+body_0.7s: {frame:9}
+body_0.8s: {frame:10}
+body_0.9s: {frame:11}
+
+[animation_gunShot]
+body_0s: {frame:14}
+body_0.1s: {frame:15}
+body_0.3s: {frame:14}
+body_0.5s: {frame:14}
+
+[animation_use]
+onActions: repair, reclaim
+body_0s: {frame:11}
+body_0.1s: {frame:12}
+body_0.11s: {frame:13}
+body_0.3s: {frame:13}
+body_0.5s: {frame:13}
+body_0.6s: {frame:12}
+body_1s: {frame:11}
+
+[hiddenAction_die]
+autoTriggerOnEvent: destroyed
+requireConditional: if self.numberOfUnitsInNeutralTeam(withTag="zoneExit", withinRange=70) <= 0
+spawnUnits: diedStalker(addResources= setFlag=${dropListId}, neutralTeam=true, skipIfOverlapping=false)
+
+############### companion ##########################
+
+[template_companionTemp]
+pos: 0.01
+isVisible: true
+iconExtraImage:${section.iconImage}
+iconExtraColor: #FFFFFF
+displayType: infoOnly
+alwaysSinglePress: true
+allowMultipleInQueue: false
+canPlayerCancel:true
+isActive: true
+buildSpeed: 0.3s
+isGuiBlinking: true
+
+####################################
+[action_orderUseMelee]
+@copyFromSection: template_companionTemp
+text: Using Ranged
+temporarilyAddTags: melee
+temporarilyRemoveTags: ranged
+isVisible: if not self.tags(includes="melee")
+iconImage: ROOT:/images/ui/orderUseRanged.png
+setUnitStats:maxAttackRange=30
+autoTrigger: if not self.hasResources(npcAmmo=1) and not self.tags(includes="melee")
+
+[action_orderUseRanged]
+@copyFromSection: template_companionTemp
+text: Using Melee
+temporarilyAddTags: ranged
+temporarilyRemoveTags: melee
+isVisible: if not self.tags(includes="ranged")
+iconImage: ROOT:/images/ui/orderUseMelee.png
+setUnitStats:maxAttackRange=400
+
+####################################
+[action_orderFollowMe]
+@copyFromSection: template_companionTemp
+text: Standing
+temporarilyAddTags: orderFollow
+temporarilyRemoveTags: orderStop
+isVisible: if not self.tags(includes="orderFollow")
+iconImage: ROOT:/images/ui/orderDontMove.png
+
+[action_orderStop]
+@copyFromSection: template_companionTemp
+text: Following
+temporarilyAddTags: orderStop
+temporarilyRemoveTags: orderFollow
+isVisible: if not self.tags(includes="orderStop")
+iconImage: ROOT:/images/ui/orderFollowMe.png
+clearAllWaypoints: true
+
+####################################
+[action_orderLoot]
+@copyFromSection: template_companionTemp
+text: Not Looting
+temporarilyAddTags: orderLoot
+temporarilyRemoveTags: orderDontLoot
+isVisible: if not self.tags(includes="orderLoot")
+iconImage: ROOT:/images/ui/orderLoot.png
+
+[action_orderDontLoot]
+autoTrigger: if self.tags(includes="orderLoot") and self.resource.encumbrance > 35
+@copyFromSection: template_companionTemp
+text: Looting
+temporarilyAddTags: orderDontLoot
+temporarilyRemoveTags: orderLoot
+isVisible: if not self.tags(includes="orderDontLoot")
+iconImage: ROOT:/images/ui/orderLoot.png
+
+####################################
+[hiddenAction_moveToActorFollowOrder]
+autoTrigger: if self.tags(includes="orderFollow")
+requireConditional: if self.tags(includes="companion") and not self.hasActiveWaypoint()
+addWaypoint_type: follow
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_tagged: main
+addWaypoint_target_nearestUnit_team: own
+#addWaypoint_target_randomUnit_maxRange: 
+addWaypoint_target_mapMustBeReachable: true
+addWaypoint_maxTime: 20s
+resetCustomTimer: true
+clearAllWaypoints: true
+
+[hiddenAction_orderLootActor]
+autoTrigger: if self.tags(includes="orderLoot")
+requireConditional: if self.tags(includes="companion") and self.numberOfUnitsInNeutralTeam(withTag="item", withinRange=100) > 0 and self.resource.encumbrance < 35
+addWaypoint_type: reclaim
+addWaypoint_target_nearestUnit_tagged: item
+addWaypoint_target_nearestUnit_team: neutral
+addWaypoint_target_nearestUnit_maxRange: 100
+addWaypoint_target_mapMustBeReachable: true
+clearAllWaypoints: true
+
+[action_weight]
+pos: 0.02
+isVisible: true
+displayType: infoOnly
+allowMultipleInQueue: false
+canPlayerCancel:true
+isActive: false
+buildSpeed: 0
+text:%{self.resource.encumbrance} / 35 KG
+
+[hiddenAction_defineEncumbrance]
+autoTrigger: true
+setResourcesWithLogic: ${defineEncumbrance}
+
+############### action ##########################
+
+[hiddenAction_tooManyWaypoints]
+autoTrigger: if self.numberOfQueuedWaypoints() >= 2
+clearAllWaypoints: true
+
+[hiddenAction_stepDirt]
+autoTrigger: if self.isMoving()
+playSoundAtUnit:"""
+ROOT:/soundFx/footsteps/earth1.ogg:0.08,
+ROOT:/soundFx/footsteps/earth2.ogg:0.08,
+ROOT:/soundFx/footsteps/earth3.ogg:0.06,
+ROOT:/soundFx/footsteps/earth4.ogg:0.08
+"""
+
+[hiddenAction_safeZoneEnter]
+requireConditional: if not self.tags(includes="safe")
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="safeZone", withinRange=600, greaterThan=0)
+temporarilyAddTags: safe
+
+[hiddenAction_safeZoneLeave]
+requireConditional: if not self.tags(includes="notSafe")
+autoTrigger: if not self.numberOfUnitsInNeutralTeam(withTag="safeZone", withinRange=600, greaterThan=0)
+temporarilyRemoveTags: safe
+
+############### misc ##########################
+[hiddenAction_createdAddDroppingMemory]
+autoTriggerOnEvent: created
+setUnitMemory: dropping=true
+temporarilyAddTags: ranged, orderStop, orderDontLoot
+
+
+
+[movement]
+movementType: LAND
+moveSpeed: ${speed}
+moveAccelerationSpeed: 0.2
+moveDecelerationSpeed: 0.2
+maxTurnSpeed: 4.5
+turnAcceleration: 3

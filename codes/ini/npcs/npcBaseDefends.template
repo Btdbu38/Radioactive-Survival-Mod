@@ -1,0 +1,124 @@
+
+[resource_patrolCooldown]
+hidden: true
+
+[hiddenAction_autoTrigger]
+autoTrigger: if not self.isMoving()
+addResources: patrolCooldown: 0.5
+
+[hiddenAction_banditPatrolling]
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="banditOutpost", withinRange=500) >= 1
+requireConditional: if self.tags(includes="banditDefender") and not self.hasActiveWaypoint() and self.resource.patrolCooldown >= 30
+addWaypoint_type: attackMove
+addWaypoint_prepend: false
+addWaypoint_triggerActionIfFailed: banditPatrolling
+addWaypoint_position_randomOffsetFromSelf: 120, 120
+addWaypoint_target_mapMustBeReachable: true
+clearAllWaypoints: true
+addWaypoint_maxTime: 30s
+alsoTriggerAction: voiceMove
+setResourcesWithLogic: patrolCooldown: 0
+
+[hiddenAction_marauderPatrolling]
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="marauderBase", withinRange=500) >= 1 
+requireConditional: if self.tags(includes="marauderDefender") and not self.hasActiveWaypoint() and self.resource.patrolCooldown >= 30
+addWaypoint_type: attackMove
+addWaypoint_prepend: false
+addWaypoint_triggerActionIfFailed: marauderPatrolling
+addWaypoint_position_randomOffsetFromSelf: 120, 120
+addWaypoint_target_mapMustBeReachable: true
+clearAllWaypoints: true
+addWaypoint_maxTime: 30s
+alsoTriggerAction: voiceMove
+setResourcesWithLogic: patrolCooldown: 0
+
+[hiddenAction_ifBanditReturnToAnyBase]
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="banditOutpost", withinRange=500) <= 0 
+requireConditional: if self.tags(includes="banditDefender") and not self.hasActiveWaypoint(type="attackMove") and self.resource.patrolCooldown >= 30 and not self.isAttacking()
+
+addWaypoint_type: attackMove
+addWaypoint_prepend: false
+addWaypoint_target_mapMustBeReachable: true
+addWaypoint_target_randomUnit_tagged: banditOutpost
+addWaypoint_target_randomUnit_team: any
+clearAllWaypoints: true
+
+alsoTriggerAction: voiceMove
+setResourcesWithLogic: patrolCooldown: 0
+
+[hiddenAction_ifMarauderReturnToAnyBase]
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="marauderBase", withinRange=500) <= 0 
+requireConditional: if self.tags(includes="marauderDefender") and not self.hasActiveWaypoint(type="attackMove") and self.resource.patrolCooldown >= 30 and not self.isAttacking()
+
+addWaypoint_type: attackMove
+addWaypoint_prepend: false
+addWaypoint_target_mapMustBeReachable: true
+addWaypoint_target_randomUnit_tagged: marauderBase
+addWaypoint_target_randomUnit_team: any
+clearAllWaypoints: true
+
+alsoTriggerAction: voiceMove
+setResourcesWithLogic: patrolCooldown: 0
+
+
+
+
+
+
+
+
+[hiddenAction_monolithPatrolling]
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="monolithPatrolPoint", withinRange=500) >= 1
+requireConditional: if self.tags(includes="monolithPatroller") and not self.hasActiveWaypoint() and self.resource.patrolCooldown >= 30
+addWaypoint_type: attackMove
+addWaypoint_prepend: false
+addWaypoint_triggerActionIfFailed: monolithPatrolling
+addWaypoint_position_randomOffsetFromSelf: 120, 120
+addWaypoint_target_mapMustBeReachable: true
+clearAllWaypoints: true
+addWaypoint_maxTime: 30s
+alsoTriggerAction: voiceMove
+setResourcesWithLogic: patrolCooldown: 0
+
+[hiddenAction_ifMonolithReturnToAnyBase]
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="monolithPatrolPoint", withinRange=500) <= 0 
+requireConditional: if self.tags(includes="monolithPatroller") and not self.hasActiveWaypoint(type="attackMove") and self.resource.patrolCooldown >= 30 and not self.isAttacking()
+
+addWaypoint_type: attackMove
+addWaypoint_prepend: false
+addWaypoint_target_mapMustBeReachable: true
+addWaypoint_target_randomUnit_tagged: monolithPatrolPoint
+addWaypoint_target_randomUnit_team: any
+clearAllWaypoints: true
+
+alsoTriggerAction: voiceMove
+setResourcesWithLogic: patrolCooldown: 0
+
+
+
+[hiddenAction_soldierPatrolling]
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="militaryArea", withinRange=500) >= 1
+requireConditional: if self.tags(includes="militaryPatroller") and not self.hasActiveWaypoint() and self.resource.patrolCooldown >= 30
+addWaypoint_type: attackMove
+addWaypoint_prepend: false
+addWaypoint_triggerActionIfFailed: soldierPatrolling
+addWaypoint_position_randomOffsetFromSelf: 120, 120
+addWaypoint_target_mapMustBeReachable: true
+clearAllWaypoints: true
+addWaypoint_maxTime: 30s
+alsoTriggerAction: voiceMove
+setResourcesWithLogic: patrolCooldown: 0
+
+[hiddenAction_ifSoldierReturnToAnyBase]
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="militaryArea", withinRange=500) <= 0 
+requireConditional: if self.tags(includes="militaryPatroller") and not self.hasActiveWaypoint(type="attackMove") and self.resource.patrolCooldown >= 30 and not self.isAttacking()
+
+addWaypoint_type: attackMove
+addWaypoint_prepend: false
+addWaypoint_target_mapMustBeReachable: true
+addWaypoint_target_randomUnit_tagged: militaryArea
+addWaypoint_target_randomUnit_team: any
+clearAllWaypoints: true
+
+alsoTriggerAction: voiceMove
+setResourcesWithLogic: patrolCooldown: 0

@@ -1,0 +1,36 @@
+
+[core]
+tags: object, bigMetalObject, car, cover
+showOnMinimap: false
+maxHp: 450
+mass: 10000
+techLevel: 1
+buildSpeed: 0s
+radius: 15
+isBio: true
+isBug: false
+isBuilding: true
+explodeOnDeath: false
+hideScorchMark: true
+price:0
+
+[graphics]
+icon_zoomed_out_neverShow: true
+showHealthBar: false
+showEnergyBar: false
+
+[attack]
+canAttack: false
+
+[movement]
+movementType: BUILDING
+moveSpeed: 0
+
+[hiddenAction_nearbyRuins]
+autoTrigger:"""
+if self.numberOfUnitsInTeam(withinRange=160, withTag="ruinSpawner1", greaterThan=0) or 
+self.numberOfUnitsInTeam(withinRange=160, withTag="ruinSpawner2", greaterThan=1) or  
+self.numberOfUnitsInTeam(withinRange=160, withTag="planeSpawner1", greaterThan=0) 
+"""
+deleteSelf: true
+playSoundAtUnit: warning

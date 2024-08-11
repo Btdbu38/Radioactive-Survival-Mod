@@ -1,0 +1,130 @@
+[core]
+@global EnergyChunks:2
+
+[graphics]
+showHealthBar: false
+showEnergyBar: false
+
+[template_energy]
+onlyWhenSelectedByAnyPlayer: true
+alpha:0.7
+yOffsetAbsolute: 22.7
+alwaysStartDirAtZero: true
+layer: beforeUI
+onlyWithZoomLevelOrMore: 1.3
+isVisible: if self.tags(includes="gunEquiped")
+
+[decal_energybar]
+@copyFromSection: template_energy
+order: 2
+image: ROOT:images/ui/energy.back.png
+imageScale: 0.5
+
+[decal_energyfront]
+@copyFromSection: template_energy
+order: 5
+image: ROOT:images/ui/energy.front.png
+imageScale: 0.5
+
+[decal_pipefull]
+@copyFromSection: template_energy
+order: 3
+image: ROOT:images/ui/energy.pips.png
+xOffsetAbsolute: -12.5*(1-self.energy()/self.maxEnergy())
+imageScaleX: self.energy()/self.maxEnergy()*25
+
+[template_energyline]
+@copyFromSection: template_energy
+order: 4
+image: ROOT:images/ui/energy.line.png
+imageScale: 0.5
+isVisible: if self.maxEnergy() > ${EnergyChunks*Er}
+xOffsetAbsolute: 52/self.maxEnergy()*${EnergyChunks*Er/2}-13
+isVisible: false
+
+[decal_energyline_1]
+@copyFromSection: template_energyline
+@define Er: 1
+
+[decal_energyline_2]
+@copyFromSection: template_energyline
+@define Er: 2
+
+[decal_energyline_3]
+@copyFromSection: template_energyline
+@define Er: 3
+
+[decal_energyline_4]
+@copyFromSection: template_energyline
+@define Er: 4
+
+[decal_energyline_5]
+@copyFromSection: template_energyline
+@define Er: 5
+
+[decal_energyline_6]
+@copyFromSection: template_energyline
+@define Er: 6
+
+[decal_energyline_7]
+@copyFromSection: template_energyline
+@define Er: 7
+
+[decal_energyline_8]
+@copyFromSection: template_energyline
+@define Er: 8
+
+[decal_energyline_9]
+@copyFromSection: template_energyline
+@define Er: 9
+
+[decal_energyline_10]
+@copyFromSection: template_energyline
+@define Er: 10
+
+[decal_energyline_11]
+@copyFromSection: template_energyline
+@define Er: 11
+
+[decal_energyline_12]
+@copyFromSection: template_energyline
+@define Er: 12
+
+[decal_energyline_13]
+@copyFromSection: template_energyline
+@define Er: 13
+
+[decal_energyline_14]
+@copyFromSection: template_energyline
+@define Er: 14
+
+[decal_energyline_15]
+@copyFromSection: template_energyline
+@define Er: 15
+
+[decal_energyline_16]
+@copyFromSection: template_energyline
+@define Er: 16
+
+[decal_energyline_17]
+@copyFromSection: template_energyline
+@define Er: 17
+
+[decal_energyline_18]
+@copyFromSection: template_energyline
+@define Er: 18
+
+[decal_energyline_19]
+@copyFromSection: template_energyline
+@define Er: 19
+
+[template_energypips]
+@define maxEPips: 10
+order: 1
+image: ROOT:images/ui/energy.pips.png
+alwaysStartDirAtZero: true
+yOffsetAbsolute: ${core.radius}
+xOffsetAbsolute: ${-9.25+(energy*2)}
+imageScaleX: 2
+isVisible: if not self.energy(full=true)
+alpha: min(1,max(0,(self.energy()-${(core.energyMax/maxEPips)*energy}) / ${core.energyMax/maxEPips}))

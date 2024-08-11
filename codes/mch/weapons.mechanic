@@ -1,0 +1,1302 @@
+[core]
+energyMax: 30
+energyRegen: 0
+energyNeedsToRechargeToFull: true
+
+@global category:equipment
+
+@global macheteSwing:ROOT:/soundFx/weapon_melee/macheteFire1.ogg:0.6, ROOT:/soundFx/weapon_melee/macheteFire2.ogg:0.6, ROOT:/soundFx/weapon_melee/macheteFire3.ogg:0.6
+@global axeSwing:ROOT:/soundFx/weapon_melee/axeFire1.ogg:0.6, ROOT:/soundFx/weapon_melee/axeFire2.ogg:0.6, ROOT:/soundFx/weapon_melee/axeFire3.ogg:0.6
+@global batSwing:ROOT:/soundFx/weapon_melee/batFire1.ogg, ROOT:/soundFx/weapon_melee/batFire2.ogg:0.6, ROOT:/soundFx/weapon_melee/batFire3.ogg:0.6
+@global knifeSwing:ROOT:/soundFx/weapon_melee/knifeFire1.ogg:0.6, ROOT:/soundFx/weapon_melee/knifeFire2.ogg:0.6, ROOT:/soundFx/weapon_melee/knifeFire3.ogg:0.6
+
+@global macheteHit:ROOT:/soundFx/weapon_melee/macheteHit1.ogg:0.6, ROOT:/soundFx/weapon_melee/macheteHit2.ogg:0.6, ROOT:/soundFx/weapon_melee/macheteHit3.ogg:0.6
+@global axeHit:ROOT:/soundFx/weapon_melee/axeHit1.ogg:0.6, ROOT:/soundFx/weapon_melee/axeHit2.ogg:0.6, ROOT:/soundFx/weapon_melee/axeHit3.ogg:0.6
+@global batHit:ROOT:/soundFx/weapon_melee/batHit1.ogg:0.6, ROOT:/soundFx/weapon_melee/barHit2.ogg:0.6, ROOT:/soundFx/weapon_melee/batHit3.ogg:0.6
+@global knifeHit:ROOT:/soundFx/weapon_melee/knifeHit1.ogg:0.6, ROOT:/soundFx/weapon_melee/knifeHit2.ogg:0.6, ROOT:/soundFx/weapon_melee/knifeHit3.ogg:0.6
+
+@global sharpSwing:ROOT:/soundFx/weapon/sharpSwing1.ogg, ROOT:/soundFx/weapon/sharpSwing2.ogg, ROOT:/soundFx/weapon/sharpSwing3.ogg
+@global bluntSwing:ROOT:/soundFx/weapon/bluntSwing1.ogg, ROOT:/soundFx/weapon/bluntSwing2.ogg, ROOT:/soundFx/weapon/bluntSwing3.ogg
+
+@global genericDraw: ROOT:/soundFx/weapon/generic_draw.ogg:1
+@global genericHolster: ROOT:/soundFx/weapon/generic_holster.ogg:1
+
+@global rifleDraw: ROOT:/soundFx/weapon/rifle_draw.ogg:1
+@global rifleHolster: ROOT:/soundFx/weapon/rifle_holster.ogg:1
+
+@global draw: ROOT:/soundFx/weapon/draw.ogg:1
+@global holster: ROOT:/soundFx/weapon/holster.ogg:1
+
+@global factionCondition:(((self.tags(includes="bandit") or self.tags(includes="marauder")) and (attacking.tags(includes="bandit") or attacking.tags(includes="marauder"))))
+
+#====================  ========================================== MELE ====================  ==========================================
+
+[template_wepE]
+addActionCooldownTime: 1s
+playSoundToPlayerOnQueue: ROOT:/soundFx/itemuse.wav:0.6
+whenBuilding_cannotMove: false
+iconImage: ROOT:/images/items/${resourceId}.png
+iconExtraImage: ROOT:/images/items/${resourceId}.png
+price: ${resourceId}:1
+addResources: ${resourceId}:1
+pos: 0.65
+isLocked: if self.tags(includes="wepEquiped")
+isLockedMessage: You are holding a melee weapon already!
+isLockedAlt: if self.queueSize() >= 1
+isLockedAltMessage: Equiping a weapon
+temporarilyAddTags: none
+temporarilyRemoveTags: none
+
+#knife
+
+[action_equipKnife]
+@define resourceId:blade
+@copyFromSection: template_blade, template_item, template_wepE
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes='knifeEquip') and (self.tags(includes="${category}") or self.tags(includes="all"))
+"""
+temporarilyAddTags: knifeEquip, wepEquiped
+playSoundToPlayerOnQueue: ${draw}
+
+[action_dequipKnife]
+@define resourceId:blade
+@copyFromSection: action_equipKnife
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes='knifeEquip') and (self.tags(includes="${category}") or self.tags(includes="all"))
+"""
+temporarilyAddTags: none
+temporarilyRemoveTags: knifeEquip, wepEquiped
+isGuiBlinking: true
+isLocked: false
+playSoundToPlayerOnQueue: ${holster}
+
+#====================  ==========================================
+
+[action_equipBat]
+@define resourceId:bat
+@copyFromSection: template_bat, template_item, template_wepE
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes='batEquip') and (self.tags(includes="${category}") or self.tags(includes="all"))
+"""
+temporarilyAddTags: batEquip, wepEquiped
+playSoundToPlayerOnQueue: ${draw}
+
+[action_dequipBat]
+@define resourceId:bat
+@copyFromSection: action_equipBat
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes='batEquip') and (self.tags(includes="${category}") or self.tags(includes="all"))
+"""
+temporarilyAddTags: none
+temporarilyRemoveTags: batEquip, wepEquiped
+isGuiBlinking: true
+isLocked: false
+playSoundToPlayerOnQueue: ${holster}
+
+#====================  ==========================================
+
+[action_equipSpear]
+@define resourceId:spear
+@copyFromSection: template_spear, template_item, template_wepE
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes='spearEquip') and (self.tags(includes="${category}") or self.tags(includes="all"))
+"""
+temporarilyAddTags: spearEquip, wepEquiped
+playSoundToPlayerOnQueue: ${draw}
+
+[action_dequipSpear]
+@define resourceId:spear
+@copyFromSection: action_equipSpear
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes='spearEquip') and (self.tags(includes="${category}") or self.tags(includes="all"))
+"""
+temporarilyAddTags: none
+temporarilyRemoveTags: spearEquip, wepEquiped
+isGuiBlinking: true
+isLocked: false
+playSoundToPlayerOnQueue: ${holster}
+
+#====================  ==========================================
+
+[action_equipAxe]
+@define resourceId:axe
+@copyFromSection: template_axe, template_item, template_wepE
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes='axeEquip') and (self.tags(includes="${category}") or self.tags(includes="all"))
+"""
+temporarilyAddTags: axeEquip, wepEquiped
+playSoundToPlayerOnQueue: ${draw}
+
+[action_dequipAxe]
+@define resourceId:axe
+@copyFromSection: action_equipAxe
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes='axeEquip') and (self.tags(includes="${category}") or self.tags(includes="all"))
+"""
+temporarilyAddTags: none
+temporarilyRemoveTags: axeEquip, wepEquiped
+isGuiBlinking: true
+isLocked: false
+playSoundToPlayerOnQueue: ${holster}
+
+#====================  ==========================================
+
+[action_equipFireAxe]
+@define resourceId:fireAxe
+@copyFromSection: template_fireAxe, template_item, template_wepE
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes='fireAxeEquip') and (self.tags(includes="${category}") or self.tags(includes="all"))
+"""
+temporarilyAddTags: fireAxeEquip, wepEquiped
+playSoundToPlayerOnQueue: ${draw}
+
+[action_dequipFireAxe]
+@define resourceId:fireAxe
+@copyFromSection: action_equipFireAxe
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes='fireAxeEquip') and (self.tags(includes="${category}") or self.tags(includes="all"))
+"""
+temporarilyAddTags: none
+temporarilyRemoveTags: fireAxeEquip, wepEquiped
+isGuiBlinking: true
+isLocked: false
+playSoundToPlayerOnQueue: ${holster}
+
+#====================  ==========================================
+
+[action_equipMachete]
+@define resourceId:machete
+@copyFromSection: template_machete, template_item, template_wepE
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes='macheteEquip') and (self.tags(includes="${category}") or self.tags(includes="all"))
+"""
+temporarilyAddTags: macheteEquip, wepEquiped
+playSoundToPlayerOnQueue: ${draw}
+
+[action_dequipMachete]
+@define resourceId:machete
+@copyFromSection: action_equipMachete
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes='macheteEquip') and (self.tags(includes="${category}") or self.tags(includes="all"))
+"""
+temporarilyAddTags: none
+temporarilyRemoveTags: macheteEquip, wepEquiped
+isGuiBlinking: true
+isLocked: false
+playSoundToPlayerOnQueue: ${holster}
+
+[template_turrettemp]
+attachedTo: 1
+shoot_sound_vol: 1
+canOnlyAttackUnitsWithoutTags: safe, tree
+onShoot_playAnimation: use
+x:0
+y:0
+turnSpeed:0
+showRangeUIGuide: false
+
+
+[turret_blade]
+@copyFromSection: template_turrettemp
+canAttackCondition:"""
+if self.tags(includes='knifeEquip') and not 
+self.tags(includes="safe") and not ${factionCondition}
+"""
+size:10
+delay: 0.5s
+limitingRange: 28
+projectile: knife
+shoot_flame: CUSTOM:knifeSwing
+shoot_sound: ${knifeSwing}
+
+[turret_spear]
+@copyFromSection: template_turrettemp
+canAttackCondition:"""
+if self.tags(includes='spearEquip') and not 
+self.tags(includes="safe") and not ${factionCondition}
+"""
+size:10
+delay: 0.9s
+limitingRange: 60
+projectile: spear
+shoot_flame: CUSTOM:spearSwing
+shoot_sound: ${batSwing}
+
+
+[turret_bat]
+@copyFromSection: template_turrettemp
+canAttackCondition:"""
+if self.tags(includes='batEquip') and not 
+self.tags(includes="safe") and not ${factionCondition}
+"""
+size:10
+delay: 1.1s
+limitingRange: 35
+projectile: bat
+shoot_flame: CUSTOM:batSwing
+shoot_sound: ${batSwing}
+resourceUsage: stamina:0.2
+
+[turret_axe]
+@copyFromSection: template_turrettemp
+canAttackCondition:"""
+if self.tags(includes='axeEquip') and not 
+self.tags(includes="safe") and not ${factionCondition}
+"""
+size:10
+canOnlyAttackUnitsWithoutTags: safe
+delay: 1.5s
+limitingRange: 36
+projectile: axe
+shoot_flame: CUSTOM:axeSwing
+shoot_sound: ${axeSwing}
+resourceUsage: stamina:0.2
+
+[turret_fireaxe]
+@copyFromSection: template_turrettemp
+canAttackCondition:"""
+if self.tags(includes='fireAxeEquip') and not 
+self.tags(includes="safe") and not ${factionCondition}
+"""
+canOnlyAttackUnitsWithoutTags: safe
+size:10
+delay: 1.3s
+limitingRange: 38
+projectile: fireAxe
+shoot_flame: CUSTOM:fireAxeSwing
+shoot_sound: ${axeSwing}
+
+[turret_machete]
+@copyFromSection: template_turrettemp
+canAttackCondition:"""
+if self.tags(includes='macheteEquip') and not 
+self.tags(includes="safe") and not ${factionCondition}
+"""
+size:10
+delay: 1s
+limitingRange: 45
+projectile: machete
+shoot_flame: CUSTOM:macheteSwing
+shoot_sound: ${macheteSwing}
+
+
+#pushMechanic
+
+[hiddenAction_pushUnits]
+autoTrigger: if self.isMoving()
+fireTurretXAtGround: push
+fireTurretXAtGround_withOffset: 0,20
+
+[turret_push]
+canAttack: false
+attachedTo: 1
+canOnlyAttackUnitsWithoutTags: safe, tree
+onShoot_triggerActions: addDurationsSkillsXp2
+limitingRange: 50
+x:0
+y:0
+shoot_sound_vol: 0.3
+projectile: push
+resourceUsage: stamina:2
+delay: 75
+
+[projectile_push]
+areaDamage: 0
+areaRadius: 15
+life: 200
+instant: true
+turnSpeed: 0
+pushForce: 300
+tags: push
+explodeEffect: none
+
+[turret_1]
+canAttack: false
+canAttackCondition: if not self.tags(includes="safe") and not self.tags(includes="wepEquiped")
+canOnlyAttackUnitsWithoutTags: safe, tree
+x:0
+y:0
+turnSpeed: 1
+
+[turret_meleeTurret]
+attachedTo: 1
+canAttackCondition: if not self.tags(includes="safe") and not self.tags(includes="wepEquiped") and not ${factionCondition}
+canOnlyAttackUnitsWithoutTags: safe, tree
+onShoot_playAnimation: use
+onShoot_triggerActions: addDurationsSkillsXp2
+limitingRange: 35
+x:0
+y:0
+shoot_sound_vol: 0.3
+projectile: 1
+altProjectile: skirmisherPunch
+altProjectileCondition: if self.globalTeamTags(includes="skirmisher") and not self.tags(includes="noSkirPunch")
+shoot_sound: ROOT:/soundFx/swing.wav
+resourceUsage: stamina:1
+delay: 40
+showRangeUIGuide: false
+
+[projectile_1]
+directDamage: 10
+life: 200
+instant: true
+explodeEffect: CUSTOM:soundHit
+turnSpeed: 0
+areaDamageNoFalloff: true
+pushForce: 220
+delayedStartTimer: 0.3s
+#ignoreParentShootDamageMultiplier: true
+
+[projectile_skirmisherPunch]
+directDamage: 20
+life: 200
+instant: true
+explodeEffect: CUSTOM:soundHit
+turnSpeed: 0
+areaDamageNoFalloff: true
+pushForce: 300
+delayedStartTimer: 0.3s
+
+[effect_soundHit]
+life: 10
+scaleFrom: 0.35
+scaleTo: 0.7
+alsoPlaySound: ROOT:/soundFx/hit.wav
+
+#==============================================================
+#==============================================================
+#==============================================================
+#==============================================================
+#==============================================================
+
+[template_gunE]
+@copyFromSection: template_item
+displayType: infoOnly
+iconImage: ROOT:/images/items/${resourceId}.png
+iconExtraImage: ROOT:/images/items/${resourceId}.png
+pos: 0.66
+price: ${resourceId}:1
+addResources: ${resourceId}:1
+isLocked: if self.tags(includes="gunEquiped")
+isLockedMessage: You are holding a gun already!
+isLockedAlt: if self.queueSize() >= 1
+isLockedAltMessage: Equiping a weapon
+addActionCooldownTime: 1s
+buildSpeed:0.4s
+whenBuilding_cannotMove: false
+attachments_onlyOnSlots: weapon
+
+#==================== Bow ==========================================
+
+[action_equipBow]
+@define resourceId:bow
+@copyFromSection:"""
+template_gunE, 
+template_bow """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyAddTags: bowEquip, gunEquiped
+attachments_addNewUnits: bow_object
+playSoundToPlayerOnQueue: ${draw}
+
+[action_dequipBow]
+@define resourceId:bow
+@copyFromSection:"""
+template_gunE, 
+template_bow """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyRemoveTags: bowEquip, gunEquiped
+attachments_deleteNumUnits: 1
+isLocked: false
+playSoundToPlayerOnQueue: ${holster}
+
+#==================== Pistol Makarov ==========================================
+
+[action_equipPM]
+@define resourceId:pm
+@copyFromSection:"""
+template_gunE, 
+template_pm """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyAddTags: pmEquip, gunEquiped
+attachments_addNewUnits: pm_object
+setUnitStats: maxEnergy=8
+playSoundToPlayerOnQueue: ${genericDraw}
+
+[action_dequipPM]
+@define resourceId:pm
+@copyFromSection:"""
+template_gunE, 
+template_pm """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyRemoveTags: pmEquip, gunEquiped
+attachments_deleteNumUnits: 1
+setUnitStats: maxEnergy=30
+isLocked: false
+isGuiBlinking: true
+playSoundToPlayerOnQueue: ${genericHolster}
+
+#==================== USP ==========================================
+
+[action_equipUsp]
+@define resourceId:usp
+@copyFromSection:"""
+template_gunE, 
+template_usp """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyAddTags: uspEquip, gunEquiped
+attachments_addNewUnits: pm_object
+setUnitStats: maxEnergy=15
+playSoundToPlayerOnQueue: ${rifleDraw}
+
+[action_dequipUsp]
+@define resourceId:usp
+@copyFromSection:"""
+template_gunE, 
+template_usp """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyRemoveTags: uspEquip, gunEquiped
+attachments_deleteNumUnits: 1
+setUnitStats: maxEnergy=30
+isLocked: false
+isGuiBlinking: true
+playSoundToPlayerOnQueue: ${rifleHolster}
+
+
+#==================== TOZ 34 ==========================================
+
+[action_equipToz34]
+@define resourceId:toz34
+@copyFromSection:"""
+template_gunE, 
+template_toz """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true  
+and not self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyAddTags: toz34Equip, gunEquiped
+attachments_addNewUnits: toz34_object
+setUnitStats: maxEnergy=2
+playSoundToPlayerOnQueue: ${rifleDraw}
+
+[action_dequipToz34]
+@define resourceId:toz34
+@copyFromSection:"""
+template_gunE, 
+template_toz """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyRemoveTags: toz34Equip, gunEquiped
+attachments_deleteNumUnits: 1
+setUnitStats: maxEnergy=30
+isLocked: false
+isGuiBlinking: true
+playSoundToPlayerOnQueue: ${rifleHolster}
+
+#==================== SVT 40 ==========================================
+
+[action_equipSvt40]
+@define resourceId:svt40
+@copyFromSection:"""
+template_gunE, 
+template_svt """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyAddTags: svt40Equip, gunEquiped
+attachments_addNewUnits: svt40_object
+setUnitStats: maxEnergy=10
+playSoundToPlayerOnQueue: ${rifleDraw}
+
+[action_dequipSvt40]
+@define resourceId:svt40
+@copyFromSection:"""
+template_gunE, 
+template_svt """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyRemoveTags: svt40Equip, gunEquiped
+attachments_deleteNumUnits: 1
+setUnitStats: maxEnergy=30
+isLocked: false
+isGuiBlinking: true
+playSoundToPlayerOnQueue: ${rifleHolster}
+
+#==================== MP5 ==========================================
+
+[action_equipMp5]
+@define resourceId:mp5
+@copyFromSection:"""
+template_gunE, 
+template_mp5 """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyAddTags: mp5Equip, gunEquiped
+attachments_addNewUnits: mp5_object
+setUnitStats: maxEnergy=30
+playSoundToPlayerOnQueue: ${genericDraw}
+
+[action_dequipMp5]
+@define resourceId:mp5
+@copyFromSection:"""
+template_gunE, 
+template_mp5 """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyRemoveTags: mp5Equip, gunEquiped
+attachments_deleteNumUnits: 1
+setUnitStats: maxEnergy=30
+isLocked: false
+isGuiBlinking: true
+playSoundToPlayerOnQueue: ${genericHolster}
+
+#==================== VITYAZ ==========================================
+
+[action_equipVityaz]
+@define resourceId:vityaz
+@copyFromSection:"""
+template_gunE, 
+template_vityaz """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyAddTags: vityazEquip, gunEquiped
+attachments_addNewUnits: mp5_object
+setUnitStats: maxEnergy=30
+playSoundToPlayerOnQueue: ${genericDraw}
+
+[action_dequipVityaz]
+@define resourceId:vityaz
+@copyFromSection:"""
+template_gunE, 
+template_vityaz """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyRemoveTags: vityazEquip, gunEquiped
+attachments_deleteNumUnits: 1
+setUnitStats: maxEnergy=30
+isLocked: false
+isGuiBlinking: true
+playSoundToPlayerOnQueue: ${genericHolster}
+
+#==================== AK 47 ==========================================
+
+[action_equipAk47]
+@define resourceId:ak47
+@copyFromSection:"""
+template_gunE, 
+template_ak47 """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyAddTags: ak47Equip, gunEquiped
+attachments_addNewUnits: ak47_object
+setUnitStats: maxEnergy=30
+playSoundToPlayerOnQueue: ${rifleDraw}
+
+[action_dequipAk47]
+@define resourceId:ak47
+@copyFromSection:"""
+template_gunE, 
+template_ak47 """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyRemoveTags: ak47Equip, gunEquiped
+attachments_deleteNumUnits: 1
+setUnitStats: maxEnergy=30
+isLocked: false
+isGuiBlinking: true
+playSoundToPlayerOnQueue: ${rifleHolster}
+
+#==================== AS VAL ==========================================
+
+[action_equipVal]
+@define resourceId:val
+@copyFromSection:"""
+template_gunE, 
+template_val """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyAddTags: valEquip, gunEquiped
+attachments_addNewUnits: ak47_object
+setUnitStats: maxEnergy=20
+playSoundToPlayerOnQueue: ${rifleDraw}
+
+[action_dequipVal]
+@define resourceId:val
+@copyFromSection:"""
+template_gunE, 
+template_val """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyRemoveTags: valEquip, gunEquiped
+attachments_deleteNumUnits: 1
+setUnitStats: maxEnergy=30
+isLocked: false
+isGuiBlinking: true
+playSoundToPlayerOnQueue: ${rifleHolster}
+
+#==================== Groza ==========================================
+
+[action_equipGroza]
+@define resourceId:groza
+@copyFromSection:"""
+template_gunE, 
+template_groza """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyAddTags: grozaEquip, gunEquiped
+attachments_addNewUnits: ak47_object
+setUnitStats: maxEnergy=40
+playSoundToPlayerOnQueue: ${rifleDraw}
+
+[action_dequipGroza]
+@define resourceId:groza
+@copyFromSection:"""
+template_gunE, 
+template_groza """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyRemoveTags: grozaEquip, gunEquiped
+attachments_deleteNumUnits: 1
+setUnitStats: maxEnergy=30
+isLocked: false
+isGuiBlinking: true
+playSoundToPlayerOnQueue: ${rifleHolster}
+
+#==================== LK 303 ==========================================
+
+[action_equipLr300]
+@define resourceId:lr300
+@copyFromSection:"""
+template_gunE, 
+template_lr300 """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyAddTags: lr300Equip, gunEquiped
+attachments_addNewUnits: lr300_object
+setUnitStats: maxEnergy=30
+playSoundToPlayerOnQueue: ${rifleDraw}
+
+[action_dequipLr300]
+@define resourceId:lr300
+@copyFromSection:"""
+template_gunE, 
+template_lr300 """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyRemoveTags: lr300Equip, gunEquiped
+attachments_deleteNumUnits: 1
+setUnitStats: maxEnergy=30
+isLocked: false
+isGuiBlinking: true
+playSoundToPlayerOnQueue: ${rifleHolster}
+
+#==================== FN F2000 ==========================================
+
+[action_equipFn2000]
+@define resourceId:fn2000
+@copyFromSection:"""
+template_gunE, 
+template_fn2000 """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyAddTags: fn2000Equip, gunEquiped
+attachments_addNewUnits: ak47_object
+setUnitStats: maxEnergy=30
+playSoundToPlayerOnQueue: ${rifleDraw}
+
+[action_dequipFn2000]
+@define resourceId:fn2000
+@copyFromSection:"""
+template_gunE, 
+template_fn2000 """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyRemoveTags: fn2000Equip, gunEquiped
+attachments_deleteNumUnits: 1
+setUnitStats: maxEnergy=40
+isLocked: false
+isGuiBlinking: true
+playSoundToPlayerOnQueue: ${rifleHolster}
+
+#==================== Gauss Rifle ==========================================
+
+[action_equipGauss]
+@define resourceId:gauss
+@copyFromSection:"""
+template_gunE, 
+template_gauss """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyAddTags: gaussEquip, gunEquiped
+attachments_addNewUnits: lr300_object
+setUnitStats: maxEnergy=5
+playSoundToPlayerOnQueue: ${rifleDraw}
+
+[action_dequipGauss]
+@define resourceId:gauss
+@copyFromSection:"""
+template_gunE, 
+template_gauss """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyRemoveTags: gaussEquip, gunEquiped
+attachments_deleteNumUnits: 1
+setUnitStats: maxEnergy=30
+isLocked: false
+isGuiBlinking: true
+playSoundToPlayerOnQueue: ${rifleHolster}
+
+#==================== XR-1 ==========================================
+
+[action_equipXr1]
+@define resourceId:xr1
+@copyFromSection:"""
+template_gunE, 
+template_xr1 """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and not self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyAddTags: xr1Equip, gunEquiped
+attachments_addNewUnits: ak47_object
+setUnitStats: maxEnergy=24
+playSoundToPlayerOnQueue: ${rifleDraw}
+
+[action_dequipXr1]
+@define resourceId:xr1
+@copyFromSection:"""
+template_gunE, 
+template_xr1 """
+isVisible:"""
+if self.hasResources(${resourceId}=1) 
+and memory.inventory == true 
+and self.tags(includes="${resourceId}Equip") and (self.tags(includes="${category}") or self.tags(includes="all"))  """
+temporarilyRemoveTags: xr1Equip, gunEquiped
+attachments_deleteNumUnits: 1
+setUnitStats: maxEnergy=30
+isLocked: false
+isGuiBlinking: true
+playSoundToPlayerOnQueue: ${rifleHolster}
+
+
+#==================== Reloads ==========================================
+
+[hiddenAction_reloadPM]
+autoTrigger: if self.resource(type='energy') < 1
+alsoQueueAction: reloadPM2
+addResources: energy: 1, 9x18: -8
+requireConditional:"""
+if self.hasResources(9x18=8) 
+and self.tags(includes="pmEquip") """
+playSoundAtUnit: ROOT:/soundFx/weapon/pm/reload.ogg:0.35
+
+[action_reloadPM2]
+allowMultipleInQueue: false
+addResources: energy:100
+buildSpeed: 2s
+isVisible: false
+
+
+[hiddenAction_reloadUSP]
+autoTrigger: if self.resource(type='energy') < 1
+alsoQueueAction: reloadUSP2
+addResources: energy: 1, 45acp: -15
+requireConditional:"""
+if self.hasResources(45acp=15) 
+and self.tags(includes="uspEquip") """
+playSoundAtUnit: ROOT:/soundFx/weapon/usp/reload.ogg:0.35
+
+[action_reloadUSP2]
+allowMultipleInQueue: false
+addResources: energy:100
+buildSpeed: 2s
+isVisible: false
+
+
+[hiddenAction_reloadtz]
+autoTrigger: if self.resource(type='energy') < 1
+alsoQueueAction: reloadtz2
+addResources: energy: 1, 12x70:-2
+requireConditional:"""
+if self.hasResources(12x70=2) 
+and self.tags(includes="toz34Equip") """
+playSoundAtUnit: ROOT:/soundFx/weapon/toz34/reload.ogg:0.35
+
+[action_reloadtz2]
+allowMultipleInQueue: false
+addResources: energy:100
+buildSpeed: 2s
+isVisible: false
+
+
+[hiddenAction_reloadSVT]
+autoTrigger: if self.resource(type='energy') < 1
+alsoQueueAction: reloadsvt2
+addResources: energy: 1, 762x54:-10
+requireConditional:"""
+if self.hasResources(762x54=10) 
+and self.tags(includes="svt40Equip") """
+playSoundAtUnit: ROOT:/soundFx/weapon/svt40/reload.ogg:0.35
+
+[action_reloadsvt2]
+allowMultipleInQueue: false
+addResources: energy:100
+buildSpeed: 4.7s
+isVisible: false
+
+
+[hiddenAction_reloadmp]
+autoTrigger: if self.resource(type='energy') < 1
+alsoQueueAction: reloadmp2
+addResources: energy: 1, 9x19: -30
+requireConditional:"""
+if self.hasResources(9x19=30) 
+and self.tags(includes="mp5Equip") """
+playSoundAtUnit: ROOT:/soundFx/weapon/mp5/reload.ogg:0.5
+
+[action_reloadmp2]
+allowMultipleInQueue: false
+addResources: energy:100, 9x19: -30
+buildSpeed: 2.5s
+isVisible: false
+
+
+[hiddenAction_reloadVityaz]
+autoTrigger: if self.resource(type='energy') < 1
+alsoQueueAction: reloadVityaz2
+addResources: energy: 1, 9x19: -30
+requireConditional:"""
+if self.hasResources(9x19=30) 
+and self.tags(includes="vityazEquip") """
+playSoundAtUnit: ROOT:/soundFx/weapon/vityaz/reload.ogg:0.35
+
+[action_reloadVityaz2]
+allowMultipleInQueue: false
+addResources: energy:100
+buildSpeed: 3s
+isVisible: false
+
+
+
+[hiddenAction_reloadAK]
+autoTrigger: if self.resource(type='energy') < 1
+alsoQueueAction: reloadAK2
+addResources: energy: 1, 545x39: -30
+requireConditional:"""
+if self.hasResources(545x39=30) 
+and self.tags(includes="ak47Equip") """
+playSoundAtUnit: ROOT:/soundFx/weapon/ak47/reload.ogg:0.35
+
+[action_reloadAK2]
+allowMultipleInQueue: false
+addResources: energy:100
+buildSpeed: 3s
+isVisible: false
+
+
+[hiddenAction_reloadVal]
+autoTrigger: if self.resource(type='energy') < 1
+alsoQueueAction: reloadVal2
+addResources: energy: 1, 9x39: -20
+requireConditional:"""
+if self.hasResources(9x39=20) 
+and self.tags(includes="valEquip") """
+playSoundAtUnit: ROOT:/soundFx/weapon/val/reload.ogg:0.35
+
+[action_reloadVal2]
+allowMultipleInQueue: false
+addResources: energy:100
+buildSpeed: 3s
+isVisible: false
+
+
+[hiddenAction_reloadGroza]
+autoTrigger: if self.resource(type='energy') < 1
+alsoQueueAction: reloadGroza2
+addResources: energy: 1, 9x39: -40
+requireConditional:"""
+if self.hasResources(9x39=40) 
+and self.tags(includes="grozaEquip") """
+playSoundAtUnit: ROOT:/soundFx/weapon/groza/reload.ogg:0.35
+
+[action_reloadGroza2]
+allowMultipleInQueue: false
+addResources: energy:100
+buildSpeed: 3s
+isVisible: false
+
+[hiddenAction_reloadlr]
+autoTrigger: if self.resource(type='energy') < 1
+alsoQueueAction: reloadlr2
+addResources: energy: 1, 556x45: -30
+requireConditional:"""
+if self.hasResources(556x45=30) 
+and self.tags(includes="lr300Equip") """
+playSoundAtUnit: ROOT:/soundFx/weapon/lr300/reload.ogg:0.35
+
+[action_reloadlr2]
+allowMultipleInQueue: false
+addResources: energy:100
+buildSpeed: 3s
+isVisible: false
+
+[hiddenAction_reloadFn]
+autoTrigger: if self.resource(type='energy') < 1
+alsoQueueAction: reloadFn2
+addResources: energy: 1, 556x45: -40
+requireConditional:"""
+if self.hasResources(556x45=40) 
+and self.tags(includes="fn2000Equip") """
+playSoundAtUnit: ROOT:/soundFx/weapon/fn2000/reload.ogg:0.35
+
+[action_reloadFn2]
+allowMultipleInQueue: false
+addResources: energy:100
+buildSpeed: 2s
+isVisible: false
+
+
+[hiddenAction_reloadGauss]
+autoTrigger: if self.resource(type='energy') < 1
+alsoQueueAction: reloadGauss2
+addResources: energy: 1, battery: -5
+requireConditional:"""
+if self.hasResources(battery=5) 
+and self.tags(includes="gaussEquip") or self.tags(includes="xr1Equip") """
+playSoundAtUnit: ROOT:/soundFx/weapon/gauss/reload.ogg:0.35
+
+[action_reloadGauss2]
+allowMultipleInQueue: false
+addResources: energy:100
+buildSpeed: 3.5s
+isVisible: false
+
+
+[hiddenAction_reloadXr1]
+autoTrigger: if self.resource(type='energy') < 1
+alsoQueueAction: reloadXr12
+addResources: energy: 1, battery: -24
+requireConditional:"""
+if self.hasResources(battery=24) 
+and self.tags(includes="xr1Equip") """
+playSoundAtUnit: ROOT:/soundFx/weapon/xr1/reload.ogg:0.35
+
+[action_reloadXr12]
+allowMultipleInQueue: false
+addResources: energy:100
+buildSpeed: 3.5s
+isVisible: false
+
+
+#==================== Turrets Projectiles ==========================================
+
+[template_gun]
+x:0
+y:0
+energyUsage: 1
+#bullet usage
+limitingMinRange: 35
+limitingRange: 400
+barrelHeight: 11
+shoot_light: #faff89
+shoot_flame: CUSTOM:smokeShot*2, CUSTOM:smokeShot2*2, CUSTOM:shootflame
+onShoot_playAnimation: gunShot
+onShoot_triggerActions: triggerAttacking, addAimingXp
+canOnlyAttackUnitsWithoutTags: safe, tree
+shoot_sound_vol: 1
+shoot_sound: ROOT:/soundFx/weapon/${id}/shot.ogg
+projectile: ${id}New
+#altProjectile: ${section.projectile}2
+#altProjectileCondition: if self.resource.aiming >= ${recommendedAiming}
+
+[comment_turretTemplate]
+@copyFromSection: template_gun
+canAttackCondition:"""
+if self.tags(includes='Equip') and not 
+self.tags(includes="safe") and not ${factionCondition}
+"""
+@define id:
+@define recommendedAiming: 
+delay: 0.4s
+
+[turret_pm]
+@copyFromSection: template_gun
+canAttackCondition:"""
+if self.tags(includes='pmEquip') and not 
+self.tags(includes="safe") and 
+self.tags(includes='losCheckPassed') and not 
+self.tags(includes='searchForNewTarget') and not ${factionCondition}
+"""
+@define id:pm
+@define recommendedAiming: 2
+delay: 0.3s
+
+[turret_usp]
+@copyFromSection: template_gun
+canAttackCondition:"""
+if self.tags(includes='uspEquip') and not 
+self.tags(includes="safe") and 
+self.tags(includes='losCheckPassed') and not 
+self.tags(includes='searchForNewTarget') and not ${factionCondition}
+"""
+@define id:usp
+@define recommendedAiming: 3
+delay: 0.29s
+
+[turret_toz34]
+@copyFromSection: template_gun
+canAttackCondition:"""
+if self.tags(includes='toz34Equip') and not 
+self.tags(includes="safe") and 
+self.tags(includes='losCheckPassed') and not 
+self.tags(includes='searchForNewTarget') and not ${factionCondition}
+"""
+@define id:toz34
+@define recommendedAiming: 2
+delay: 1s
+
+[turret_svt40]
+@copyFromSection: template_gun
+canAttackCondition:"""
+if self.tags(includes='svt40Equip') and not 
+self.tags(includes="safe") and 
+self.tags(includes='losCheckPassed') and not 
+self.tags(includes='searchForNewTarget') and not ${factionCondition}
+"""
+@define id:svt40
+@define recommendedAiming: 4
+delay: 0.8s
+
+[turret_mp5]
+@copyFromSection: template_gun
+canAttackCondition:"""
+if self.tags(includes='mp5Equip') and not 
+self.tags(includes="safe") and 
+self.tags(includes='losCheckPassed') and not 
+self.tags(includes='searchForNewTarget') and not ${factionCondition}
+"""
+@define id:mp5
+@define recommendedAiming: 4
+delay: 0.15s
+
+[turret_vityaz]
+@copyFromSection: template_gun
+canAttackCondition:"""
+if self.tags(includes='vityazEquip') and not 
+self.tags(includes="safe") and 
+self.tags(includes='losCheckPassed') and not 
+self.tags(includes='searchForNewTarget') and not ${factionCondition}
+"""
+@define id:vityaz
+@define recommendedAiming: 4
+delay: 0.175s
+
+[turret_ak47]
+@copyFromSection: template_gun
+canAttackCondition:"""
+if self.tags(includes='ak47Equip') and not 
+self.tags(includes="safe") and 
+self.tags(includes='losCheckPassed') and not 
+self.tags(includes='searchForNewTarget') and not ${factionCondition}
+"""
+@define id:ak47
+@define recommendedAiming: 6
+delay: 0.165s
+
+[turret_groza]
+@copyFromSection: template_gun
+canAttackCondition:"""
+if self.tags(includes='grozaEquip') and not 
+self.tags(includes="safe") and 
+self.tags(includes='losCheckPassed') and not 
+self.tags(includes='searchForNewTarget') and not ${factionCondition}
+"""
+@define id:groza
+@define recommendedAiming: 8
+delay: 0.15s
+
+[turret_val]
+@copyFromSection: template_gun
+canAttackCondition:"""
+if self.tags(includes='valEquip') and not 
+self.tags(includes="safe") and 
+self.tags(includes='losCheckPassed') and not 
+self.tags(includes='searchForNewTarget') and not ${factionCondition}
+"""
+@define id:val
+@define recommendedAiming: 5
+delay: 0.2s
+
+[turret_lr300]
+@copyFromSection: template_gun
+canAttackCondition:"""
+if self.tags(includes='lr300Equip') and not 
+self.tags(includes="safe") and 
+self.tags(includes='losCheckPassed') and not 
+self.tags(includes='searchForNewTarget') and not ${factionCondition}
+"""
+@define id:lr300
+@define recommendedAiming: 8
+delay: 0.14s
+
+[turret_fn2000]
+@copyFromSection: template_gun
+canAttackCondition:"""
+if self.tags(includes='fn2000Equip') and not 
+self.tags(includes="safe") and 
+self.tags(includes='losCheckPassed') and not 
+self.tags(includes='searchForNewTarget') and not ${factionCondition}
+"""
+@define id:fn2000
+@define recommendedAiming: 9
+delay: 0.12s
+
+[turret_gauss]
+@copyFromSection: template_gun
+canAttackCondition:"""
+if self.tags(includes='gaussEquip') and not 
+self.tags(includes="safe") and 
+self.tags(includes='losCheckPassed') and not 
+self.tags(includes='searchForNewTarget') and not ${factionCondition}
+"""
+@define id:gauss
+@define recommendedAiming: 10
+delay: 1.5s
+shoot_flame: CUSTOM:smokeShot*2, CUSTOM:smokeShot2*2, CUSTOM:shootflame2
+
+[turret_xr1]
+@copyFromSection: template_gun
+canAttackCondition:"""
+if self.tags(includes='xr1Equip') and not 
+self.tags(includes="safe") and 
+self.tags(includes='losCheckPassed') and not 
+self.tags(includes='searchForNewTarget') and not ${factionCondition}
+"""
+@define id:xr1
+@define recommendedAiming: 10
+delay: 0.35s
+shoot_flame: CUSTOM:smokeShot*2, CUSTOM:smokeShot2*2, CUSTOM:shootflame2
+
+
+[turret_arrow]
+canAttackCondition:"""
+if self.tags(includes='bowEquip') and not 
+self.tags(includes="safe") and 
+self.tags(includes='losCheckPassed') and not 
+self.tags(includes='searchForNewTarget')
+"""
+barrelHeight: 11
+onShoot_playAnimation: gunShot
+onShoot_triggerActions: triggerAttacking
+canOnlyAttackUnitsWithoutTags: safe
+resourceUsage: arrow:1
+delay: 1.6s
+x:0
+y:1
+barrelHeight: 13
+projectile: arrow
+
+[animation_gunShot]
+KeyframeTimeScale: 0.8
+body_0s: {frame:14}
+body_0.1s: {frame:15}
+body_0.3s: {frame:15}
+body_0.5s: {frame:14}
+
+[hiddenAction_triggerAttacking]
+temporarilyAddTags: attacking, alert
+
+[hiddenAction_notAttacking]
+autoTrigger: if self.timeAlive(laterThanSeconds=1)
+requireConditional: if self.tags(includes="attacking")
+temporarilyRemoveTags: attacking
+alsoTriggerAction: removeAlert
+
+[hiddenAction_removeAlert]
+temporarilyRemoveTags: alert
+
+[attachment_weapon]
+x:0
+y:0
+isUnselectable: true
+canBeAttackedAndDamaged: false
+#idleDir: 90
+lockRotation: true

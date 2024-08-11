@@ -1,0 +1,229 @@
+[core]
+
+@memory limbDamage:number
+
+@memory hitChance:number
+@memory woundChance:number
+@memory meleeChance:number
+
+@memory legArmor:number
+@memory armArmor:number
+@memory headArmor:number
+@memory torsoArmor:number
+
+[hiddenAction_gotlimbDmg]
+autoTriggerOnEvent: newMessage(withTag="bulletImpact")
+setUnitMemory: limbDamage=eventData(name="bulletDamage", type="number") / 2
+
+
+[hiddenAction_randomizeHit]
+autoTriggerOnEvent: tookDamage(withTag="bullet")
+setUnitMemory: hitChance = rnd(0,115) - select(numberOfUnitsInAllTeams(withTag="object", withinRange=50, greaterThan=0), 45, 0)
+addResources: setFlag=31
+alsoTriggerAction:"""
+damageHitToHead,
+damageHitToTorso,
+damageHitToArms,
+damageHitToLegs """
+
+[hiddenAction_setHitmemoryToZero]
+autoTrigger: if self.hasFlag(id=31)
+addResources: unsetFlag=31
+setUnitMemory: hitChance = -99
+
+
+[hiddenAction_damageHitToHead]
+requireConditional: if memory.hitChance >= 95 and memory.hitChance <= 100
+addResourcesWithLogic:"""
+headHP= - select(self.resource.headArmor > memory.limbDamage, 2, memory.limbDamage - self.resource.headArmor) """
+
+[hiddenAction_damageHitToTorso]
+requireConditional: if memory.hitChance >= 65 and memory.hitChance <= 94 and not self.hasResources(shield=1)
+addResourcesWithLogic:"""
+torsoHP= - select(self.resource.torsoArmor > memory.limbDamage, 2, memory.limbDamage - self.resource.torsoArmor) """
+addResources: stamina:-1
+
+[hiddenAction_damageHitToArms]
+requireConditional: if memory.hitChance >= 31 and memory.hitChance <= 64
+addResourcesWithLogic:"""
+armHP= - select(self.resource.armArmor > memory.limbDamage, 2, memory.limbDamage - self.resource.armArmor) """
+
+[hiddenAction_damageHitToLegs]
+requireConditional: if memory.hitChance >= 0 and memory.hitChance <= 30
+addResourcesWithLogic:"""
+legHP= - select(self.resource.legArmor > memory.limbDamage, 2, memory.limbDamage - self.resource.legArmor) """
+
+
+[hiddenAction_headDeath]
+autoTrigger: if not self.hasResources(headHP=1)
+addResources: hp:-200
+playSoundAtUnit:"""
+ROOT:/soundFx/gore1.wav:2,
+ROOT:/soundFx/gore2.wav:2,
+ROOT:/soundFx/gore3.wav:2,
+ROOT:/soundFx/gore4.wav:2
+"""
+
+[hiddenAction_torsoDeath]
+autoTrigger: if not self.hasResources(torsoHP=1)
+requireConditional: if rnd(0,100) < 18
+addResources: hp:-75
+
+[hiddenAction_legDeath]
+autoTrigger: if not self.hasResources(legHP=1)
+setUnitStats: moveSpeed=0.8
+
+[hiddenAction_legLowEffect]
+autoTrigger: if self.resource.legHP < 35
+requireConditional: if self.isMoving()
+addResources: pain:0.34
+
+[hiddenAction_legRevive]
+autoTrigger: if self.hasResources(legHP=1)
+setUnitStats: moveSpeed=${movement.moveSpeed} * self.resource.speedMultiplier
+
+[hiddenAction_overloadedAlert]
+autoTrigger: if self.isResourceLargerThan(source="encumbrance", compareTarget="maxEncumbrance", byMoreThan=1)
+addResources: legHP:-0.01, hp:-0.02
+
+[hiddenAction_overloaded]
+autoTrigger: if self.isResourceLargerThan(source="encumbrance", compareTarget="maxEncumbrance", byMoreThan=5)
+addResources: legHP:-0.05, hp:-0.05
+
+[hiddenAction_overloadedSoMuch]
+autoTrigger: if self.isResourceLargerThan(source="encumbrance", compareTarget="maxEncumbrance", byMoreThan=10)
+addResources: legHP:-0.2, hp:-0.05
+
+[hiddenAction_overloadedExaggrated]
+autoTrigger: if self.isResourceLargerThan(source="encumbrance", compareTarget="maxEncumbrance", byMoreThan=20)
+addResources: stamina: -0.35, legHP:-0.5
+
+[hiddenAction_randomizeHitWound]
+autoTriggerOnEvent: tookDamage(withTag="bullet")
+setUnitMemory: woundChance = rnd(0,165) + select(self.isMoving(), 0, 25) + select(self.globalTeamTags(includes="dancer"), -35, 0) + select(self.resource.nimble > 5, -15, 0) + select(numberOfUnitsInAllTeams(withTag="object", withinRange=50, greaterThan=0), -15, 0)
+addResources: setFlag=30
+alsoTriggerAction:"""
+woundChance1,
+woundChance2,
+woundChance3 """
+
+[hiddenAction_setHitWoundmemoryToZero]
+autoTrigger: if self.hasFlag(id=30)
+addResources: unsetFlag=30
+setUnitMemory: woundChance = -99
+
+[hiddenAction_woundChance1]
+requireConditional: if memory.woundChance > 65 and memory.woundChance < 115
+addResourcesWithLogic: scratch= 0 + select(self.tags(includes="equipedArmor"), 0, 1)
+
+[hiddenAction_woundChance2]
+requireConditional: if memory.woundChance > 115 and memory.woundChance < 140
+addResourcesWithLogic: laceration= 0 + select(self.tags(includes="equipedArmor"), 1, 1)
+
+[hiddenAction_woundChance3]
+requireConditional: if memory.woundChance > 140 and not self.hasResources(shield=1)
+addResourcesWithLogic: lodgedBullet= 0 + select(self.tags(includes="equipedArmor"), 1, 1)
+
+
+[hiddenAction_randomizeHitMelee]
+autoTriggerOnEvent: tookDamage(withTag="melee")
+setUnitMemory: meleeChance = rnd(0,185) + select(self.isMoving(), 0, 25)
+addResources: setFlag=29
+alsoTriggerAction:"""
+meleeChance1,
+meleeChance2 """
+
+[hiddenAction_setHitMeleememoryToZero]
+autoTrigger: if self.hasFlag(id=29)
+addResources: unsetFlag=29
+setUnitMemory: meleeChance = -99
+
+[hiddenAction_meleeChance1]
+autoTriggerOnEvent: tookDamage(withTag="melee")
+requireConditional: if memory.meleeChance > 100 and memory.meleeChance < 170
+addResourcesWithLogic: scratch= 0 + select(self.tags(includes="equipedArmor"), 1, 1)
+
+[hiddenAction_meleeChance2]
+autoTriggerOnEvent: tookDamage(withTag="melee")
+requireConditional: if memory.meleeChance > 170
+addResourcesWithLogic: laceration= 0 + select(self.tags(includes="equipedArmor"), 1, 1)
+
+
+
+[hiddenAction_playHurtSoundBullet]
+addResources: pain: 10, panic: 6
+requireConditional: if not self.tags(includes="equipedArmor")
+autoTriggerOnEvent: tookDamage(withTag="bullet")
+#spawnEffects: CUSTOM:blur
+alsoTriggerAction: bulletMale, bulletFemale
+
+[hiddenAction_playHurtSoundBulletArmored]
+addResources: pain: 6, panic: 2
+requireConditional: if self.tags(includes="equipedArmor") and not self.hasResources(shield=1)
+autoTriggerOnEvent: tookDamage(withTag="bullet")
+alsoTriggerAction: bulletMale, bulletFemale
+
+[hiddenAction_playHurtSoundFangs]
+addResourcesWithLogic:"""
+pain: 5, 
+panic: 2, 
+headHP: - select(rnd(0,100)<10, int(rnd(1,15)), 0),
+armHP: - select(rnd(0,100)<55, int(rnd(1,10)), 0),
+legHP: - select(rnd(0,100)<30, int(rnd(1,10)), 0),
+torsoHP: - select(rnd(0,100)<30, int(rnd(1,8)), 0)
+"""
+autoTriggerOnEvent: tookDamage(withTag="melee")
+requireConditional: if not self.tags(includes="equipedArmor")
+alsoTriggerAction: painMale, painFemale
+
+[hiddenAction_playHurtSoundFangsArmored]
+addResourcesWithLogic:"""
+pain: 3, 
+panic: 1, 
+headHP: - select(rnd(0,100)<10, int(rnd(1,3)), 0),
+armHP: - select(rnd(0,100)<55, int(rnd(1,4)), 0),
+legHP: - select(rnd(0,100)<30, int(rnd(1,4)), 0),
+torsoHP: - select(rnd(0,100)<30, int(rnd(1,3)), 0)
+"""
+autoTriggerOnEvent: tookDamage(withTag="melee")
+requireConditional: if self.tags(includes="equipedArmor")
+alsoTriggerAction: painMale, painFemale
+
+[resource_fallDownChance]
+hidden: true
+
+[resource_pull]
+hidden: true
+
+[hiddenAction_getPulledBack]
+autoTriggerOnEvent: tookDamage(withTag="pull")
+requireConditional: if self.resource.pull < 5
+addResources: pull:3
+
+[hiddenAction_reducePull]
+autoTrigger: if not self.hasTakenDamage(withinSeconds=0.1) and self.resource.pull > 0
+addResources: pull: -1
+
+[hiddenAction_tookFangDmg]
+autoTriggerOnEvent: tookDamage(withTag="melee")
+addResources: fallDownChance:1
+
+[hiddenAction_tookFangDmg2]
+autoTriggerOnEvent: tookDamage(withTag="melee")
+requireConditional: if directionBetween(self, lastDamagedBy) < 0
+addResources: fallDownChance:1
+
+[hiddenAction_reduceFallChance]
+autoTrigger: if not self.hasTakenDamage(withinSeconds=0.1)
+addResources: fallDownChance: -1
+
+[hiddenAction_cantResist]
+autoTrigger: if self.resource.fallDownChance > (6 + self.resource.strength)
+alsoTriggerAction: die
+playSoundAtUnit:"""
+ROOT:/soundFx/gore1.wav:2,
+ROOT:/soundFx/gore2.wav:2,
+ROOT:/soundFx/gore3.wav:2,
+ROOT:/soundFx/gore4.wav:2
+"""
+showQuickWarLogToPlayer: You fell on the ground

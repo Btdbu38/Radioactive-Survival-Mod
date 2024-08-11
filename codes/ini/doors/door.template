@@ -1,0 +1,71 @@
+[core]
+tags: door, smallWoodenObject
+class: CustomUnitMetadata
+showInEditor: true
+price: 0
+maxHp: 500
+mass: 10000
+buildSpeed: 50s
+radius: 16
+isBio: false
+isBuilding: true
+disableAllUnitCollisions: true
+canNotBeDirectlyAttacked: true
+createNeutral:true
+stayNeutral:true
+autoTriggerCooldownTime: 0.1s
+isUnselectable: true
+autoTriggerCheckRate: every8Frames
+
+##########################################################################################
+
+[hiddenAction_deleteBecauseOfLukesShittyCalculation]
+autoTrigger: true
+deleteSelf: true
+
+[animation_open]
+body_0s: {frame: 0}
+body_0.1s: {frame: 1}
+body_0.2s: {frame: 2}
+body_0.3s: {frame: 3}
+body_0.4s: {frame: 4}
+body_0.6s: {frame: 5}
+body_0.7s: {frame: 6}
+body_0.8s: {frame: 7}
+body_0.9s: {frame: 7}
+body_1s: {frame: 7}
+
+[animation_close]
+body_0s: {frame: 7}
+body_0.1s: {frame: 6}
+body_0.2s: {frame: 5}
+body_0.3s: {frame: 4}
+body_0.4s: {frame: 3}
+body_0.6s: {frame: 2}
+body_0.7s: {frame: 1}
+body_0.8s: {frame: 0}
+body_0.9s: {frame: 0}
+body_1s: {frame: 0}
+
+[graphics]
+showQueueBar: false
+image_offsetY: -10
+total_frames: 8
+image_shadow: NONE
+
+[decal_background]
+image: ROOT:/images/sprites/interactable_doorBack.png
+layer: beforeBody
+order: 1
+hOffset: 0
+alpha: 1
+yOffsetAbsolute: -20
+xOffsetAbsolute: 0
+alwayStartDirAtZero: false
+
+[attack]
+canAttack: false
+
+[movement]
+movementType:none
+moveSpeed: 0

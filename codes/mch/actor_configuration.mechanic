@@ -1,0 +1,349 @@
+
+[hiddenAction_die]
+autoTrigger: if self.hp < 1
+convertTo: died
+convertTo_keepCurrentTags: true
+addResources: hp: 500
+temporarilyAddTags: died
+alsoTriggerAction: dieMale, dieFemale
+playSoundGlobally: ROOT:/soundFx/message.wav
+showMessageToAllPlayers: %{self.playerName} is down!
+attachments_onlyOnSlots: playerName
+attachments_deleteNumUnits: 1
+
+[hiddenAction_survivalistAdd]
+autoTrigger: if self.globalTeamTags(includes='survivalist')
+addResources: hunger: 0.003, thirst: 0.003
+
+[hiddenAction_AIbuffStart]
+autoTrigger: if self.isControlledByAI()
+addGlobalTeamTags: aiBuff
+requireConditional: if not self.globalTeamTags(includes='aiBuff')
+
+[hiddenAction_emissionDamage]
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="emissionStarted", greaterThan=0)
+#requireConditional: 
+addResources: mental: -0.15
+requireConditional: if self.numberOfUnitsInNeutralTeam(withTag="shelter", withinRange=380) <= 0
+
+[hiddenAction_emissionDamageCritical]
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="particleWave", greaterThan=0)
+#requireConditional: 
+addResources: mental: -1
+requireConditional: if self.numberOfUnitsInNeutralTeam(withTag="shelter", withinRange=380) <= 0
+
+[hiddenAction_spawnPsyStorm]
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="psyStormStarted", greaterThan=0)
+spawnUnits: psyStormExplosion(spawnChance=0.03, offsetRandomX=400, offsetRandomY=400, addResources=setFlag=1)
+
+[hiddenAction_spawnPsyStorm2]
+autoTrigger: if self.numberOfUnitsInNeutralTeam(withTag="psyStormStarted", greaterThan=0)
+addResources: mental:-0.8
+requireConditional: if self.numberOfUnitsInNeutralTeam(withTag="shelter", withinRange=380) <= 0
+
+
+[hiddenAction_addMovementSkillsXp]
+autoTrigger: if self.isMoving()
+addResources:"""
+strengthXp:0.02,
+fitnessXp:0.035,
+runningXp:0.1,
+lightfootedXp:0.03
+"""
+
+[hiddenAction_addDurationSkillsXp]
+autoTriggerOnEvent: tookDamage
+addResources:"""
+strengthXp:0.15
+"""
+
+[hiddenAction_addDurationsSkillsXp2]
+addResources:"""
+strengthXp:0.23,
+nimbleXp:0.2
+"""
+
+[hiddenAction_addAimingXp]
+addResources:"""
+aimingXp:0.5
+"""
+
+[hiddenAction_buffWeaponDamagesViaSTR]
+autoTrigger: true
+setUnitStats: shootDamageMultiplier=1 * self.resource.damageMultiplier
+
+[hiddenAction_maleCondition]
+autoTrigger: if self.globalTeamTags(includes="male")
+addResources: hunger: -0.005, thirst: -0.01, radiation: 0.003, mental: 0.15
+
+[hiddenAction_femaleCondition]
+autoTrigger: if self.globalTeamTags(includes="female")
+addResources: hunger: -0.003, thirst: -0.007, radiation: 0.007, mental: 0.05
+
+[hiddenAction_requireMoreFood]
+autoTrigger: if self.globalTeamTags(includes="soldier") or self.globalTeamTags(includes="stalker")
+addResources: hunger: -0.002, thirst: -0.003
+
+
+[hiddenAction_setMultipliers]
+autoTrigger: true
+alsoTriggerAction:"""
+defineEncumbrance,
+setEncumbranceLimit,
+setStaminaRecoveryMultiplier,
+setDamageMultiplier,
+setSpeedMultiplier,
+setDelayMultiplier,
+setAimingMultiplier
+"""
+
+[hiddenAction_setEncumbranceLimit]
+setResourcesWithLogic: maxEncumbrance= 5 + self.resource.bagWeight + self.resource.cloWeight + (select(self.resource.grawy >= 1, 15, 0)) + select(self.tags(includes="weightDebug"), 100 / 0, 0), encumbranceReduction= 1 + (self.resource.strength / 70 - select(self.globalTeamTags(includes="cruelMode"),0.1,0))
+
+[hiddenAction_setStaminaRecoveryMultiplier]
+setResourcesWithLogic: staminaRecovery: 1 + (self.resource.fitness / 50 - select(self.globalTeamTags(includes="cruelMode"),0.03,0))
+
+[hiddenAction_setDamageMultiplier]
+setResourcesWithLogic: damageMultiplier: 1 + (self.resource.strength / 7) + (select(self.resource.grawy >= 1, 0.3, 0)) - (self.resource.pain / 350) - (select(self.resource.remedyRose >= 1, 0.65, 0))
+
+[hiddenAction_setSpeedMultiplier]
+setResourcesWithLogic: speedMultiplier: 1 + (self.resource.running / 30 - select(self.globalTeamTags(includes="cruelMode"),0.1,0)) - (self.resource.wetness / 350) - (self.resource.pull / 8)
+
+[hiddenAction_setDelayMultiplier]
+setResourcesWithLogic: delayMultiplier: 1 + (self.resource.nimble / 30)
+
+[hiddenAction_setAimingMultiplier]
+setResourcesWithLogic: aimingMultiplier:"""
+1 + (self.resource.aiming / 50) 
+ - (self.resource.panic / 350)
+ - (select(self.globalTeamTags(includes="dancer"), 0.3, 0))
+"""
+
+
+#=========================================#
+#=================== Footsteps ======================#
+#=========================================#
+
+[hiddenAction_checkIsOverDirt]
+autoTrigger:"""
+if self.isOverOpenLand() 
+and not self.isOverWater()
+"""
+temporarilyAddTags: overDirt
+temporarilyRemoveTags: overStone
+
+[hiddenAction_checkIsOverStone]
+autoTrigger:"""
+if not self.isOverWater() 
+and not self.isOverOpenLand()
+"""
+temporarilyAddTags: overStone
+temporarilyRemoveTags: overDirt
+
+[hiddenAction_stepDirt]
+autoTrigger: if self.isMoving() and self.tags(includes="overDirt")
+playSoundAtUnit:"""
+ROOT:/soundFx/footsteps/default/earth1.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth2.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth2.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth4.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth4.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth2.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth3.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth4.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth2.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth3.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth1.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth1.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth1.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth3.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth2.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth4.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth3.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth1.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth4.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth1.ogg:0.65,
+ROOT:/soundFx/footsteps/default/earth4.ogg:0.65
+"""
+
+
+[hiddenAction_footstepstone]
+autoTrigger: if self.isMoving() and self.tags(includes="overStone")
+playSoundAtUnit:"""
+ROOT:/soundFx/footsteps/actor/stone2.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/stone2.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/stone3.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/stone1.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/stone4.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/stone3.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/stone4.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/stone4.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/stone3.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/stone2.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/stone3.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/stone4.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/stone2.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/stone4.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/stone1.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/stone2.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/stone4.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/stone1.ogg:0.65
+"""
+
+[hiddenAction_stepWood]
+autoTrigger: if self.isMoving()
+playSoundAtUnit:"""
+ROOT:/soundFx/footsteps/actor/wood2.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/wood2.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/wood3.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/wood1.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/wood4.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/wood3.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/wood4.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/wood4.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/wood3.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/wood2.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/wood3.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/wood4.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/wood2.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/wood4.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/wood1.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/wood2.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/wood4.ogg:0.65,
+ROOT:/soundFx/footsteps/actor/wood1.ogg:0.65
+"""
+requireConditional:"""
+if self.tags(includes="walkingOverWood") 
+and not self.tags(includes="walkingOverStone") 
+and self.isOverOpenLand() 
+and not self.isOverWater()
+"""
+
+[hiddenAction_stepWAter]
+autoTrigger: if self.isMoving()
+playSoundAtUnit:"""
+ROOT:/soundFx/footsteps/water1.ogg:0.65,
+ROOT:/soundFx/footsteps/water2.ogg:0.65,
+ROOT:/soundFx/footsteps/water3.ogg:0.65,
+ROOT:/soundFx/footsteps/water4.ogg:0.65,
+ROOT:/soundFx/footsteps/water5.ogg:0.65,
+ROOT:/soundFx/footsteps/water6.ogg:0.65,
+"""
+requireConditional: if self.isOverWater()
+addResources: wetness:1
+
+[hiddenAction_stepFlesh]
+autoTrigger: if self.isMoving()
+playSoundAtUnit:"""
+ROOT:/soundFx/footsteps/flesh1.wav:0.7,
+ROOT:/soundFx/footsteps/flesh2.wav:0.7,
+ROOT:/soundFx/footsteps/flesh3.wav:0.7,
+ROOT:/soundFx/footsteps/flesh4.wav:0.7
+"""
+requireConditional: if self.numberOfUnitsInNeutralTeam(withTag="corpse", withinRange=20, greaterThan=0)
+
+[hiddenAction_anomalysound]
+autoTrigger: if self.numberOfUnitsInAllTeams(withTag="anomaly", withinRange=95, greaterThan=0)
+playSoundToPlayer: ROOT:/soundFx/detector.ogg:0.4
+
+#=========================================##=========================================#
+#=================== Kill Counters ======================#
+#=========================================##=========================================#
+
+
+#=========================================##=========================================#
+#=================== Text Engine by Sioxer Nikita ======================#
+#=========================================##=========================================#
+
+[attachment_playerName]
+x: 0
+y: 0
+setDrawLayerOnTop: true
+onCreateSpawnUnitOf: EZTX_Text_Title
+isUnselectable: false
+rotateWithParent: false
+resetRotationWhenNotAttacking: false
+lockRotation: true
+
+[hiddenAction_sendString]
+autoTriggerOnEvent: completeAndActive
+sendMessageTo: self.attachment(slot="playerName")
+sendMessageWithTags: newString
+sendMessageWithData: """
+	string=self.playerName, 
+	fontSize=0.1, 
+	color=self.teamId, 
+	maxWidth=9999, 
+	horizontal="center", 
+	vertical="middle",
+	offsetY=-30,
+	offsetX=0
+"""
+
+#=========================================##=========================================#
+#=================== Key Stuff ======================#
+#=========================================##=========================================#
+
+
+[hiddenAction_addKeyTagArmy]
+autoTrigger: if self.hasResources(${trg}=1) and not self.tags(includes="${trg}")
+temporarilyAddTags: ${trg}
+@define trg=keyArmyPrep
+[hiddenAction_removeKeyTagArmy]
+autoTrigger: if not self.hasResources(${trg}=1) and self.tags(includes="${trg}")
+temporarilyRemoveTags: ${trg}
+@define trg=keyArmyPrep
+
+[hiddenAction_addKeyTagPolice]
+autoTrigger: if self.hasResources(${trg}=1) and not self.tags(includes="${trg}")
+temporarilyAddTags: ${trg}
+@define trg=keyPoliceStation
+[hiddenAction_removeKeyTagPolice]
+autoTrigger: if not self.hasResources(${trg}=1) and self.tags(includes="${trg}")
+temporarilyRemoveTags: ${trg}
+@define trg=keyPoliceStation
+
+[hiddenAction_addKeyTagGas]
+autoTrigger: if self.hasResources(${trg}=1) and not self.tags(includes="${trg}")
+temporarilyAddTags: ${trg}
+@define trg=keyFossolGas
+[hiddenAction_removeKeyTagGas]
+autoTrigger: if not self.hasResources(${trg}=1) and self.tags(includes="${trg}")
+temporarilyRemoveTags: ${trg}
+@define trg=keyFossolGas
+
+[hiddenAction_addKeyTagExormor]
+autoTrigger: if self.hasResources(${trg}=1) and not self.tags(includes="${trg}")
+temporarilyAddTags: ${trg}
+@define trg=keyExormor
+[hiddenAction_removeKeyTagExormor]
+autoTrigger: if not self.hasResources(${trg}=1) and self.tags(includes="${trg}")
+temporarilyRemoveTags: ${trg}
+@define trg=keyExormor
+
+[hiddenAction_addKeyTagX1]
+autoTrigger: if self.hasResources(${trg}=1) and not self.tags(includes="${trg}")
+temporarilyAddTags: ${trg}
+@define trg=keyX1
+[hiddenAction_removeKeyTagX1]
+autoTrigger: if not self.hasResources(${trg}=1) and self.tags(includes="${trg}")
+temporarilyRemoveTags: ${trg}
+@define trg=keyX1
+
+[hiddenAction_addKeyTagX2]
+autoTrigger: if self.hasResources(${trg}=1) and not self.tags(includes="${trg}")
+temporarilyAddTags: ${trg}
+@define trg=keyX2
+[hiddenAction_removeKeyTagX2]
+autoTrigger: if not self.hasResources(${trg}=1) and self.tags(includes="${trg}")
+temporarilyRemoveTags: ${trg}
+@define trg=keyX2
+
+[hiddenAction_addKeyTagX3]
+autoTrigger: if self.hasResources(${trg}=1) and not self.tags(includes="${trg}")
+temporarilyAddTags: ${trg}
+@define trg=keyX3
+[hiddenAction_removeKeyTagX3]
+autoTrigger: if not self.hasResources(${trg}=1) and self.tags(includes="${trg}")
+temporarilyRemoveTags: ${trg}
+@define trg=keyX3

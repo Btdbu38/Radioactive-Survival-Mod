@@ -1,0 +1,479 @@
+
+[core]
+copyFrom:"""
+ROOT:/codes/temp/resources.template,
+ROOT:/codes/mch/items.mechanic,
+ROOT:/strings.txt
+"""
+mass: 9000
+isBuilding: true
+
+tags: stash, container, loot, ${lootType}
+displayText: Locker
+price: 0
+maxHp:2000
+radius: 18
+displayRadius: 11
+
+createNeutral: true
+stayNeutral: true
+
+fogOfWarSightRange: 0
+
+nanoRange: 55
+nanoBuildSpeed: 1
+nanoRepairSpeed: 1
+nanoReclaimSpeed: 4
+resourceReclaimMultiplier: 4
+canReclaimResources: true
+canReclaimResourcesNextSearchRange: 55
+canReclaimResourcesOnlyWithTags: item
+
+@memory dropping:bool
+
+
+[action_guide]
+@copyFromSection: template_actionStashGuide
+buildSpeed: 0
+price: 0
+isActive: false
+isVisible: true
+pos: 0.01
+iconImage:ROOT:/images/ui/info.png
+iconExtraImage:ROOT:/images/ui/info.png
+iconExtraColor: #FFFFFF
+displayType: infoOnly
+
+[hiddenAction_nearbyActor]
+autoTrigger: if self.numberOfUnitsInAllTeams(withTag="main", withinRange=45, greaterThan=0)
+playAnimationIfNotPlaying: open
+requireConditional: if not self.hasFlag(id=1)
+addResources: setFlag=1
+playSoundAtUnit: ROOT:/soundFx/door/lockerOpen.ogg
+switchToTeam: nearestUnit(withTag="main").teamId()
+temporarilyAddTags: giveItems
+
+[hiddenAction_actorGone]
+autoTrigger: if not self.numberOfUnitsInAllTeams(withTag="main", withinRange=45, greaterThan=0)
+playAnimationIfNotPlaying: close
+stopLastAnimation: true
+requireConditional: if self.hasFlag(id=1)
+addResources: unsetFlag=1
+switchToTeam: -1
+playSoundAtUnit: ROOT:/soundFx/door/lockerStart.ogg
+alsoQueueAction: playStopSound
+temporarilyRemoveTags: giveItems
+
+[hiddenAction_playStopSound]
+buildSpeed: 0.4s
+playSoundAtUnit: ROOT:/soundFx/door/lockerStop.ogg
+
+
+[hiddenAction_autor]
+autoTriggerOnEvent: created
+temporarilyAddTags: smallMetalObject
+
+[hiddenAction_memoryForce]
+autoTrigger: if not memory.dropping == true
+setUnitMemory: dropping=true
+setBodyRotation: -90
+
+[hiddenAction_collect]
+autoTrigger: if nearestUnit(withTag="main", withinRange=55).tags(includes="droppingItems")
+requireConditional: if self.resource.encumbrance < ${weight}
+#autoTrigger: if self.numberOfUnitsInAllTeams(withTag="droppingItems", withinRange=55) > 0
+#requireConditional: if self.tags(includes="open")
+addWaypoint_type: reclaim
+addWaypoint_target_nearestUnit_tagged: item
+addWaypoint_target_nearestUnit_team: neutral
+addWaypoint_target_nearestUnit_maxRange: 55
+
+[hiddenAction_block]
+autoTrigger: if self.resource.encumbrance > ${weight}
+clearAllWaypoints: true
+
+
+[action_weight]
+pos: 0.02
+isVisible: true
+displayType: infoOnly
+allowMultipleInQueue: false
+canPlayerCancel:true
+isActive: false
+buildSpeed: 0
+text:%{self.resource.encumbrance} / ${weight} KG
+
+[hiddenAction_defineEncumbrance]
+autoTrigger: true
+setResourcesWithLogic: ${defineEncumbrance}
+
+
+
+##############################################################################################
+
+[hiddenAction_respawnLoots]
+autoTrigger: if self.numberOfUnitsInTeam(withTag="respawnLoots", greaterThan=0) 
+requireConditional: if not self.numberOfUnitsInAllTeams(withTag="main", withinRange=400, greaterThan=0) and self.hasFlag(id=15) and self.customTimer(laterThanSeconds=60)
+resetCustomTimer: true
+addResources: unsetFlag=15
+
+[hiddenAction_createdTriggerAutoLoots]
+requireConditional: if self.timeAlive(laterThanSeconds=4) and not self.hasFlag(id=15)
+autoTrigger: if self.numberOfUnitsInAllTeams(withTag="main", withinRange=45, greaterThan=0)
+addResources: setFlag=15
+alsoTriggerAction:"""
+lootGasStation,
+lootExormor,
+lootAdvanced,
+lootMedicalBox,
+lootArmyBox,
+lootFridge,
+lootArmyLocker,
+lootCasualLocker
+"""
+
+[comment_lootCasualLocker]
+alsoTriggerAction:"""
+lootMaterialShelf,
+lootCasualLocker,
+lootArmyLocker,
+lootFridge,
+lootDrawer,
+lootArmyBox,
+lootMedicalBox,
+lootAdvanced,
+"""
+
+[hiddenAction_lootCasualLocker]
+requireConditional: if self.tags(includes="casualLocker")
+addResourcesWithLogic:"""
+
+plank = select(rnd(0,100)<90, int(rnd(1,2)), 0),
+scrap = select(rnd(0,100)<85, int(rnd(1,5)), 0),
+cloth = select(rnd(0,100)<95, int(rnd(1,6)), 0),
+plastic = select(rnd(0,100)<55, int(rnd(1,3)), 0),
+ductTape = select(rnd(0,100)<75, int(rnd(1,4)), 0),
+highTechFabric = select(rnd(0,100)<3, 1, 0),
+
+materialPackage = select(rnd(0,100)<5, 1, 0),
+screws = select(rnd(0,100)<15, 1, 0),
+nails = select(rnd(0,100)<20, 1, 0),
+screwdriver = select(rnd(0,100)<10, int(rnd(1,2)), 0),
+castMetal = select(rnd(0,100)<5, 1, 0),
+hammer = select(rnd(0,100)<5, 1, 0),
+blowtorch = select(rnd(0,100)<5, 1, 0),
+metalSheet = select(rnd(0,100)<2, 1, 0),
+saw = select(rnd(0,100)<15, 1, 0),
+fuelCanister = select(rnd(0,100)<3, 1, 0),
+
+pistolParts = select(rnd(0,100)<30, 1, 0),
+smgParts = select(rnd(0,100)<15, 1, 0),
+rifleParts = select(rnd(0,100)<5, 1, 0),
+
+radio = select(rnd(0,100)<5, 1, 0),
+book = select(rnd(0,100)<6, 1, 0),
+carBattery = select(rnd(0,100)<2, 1, 0),
+oldTech = select(rnd(0,100)<4, 1, 0),
+picture = select(rnd(0,100)<5, 1, 0),
+guitar = select(rnd(0,100)<5, 1, 0),
+needle = select(rnd(0,100)<18, 1, 0),
+tweezer = select(rnd(0,100)<15, 1, 0),
+
+leather = select(rnd(0,100)<15, 1, 0),
+rags = select(rnd(0,100)<35, 1, 0),
+headlamp = select(rnd(0,100)<10, 1, 0),
+schoolBag = select(rnd(0,100)<25, 1, 0),
+duffleBag = select(rnd(0,100)<15, 1, 0),
+leatherJacket = select(rnd(0,100)<5, 1, 0),
+banditJacket = select(rnd(0,100)<3, 1, 0),
+dirtyLeatherJacket = select(rnd(0,100)<10, 1, 0),
+dirtyShirt = select(rnd(0,100)<3, 1, 0),
+dirtyPants = select(rnd(0,100)<2, 1, 0),
+oldBalaclava = select(rnd(0,100)<5, 1, 0),
+oldSportJacket = select(rnd(0,100)<3, 1, 0),
+usedGasmask = select(rnd(0,100)<7, 1, 0),
+shabbyBanditOutfit = select(rnd(0,100)<4, 1, 0),
+shabbySweater = select(rnd(0,100)<5, 1, 0),
+
+blade = select(rnd(0,100)<35, 1, 0),
+bat = select(rnd(0,100)<35, 1, 0)
+
+"""
+
+
+[hiddenAction_lootArmyLocker]
+requireConditional: if self.tags(includes="armyLocker")
+
+addResourcesWithLogic:"""
+
+highTechFabric = select(rnd(0,100)<3, 1, 0),
+
+militaryComputer = select(rnd(0,100)<3, 1, 0),
+militaryHeadsets = select(rnd(0,100)<10, 1, 0),
+
+medkitIfak = select(rnd(0,100)<10, 1, 0),
+headlamp = select(rnd(0,100)<35, 1, 0),
+emrNightVision = select(rnd(0,100)<15, 1, 0),
+spphNightVision = select(rnd(0,100)<4, 1, 0),
+
+paratusBag = select(rnd(0,100)<10, 1, 0),
+oldVest = select(rnd(0,100)<65, 1, 0),
+oldBalaclava = select(rnd(0,100)<10, 1, 0),
+usedGasmask = select(rnd(0,100)<18, 1, 0),
+
+fireAxe = select(rnd(0,100)<15, 1, 0),
+machete = select(rnd(0,100)<3, 1, 0),
+
+pistolParts = select(rnd(0,100)<50, 1, 0),
+smgParts = select(rnd(0,100)<40, 1, 0),
+rifleParts = select(rnd(0,100)<40, 1, 0),
+
+pm = select(rnd(0,100)<5, 1, 0),
+toz34 = select(rnd(0,100)<3, 1, 0),
+svt40 = select(rnd(0,100)<3, 1, 0),
+mp5 = select(rnd(0,100)<2.5, 1, 0),
+
+9x18 = select(rnd(0,100)<85, 15, 0),
+9x19 = select(rnd(0,100)<85, int(rnd(0,20)), 0),
+45acp = select(rnd(0,100)<80, int(rnd(0,20)), 0),
+12x70 = select(rnd(0,100)<85, int(rnd(0,30)), 0),
+545x39 = select(rnd(0,100)<75, int(rnd(0,30)), 0),
+556x45 = select(rnd(0,100)<45, int(rnd(0,30)), 0),
+762x54 = select(rnd(0,100)<55, int(rnd(0,30)), 0),
+9x39 = select(rnd(0,100)<55, int(rnd(0,30)), 0)
+"""
+
+
+[hiddenAction_lootArmyBox]
+requireConditional: if self.tags(includes="armyBox")
+
+addResourcesWithLogic:"""
+
+highTechFabric = select(rnd(0,100)<3, 1, 0),
+
+militaryComputer = select(rnd(0,100)<3, 1, 0),
+militaryHeadsets = select(rnd(0,100)<10, 1, 0),
+
+headlamp = select(rnd(0,100)<35, 1, 0),
+emrNightVision = select(rnd(0,100)<15, 1, 0),
+spphNightVision = select(rnd(0,100)<4, 1, 0),
+
+usedGasmask = select(rnd(0,100)<18, 1, 0),
+
+pistolParts = select(rnd(0,100)<60, 1, 0),
+smgParts = select(rnd(0,100)<50, 1, 0),
+rifleParts = select(rnd(0,100)<30, 1, 0),
+
+grenade = select(rnd(0,100)<8, 1, 0),
+
+pm = select(rnd(0,100)<5, 1, 0),
+toz34 = select(rnd(0,100)<3, 1, 0),
+svt40 = select(rnd(0,100)<3, 1, 0),
+mp5 = select(rnd(0,100)<2.5, 1, 0),
+
+9x18 = select(rnd(0,100)<29, int(rnd(0,30)), 0),
+9x19 = select(rnd(0,100)<28, int(rnd(0,30)), 0),
+45acp = select(rnd(0,100)<23, int(rnd(0,30)), 0),
+12x70 = select(rnd(0,100)<25, int(rnd(0,30)), 0),
+545x39 = select(rnd(0,100)<20, int(rnd(0,30)), 0),
+556x45 = select(rnd(0,100)<16, int(rnd(0,30)), 0),
+762x54 = select(rnd(0,100)<15, int(rnd(0,30)), 0),
+9x39 = select(rnd(0,100)<15, int(rnd(0,30)), 0)
+"""
+
+
+
+[hiddenAction_lootAdvanced]
+requireConditional: if self.tags(includes="advanced")
+
+addResourcesWithLogic:"""
+mre = int(rnd(1,2)),
+water = int(rnd(1,3)),
+highTechFabric = int(rnd(1,3)),
+radkit = int(rnd(1,2)),
+
+medkitGrizzly = select(rnd(0,100)<10, 1, 0),
+medkitIfak = select(rnd(0,100)<20, 1, 0),
+spphNightVision = select(rnd(0,100)<15, 1, 0),
+
+oldVest = select(rnd(0,100)<85, 1, 0),
+usedGasmask = select(rnd(0,100)<18, 1, 0),
+
+sunriseSuit = select(rnd(0,100)<5, 1, 0),
+
+pm = select(rnd(0,100)<5, 1, 0),
+toz34 = select(rnd(0,100)<3, 1, 0),
+svt40 = select(rnd(0,100)<3, 1, 0),
+mp5 = select(rnd(0,100)<2.5, 1, 0),
+ak47 = select(rnd(0,100)<1.5, 1, 0),
+lr300 = select(rnd(0,100)<0.5, 1, 0),
+
+9x18 = select(rnd(0,100)<99, int(rnd(4,25)), 0),
+9x19 = select(rnd(0,100)<85, int(rnd(2,18)), 0),
+12x70 = select(rnd(0,100)<85, int(rnd(3,6)), 0),
+545x39 = select(rnd(0,100)<75, int(rnd(1,12)), 0),
+556x45 = select(rnd(0,100)<75, int(rnd(1,10)), 0),
+762x54 = select(rnd(0,100)<55, int(rnd(1,5)), 0)
+"""
+
+
+[hiddenAction_lootExormor]
+requireConditional: if self.tags(includes="exormorLocker")
+addResourcesWithLogic:"""
+
+turretParts = select(rnd(0,100)<85, int(rnd(1,2)), 0),
+gaussParts = select(rnd(0,100)<3, int(rnd(1,2)), 0),
+battery = select(rnd(0,100)<30, int(rnd(1,3)), 0),
+highTechFabric = select(rnd(0,100)<9, 1, 0),
+generator = select(rnd(0,100)<15, 1, 0),
+
+screws = select(rnd(0,100)<25, int(rnd(1,3)), 0),
+nails = select(rnd(0,100)<25, int(rnd(1,3)), 0),
+screwdriver = select(rnd(0,100)<15, int(rnd(1,2)), 0),
+castMetal = select(rnd(0,100)<15, 1, 0),
+hammer = select(rnd(0,100)<8, 1, 0),
+blowtorch = select(rnd(0,100)<15, 1, 0),
+metalSheet = select(rnd(0,100)<5, 1, 0),
+saw = select(rnd(0,100)<7, 1, 0),
+
+radio = select(rnd(0,100)<25, 1, 0),
+carBattery = select(rnd(0,100)<35, 1, 0),
+oldTech = select(rnd(0,100)<85, 1, 0),
+
+dirtyShirt = select(rnd(0,100)<15, 1, 0),
+dirtyPants = select(rnd(0,100)<15, 1, 0),
+usedGasmask = select(rnd(0,100)<18, 1, 0),
+shabbySweater = select(rnd(0,100)<25, 1, 0)
+
+"""
+
+
+[hiddenAction_lootGasStation]
+requireConditional: if self.tags(includes="gasStationLocker")
+addResourcesWithLogic:"""
+
+pumpJackParts = select(rnd(0,100)<45, int(rnd(1,3)), 0),
+generator = select(rnd(0,100)<60, 1, 0),
+fuelCanister = select(rnd(0,100)<10, 1, 0),
+
+screws = select(rnd(0,100)<25, int(rnd(1,3)), 0),
+nails = select(rnd(0,100)<25, int(rnd(1,3)), 0),
+screwdriver = select(rnd(0,100)<15, int(rnd(1,2)), 0),
+castMetal = select(rnd(0,100)<15, 1, 0),
+hammer = select(rnd(0,100)<8, 1, 0),
+blowtorch = select(rnd(0,100)<15, 1, 0),
+metalSheet = select(rnd(0,100)<5, 1, 0),
+saw = select(rnd(0,100)<7, 1, 0),
+
+radio = select(rnd(0,100)<25, 1, 0),
+carBattery = select(rnd(0,100)<50, 1, 0),
+oldTech = select(rnd(0,100)<10, 1, 0),
+
+dirtyShirt = select(rnd(0,100)<15, 1, 0),
+dirtyPants = select(rnd(0,100)<15, 1, 0),
+usedGasmask = select(rnd(0,100)<18, 1, 0),
+shabbySweater = select(rnd(0,100)<25, 1, 0)
+
+"""
+
+
+
+
+[hiddenAction_lootMedicalBox]
+requireConditional: if self.tags(includes="medicalBox")
+
+addResourcesWithLogic:"""
+
+plastic = select(rnd(0,100)<75, int(rnd(1,2)), 0),
+syringe = select(rnd(0,100)<60, int(rnd(1,3)), 0),
+tweezer = select(rnd(0,100)<25, 1, 0),
+needle = select(rnd(0,100)<25, 1, 0),
+
+rags = select(rnd(0,100)<86, int(rnd(1,3)), 0),
+bandage = select(rnd(0,100)<70, int(rnd(1,2)), 0),
+gauze = select(rnd(0,100)<50, int(rnd(1,2)), 0),
+
+bloodBag = select(rnd(0,100)<45, 1, 0),
+radkit = select(rnd(0,100)<20, 1, 0),
+medkitAi2 = select(rnd(0,100)<45, 1, 0),
+medkitCar = select(rnd(0,100)<30, 1, 0),
+medkitIfak = select(rnd(0,100)<15, 1, 0),
+medkitGrizzly = select(rnd(0,100)<3, 1, 0),
+
+antidote = select(rnd(0,100)<65, 1, 0),
+antisolution = select(rnd(0,100)<45, 1, 0),
+drug = select(rnd(0,100)<50, 1, 0),
+antiraddrug = select(rnd(0,100)<35, 1, 0),
+painkillers = select(rnd(0,100)<35, 1, 0)
+
+"""
+
+[hiddenAction_lootFridge]
+requireConditional: if self.tags(includes="fridge")
+addResourcesWithLogic:"""
+
+snacks = select(rnd(0,100)<45, int(rnd(1,3)), 0),
+rawMeat = select(rnd(0,100)<35, int(rnd(1,2)), 0),
+meat = select(rnd(0,100)<15, 1, 0),
+food = select(rnd(0,100)<10, 1, 0),
+crackers = select(rnd(0,100)<20, 1, 0),
+soda = select(rnd(0,100)<20, 1, 0),
+taintedWater = select(rnd(0,100)<15, 1, 0),
+water = select(rnd(0,100)<3, 1, 0),
+vodka = select(rnd(0,100)<18, 1, 0)
+"""
+
+
+
+
+
+
+
+
+
+
+[graphics]
+showQueueBar: false
+
+[decal_connection]
+isVisible: if self.numberOfUnitsInAllTeams(withTag="main", withinRange=45) >= 1
+layer: shadow
+order: 0
+#imageScale: 0.9
+yOffsetRelative: 0
+alpha: 0.35
+drawLineTo: nearestUnit(withTag="main", relation="any", withinRange=55)
+color: yellow
+lineWidth: 4
+
+[decal_keyRequired]
+isVisible: false
+image: ROOT:/images/ui/keyRequired.png
+layer: afterBody
+order: 999
+yOffsetAbsolute:-30
+onlyWithZoomLevelOrMore: 1.3
+alwayStartDirAtZero: true
+imageScale: 0.2
+onlyWhileAlive: true
+
+[attack]
+canAttack: false
+[movement]
+movementType: NONE
+moveSpeed: 0
+
+[decal_ssao]
+layer: beforeBody
+order: 1
+imageStack: SHARED:blank.png
+total_frames: 1
+stack_hOffset: 0
+hOffset: 0
+onlyWithZoomLevelOrMore:0
+teamColors: true
+dirOffset: 0
+imageScale: 0.8
+yOffsetRelative: 0
+xOffsetRelative: 0
+alpha: 0.25

@@ -1,0 +1,91 @@
+[core]
+copyFrom: ROOT:/codes/temp/resources.template
+name: ${name}
+price: ${name}:1.009
+showOnMinimap: false
+stayNeutral: true
+createNeutral: true
+tags: item
+maxHp: 200
+resourceRate: 10
+resourceMaxConcurrentReclaimingThis: 1
+mass: 10
+buildSpeed: 0s
+#disableAllUnitCollisions: true
+radius: 2
+isBio: true
+isBug: false
+isBuilding: false
+explodeOnDeath: false
+hideScorchMark: true
+similarResourcesHaveTag: item
+generation_resources: cooldown: 1
+autoTriggerCooldownTime: 2s
+autoTriggerCheckRate:every8Frames
+
+
+
+[decal_ssao]
+layer: beforeBody
+order: 1
+imageStack: ROOT:/codes/ini/props/ssao.png
+onlyWithZoomLevelOrMore:1
+color: black
+dirOffset: 0
+imageScale: 1.1
+yOffsetRelative: 0
+xOffsetRelative: 0
+alpha: 0.7
+
+[hiddenAction_pick]
+autoTrigger: if self.resource(type='hp',lessThan=95)
+temporarilyAddTags: sound
+requireConditional: if not self.tags(includes="sound")
+playSoundAtUnit:"""
+ROOT:/soundFx/itemPick/${type}/1.ogg:0.6, 
+ROOT:/soundFx/itemPick/${type}/2.ogg:0.6,
+ROOT:/soundFx/itemPick/${type}/3.ogg:0.6
+"""
+
+[hiddenAction_pickAddDeth]
+autoTrigger: if self.resource(type='hp',lessThan=50)
+addResources: death:1
+
+[resource_death]
+hidden:true
+
+[hiddenAction_remove]
+autoTrigger:if self.resource.death >4
+deleteSelf: true
+
+[hiddenAction_deleteSelf]
+autoTrigger: if self.resource(type='cooldown', greaterThan= 450) and not self.numberOfUnitsInAllTeams(withTag="main", withinRange=450, greaterThan=0)
+addResources: cooldown: -450
+deleteSelf: true
+[resource_cooldown]
+hidden: true
+
+[hiddenAction_notInGround]
+autoTrigger: if not self.isInMap()
+deleteSelf: true
+
+[graphics]
+imageScale: ${size}
+image: ROOT:/images/items/${name}.png
+
+icon_zoomed_out_neverShow: true
+showHealthBar: false
+showEnergyBar: false
+
+image_shadow: auto_animated
+shadowOffsetX:1
+shadowOffsetY:-1.5
+
+[attack]
+canAttack: false
+
+[movement]
+movementType: building
+targetHeight:0
+moveSpeed: 0.7
+maxTurnSpeed: 99

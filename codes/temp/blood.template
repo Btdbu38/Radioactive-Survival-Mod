@@ -1,0 +1,148 @@
+[hiddenAction_bloodEffectSharp]
+autoTriggerOnEvent: tookDamage(withTag="sharp")
+spawnEffects: CUSTOM:blood*3, CUSTOM:splat1, CUSTOM:splat2 , CUSTOM:splat3
+playSoundAtUnit:"""
+ROOT:/soundFx/hit1.wav:0.2,
+ROOT:/soundFx/hit2.wav:0.2
+"""
+
+[hiddenAction_bloodEffectBlunt]
+autoTriggerOnEvent: tookDamage(withTag="blunt")
+spawnEffects: CUSTOM:splat1, CUSTOM:splat2 , CUSTOM:splat3
+
+[hiddenAction_bloodEffectBullet]
+autoTriggerOnEvent: tookDamage(withTag="bullet")
+spawnEffects: CUSTOM:bloodBullet*3
+
+[hiddenAction_dead]
+autoTriggerOnEvent: destroyed
+requireConditional: if not self.tags(includes="npc")
+spawnEffects: CUSTOM:bloodD*3, CUSTOM:splat1, CUSTOM:splat2, CUSTOM:splat3
+
+
+[effect_splat1]
+life: 275
+spawnChance: 0.05
+priority: high
+scaleFrom:0.32
+scaleTo:0.2
+image: ROOT:/images/effects/bloodSplat.png
+physics: true
+ySpeedRelativeRandom: -1
+ySpeedRelative: -0.8
+attachedToUnit: false
+alwayStartDirAtZero: true
+dirOffsetRandom: 10
+
+[effect_splat2]
+life:275
+spawnChance: 0.05
+priority: high
+scaleFrom:0.32
+scaleTo:0.2
+image: ROOT:/images/effects/bloodSplat2.png
+physics: true
+ySpeedRelativeRandom: -1
+ySpeedRelative: -0.8
+attachedToUnit: false
+alwayStartDirAtZero: true
+dirOffsetRandom: 10
+
+[effect_splat3]
+life:275
+spawnChance: 0.05
+priority: high
+scaleFrom:0.32
+scaleTo:0.2
+image: ROOT:/images/effects/bloodSplat3.png
+physics: true
+ySpeedRelativeRandom: -1
+ySpeedRelative: -0.8
+attachedToUnit: false
+alwayStartDirAtZero: true
+dirOffsetRandom: 10
+
+[effect_drop1]
+life:150
+alpha: 0.7
+dirOffsetRandom: 360
+spawnChance: 0.75
+fadeInTime: 15
+priority: high
+scaleFrom:0.3
+scaleTo:0.3
+image: ROOT:/images/effects/blooddrop1.png
+physics: true
+ySpeedRelativeRandom: -0.4
+ySpeedRelative: -0.3
+attachedToUnit: false
+alwayStartDirAtZero: true
+dirOffsetRandom: 10
+
+[effect_drop2]
+@copyFromSection: effect_drop1
+image: ROOT:/images/effects/blooddrop2.png
+
+[effect_drop2green]
+@copyFromSection: effect_drop1
+image: ROOT:/images/effects/blooddrop1green.png
+
+[effect_blood]
+alpha: 0.75
+priority: low
+attachedToUnit: false
+life: 75
+dirOffsetRandom: 360
+dirSpeed:0.2
+dirSpeedRandom:0.3
+physics: true
+scaleFrom: 0.5
+scaleTo: 0.9
+xSpeedRelativeRandom: 0.35
+ySpeedRelativeRandom: -0.5
+ySpeedRelative: -1.5
+hSpeed: 0.3
+hSpeedRandom: 0.7
+hOffset: 12
+image: ROOT:/images/effects/blood.png
+drawUnderUnits: false
+trailEffect: CUSTOM:drop1, CUSTOM:drop2
+trailEffectRate: 30
+
+[effect_bloodBullet]
+alpha: 0.6
+priority: low
+dirOffsetRandom: 360
+attachedToUnit: false
+life: 45
+physics: true
+scaleFrom: 0.3
+scaleTo: 0.6
+xSpeedRelativeRandom: 0.08
+ySpeedRelativeRandom: -2
+ySpeedRelative: 2
+hSpeed: 0.3
+hSpeedRandom: 0.2
+hOffset: 12
+image: ROOT:/images/effects/blood.png
+drawUnderUnits: false
+
+[effect_bloodD]
+priority: critical
+attachedToUnit: false
+life: 40
+dirOffset: 20
+dirOffsetRandom: 4
+dirSpeed:5
+dirSpeedRandom:2
+physics: true
+scaleFrom: 0.6
+scaleTo: 0.07
+xSpeedRelativeRandom: 1
+ySpeedRelativeRandom: -2.5
+hSpeed: 1
+image: ROOT:/images/effects/blood.png
+drawUnderUnits: false
+trailEffect: CUSTOM:drop1, CUSTOM:drop2
+trailEffectRate: 8
+

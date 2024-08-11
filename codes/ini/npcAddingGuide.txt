@@ -1,0 +1,64 @@
+
+This is an example for addon makers.
+
+
+
+Don't ever remove this key. It is crucial.
+[core]
+copyFrom: ROOT:/codes/ini/npcs/human.template
+
+
+Just visible on UI
+#APPEARANCE
+@global text: Your New NPC
+@global description: An NPC created for testing purposes.
+
+
+#BASE STATS
+The "name" is its code-name. Meaning that "name" is required for the scripts that spawns it.
+@global name: aleria
+
+It's faction. Available factions: bandit, cultist, delta, duty, marauder, monolith, nomad, stalker, sun, survivor
+@global faction: marauder
+
+The type triggers various functions; banditDefender(Will patrol in bandit bases), marauderDefender(Will patrol on marauder bases), boss(Will defined as a boss), temporary(Can leave the map and can enter)
+@global type: banditDefender, boss, temporary
+
+:D, Default to 200
+@global health: 400
+
+Armor...
+@global armor: 25
+
+The magazine size of its weapon
+@global magSize: 10
+
+Amount of the medkits npc uses
+@global medkit: 1
+
+Self HP regeneration
+@global regen: 0.03
+
+Changing not recommended
+@global weight: 70
+
+Not so effective
+@global sightRange: 19
+
+#IMAGE
+The image file name
+@global image: aleria
+
+#ATTACK
+Available weapons: pm, toz34, svt40, mp5, ak47, lr300, m98b
+@global weapon: pm
+
+Come on this is boring...
+@global range: 400
+@global delay: 2.5s
+@global aiming: 0
+@global burstFireAmount: 2
+
+#MOVEMENT
+@global speed: 1.1
+
